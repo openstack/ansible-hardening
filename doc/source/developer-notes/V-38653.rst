@@ -1,0 +1,5 @@
+**Exception**
+
+The openstack-ansible project doesn't install snmpd by default, and neither
+does Ubuntu 14.04.  Deployers are strongly recommended to use SNMPv3 with
+strong passwords for all connectivity if they choose to install snmpd.

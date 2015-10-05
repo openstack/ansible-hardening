@@ -1,0 +1,10 @@
+**Exception**
+
+Installing an antivirus program on openstack-ansible infrastructure is left
+up to the deployer. There are strong arguments against virus scanners due to
+detection failures and performance impacts.
+
+For deployers who require an antivirus solution, refer to the suggestions and
+examples in `Ubuntu's documentation on antivirus software`_.
+
+.. _Ubuntu's documentation on antivirus software: https://help.ubuntu.com/community/Antivirus

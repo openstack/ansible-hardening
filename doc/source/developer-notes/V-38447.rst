@@ -1,0 +1,11 @@
+**Exception**
+
+Verifying contents of files installed from packages is more difficult in
+Ubuntu, mainly due to the lack of an equivalent of ``rpm -V``. The ``debsums``
+package installs the ``debsums`` command and that can be used to look for
+files that have changed since the package was installed.
+
+However, not all packages have MD5 checksums for all files and ``debsums``
+doesn't do detailed checking like ``rpm``.  Deployers are urged to run
+``debsums -c`` to review changes made to files on their systems. This report
+takes a long time to run on most systems.

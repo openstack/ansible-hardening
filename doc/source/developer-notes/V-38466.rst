@@ -1,0 +1,5 @@
+**Exception**
+
+As with V-38465, Ubuntu sets the ownership of library files to root by
+default. Deployers are urged to configure monitoring for changes to these
+files.

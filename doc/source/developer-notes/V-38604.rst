@@ -1,0 +1,6 @@
+**Exception**
+
+The ``ypbind`` service is removed as part of V-38603 where the ``nis`` package
+is removed from the system entirely. Since neither Ubuntu nor
+openstack-ansible install any NIS-related services, this configuration is
+skipped.

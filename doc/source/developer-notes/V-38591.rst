@@ -1,0 +1,2 @@
+The rshd service will be removed by default.  To control what services will
+be removed, review the ``remove_services`` list in ``defaults/main.yml``.

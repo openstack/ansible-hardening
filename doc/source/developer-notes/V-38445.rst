@@ -1,0 +1,3 @@
+Although audit log files are owned by the root user and group by default
+in Ubuntu 14.04, the Ansible task for V-38445 will ensure that they are
+configured as such.

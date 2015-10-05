@@ -1,0 +1,116 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: V-38631/38632 - The operating system must produce audit records (install auditd)
+  apt:
+    name: auditd
+    state: latest
+    cache_valid_time: 3600
+    update_cache: yes
+  tags:
+    - auditd
+    - cat2
+    - V-38632
+    - V-38631
+
+- name: V-38631/38632 - The operating system must produce audit records (start auditd)
+  service:
+    name: auditd
+    state: started
+    enabled: true
+  tags:
+    - auditd
+    - cat2
+    - V-38632
+    - V-38631
+
+- name: V-38445 - Audit log files must be group-owned by root
+  file:
+    dest: /var/log/audit/
+    group: root
+    recurse: true
+  tags:
+    - auditd
+    - cat2
+    - V-38445
+
+- name: V-38464 - The audit system must take action for disk errors
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?disk_error_action"
+    line: "disk_error_action = {{ disk_error_action }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38464
+
+- name: V-38468 - The audit system must take action when the disk is full
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?disk_full_action"
+    line: "disk_full_action = {{ disk_full_action }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38468
+
+- name: V-38470 - The audit system must take action when the disk is almost full
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?space_left_action"
+    line: "space_left_action = {{ space_left_action }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38470
+
+- name: V-38495 - Audit log files must be owned by root
+  file:
+    dest: /var/log/audit/
+    owner: root
+    recurse: true
+  tags:
+    - auditd
+    - cat2
+    - V-38495
+
+- name: Auditd rules (includes several STIGs)
+  template:
+    src: osas-auditd.j2
+    dest: /etc/audit/rules.d/osas-auditd.rules
+  notify:
+    - generate auditd rules
+  tags:
+    - auditd
+    - cat3
+
+- name: V-38471 - Forward auditd records to syslog
+  lineinfile:
+    dest: /etc/audisp/plugins.d/syslog.conf
+    regexp: "^(#)?active"
+    line: "active = yes"
+    state: present
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat3
+    - V-38471

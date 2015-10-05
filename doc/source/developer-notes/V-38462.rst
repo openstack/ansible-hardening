@@ -1,0 +1,9 @@
+Ubuntu checks packages against GPG signatures by default.  It can be turned
+off for all package installations by a setting in /etc/apt/apt.conf.d/ and we
+search for that in the Ansible task.  A warning is printed if the
+``AllowUnauthenticated`` configuration option is present in the apt
+configuration directories.
+
+Please note that users can pass an argument on the apt command line
+to bypass the checks as well, but that's outside the scope of this check
+and remediation.

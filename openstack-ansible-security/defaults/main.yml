@@ -1,0 +1,157 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cat3_services:
+  - name: abrtd
+    state: stopped
+    enabled: no
+
+  - name: atd
+    state: stopped
+    enabled: no
+
+## Disabling services
+# The STIG recommends ensuring that some services are running if no services
+# utilizing it are enabled.  Setting a boolean to 'yes' here will ensure that
+# a service isn't actively running and will not be started after boot-up.
+# Setting a 'no' will ensure that this Ansible role does not alter the service
+# in any way from its current configuration.
+#
+disable_services:
+  abrtd: yes                                      # V-38641
+  atd: yes                                        # V-38640
+  autofs: yes                                     # V-38437
+  avahi: yes                                      # V-31618
+  ypbind: yes                                     # V-38604
+  xinetd: yes                                     # V-38582
+
+## Removing services
+# The STIG recommends ensuring that some services aren't installed at any time.
+# Those services are listed here.  Setting a boolean here to 'yes' wiil
+# ensure that the STIG is followed and the service is removed.  Setting a
+# boolean to 'no' means that the playbook will not alter the service.
+#
+remove_services:
+  ypserv: yes                                     # V-38603
+  rsh-server: yes                                 # V-38591
+  telnet_server: yes                              # V-38587
+  tftp-server: yes                                # V-38606
+  xinetd: yes                                     # V-38584
+
+## Additional rules for auditd
+# The following booleans control the rule sets added to auditd's default
+# set of auditing rules.  To see which rules will be added for each boolean,
+# refer to the templates/osas-auditd.j2 file.
+#
+# If the template changes due to booleans being adjusted, the new template
+# will be deployed onto the host and auditd will get the new rules loaded
+# automatically with augenrules.
+#
+auditd_rules:
+  account_modification: yes                       # V-38531, V-38534, V-38538
+  apparmor_changes: yes                           # V-38541
+  change_localtime: yes                           # V-38530
+  change_system_time: yes                         # V-38635
+  clock_settime: yes                              # V-38527
+  clock_settimeofday: yes                         # V-38522
+  clock_stime: yes                                # V-38525
+  DAC_chmod: yes                                  # V-38543
+  DAC_chown: yes                                  # V-38545
+  DAC_lchown: yes                                 # V-38558
+  DAC_fchmod: yes                                 # V-38547
+  DAC_fchmodat: yes                               # V-38550
+  DAC_fchown: yes                                 # V-38552
+  DAC_fchownat: yes                               # V-38554
+  DAC_fremovexattr: yes                           # V-38556
+  DAC_lremovexattr: yes                           # V-38559
+  DAC_fsetxattr: yes                              # V-38557
+  DAC_lsetxattr: yes                              # V-38561
+  DAC_setxattr: yes                               # V-38565
+  deletions: yes                                  # V-38575
+  failed_access: yes                              # V-38566
+  filesystem_mounts: yes                          # V-38568
+  kernel_modules: yes                             # V-38580
+  network_changes: yes                            # V-38540
+  sudoers: yes                                    # V-38578
+
+## SSH configuration
+# The following configuration items will adjust how the ssh daemon is
+# configured.  The recommendations from the RHEL 6 STIG are shown below, but
+# they can be adjusted to fit a particular environment.
+#
+# V-38608 - Set a 15 minute time out for SSH sessions if there is no activity
+ssh_client_alive_interval: 900
+# V-38610 - Timeout ssh sessions as soon as ClientAliveInterval is reached once
+ssh_client_alive_count_max: 0
+# V-38613 - The ssh daemon must not permit root logins
+# Deviation from the STIG due to operational requirements in openstack-ansible.
+# See documentation for V-38613 for more details.
+ssh_permit_root_login: 'yes'
+
+## Chrony configuration
+# Adjust the following NTP servers if necessary.
+ntp_servers:
+  - 0.north-america.pool.ntp.org
+  - 1.north-america.pool.ntp.org
+  - 2.north-america.pool.ntp.org
+  - 3.north-america.pool.ntp.org
+# Chrony limits access to clients that are on certain subnets.  Adjust the
+# following subnets here to limit client access to chrony servers.
+allowed_ntp_subnets:
+  - 10/8
+  - 192.168/16
+  - 172.16/12
+
+## Mail configuration
+# Configuring an email address here will cause hosts to forward the root user's
+# email to another address.
+#root_forward_email: user@example.com
+
+## Auditd configuration
+# **DANGER**
+# Set an action to occur when there is a disk error. Review the
+# documentation for V-38464 before changing this option.
+# **DANGER**
+disk_error_action: SYSLOG                         # V-38464
+# **DANGER**
+# Set an action to occur when the disk is full. Review the documentation for
+# V-38468 before changing this option.
+# **DANGER**
+disk_full_action: SYSLOG                          # V-38468
+# **DANGER**
+# Set an action to occur when the disk is approaching its capacity.
+# Review the documentation for V-38470 before changing this option.
+# **DANGER**
+space_left_action: SYSLOG                         # V-38470
+
+## Authentication
+# V-38475 - There is no password length requirement by default in Ubuntu
+# 14.04. To set a password length requirement, uncomment
+# password_minimum_length below. The STIG recommendation is 14 characters.
+#password_minimum_length: 14                      # V-38475
+# V-38477 - There is no password change limitation set by default in Ubuntu.
+# To set the minimum number of days between password changes, uncomment
+# the password_minimum_days variable below.  The STIG recommendation is 1 day.
+#password_minimum_days: 1                         # V-38477
+# V-38479 - There is no age limit on password by default in Ubuntu. Uncomment
+# line below to use the STIG recommendation of 60 days.
+#password_maximum_days: 60                        # V-38479
+# V-38480 - To warn users before their password expires, uncomment the line
+# below and they will be warned 7 days prior (following the STIG).
+#password_warn_age: 7                             # V-38480
+
+## Kernel modules
+# V-38490 - Set the line below to yes to disable usb-storage
+disable_usb_storage: no

@@ -1,0 +1,1 @@
+The ``aide`` package will be installed by Ansible tasks.

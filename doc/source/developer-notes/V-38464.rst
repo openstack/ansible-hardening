@@ -1,0 +1,16 @@
+Ubuntu's default for ``disk_error_action`` is ``SUSPEND``, which actually
+only suspends audit logging. That could be a security issue, so ``SYSLOG``
+is recommended and is set by default be openstack-ansible-security.  There
+are additional options available, like ``EXEC``, ``SINGLE`` or ``HALT``.
+
+To configure a different ``disk_error_action``, set the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    disk_error_action = SYSLOG
+
+For details on available settings and what they do, run ``man auditd.conf``.
+Some options can cause the host to go offline until the issue is fixed.
+Deployers are urged to **carefully read the auditd documentation** prior to
+changing the ``disk_error_action`` setting from the default.

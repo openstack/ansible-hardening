@@ -1,0 +1,5 @@
+The RHEL 6 STIG requires that changes to SELinux policies and configuration are
+audited.  However, Ubuntu's preference for Mandatory Access Control (MAC) is
+AppArmor and openstack-ansible configures AppArmor by default.
+
+This requirement has been modified to fit AppArmor on an Ubuntu system.

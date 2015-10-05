@@ -1,0 +1,7 @@
+**Exception**
+
+Removing serial consoles from ``/etc/securetty`` can make troubleshooting
+a server extremely difficult. Deployers are urged to use strong physical
+security practices to prevent unauthorized users from gaining physical access
+to critical hosts.  In addition, out-of-band systems that allow for serial
+over LAN access should also be heavily secured.

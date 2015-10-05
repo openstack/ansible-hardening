@@ -1,0 +1,2 @@
+The Ansible tasks will check for ``.netrc`` files on the system and print
+a failure warning if any are found.

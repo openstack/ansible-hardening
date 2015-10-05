@@ -1,0 +1,53 @@
+---
+
+- name: Install AIDE
+  apt:
+    name: aide
+    state: latest
+  tags:
+    - cat2
+    - V-38489
+
+- name: Search for .netrc files (for V-38619)
+  shell: find /root /home -xdev -name .netrc | wc -l
+  register: v38619_result
+  changed_when: v38619_result.rc != 0
+  failed_when: "'No such file' in v38619_result.stdout"
+  tags:
+    - cat2
+    - V-38619
+
+- name: V-38619 - There must be no .netrc files on the system
+  debug:
+    msg: "FAILED: .netrc files found -- they must be removed"
+  when: v38619_result.stdout != '0'
+  tags:
+    - cat2
+    - V-38619
+
+- name: V-38620 - Synchronize system clock (installing chrony)
+  apt:
+    name: chrony
+    state: latest
+  tags:
+    - cat2
+    - V-38620
+
+- name: V-38620 - Synchronize system clock (enable chrony)
+  service:
+    name: chrony
+    state: started
+    enabled: yes
+  tags:
+    - cat2
+    - V-38620
+
+- name: V-38620 - Synchronize system clock (configuration file)
+  template:
+    src: chrony.conf.j2
+    dest: /etc/chrony/chrony.conf
+  notify:
+    - restart chrony
+  tags:
+    - cat2
+    - V38620

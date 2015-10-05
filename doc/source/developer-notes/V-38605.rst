@@ -1,0 +1,4 @@
+The ``cron`` service is running by default in Ubuntu and is required for
+openstack-ansible's services to function properly. The Ansible tasks in
+this role will ensure that ``cron`` is running and is configured to start
+at boot time.

@@ -1,0 +1,1 @@
+services.yml reads a list of services and their desired state from the 'defaults/main.yml' cat3_services variable. With this list the tasks will ensure the services are in the state desired by their corresponding STIG requirement.

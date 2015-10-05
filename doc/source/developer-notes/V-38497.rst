@@ -1,0 +1,5 @@
+Making adjustments to PAM configuration can be **very dangerous** for a
+production system, so the Ansible task runs a check for text matching
+``nullok`` in ``/etc/pam.d/common-auth`` (different than
+``/etc/pam.d/system-auth`` found in RHEL 6) and prints a warning if it is
+found.

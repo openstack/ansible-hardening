@@ -1,0 +1,6 @@
+The ``tftpd`` package in Ubuntu will be removed. To opt-out, adjust the
+following configuration variable to ``no``:
+
+.. code-block:: yaml
+
+    remove_services['tftp-server'] = no

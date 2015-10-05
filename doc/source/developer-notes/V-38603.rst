@@ -1,0 +1,7 @@
+The ``nis`` package is Ubuntu's equivalent of Red Hat's ``ypserv`` package.
+The Ansible tasks will remove the ``nis`` package if it is installed. To
+opt-out of this change, adjust the following configuration variable to ``no``:
+
+.. code-block:: yaml
+
+    remove_services['ypserv'] = no

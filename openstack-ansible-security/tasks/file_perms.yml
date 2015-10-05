@@ -1,0 +1,70 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: V-38443 - The /etc/gshadow file must be owned by root
+  file:
+    dest: /etc/gshadow
+    owner: root
+  tags:
+    - file_perms
+    - cat2
+    - V-38443
+
+- name: V-38448 - The /etc/gshadow file must be group-owned by root
+  file:
+    dest: /etc/gshadow
+    group: root
+  tags:
+    - file_perms
+    - cat2
+    - V-38448
+
+- name: V-38449 - The /etc/gshadow file must have mode 0000
+  file:
+    dest: /etc/gshadow
+    mode: 0000
+  tags:
+    - file_perms
+    - cat2
+    - V-38449
+
+- name: V-38459 - The /etc/group file must be group-owned by root
+  file:
+    dest: /etc/group
+    owner: root
+    group: root
+  tags:
+    - file_perms
+    - cat2
+    - V-38459
+
+- name: V-38461 - The /etc/group file must have mode 0644 or less
+  file:
+    dest: /etc/group
+    mode: 0644
+  tags:
+    - file_perms
+    - cat2
+    - V-38461
+
+- name: V-38493 - Audit log directories must have mode 0755 or less
+  file:
+    dest: /var/log/audit/
+    state: directory
+    mode: 0750
+  tags:
+    - file_perms
+    - cat2
+    - V-38493

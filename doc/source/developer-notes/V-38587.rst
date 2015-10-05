@@ -1,0 +1,3 @@
+The telnet server package will be removed by default.  To control which
+services will be removed, review the ``remove_services`` list in
+``defaults/main.yml``.

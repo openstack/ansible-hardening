@@ -1,0 +1,10 @@
+**Configuration required**
+
+Ubuntu doesn't set a limitation on how frequently uses can change passwords.
+However, the STIG recommends setting a limit of one password change per day.
+
+To enable this configuration, use this Ansible variable:
+
+.. code-block:: yaml
+
+    password_minimum_days: 14

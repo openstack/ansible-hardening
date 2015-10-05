@@ -1,0 +1,10 @@
+**Exception**
+
+Operating system patching is left up to the deployer to configure based on
+their business requirements and toleration for risk. Enabling automated
+updates in Ubuntu can be done with changes to the apt configuration.
+
+Ubuntu's documentation on `automatic updates`_ covers a few options for
+configuring apt.
+
+.. _automatic_updates: https://help.ubuntu.com/lts/serverguide/automatic-updates.html

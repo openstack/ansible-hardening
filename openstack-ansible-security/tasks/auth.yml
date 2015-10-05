@@ -1,0 +1,211 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: V-38475 - Set minimum length for passwords
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^(#)?PASS_MIN_LEN"
+    line: "PASS_MIN_LEN {{ password_minimum_length }}"
+  when: password_minimum_length is defined
+  tags:
+    - auth
+    - cat2
+    - V-38475
+
+- name: V-38477 - Set minimum time for password changes
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^(#)?PASS_MIN_DAYS"
+    line: "PASS_MIN_DAYS {{ password_minimum_days }}"
+  when: password_minimum_days is defined
+  tags:
+    - auth
+    - cat2
+    - V-38477
+
+- name: V-38479 - Set maximum age for passwords
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^(#)?PASS_MAX_DAYS"
+    line: "PASS_MAX_DAYS {{ password_maximum_days }}"
+  when: password_maximum_days is defined
+  tags:
+    - auth
+    - cat2
+    - V-38479
+
+- name: V-38480 - Warn users prior to password expiration
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^(#)?PASS_WARN_DAYS"
+    line: "PASS_WARN_DAYS {{ password_warn_age }}"
+  when: password_warn_age is defined
+  tags:
+    - auth
+    - cat3
+    - V-38480
+
+# RHEL 6 keeps this content in /etc/pam.d/system-auth, but Ubuntu keeps it in
+# /etc/pam.d/common-auth
+- name: V-38497 - The system must not have accounts configured with blank or null passwords.
+  command: grep nullok /etc/pam.d/common-auth
+  register: v38497_result
+  changed_when: v38497_result.rc != 0
+  failed_when: "'No such file' in v38497_result.stderr"
+  tags:
+    - auth
+    - cat1
+    - V-38497
+
+# Print a warning about making a change.  We ought to figure out a better way
+# to capture this later.
+- name: V-38497 - The system must not have accounts configured with blank or null passwords.
+  debug:
+    msg: "FAILED: Remove 'nullok' from /etc/pam.d/system-auth for better security."
+  when: "v38497_result.rc == 0"
+  tags:
+    - auth
+    - cat1
+    - V-38497
+
+- name: Check if /etc/hosts.equiv exists (for V-38491)
+  stat:
+    path: /etc/hosts.equiv
+  register: v38491_equiv_check
+  changed_when: v38491_equiv_check.stat.exists == True
+  tags:
+    - auth
+    - cat1
+    - V-38491
+
+- name: Check if root has a .rhosts file (for V-38491)
+  stat:
+    path: /root/.rhosts
+  register: v38491_rhosts_check
+  changed_when: v38491_rhosts_check.stat.exists == True
+  tags:
+    - auth
+    - cat1
+    - V-38491
+
+- name: V-38491 - No .rhosts or hosts.equiv present on system
+  debug:
+    msg: "FAILED: Remove all .rhosts and hosts.equiv files"
+  when: v38491_equiv_check.stat.exists == True or v38491_rhosts_check.stat.exists == True
+  tags:
+    - auth
+    - cat1
+    - V-38491
+
+- name: V-38591 - Remove rshd
+  apt:
+    name: rsh-server
+    state: absent
+  when: remove_services['rsh-server'] | bool
+  tags:
+    - auth
+    - cat1
+    - V-38591
+
+- name: V-38587 - Remove telnet-server
+  apt:
+    name: telnetd
+    state: absent
+  when: remove_services['telnet_server'] | bool
+  tags:
+    - auth
+    - cat1
+    - V-38587
+
+- name: Search /etc/passwd for password hashes (for V-38499)
+  shell: "awk -F: '($2 != \"x\") {print}' /etc/passwd | wc -l"
+  register: v38499_result
+  changed_when: "v38499_result.stdout != '0'"
+  failed_when: "'No such file' in v38499_result.stderr"
+  tags:
+    - auth
+    - cat2
+    - V-38499
+
+- name: V-38499 - The /etc/passwd file must not contain password hashes
+  debug:
+    msg: "FAILED: Remove password hashes from /etc/password to remediate"
+  when: "v38499_result.stdout != '0'"
+  tags:
+    - auth
+    - cat2
+    - V-38499
+
+- name: V-38450 - The /etc/passwd file must be owned by root
+  file:
+    path: /etc/passwd
+    owner: root
+  tags:
+    - auth
+    - cat2
+    - V-38450
+
+- name: V-38451 - The /etc/passwd file must be group-owned by root
+  file:
+    path: /etc/passwd
+    group: root
+  tags:
+    - auth
+    - cat2
+    - V-38451
+
+- name: V38457 - The /etc/passwd file must have mode 0644 or less permissive
+  file:
+    path: /etc/passwd
+    mode: 0644
+  tags:
+    - auth
+    - cat2
+    - V-38457
+
+- name: Check if vsftpd installed (for V-38599)
+  shell: dpkg --status vsftpd
+  register: v38599_result
+  changed_when: v38599_result.rc == 0
+  failed_when: v38599_result.rc > 1
+  tags:
+    - auth
+    - cat2
+    - V-38599
+
+- name: Copy login banner (for V-38599)
+  copy:
+    src: login_banner.txt
+    dest: /etc/issue.net
+  when: v38599_result.rc == 0
+  notify:
+    - restart vsftpd
+  tags:
+    - auth
+    - cat2
+    - V-38599
+
+- name: V-38599 - Set warning banner for FTPS/FTP logins
+  lineinfile:
+    dest: /etc/vsftpd/vsftpd.conf
+    regexp: "^(#)?banner_file"
+    line: "banner_file=/etc/issue.net"
+  when: v38599_result.rc == 0
+  notify:
+    - restart vsftpd
+  tags:
+   - auth
+   - cat2
+   - V-38599

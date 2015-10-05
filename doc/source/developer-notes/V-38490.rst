@@ -1,0 +1,9 @@
+**Exception**
+
+Disabling the ``usb-storage`` module can add extra security, but it's not
+necessary on most systems. To disable the ``usb-storage`` module on hosts,
+set ``disable_usb_storage`` to ``yes``:
+
+.. code-block:: yaml
+
+    disable_usb_storage: yes

@@ -1,0 +1,4 @@
+**Exception**
+
+Neither Ubuntu 14.04 nor openstack-ansible adds a tftp daemon to the system.
+The xinetd service is also not installed.

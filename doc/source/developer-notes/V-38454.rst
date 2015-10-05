@@ -1,0 +1,6 @@
+**Exception**
+
+Verifying ownership of installed packages isn't possible in the current
+version of ``dpkg`` as it is with ``rpm``. This security configuration is
+skipped.
+

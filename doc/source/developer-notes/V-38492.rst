@@ -1,0 +1,2 @@
+The virtual consoles mentioned in V-38492 aren't used in Ubuntu 14.04 by
+default.

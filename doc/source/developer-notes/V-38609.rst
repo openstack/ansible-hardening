@@ -1,0 +1,3 @@
+The ``tftpd`` service is removed by V-38606 and it is not installed by
+Ubuntu or openstack-ansible by default. For this reason, it's recommended
+to remove the service by using the Ansible task from V-38606.

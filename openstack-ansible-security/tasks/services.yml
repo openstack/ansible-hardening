@@ -1,0 +1,120 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Generate list of sysv_services
+  shell: "chkconfig --list | sed '/^$/ d ; /xinetd based services:/ d ; /^\t/ d' | awk '{print $1}'"
+  register: sysv_services
+  changed_when: false
+  tags:
+    - services
+    - cat1
+    - cat2
+    - cat3
+
+- name: V-38437 - Automated file system mounting tools must be disabled
+  service:
+    name: autofs
+    state: stopped
+    enabled: no
+  when: disable_services['autofs'] | bool and 'autofs' in sysv_services.stdout
+  tags:
+    - services
+    - cat3
+    - V-38437
+
+- name: V-38641 - The atd service must be disabled
+  service:
+    name: atd
+    state: stopped
+    enabled: no
+  when: disable_services['atd'] | bool and 'atd' in sysv_services.stdout
+  tags:
+    - services
+    - cat3
+    - V-38641
+
+- name: V-38640 - The abrt service must be disabled
+  service:
+    name: abrtd
+    state: stopped
+    enabled: no
+  when: disable_services['abrtd'] | bool and 'abrtd' in sysv_services.stdout
+  tags:
+    - services
+    - cat3
+    - V-38640
+
+- name: V-38582 - xinetd must be disabled if not in use
+  service:
+    name: xinetd
+    state: stopped
+    enabled: no
+  when: disable_services['xinetd'] | bool and 'xinetd' in sysv_services.stdout
+  tags:
+    - services
+    - cat2
+    - V-38582
+
+- name: V-38584 - xinetd must be uninstalled if not in use
+  apt:
+    name: xinetd
+    state: absent
+  when: remove_services['xinetd'] | bool
+  tags:
+    - services
+    - cat3
+    - V-38584
+
+# Ubuntu's equivalent of Red Hat's ypserv package is 'nis'
+- name: V-38603 - Remove ypserv (nis) package
+  apt:
+    name: nis
+    state: absent
+  when: remove_services['ypserv'] | bool
+  tags:
+    - services
+    - cat2
+    - V-38603
+
+- name: V-38605 - The cron service must be running
+  service:
+    name: cron
+    state: started
+    enabled: yes
+  tags:
+    - services
+    - cat2
+    - V-38605
+
+- name: V-38606 - The tftp-server package must not be installed unless required
+  apt:
+    name: tftpd
+    state: absent
+  when: remove_services['tftp-server'] | bool
+  tags:
+    - services
+    - cat2
+    - V-38606
+
+- name: V-38618 - avahi must be disabled
+  service:
+    name: avahi-daemon
+    state: stopped
+    enabled: no
+  when: disable_services['avahi'] | bool and 'avahi' in sysv_services.stdout
+  tags:
+    - services
+    - cat3
+    - V-38618

@@ -1,0 +1,5 @@
+**Exception**
+
+Ubuntu 14.04 sets library files to have ``0755`` (or more restrictive)
+permissions by default. Deployers are urged to review the permissions
+of libraries regularly to ensure the system hasn't been altered.

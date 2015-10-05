@@ -1,0 +1,60 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Notes for V-38476 ###########################################################
+#
+# These GPG keys are valid as of Ubuntu 14.04 in late 2015, but they could
+# change or additional keys may be added in the future.
+#
+- name: Gather current GPG keys for apt (for V-38476)
+  command: apt-key list
+  register: v38476_result
+  changed_when: "v38476_result.rc != 0"
+
+- name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
+  debug:
+    msg: "FAILED: Missing Ubuntu 14.04 Archive signing keys"
+  when: "'437D05B5' not in v38476_result.stdout or 'C0B21F32' not in v38476_result.stdout"
+  tags:
+    - apt
+    - cat1
+    - V-38476
+
+# Notes for V-38462 ###########################################################
+#
+# Ubuntu checks packages against GPG signatures by default.  It can be turned
+# off for all package installations by a setting in /etc/apt/apt.conf.d and we
+# search for that here.  Users can pass an argument on the apt command line
+# to bypass the checks as well, but that's outside the scope of this check
+# and remediation.
+#
+- name: Search for AllowUnauthenticated in /etc/apt/apt.conf.d/ (for V-38462)
+  command: grep -r AllowUnauthenticated /etc/apt/apt.conf.d/
+  register: v38462_result
+  failed_when: "'No such file' in v38462_result.stderr"
+  changed_when: "v38462_result.rc == 0"
+  tags:
+    - auth
+    - cat1
+    - V-38462
+
+- name: V-38462 - Package management tool must verify authenticity of packages
+  debug:
+    msg: "FAILED: Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
+  when: "v38462_result.rc == 0"
+  tags:
+    - auth
+    - cat1
+    - V-38462

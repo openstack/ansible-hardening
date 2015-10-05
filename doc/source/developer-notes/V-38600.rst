@@ -1,0 +1,4 @@
+The Ansible tasks will disable the sending of ICMPv4 redirects by setting
+the sysctl variable ``net.ipv4.conf.default.send_redirects=0``. However,
+bridging still requires redirects to be enabled, so those interfaces won't
+be affected by this change.

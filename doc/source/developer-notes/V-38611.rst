@@ -1,0 +1,3 @@
+By default, Ubuntu configures the ssh daemon so that rsh's .rhosts files are
+ignored. The Ansible tasks will ensure that this setting hasn't changed
+from the default.

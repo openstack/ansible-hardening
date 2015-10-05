@@ -1,0 +1,4 @@
+The Ansible tasks will ensure that ``/etc/gshadow`` is owned by root. This is
+the default in Ubuntu 14.04 already, but the tasks will ensure that the
+permissions match the STIG requirements in case they were changed by other
+means after the installation of the operating system.

@@ -1,0 +1,5 @@
+**Exception**
+
+Ubuntu sets system commands to be owned by root by default  Deployers are
+urged to review ownership changes via auditd rules to ensure system
+commands haven't changed ownership over time.

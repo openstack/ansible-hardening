@@ -1,0 +1,21 @@
+The STIG talks about yum having the RHN GPG keys installed, but this
+requirement has been adapted to check for the Ubuntu signing keys normally
+present in Ubuntu 14.04.
+
+See ``tasks/apt.yml`` for more details::
+
+    # apt-key list
+    /etc/apt/trusted.gpg
+    --------------------
+    pub   1024D/437D05B5 2004-09-12
+    uid                  Ubuntu Archive Automatic Signing Key <ftpmaster@ubuntu.com>
+    sub   2048g/79164387 2004-09-12
+
+    pub   1024D/FBB75451 2004-12-30
+    uid                  Ubuntu CD Image Automatic Signing Key <cdimage@ubuntu.com>
+
+    pub   4096R/C0B21F32 2012-05-11
+    uid                  Ubuntu Archive Automatic Signing Key (2012) <ftpmaster@ubuntu.com>
+
+    pub   4096R/EFE21092 2012-05-11
+    uid                  Ubuntu CD Image Automatic Signing Key (2012) <cdimage@ubuntu.com>

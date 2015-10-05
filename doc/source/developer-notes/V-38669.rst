@@ -1,0 +1,4 @@
+The ``postfix`` package will be installed and configured to run at boot time.
+Review the documentation for V-38446 to ensure that root's email is
+forwarded to an email account that can monitor for critical alerts and other
+notifications.

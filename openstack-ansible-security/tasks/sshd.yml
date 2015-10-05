@@ -1,0 +1,160 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: V-38484 - User must get date/time of last successful login
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?PrintLastLog'
+    line: 'PrintLastLog yes'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat2
+    - V-38484
+
+- name: V-38607 - The SSH daemon must be configured to use only the SSHv2 protocol
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?Protocol \d'
+    line: 'Protocol 2'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat1
+    - V-38607
+
+- name: V-38614 - The SSH daemon must not allow authentication using an empty password
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?PermitEmptyPasswords'
+    line: 'PermitEmptyPasswords no'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat1
+    - V-38614
+
+- name: V-38612 Medium  The SSH daemon must not allow host-based authentication
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?HostbasedAuthentication'
+    line: 'HostbasedAuthentication no'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat2
+    - V-38612
+
+- name: V-38608 - Set a timeout interval for idle ssh sessions
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?ClientAliveInterval'
+    line: 'ClientAliveInterval {{ ssh_client_alive_interval }}'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat2
+    - V-38608
+
+- name: V-38610 - Set a timeout count on idle ssh sessions
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?ClientAliveCountMax'
+    line: 'ClientAliveCountMax {{ ssh_client_alive_count_max }}'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat2
+    - V-38610
+
+- name: V-38611 - The sshd daemon must ignore .rhosts files
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?IgnoreRhosts'
+    line: 'IgnoreRhosts yes'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat2
+    - V-38611
+
+- name: V-38613 - The ssh daemon must not permit root logins
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?PermitRootLogin'
+    line: 'PermitRootLogin {{ ssh_permit_root_login }}'
+  notify:
+    - restart ssh
+  tags:
+    - ssh
+    - cat2
+    - V-38613
+
+- name: Copy the login banner for sshd (for V-38615)
+  copy:
+    src: login_banner.txt
+    dest: /etc/issue.net
+  tags:
+    - ssh
+    - cat2
+    - V-38615
+
+- name: V-38615 - The ssh daemon must display a login banner
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?Banner'
+    line: 'Banner /etc/issue.net'
+  tags:
+    - ssh
+    - cat2
+    - V-38615
+
+- name: V-38616 - The ssh daemon must not permit user environment settings
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?PermitUserEnvironment'
+    line: 'PermitUserEnvironment no'
+  tags:
+    - ssh
+    - cat3
+    - V-38616
+
+- name: V-38617 - The ssh daemon must be configured to use approved ciphers
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?Ciphers'
+    line: 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc'
+  tags:
+    - ssh
+    - cat2
+    - V-38617

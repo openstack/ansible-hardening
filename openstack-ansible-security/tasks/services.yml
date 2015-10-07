@@ -118,3 +118,13 @@
     - services
     - cat3
     - V-38618
+
+- name: V-38627 - Remove LDAP servers unless required
+  apt:
+    name: slapd
+    state: absent
+  when: remove_services['ldap-server'] | bool
+  tags:
+    - services
+    - cat3
+    - V-38627

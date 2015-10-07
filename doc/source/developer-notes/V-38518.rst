@@ -1,0 +1,5 @@
+**Exception**
+
+Different systems may have different log files populated depending on the type
+of data that ``rsyslogd`` receives. By default, log files are created with the
+user and group ownership set to root.

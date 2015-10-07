@@ -13,6 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: V-38528 - The system must log martian packets
+  sysctl:
+    name: net.ipv4.conf.all.log_martians
+    value: 1
+    state: present
+    sysctl_set: yes
+  tags:
+    - kernel
+    - cat3
+    - V-38528
+
 # This is the default in Ubuntu 14.04
 - name: V-38596 - Enable virtual address space randomization
   sysctl:

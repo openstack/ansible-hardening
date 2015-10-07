@@ -167,3 +167,13 @@ num_logs: 5                                       # V-38636
 ## Kernel modules
 # V-38490 - Set the line below to yes to disable usb-storage
 disable_usb_storage: no
+
+## sysctl tunables
+# ** DANGER **
+# It's strongly recommended to fully understand the effects of changing the
+# following sysctl tunables. Refer to the documentation under 'Developer
+# Notes' for each of the STIGs below before making any changes.
+# ** DANGER **
+#
+sysctl_tunable:
+  tcp_syncookies: 1                               # V-38539

@@ -49,6 +49,18 @@
     - V-38535
 
 # This is the default in Ubuntu 14.04
+- name: V-38539 - Enable TCP syncookies
+  sysctl:
+    name: net.ipv4.tcp_syncookies
+    value: "{{ sysctl_tunable['tcp_syncookies'] }}"
+    state: present
+    sysctl_set: yes
+  tags:
+    - kernel
+    - cat2
+    - V-38539
+
+# This is the default in Ubuntu 14.04
 - name: V-38596 - Enable virtual address space randomization
   sysctl:
     name: kernel.randomize_va_space

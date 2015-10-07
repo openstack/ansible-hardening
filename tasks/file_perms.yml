@@ -68,3 +68,30 @@
     - file_perms
     - cat2
     - V-38493
+
+- name: V-38502 - The /etc/shadow file must be owned by root
+  file:
+    dest: /etc/shadow
+    owner: root
+  tags:
+   - file_perms
+   - cat2
+   - V-38502
+
+- name: V-38503 - The /etc/shadow file must be group-owned by root
+  file:
+    dest: /etc/shadow
+    group: root
+  tags:
+   - file_perms
+   - cat2
+   - V-38503
+
+- name: V-38504 - The /etc/shadow file must have mode 0000
+  file:
+    dest: /etc/shadow
+    mode: 0000
+  tags:
+   - file_perms
+   - cat2
+   - V-38504

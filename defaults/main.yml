@@ -218,3 +218,13 @@ disable_ipv6: no                                  # V-38546
 # V-38675 requires disabling core dumps for all users unless absolutely
 # necessary. Set this variable to 'no' to skip this change.
 disable_core_dumps: yes                           # V-38675
+
+## Fail2ban
+# V-38501 requires that failed login attempts must lock a user account using
+# pam_faillock, but Ubuntu doesn't package that PAM module. Instead, fail2ban
+# can be installed to lock out IP addresses with failed logins for 15 minutes.
+# Set the variable below to 'yes' to install and configure fail2ban.
+install_fail2ban: no                               # V-38501
+# The STIG requires bans to last 15 minutes. Adjust the following variable
+# to set the time an IP is banned by fail2ban (in seconds).
+fail2ban_bantime: 900                              # V-38501

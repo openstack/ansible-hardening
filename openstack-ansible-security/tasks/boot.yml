@@ -13,6 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: V-38579 - Bootloader configuration files must be owned by root
+  file:
+    path: /boot/grub/grub.cfg
+    owner: root
+  tags:
+    - boot
+    - cat2
+    - V-38579
+
 - name: V-38581 - Bootloader configuration files must be group-owned by root
   file:
     path: /boot/grub/grub.cfg

@@ -1,0 +1,2 @@
+Ubuntu 14.04 sets the ownership on ``/boot/grub/grub.cfg`` to root by default.
+The Ansible task will ensure that the secure default is maintained.

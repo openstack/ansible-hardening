@@ -1,0 +1,5 @@
+**Exception**
+
+Although neither Ubuntu 14.04 or openstack-ansible mount remote filesystems
+by default, deployers are urged to use the ``nodev`` option on any remotely
+mounted filesystems whenever possible.

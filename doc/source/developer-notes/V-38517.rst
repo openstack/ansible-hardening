@@ -1,0 +1,13 @@
+The `Transparent Inter-Process Communication (TIPC)`_ protocol must be
+disabled. Neither Ubuntu 14.04 or openstack-ansible enables this module by
+default, so the Ansible tasks in this role will disable the module.
+
+.. _Transparent Inter-Process Communication (TIPC): https://en.wikipedia.org/wiki/TIPC
+
+To opt-out of this change, set the following variable to ``no``:
+
+.. code-block:: yaml
+
+    disable_module['tipc']: no
+
+**NOTE:** The module will be disabled on the next reboot.

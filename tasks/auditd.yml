@@ -128,6 +128,30 @@
     - cat2
     - V-38495
 
+# TODO: Ansible 2.0 offers the find module and that will allow this task to
+# avoid using the shell module to get a list of logs. This task should be
+# adjusted to use the find module when Ansible 2.0 is fully released.
+- name: Get a list of audit logs in the auditd directory (for V-38498)
+  shell: ls /var/log/audit/
+  register: v38498_result
+  changed_when: false
+  tags:
+    - auditd
+    - cat2
+    - V-38498
+
+# Ubuntu 14.04 sets these to 0400 by default, so we will stick with that since
+# it exceeds the STIG's requirements.
+- name: V-38498 - Audit log files must have mode 0640 or less
+  file:
+    dest: "/var/log/audit/{{ item }}"
+    mode: 0400
+  with_items: v38498_result.stdout_lines
+  tags:
+    - auditd
+    - cat2
+    - V-38498
+
 - name: Auditd rules (includes several STIGs)
   template:
     src: osas-auditd.j2

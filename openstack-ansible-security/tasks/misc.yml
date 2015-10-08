@@ -1,6 +1,19 @@
 ---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-- name: Install AIDE
+- name: V-38429 - Install AIDE
   apt:
     name: aide
     state: latest
@@ -50,4 +63,32 @@
     - restart chrony
   tags:
     - cat2
-    - V38620
+    - V-38620
+
+# The STIG only requires that logrotate is installed and configured in cron.
+# The openstack-ansible project will configure logs to be rotated weekly and
+# compressed with each run. We won't change the interval here, but we will
+# ensure that logrotate is installed (to meet the STIG requirement).
+- name: V-38624 - System logs must be rotated daily (install logrotate)
+  apt:
+    name: logrotate
+    state: latest
+  tags:
+    - cat3
+    - V-38624
+
+- name: Check for logrotate cron job (for V-38624)
+  stat:
+    path: /etc/cron.daily/logrotate
+  register: v38624_result
+  tags:
+    - cat3
+    - V-38624
+
+- name: V-38624 - System logs must be rotated daily (verify cron job)
+  debug:
+    msg: "FAILED: Cron job for logrotate is missing"
+  when: v38624_result.stat.exists == False
+  tags:
+   - cat3
+   - V-38624

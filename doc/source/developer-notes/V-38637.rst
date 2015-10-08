@@ -1,0 +1,6 @@
+The auditd package is verified with ``debsums`` and the playbook will fail
+immediately if any of the files from the auditd package have been altered.
+This could be the sign of a system compromise.
+
+If the ``debsums`` package isn't installed, the Ansible task will install it
+during the playbook run.

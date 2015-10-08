@@ -14,6 +14,18 @@
 # limitations under the License.
 
 # This is the default in Ubuntu 14.04
+- name: V-38537 - The system must ignore ICMPv4 bogus error responses
+  sysctl:
+    name: net.ipv4.icmp_ignore_bogus_error_responses
+    value: 1
+    state: present
+    sysctl_set: yes
+  tags:
+    - kernel
+    - cat3
+    - V-38537
+
+# This is the default in Ubuntu 14.04
 - name: V-38596 - Enable virtual address space randomization
   sysctl:
     name: kernel.randomize_va_space

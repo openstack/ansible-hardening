@@ -36,6 +36,42 @@
     - V-38632
     - V-38631
 
+- name: V-38633 - The system must set a maximum audit log file size
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?max_log_file ="
+    line: "max_log_file = {{ max_log_file }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38633
+
+- name: V-38634 - The system must rotate audit log files that reach the max file size
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?max_log_file_action ="
+    line: "max_log_file_action = {{ max_log_file_action }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38634
+
+- name: V-38636 - The system must retain enough rotated audit logs to cover the required log retention period.
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?num_logs ="
+    line: "num_logs = {{ num_logs }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38636
+
 - name: V-38445 - Audit log files must be group-owned by root
   file:
     dest: /var/log/audit/

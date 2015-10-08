@@ -135,6 +135,17 @@ disk_full_action: SYSLOG                          # V-38468
 # Review the documentation for V-38470 before changing this option.
 # **DANGER**
 space_left_action: SYSLOG                         # V-38470
+# Set the maximum size of a rotated log file. Ubuntu's default
+# matches the STIG requirement of 6MB.
+max_log_file: 6                                   # V 38633
+# **DANGER**
+# Sets the action to take when log files reach the maximum file size.
+# Review the documentation for V-38634 before changing this option.
+# **DANGER**
+max_log_file_action: ROTATE                       # V-38634
+# Set the number of rotated audit logs to keep.  Ubuntu has 5 as the default
+# and this matches the STIG's requirements.
+num_logs: 5                                       # V-38636
 
 ## Authentication
 # V-38475 - There is no password length requirement by default in Ubuntu

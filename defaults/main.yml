@@ -179,6 +179,8 @@ admin_space_left_action: SUSPEND                  # V-54381
 # V-38684 - Setting the maximum number of simultaneous logins per user. The
 # STIG sets a limit of 10.
 #max_simultaneous_logins: 10                      # V-38684
+# V-38692 - Lock accounts that are inactive for 35 days.
+#inactive_account_lock_days: 35                   # V-38692
 
 ## Kernel modules
 # Set these booleans to 'yes' to disable the kernel module (following the

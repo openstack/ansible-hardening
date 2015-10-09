@@ -300,3 +300,14 @@
     - auth
     - cat3
     - V-38681
+
+- name: V-38692 - Lock inactive accounts
+  lineinfile:
+    dest: /etc/default_useradd
+    regexp: "^(#)?INACTIVE"
+    line: "INACTIVE {{ inactive_account_lock_days }}"
+  when: inactive_account_lock_days is defined
+  tags:
+    - auth
+    - cat3
+    - V-38692

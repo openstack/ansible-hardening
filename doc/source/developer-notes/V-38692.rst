@@ -1,0 +1,10 @@
+**Opt-in required**
+
+By default, Ubuntu doesn't require that inactive accounts are locked after a
+period of time. The STIG requires that accounts with 35 days of activity are
+locked.
+
+Deployers must opt-in for this change by setting the
+``inactive_account_lock_days`` Ansible variable. The STIG requires this to be
+set to 35 days at a maximum. The Ansible tasks will not make any changes to
+``/etc/default/useradd`` unless ``inactive_account_lock_days`` is set.

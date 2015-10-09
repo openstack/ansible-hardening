@@ -106,6 +106,18 @@
     - cat2
     - V-38468
 
+- name: V-38678 - Lower limit of available disk space when auditd triggers space_left_action
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?space_left"
+    line: "space_left = {{ space_left }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38678
+
 - name: V-38470 - The audit system must take action when the disk is almost full
   lineinfile:
     dest: /etc/audit/auditd.conf

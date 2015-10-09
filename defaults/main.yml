@@ -131,6 +131,10 @@ disk_error_action: SYSLOG                         # V-38464
 # V-38468 before changing this option.
 # **DANGER**
 disk_full_action: SYSLOG                          # V-38468
+# V-38678 - Set the amount of megabytes left when the space_left_action
+# triggers. The STIG guideline doesn't specify a size, but Ubuntu chooses a
+# default of 75MB, which is reasonable.
+space_left: 75                                    # V-38678
 # **DANGER**
 # Set an action to occur when the disk is approaching its capacity.
 # Review the documentation for V-38470 before changing this option.

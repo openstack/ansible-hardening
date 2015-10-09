@@ -3,9 +3,10 @@ Security hardening for openstack-ansible
 
 **--- Currently a work in progress ---**
 
-Documentation is on `ReadTheDocs`_ temporarily.
+Documentation for openstack-ansible-security is available in the `official
+OpenStack documentation site`_.
 
-.. _ReadTheDocs: http://openstack-ansible-security.readthedocs.org/en/latest/
+.. _official OpenStack documentation site: http://docs.openstack.org/developer/openstack-ansible-security/
 
 What is this?
 ~~~~~~~~~~~~~

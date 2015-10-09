@@ -92,3 +92,48 @@
   tags:
    - cat3
    - V-38624
+
+- name: Check if vsftpd is installed (for V-38702)
+  stat:
+    path: /etc/vsftpd.conf
+  register: v38702_result
+  changed_when: False
+  tags:
+    - cat3
+    - V-38702
+
+- name: V-38702 - Enable xferlog
+  lineinfile:
+    dest: /etc/vsftpd.conf
+    regexp: "^(#)?xferlog_enable"
+    line: "xferlog_enable=YES"
+  when: v38702_result.stat.exists == True
+  notify:
+    - restart vsftpd
+  tags:
+   - cat3
+   - V-38702
+
+- name: V-38702 - Disable xferlog_std_format
+  lineinfile:
+    dest: /etc/vsftpd.conf
+    regexp: "^(#)?xferlog_std_format"
+    line: "xferlog_std_format=NO"
+  when: v38702_result.stat.exists == True
+  notify:
+    - restart vsftpd
+  tags:
+   - cat3
+   - V-38702
+
+- name: V-38702 - Enable log_ftp_protocol
+  lineinfile:
+    dest: /etc/vsftpd.conf
+    regexp: "^(#)?log_ftp_protocol"
+    line: "log_ftp_protocol=YES"
+  when: v38702_result.stat.exists == True
+  notify:
+    - restart vsftpd
+  tags:
+   - cat3
+   - V-38702

@@ -128,3 +128,13 @@
     - services
     - cat3
     - V-38627
+
+- name: V-38671 - Remove sendmail
+  apt:
+    name: sendmail
+    state: absent
+  when: remove_services['sendmail'] | bool
+  tags:
+    - services
+    - cat2
+    - V-38671

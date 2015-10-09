@@ -46,6 +46,7 @@ disable_services:
 remove_services:
   rsh-server: yes                                 # V-38591
   ldap-server: yes                                # V-38627
+  sendmail: yes                                   # V-38671
   telnet_server: yes                              # V-38587
   tftp-server: yes                                # V-38606
   xinetd: yes                                     # V-38584

@@ -44,11 +44,12 @@ disable_services:
 # boolean to 'no' means that the playbook will not alter the service.
 #
 remove_services:
-  ypserv: yes                                     # V-38603
   rsh-server: yes                                 # V-38591
+  ldap-server: yes                                # V-38627
   telnet_server: yes                              # V-38587
   tftp-server: yes                                # V-38606
   xinetd: yes                                     # V-38584
+  ypserv: yes                                     # V-38603
 
 ## Additional rules for auditd
 # The following booleans control the rule sets added to auditd's default

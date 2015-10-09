@@ -1,0 +1,2 @@
+Ubuntu doesn't provide the netconsole package and the daemon isn't included
+in any other Ubuntu packages. Therefore, no action is required for this STIG.

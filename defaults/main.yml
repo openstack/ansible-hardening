@@ -34,6 +34,9 @@ disable_services:
   atd: yes                                        # V-38640
   autofs: yes                                     # V-38437
   avahi: yes                                      # V-31618
+  bluetooth: yes                                  # V-38691
+  qpidd: yes                                      # V-38648
+  rsh: yes                                        # V-38594
   ypbind: yes                                     # V-38604
   xinetd: yes                                     # V-38582
 
@@ -44,8 +47,8 @@ disable_services:
 # boolean to 'no' means that the playbook will not alter the service.
 #
 remove_services:
-  rsh-server: yes                                 # V-38591
   ldap-server: yes                                # V-38627
+  rsh-server: yes                                 # V-38591
   sendmail: yes                                   # V-38671
   telnet_server: yes                              # V-38587
   tftp-server: yes                                # V-38606

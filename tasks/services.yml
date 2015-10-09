@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Generate list of sysv_services
-  shell: "chkconfig --list | sed '/^$/ d ; /xinetd based services:/ d ; /^\t/ d' | awk '{print $1}'"
+  shell: "find /etc/init.d/ -printf '%f\n'"
   register: sysv_services
   changed_when: false
   tags:
@@ -34,6 +34,17 @@
     - cat3
     - V-38437
 
+- name: V-38640 - The abrt service must be disabled
+  service:
+    name: abrtd
+    state: stopped
+    enabled: no
+  when: disable_services['abrtd'] | bool and 'abrtd' in sysv_services.stdout
+  tags:
+    - services
+    - cat3
+    - V-38640
+
 - name: V-38641 - The atd service must be disabled
   service:
     name: atd
@@ -45,16 +56,27 @@
     - cat3
     - V-38641
 
-- name: V-38640 - The abrt service must be disabled
+- name: V-38648 - The qpidd service must be disabled
   service:
-    name: abrtd
+    name: qpidd
     state: stopped
     enabled: no
-  when: disable_services['abrtd'] | bool and 'abrtd' in sysv_services.stdout
+  when: disable_services['qpidd'] | bool and 'qpidd' in sysv_services.stdout
   tags:
     - services
     - cat3
-    - V-38640
+    - V-38648
+
+- name: V-38691 - The bluetooth service must be disabled
+  service:
+    name: bluetooth
+    state: stopped
+    enabled: no
+  when: disable_services['bluetooth'] | bool and 'bluetooth' in sysv_services.stdout
+  tags:
+    - services
+    - cat2
+    - V-38691
 
 - name: V-38582 - xinetd must be disabled if not in use
   service:

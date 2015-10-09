@@ -116,3 +116,69 @@
     - file_perms
     - cat2
     - V-38623
+
+# BEGIN: UMASK ADJUSTMENTS ####################################################
+# Please read the documentation and the comments in defaults/main.yml prior
+# to making any umask-related changes.
+
+# Ubuntu 14.04's default umask in /etc/init.d/rc is 022 already.
+- name: V-38642 - System default umask for daemons must be 027 or 022
+  lineinfile:
+    dest: /etc/init.d/rc
+    regexp: "^umask "
+    line: "umask {{ umask_daemons_init }}"
+  when: umask_daemons_init is defined
+  tags:
+    - file_perms
+    - cat3
+    - V-38642
+
+# Ubuntu 14.04's default umask in /etc/login.defs is 022
+- name: V-38645 - System default umask in /etc/login.defs must be 077
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^UMASK"
+    line: "UMASK {{ umask_login_defs }}"
+  when: umask_login_defs is defined
+  tags:
+    - file_perms
+    - cat3
+    - V-38645
+
+# Ubuntu 14.04 and openstack-ansible don't install csh by default. We will
+# check if csh is installed and then apply the umask setting if needed.
+- name: Check if csh is installed (for V-38649)
+  shell: dpkg --status csh | grep ^Status | grep "ok installed"
+  register: v38649_result
+  changed_when: False
+  failed_when: False
+  when: umask_csh is defined
+  tags:
+    - file_perms
+    - cat3
+    - V-38649
+
+- name: V-38649 - System default umask for csh must be 077
+  lineinfile:
+    dest: /etc/csh.cshrc
+    regexp: "^(#)?umask"
+    line: "umask {{ umask_csh }}"
+    create: yes
+  when: umask_csh is defined and v38649_result.rc == 0
+  tags:
+    - file_perms
+    - cat3
+    - V-38649
+
+- name: V-38651 - System default umask for bash must be 077
+  lineinfile:
+    dest: /etc/bash.bashrc
+    regexp: "^(#)?umask"
+    line: "umask {{ umask_bash }}"
+  when: umask_bash is defined
+  tags:
+    - file_perms
+    - cat3
+    - V-38651
+
+# END: UMASK ADJUSTMENTS ######################################################

@@ -1,4 +1,8 @@
-Audit rules are added in a task so that any events associated with the
-discretionary access controls (DAC) permission modifications via chown
-are logged. The new audit rule will be loaded immediately with
-``augenrules --load``.
+**Exception**
+
+Ubuntu's default umask setting in ``/etc/login.defs`` is ``022``, but the STIG
+requires ``077`` to be set. Since changing umask settings can disrupt some
+systems, this change requires a deployer to opt-in.
+
+To opt-in for this change and adjust the umask, the Ansible variable
+``umask_login_defs`` must be set to ``077``.

@@ -206,3 +206,8 @@ postfix_inet_interfaces: localhost                # V-38622
 # variable to 'yes'. See the documentation for V-38546 before making this
 # change.
 disable_ipv6: no                                  # V-38546
+
+## Core dumps
+# V-38675 requires disabling core dumps for all users unless absolutely
+# necessary. Set this variable to 'no' to skip this change.
+disable_core_dumps: yes                           # V-38675

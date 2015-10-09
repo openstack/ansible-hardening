@@ -109,6 +109,16 @@
    - cat3
    - V-38624
 
+- name: V-38675 - Process core dump must be disabled
+  lineinfile:
+    dest: /etc/security/limits.d/V-38675-coredump.conf
+    line: "* hard core 0"
+    create: yes
+  when: disable_core_dumps is defined
+  tags:
+    - cat3
+    - V-38675
+
 - name: V-38684 - Maximum simultaneous logins per user
   lineinfile:
     dest: /etc/security/limits.d/V-38684-maxlogins.conf

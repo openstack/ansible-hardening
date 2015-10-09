@@ -1,0 +1,8 @@
+Ubuntu doesn't restrict core dumps by default, but the STIG requires that core
+dumps are disabled for all users unless absolutely necessary.
+
+To opt-out of this change, set the following Ansible variable to ``no``:
+
+.. code-block:: yaml
+
+    disable_core_dumps: no

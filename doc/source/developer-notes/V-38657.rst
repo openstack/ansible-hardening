@@ -1,0 +1,5 @@
+**Exception**
+
+Ubuntu and openstack-ansible do not currently configure any samba share mounts
+by default. However, deployers are urged to follow this STIG if they ever
+mount samba shares within their infrastructure.

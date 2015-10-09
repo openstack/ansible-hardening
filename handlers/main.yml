@@ -34,6 +34,11 @@
     name: rsyslog
     state: restarted
 
+- name: restart samba
+  service:
+    name: smbd
+    state: restarted
+
 - name: restart ssh
   service:
     name: ssh

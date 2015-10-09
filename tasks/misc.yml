@@ -109,6 +109,28 @@
    - cat3
    - V-38624
 
+- name: Check if samba is installed (for V-38656)
+  stat:
+    path: /etc/samba/smb.conf
+  register: v38656_result
+  changed_when: false
+  tags:
+    - cat3
+    - V-38656
+
+- name: V-38656 - System must use SMB client signing
+  lineinfile:
+    dest: /etc/samba/smb.conf
+    regexp: "^(;)?client signing"
+    line: "client signing = mandatory"
+    insertafter: "############ Misc ############"
+  when: v38656_result.stat.exists == True
+  notify:
+    - restart samba
+  tags:
+    - cat3
+    - V-38656
+
 - name: V-38675 - Process core dump must be disabled
   lineinfile:
     dest: /etc/security/limits.d/V-38675-coredump.conf

@@ -109,6 +109,16 @@
    - cat3
    - V-38624
 
+- name: V-38684 - Maximum simultaneous logins per user
+  lineinfile:
+    dest: /etc/security/limits.d/V-38684-maxlogins.conf
+    line: "* hard maxlogins {{ max_simultaneous_logins }}"
+    create: yes
+  when: max_simultaneous_logins is defined
+  tags:
+    - cat3
+    - V-38684
+
 - name: Check if vsftpd is installed (for V-38702)
   stat:
     path: /etc/vsftpd.conf

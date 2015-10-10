@@ -40,10 +40,18 @@
     - cat2
     - V-38449
 
-- name: V-38459 - The /etc/group file must be group-owned by root
+- name: V-38458 - The /etc/group file must be owned by root
   file:
     dest: /etc/group
     owner: root
+  tags:
+    - file_perms
+    - cat2
+    - V-38458
+
+- name: V-38459 - The /etc/group file must be group-owned by root
+  file:
+    dest: /etc/group
     group: root
   tags:
     - file_perms

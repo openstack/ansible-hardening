@@ -1,0 +1,16 @@
+V-38646: The oddjobd service must not be running.
+-------------------------------------------------
+
+The "oddjobd" service may provide necessary functionality in some environments
+but it can be disabled if it is not needed. Execution of tasks by privileged
+programs, on behalf of unprivileged ones, has traditionally been a source of
+privilege escalation security issues.
+
+Details: `V-38646 in STIG Viewer`_.
+
+.. _V-38646 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38646
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38646.rst

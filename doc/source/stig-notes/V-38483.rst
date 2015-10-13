@@ -1,0 +1,15 @@
+V-38483: The system package management tool must cryptographically verify the authenticity of system software packages during installation.
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Ensuring the validity of packages' cryptographic signatures prior to
+installation ensures the provenance of the software and protects against
+malicious tampering.
+
+Details: `V-38483 in STIG Viewer`_.
+
+.. _V-38483 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38483
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38483.rst

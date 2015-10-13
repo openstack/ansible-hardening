@@ -1,0 +1,17 @@
+V-38587: The telnet-server package must not be installed.
+---------------------------------------------------------
+
+Removing the "telnet-server" package decreases the risk of the unencrypted
+telnet service's accidental (or intentional) activation.  Mitigation:  If the
+telnet-server package is configured to only allow encrypted sessions, such as
+with Kerberos or the use of encrypted network tunnels, the risk of exposing
+sensitive information is mitigated.
+
+Details: `V-38587 in STIG Viewer`_.
+
+.. _V-38587 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38587
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38587.rst

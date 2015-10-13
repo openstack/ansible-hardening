@@ -1,0 +1,14 @@
+V-38560: The operating system must connect to external networks or information systems only through managed IPv4 interfaces consisting of boundary protection devices arranged in accordance with an organizational security architecture.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The "iptables" service provides the system's host-based firewalling capability
+for IPv4 and ICMP.
+
+Details: `V-38560 in STIG Viewer`_.
+
+.. _V-38560 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38560
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38560.rst

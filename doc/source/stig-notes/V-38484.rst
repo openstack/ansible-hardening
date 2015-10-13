@@ -1,0 +1,17 @@
+V-38484: The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Users need to be aware of activity that occurs regarding their account.
+Providing users with information regarding the date and time of their last
+successful login allows the user to determine if any unauthorized activity has
+occurred and gives them an opportunity to notify administrators.  At ssh
+login, a user must be presented with the last successful login date and time.
+
+Details: `V-38484 in STIG Viewer`_.
+
+.. _V-38484 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38484
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38484.rst

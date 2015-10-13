@@ -1,0 +1,16 @@
+V-51363: The system must use a Linux Security Module configured to enforce limits on system services.
+-----------------------------------------------------------------------------------------------------
+
+Setting the SELinux state to enforcing ensures SELinux is able to confine
+potentially compromised processes to the security policy, which is designed to
+prevent them from causing damage to the system or further elevating their
+privileges.
+
+Details: `V-51363 in STIG Viewer`_.
+
+.. _V-51363 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-51363
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-51363.rst

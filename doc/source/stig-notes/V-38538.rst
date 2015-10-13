@@ -1,0 +1,15 @@
+V-38538: The operating system must automatically audit account termination.
+---------------------------------------------------------------------------
+
+In addition to auditing new user and group accounts, these watches will alert
+the system administrator(s) to any modifications. Any unexpected users,
+groups, or modifications should be investigated for legitimacy.
+
+Details: `V-38538 in STIG Viewer`_.
+
+.. _V-38538 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38538
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38538.rst

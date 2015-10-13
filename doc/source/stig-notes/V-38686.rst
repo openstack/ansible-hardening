@@ -1,0 +1,16 @@
+V-38686: The systems local firewall must implement a deny-all, allow-by-exception policy for forwarded packets.
+---------------------------------------------------------------------------------------------------------------
+
+In "iptables" the default policy is applied only after all the applicable
+rules in the table are examined for a match. Setting the default policy to
+"DROP" implements proper design for a firewall, i.e., any packets which are
+not explicitly permitted should not be accepted.
+
+Details: `V-38686 in STIG Viewer`_.
+
+.. _V-38686 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38686
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38686.rst

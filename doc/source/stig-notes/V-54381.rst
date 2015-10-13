@@ -1,0 +1,15 @@
+V-54381: The audit system must switch the system to single-user mode when available audit storage volume becomes dangerously low.
+---------------------------------------------------------------------------------------------------------------------------------
+
+Administrators should be made aware of an inability to record audit records.
+If a separate partition or logical volume of adequate size is used, running
+low on space for audit records should never occur.
+
+Details: `V-54381 in STIG Viewer`_.
+
+.. _V-54381 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-54381
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-54381.rst

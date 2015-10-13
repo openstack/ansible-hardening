@@ -1,0 +1,17 @@
+V-51875: The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Users need to be aware of activity that occurs regarding their account.
+Providing users with information regarding the number of unsuccessful attempts
+that were made to login to their account allows the user to determine if any
+unauthorized activity has occurred and gives them an opportunity to notify
+administrators.
+
+Details: `V-51875 in STIG Viewer`_.
+
+.. _V-51875 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-51875
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-51875.rst

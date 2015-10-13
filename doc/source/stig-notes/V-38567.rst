@@ -1,0 +1,16 @@
+V-38567: The audit system must be configured to audit all use of setuid and setgid programs.
+--------------------------------------------------------------------------------------------
+
+Privileged programs are subject to escalation-of-privilege attacks, which
+attempt to subvert their normal role of providing some necessary but limited
+capability. As such, motivation exists to monitor these programs for unusual
+activity.
+
+Details: `V-38567 in STIG Viewer`_.
+
+.. _V-38567 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38567
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38567.rst

@@ -1,0 +1,15 @@
+V-38447: The system package management tool must verify contents of all files associated with packages.
+-------------------------------------------------------------------------------------------------------
+
+The hash on important files like system executables should match the
+information given by the RPM database. Executables with erroneous hashes could
+be a sign of nefarious activity on the system.
+
+Details: `V-38447 in STIG Viewer`_.
+
+.. _V-38447 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38447
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38447.rst

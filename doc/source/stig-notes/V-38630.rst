@@ -1,0 +1,17 @@
+V-38630: The graphical desktop environment must automatically lock after 15 minutes of inactivity and the system must require user reauthentication to unlock the environment.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Enabling idle activation of the screen saver ensures the screensaver will be
+activated after the idle delay. Applications requiring continuous, real-time
+screen display (such as network management products) require the login session
+does not have administrator rights and the display station is located in a
+controlled-access area.
+
+Details: `V-38630 in STIG Viewer`_.
+
+.. _V-38630 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38630
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38630.rst

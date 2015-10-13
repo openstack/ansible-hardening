@@ -1,0 +1,14 @@
+V-38606: The tftp-server package must not be installed unless required.
+-----------------------------------------------------------------------
+
+Removing the "tftp-server" package decreases the risk of the accidental (or
+intentional) activation of tftp services.
+
+Details: `V-38606 in STIG Viewer`_.
+
+.. _V-38606 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38606
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38606.rst

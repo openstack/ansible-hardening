@@ -1,0 +1,15 @@
+V-38640: The Automatic Bug Reporting Tool (abrtd) service must not be running.
+------------------------------------------------------------------------------
+
+Mishandling crash data could expose sensitive information about
+vulnerabilities in software executing on the local machine, as well as
+sensitive information from within a process's address space or registers.
+
+Details: `V-38640 in STIG Viewer`_.
+
+.. _V-38640 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38640
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38640.rst

@@ -1,0 +1,18 @@
+V-38597: The system must limit the ability of processes to have simultaneous write and execute access to memory.
+----------------------------------------------------------------------------------------------------------------
+
+ExecShield uses the segmentation feature on all x86 systems to prevent
+execution in memory higher than a certain address. It writes an address as a
+limit in the code segment descriptor, to control where code can be executed,
+on a per-process basis. When the kernel places a process's memory regions such
+as the stack and heap higher than this address, the hardware prevents
+execution in that address range.
+
+Details: `V-38597 in STIG Viewer`_.
+
+.. _V-38597 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38597
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38597.rst

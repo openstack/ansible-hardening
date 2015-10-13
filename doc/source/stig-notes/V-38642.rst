@@ -1,0 +1,15 @@
+V-38642: The system default umask for daemons must be 027 or 022.
+-----------------------------------------------------------------
+
+The umask influences the permissions assigned to files created by a process at
+run time. An unnecessarily permissive umask could result in files being
+created with insecure permissions.
+
+Details: `V-38642 in STIG Viewer`_.
+
+.. _V-38642 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38642
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38642.rst

@@ -1,0 +1,15 @@
+V-51391: A file integrity baseline must be created.
+---------------------------------------------------
+
+For AIDE to be effective, an initial database of "known-good" information
+about files must be captured and it should be able to be verified against the
+installed files.
+
+Details: `V-51391 in STIG Viewer`_.
+
+.. _V-51391 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-51391
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-51391.rst

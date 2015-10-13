@@ -1,0 +1,14 @@
+V-38529: The system must not accept IPv4 source-routed packets by default.
+--------------------------------------------------------------------------
+
+Accepting source-routed packets in the IPv4 protocol has few legitimate uses.
+It should be disabled unless it is absolutely required.
+
+Details: `V-38529 in STIG Viewer`_.
+
+.. _V-38529 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38529
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38529.rst

@@ -1,0 +1,15 @@
+V-38594: The rshd service must not be running.
+----------------------------------------------
+
+The rsh service uses unencrypted network communications, which means that data
+from the login session, including passwords and all other information
+transmitted during the session, can be stolen by eavesdroppers on the network.
+
+Details: `V-38594 in STIG Viewer`_.
+
+.. _V-38594 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38594
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38594.rst

@@ -1,0 +1,15 @@
+V-38600: The system must not send ICMPv4 redirects by default.
+--------------------------------------------------------------
+
+Sending ICMP redirects permits the system to instruct other systems to update
+their routing information. The ability to send ICMP redirects is only
+appropriate for systems acting as routers.
+
+Details: `V-38600 in STIG Viewer`_.
+
+.. _V-38600 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38600
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38600.rst

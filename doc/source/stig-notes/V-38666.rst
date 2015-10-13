@@ -1,0 +1,14 @@
+V-38666: The system must use and update a DoD-approved virus scan program.
+--------------------------------------------------------------------------
+
+Virus scanning software can be used to detect if a system has been compromised
+by computer viruses, as well as to limit their spread to other systems.
+
+Details: `V-38666 in STIG Viewer`_.
+
+.. _V-38666 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38666
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38666.rst

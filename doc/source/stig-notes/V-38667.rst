@@ -1,0 +1,17 @@
+V-38667: The system must have a host-based intrusion detection tool installed.
+------------------------------------------------------------------------------
+
+Adding host-based intrusion detection tools can provide the capability to
+automatically take actions in response to malicious behavior, which can
+provide additional agility in reacting to network threats. These tools also
+often include a reporting capability to provide network awareness of system,
+which may not otherwise exist in an organization's systems management regime.
+
+Details: `V-38667 in STIG Viewer`_.
+
+.. _V-38667 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38667
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38667.rst

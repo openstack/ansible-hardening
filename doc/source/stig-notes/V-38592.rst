@@ -1,0 +1,15 @@
+V-38592: The system must require administrator action to unlock an account locked by excessive failed login attempts.
+---------------------------------------------------------------------------------------------------------------------
+
+Locking out user accounts after a number of incorrect attempts prevents direct
+password guessing attacks. Ensuring that an administrator is involved in
+unlocking locked accounts draws appropriate attention to such situations.
+
+Details: `V-38592 in STIG Viewer`_.
+
+.. _V-38592 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38592
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38592.rst

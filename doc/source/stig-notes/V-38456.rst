@@ -1,0 +1,17 @@
+V-38456: The system must use a separate file system for /var.
+-------------------------------------------------------------
+
+Ensuring that "/var" is mounted on its own partition enables the setting of
+more restrictive mount options. This helps protect system services such as
+daemons or other programs which use it. It is not uncommon for the "/var"
+directory to contain world-writable directories, installed by other software
+packages.
+
+Details: `V-38456 in STIG Viewer`_.
+
+.. _V-38456 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38456
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38456.rst

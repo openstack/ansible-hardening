@@ -177,3 +177,14 @@ disable_usb_storage: no
 #
 sysctl_tunable:
   tcp_syncookies: 1                               # V-38539
+
+## Postfix
+# The STIG requires inet_interfaces to be set to 'localhost', but Ubuntu will
+# configure it to be 'all' when dpkg-reconfigure is unavailable (as it is when
+# Ansible installs packages). The default here is 'localhost' to meet the STIG
+# requirement, but some deployers may want this set to 'all' if their hosts
+# need to receive emails over the network (which isn't common).
+#
+# See the documentation for V-38622 for more details.
+#
+postfix_inet_interfaces: localhost                # V-38622

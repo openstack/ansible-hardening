@@ -24,6 +24,11 @@
     name: chrony
     state: restarted
 
+- name: restart postfix
+  service:
+    name: postfix
+    state: restarted
+
 - name: restart ssh
   service:
     name: ssh

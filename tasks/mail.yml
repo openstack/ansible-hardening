@@ -46,3 +46,15 @@
     - mail
     - cat2
     - V-38446
+
+- name: V-38622 - Mail relaying must be restricted
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: "^(#)?inet_interfaces"
+    line: "inet_interfaces = {{ postfix_inet_interfaces }}"
+  notify:
+    - restart postfix
+  tags:
+    - mail
+    - cat2
+    - V-38622

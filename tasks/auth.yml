@@ -251,3 +251,22 @@
    - auth
    - cat2
    - V-38599
+
+- name: V-38681 - Check for missing GID's in /etc/group
+  shell: "pwck -r | grep 'no group'"
+  register: v38681_result
+  changed_when: False
+  failed_when: v38681_result.rc > 1
+  tags:
+    - auth
+    - cat3
+    - V-38681
+
+- name: V-38681 - All GID's in /etc/passwd must be defined in /etc/group
+  fail:
+    msg: "FAILED: GID's in /etc/passwd aren't in /etc/group"
+  when: v38681_result.rc != 1
+  tags:
+    - auth
+    - cat3
+    - V-38681

@@ -311,3 +311,21 @@
     - auth
     - cat3
     - V-38692
+
+- name: Checking for accounts with non-unique usernames (for V-38683)
+  shell: pwck -rq | wc -l
+  register: v38683_result
+  changed_when: False
+  tags:
+    - auth
+    - cat3
+    - V-38683
+
+- name: V-38683 - All accounts on the system must have unique user/account names
+  fail:
+    msg: "FAILED: Found accounts without unique usernames"
+  when: v38683_result.stdout != '0'
+  tags:
+    - auth
+    - cat3
+    - V-38683

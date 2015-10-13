@@ -1,0 +1,3 @@
+The Ansible tasks will search for ``NOPASSWD`` and ``!authenticate`` in the
+sudo configuration. If either is found, the playbook will fail and an error
+message will be printed.

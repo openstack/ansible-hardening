@@ -329,3 +329,32 @@
     - auth
     - cat3
     - V-38683
+
+- name: Checking for NOPASSWD in sudoers (for V-58901)
+  shell: "egrep '^[^#]*NOPASSWD' /etc/sudoers /etc/sudoers.d/*"
+  register: v58901_nopasswd_result
+  changed_when: False
+  failed_when: v58901_nopasswd_result.rc > 1
+  tags:
+    - auth
+    - cat2
+    - V-58901
+
+- name: Checking for !authenticate in sudoers (for V-58901)
+  shell: "egrep '^[^#]*!authenticate' /etc/sudoers /etc/sudoers.d/*"
+  register: v58901_authenticate_result
+  changed_when: False
+  failed_when: v58901_authenticate_result.rc > 1
+  tags:
+    - auth
+    - cat2
+    - V-58901
+
+- name: V-58901 - The sudo command must require authentication
+  fail:
+    msg: "FAILED: NOPASSWD or !authenticate found in sudo configuration"
+  when: v58901_nopasswd_result.rc == 0 or v58901_authenticate_result.rc == 0
+  tags:
+    - auth
+    - cat2
+    - V-58901

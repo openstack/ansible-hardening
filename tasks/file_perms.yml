@@ -103,3 +103,16 @@
    - file_perms
    - cat2
    - V-38504
+
+# This change will go into effect on the next log rotation.
+- name: V-38623 - All rsyslog-generated files must have mode 0600 or less
+  lineinfile:
+    dest: /etc/rsyslog.conf
+    regexp: "^(#)?\\$FileCreateMode"
+    line: "$FileCreateMode 0600"
+  notify:
+    - restart rsyslog
+  tags:
+    - file_perms
+    - cat2
+    - V-38623

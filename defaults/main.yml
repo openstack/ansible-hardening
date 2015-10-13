@@ -228,3 +228,13 @@ install_fail2ban: no                               # V-38501
 # The STIG requires bans to last 15 minutes. Adjust the following variable
 # to set the time an IP is banned by fail2ban (in seconds).
 fail2ban_bantime: 900                              # V-38501
+
+## AIDE
+# The default Ubuntu configuration for AIDE will cause it to wander into some
+# terrible places on the system, such as /var/lib/lxc and images in /opt.
+# The following three default exclusions are highly recommended for AIDE to
+# work properly, but additional exclusions can be added to this list if needed.
+aide_exclude_dirs:
+  - /var/lib/lxc
+  - /openstack
+  - /opt

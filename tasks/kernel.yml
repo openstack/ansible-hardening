@@ -149,6 +149,21 @@
     - cat2
     - V-38517
 
+- name: Disable IPv6
+  sysctl:
+    name: "{{ item }}"
+    value: 1
+    state: present
+    sysctl_set: yes
+  with_items:
+    - net.ipv6.conf.all.disable_ipv6
+    - net.ipv6.conf.default.disable_ipv6
+  when: disable_ipv6 | bool
+  tags:
+    - kernel
+    - cat2
+    - V-38546
+
 - name: V-38682 - Disable bluetooth module
   copy:
     src: V-38682-modprobe.conf

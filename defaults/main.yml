@@ -196,3 +196,9 @@ sysctl_tunable:
 # See the documentation for V-38622 for more details.
 #
 postfix_inet_interfaces: localhost                # V-38622
+
+## Disabling IPv6
+# Deployers who wish to disable IPv6 entirely must set this configuration
+# variable to 'yes'. See the documentation for V-38546 before making this
+# change.
+disable_ipv6: no                                  # V-38546

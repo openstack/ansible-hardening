@@ -16,7 +16,7 @@
 - name: V-38669 - The postfix service must be enabled for mail delivery (install postfix)
   apt:
     name: postfix
-    state: latest
+    state: present
   tags:
     - mail
     - cat3

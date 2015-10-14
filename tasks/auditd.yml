@@ -16,7 +16,7 @@
 - name: V-38631/38632 - The operating system must produce audit records (install auditd)
   apt:
     name: auditd
-    state: latest
+    state: present
     cache_valid_time: 3600
     update_cache: yes
   tags:

@@ -2,8 +2,10 @@
 
 Disabling the ``usb-storage`` module can add extra security, but it's not
 necessary on most systems. To disable the ``usb-storage`` module on hosts,
-set ``disable_usb_storage`` to ``yes``:
+set the following variable to ``yes``:
 
 .. code-block:: yaml
 
-    disable_usb_storage: yes
+    disable_module['usb_storage']: yes
+
+**NOTE:** The module will be disabled on the next reboot.

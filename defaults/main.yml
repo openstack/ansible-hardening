@@ -166,8 +166,14 @@ num_logs: 5                                       # V-38636
 #password_warn_age: 7                             # V-38480
 
 ## Kernel modules
-# V-38490 - Set the line below to yes to disable usb-storage
-disable_usb_storage: no
+# Set these booleans to 'yes' to disable the kernel module (following the
+# STIG requirements). Set the boolean to 'no' to ensure no changes are made.
+disable_module:
+  dccp: yes                                       # V-38514
+  rds: yes                                        # V-38516
+  sctp: yes                                       # V-38515
+  tipc: yes                                       # V-38517
+  usb_storage: no                                 # V-38490
 
 ## sysctl tunables
 # ** DANGER **

@@ -21,6 +21,23 @@
     - cat2
     - V-38489
 
+- name: Check for AIDE cron job (for V-38670)
+  stat:
+    path: /etc/cron.daily/aide
+  register: v38670_result
+  changed_when: False
+  tags:
+    - cat2
+    - V-38670
+
+- name: V-38670 - System must detect unauthorized changes to software and information
+  fail:
+    msg: "FAILED: AIDE cron job is missing"
+  when: v38670_result.stat.exists == False
+  tags:
+    - cat2
+    - V-38670
+
 - name: Search for .netrc files (for V-38619)
   shell: find /root /home -xdev -name .netrc | wc -l
   register: v38619_result

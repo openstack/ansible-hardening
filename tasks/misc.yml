@@ -16,7 +16,7 @@
 - name: V-38429 - Install AIDE
   apt:
     name: aide
-    state: latest
+    state: present
   tags:
     - cat2
     - V-38489
@@ -40,7 +40,7 @@
 - name: V-38620 - Synchronize system clock (installing chrony)
   apt:
     name: chrony
-    state: latest
+    state: present
   tags:
     - cat2
     - V-38620
@@ -71,7 +71,7 @@
 - name: V-38624 - System logs must be rotated daily (install logrotate)
   apt:
     name: logrotate
-    state: latest
+    state: present
   tags:
     - cat3
     - V-38624

@@ -164,6 +164,9 @@ num_logs: 5                                       # V-38636
 # V-38480 - To warn users before their password expires, uncomment the line
 # below and they will be warned 7 days prior (following the STIG).
 #password_warn_age: 7                             # V-38480
+# V-38684 - Setting the maximum number of simultaneous logins per user. The
+# STIG sets a limit of 10.
+#max_simultaneous_logins: 10                      # V-38684
 
 ## Kernel modules
 # Set these booleans to 'yes' to disable the kernel module (following the

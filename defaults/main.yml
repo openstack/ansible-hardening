@@ -50,6 +50,7 @@ remove_services:
   telnet_server: yes                              # V-38587
   tftp-server: yes                                # V-38606
   xinetd: yes                                     # V-38584
+  xorg: yes                                       # v-38676
   ypserv: yes                                     # V-38603
 
 ## Additional rules for auditd

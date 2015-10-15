@@ -138,3 +138,13 @@
     - services
     - cat2
     - V-38671
+
+- name: V-38676 - The X windows package must not be installed
+  apt:
+    name: xserver-xorg
+    state: absent
+  when: remove_services['xorg'] | bool
+  tags:
+    - services
+    - cat3
+    - V-38676

@@ -163,3 +163,19 @@
   tags:
    - cat3
    - V-38702
+
+- name: Check for default runlevel (for V-38674)
+  shell: "grep 'DEFAULT_RUNLEVEL=2' /etc/init/rc-sysinit.conf"
+  register: v38674_result
+  changed_when: False
+  tags:
+    - cat2
+    - V-38674
+
+- name: V-38674 - X Windows must not be enabled
+  fail:
+    msg: "FAILED: Default runlevel should be 2 (no X windows)"
+  when: v38674_result.rc != 0
+  tags:
+    - cat2
+    - V-38674

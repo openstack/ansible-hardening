@@ -1,0 +1,7 @@
+Ubuntu 14.04 sets logs in ``/var/log/audit`` to mode ``0400`` by default,
+which makes sense because only the root user should be able to view the
+logs. No users should ever be adjusting or editing the audit logs.
+
+The STIG requirement states that log files must have mode ``0640`` or less.
+The Ansible tasks in this role will set the mode to ``0400`` to match
+Ubuntu's default.

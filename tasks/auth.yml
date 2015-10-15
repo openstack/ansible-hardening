@@ -135,6 +135,24 @@
     - cat1
     - V-38491
 
+- name: Check for accounts with UID 0 other than root (for V-38500)
+  shell: "awk -F: '($1 != \"root\") && ($3 == 0) {print}' /etc/passwd | wc -l"
+  register: v38500_result
+  changed_when: v38500_result.stdout != '0'
+  tags:
+    - auth
+    - cat2
+    - V-38500
+
+- name: V-38500 - The root account must be the only account with UID 0
+  fail:
+    msg: "FAILED: Another account besides root has UID 0"
+  when: v38500_result.stdout != '0'
+  tags:
+    - auth
+    - cat2
+    - V-38500
+
 - name: V-38591 - Remove rshd
   apt:
     name: rsh-server

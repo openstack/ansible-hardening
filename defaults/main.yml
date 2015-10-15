@@ -169,6 +169,7 @@ num_logs: 5                                       # V-38636
 # Set these booleans to 'yes' to disable the kernel module (following the
 # STIG requirements). Set the boolean to 'no' to ensure no changes are made.
 disable_module:
+  bluetooth: yes                                  # V-38682
   dccp: yes                                       # V-38514
   rds: yes                                        # V-38516
   sctp: yes                                       # V-38515

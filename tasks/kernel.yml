@@ -148,3 +148,13 @@
     - kernel
     - cat2
     - V-38517
+
+- name: V-38682 - Disable bluetooth module
+  copy:
+    src: V-38682-modprobe.conf
+    dest: /etc/modprobe.d/disable-bluetooth.conf
+  when: disable_module['bluetooth'] | bool
+  tags:
+    - kernel
+    - cat2
+    - V-38682

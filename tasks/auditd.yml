@@ -174,3 +174,15 @@
     - auditd
     - cat3
     - V-38471
+
+- name: V-54381 - The audit system must switch to single user mode when disk space is low
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?admin_space_left_action"
+    line: "admin_space_left_action = {{ admin_space_left_action }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-54381

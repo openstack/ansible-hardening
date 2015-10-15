@@ -36,12 +36,3 @@ Table of Contents
    getting-started.rst
    writing-docs.rst
    configurations.rst
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-

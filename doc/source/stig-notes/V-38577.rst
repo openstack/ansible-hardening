@@ -1,0 +1,14 @@
+V-38577: The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (libuser.conf).
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Using a stronger hashing algorithm makes password cracking attacks more
+difficult.
+
+Details: `V-38577 in STIG Viewer`_.
+
+.. _V-38577 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38577
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38577.rst

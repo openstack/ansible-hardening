@@ -1,0 +1,14 @@
+V-38676: The xorg-x11-server-common (X Windows) package must not be installed, unless required.
+-----------------------------------------------------------------------------------------------
+
+Unnecessary packages should not be installed to decrease the attack surface of
+the system.
+
+Details: `V-38676 in STIG Viewer`_.
+
+.. _V-38676 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38676
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38676.rst

@@ -1,0 +1,16 @@
+V-38650: The rdisc service must not be running.
+-----------------------------------------------
+
+General-purpose systems typically have their network and routing information
+configured statically by a system administrator. Workstations or some special-
+purpose systems often use DHCP (instead of IRDP) to retrieve dynamic network
+configuration information.
+
+Details: `V-38650 in STIG Viewer`_.
+
+.. _V-38650 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38650
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38650.rst

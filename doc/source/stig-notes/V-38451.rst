@@ -1,0 +1,15 @@
+V-38451: The /etc/passwd file must be group-owned by root.
+----------------------------------------------------------
+
+The "/etc/passwd" file contains information about the users that are
+configured on the system. Protection of this file is critical for system
+security.
+
+Details: `V-38451 in STIG Viewer`_.
+
+.. _V-38451 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38451
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38451.rst

@@ -1,0 +1,16 @@
+V-38486: The operating system must conduct backups of system-level information contained in the information system per organization defined frequency to conduct backups that are consistent with recovery time and recovery point objectives.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Operating system backup is a critical step in maintaining data assurance and
+availability. System-level information includes system-state information,
+operating system and application software, and licenses. Backups must be
+consistent with organizational recovery time and recovery point objectives.
+
+Details: `V-38486 in STIG Viewer`_.
+
+.. _V-38486 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38486
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38486.rst

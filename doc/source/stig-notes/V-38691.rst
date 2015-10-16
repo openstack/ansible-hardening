@@ -1,0 +1,16 @@
+V-38691: The Bluetooth service must be disabled.
+------------------------------------------------
+
+Disabling the "bluetooth" service prevents the system from attempting
+connections to Bluetooth devices, which entails some security risk.
+Nevertheless, variation in this risk decision may be expected due to the
+utility of Bluetooth connectivity and its limited range.
+
+Details: `V-38691 in STIG Viewer`_.
+
+.. _V-38691 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38691
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38691.rst

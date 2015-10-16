@@ -1,0 +1,14 @@
+V-38540: The audit system must be configured to audit modifications to the systems network configuration.
+---------------------------------------------------------------------------------------------------------
+
+The network environment should not be modified by anything other than
+administrator action. Any change to network parameters should be audited.
+
+Details: `V-38540 in STIG Viewer`_.
+
+.. _V-38540 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38540
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38540.rst

@@ -1,0 +1,15 @@
+V-38446: The mail system must forward all mail for root to one or more system administrators.
+---------------------------------------------------------------------------------------------
+
+A number of system services utilize email messages sent to the root user to
+notify system administrators of active or impending issues.  These messages
+must be forwarded to at least one monitored email address.
+
+Details: `V-38446 in STIG Viewer`_.
+
+.. _V-38446 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38446
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38446.rst

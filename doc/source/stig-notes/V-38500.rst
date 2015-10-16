@@ -1,0 +1,17 @@
+V-38500: The root account must be the only account having a UID of 0.
+---------------------------------------------------------------------
+
+An account has root authority if it has a UID of 0. Multiple accounts with a
+UID of 0 afford more opportunity for potential intruders to guess a password
+for a privileged account. Proper configuration of sudo is recommended to
+afford multiple system administrators access to root privileges in an
+accountable manner.
+
+Details: `V-38500 in STIG Viewer`_.
+
+.. _V-38500 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38500
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38500.rst

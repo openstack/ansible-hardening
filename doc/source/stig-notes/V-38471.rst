@@ -1,0 +1,16 @@
+V-38471: The system must forward audit records to the syslog service.
+---------------------------------------------------------------------
+
+The auditd service does not include the ability to send audit records to a
+centralized server for management directly.  It does, however, include an
+audit event multiplexor plugin (audispd) to pass audit records to the local
+syslog server.
+
+Details: `V-38471 in STIG Viewer`_.
+
+.. _V-38471 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38471
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38471.rst

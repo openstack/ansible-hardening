@@ -1,0 +1,16 @@
+V-38582: The xinetd service must be disabled if no network services utilizing it are enabled.
+---------------------------------------------------------------------------------------------
+
+The xinetd service provides a dedicated listener service for some programs,
+which is no longer necessary for commonly-used network services. Disabling it
+ensures that these uncommon services are not running, and also prevents
+attacks against xinetd itself.
+
+Details: `V-38582 in STIG Viewer`_.
+
+.. _V-38582 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38582
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38582.rst

@@ -1,0 +1,15 @@
+V-38459: The /etc/group file must be group-owned by root.
+---------------------------------------------------------
+
+The "/etc/group" file contains information regarding groups that are
+configured on the system. Protection of this file is important for system
+security.
+
+Details: `V-38459 in STIG Viewer`_.
+
+.. _V-38459 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38459
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38459.rst

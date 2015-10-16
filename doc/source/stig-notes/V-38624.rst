@@ -1,0 +1,15 @@
+V-38624: System logs must be rotated daily.
+-------------------------------------------
+
+Log files that are not properly rotated run the risk of growing so large that
+they fill up the /var/log partition. Valuable logging information could be
+lost if the /var/log partition becomes full.
+
+Details: `V-38624 in STIG Viewer`_.
+
+.. _V-38624 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38624
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38624.rst

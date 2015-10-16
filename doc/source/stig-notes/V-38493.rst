@@ -1,0 +1,13 @@
+V-38493: Audit log directories must have mode 0755 or less permissive.
+----------------------------------------------------------------------
+
+If users can delete audit logs, audit trails can be modified or destroyed.
+
+Details: `V-38493 in STIG Viewer`_.
+
+.. _V-38493 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38493
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38493.rst

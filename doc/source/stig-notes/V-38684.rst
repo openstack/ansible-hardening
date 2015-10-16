@@ -1,0 +1,16 @@
+V-38684: The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Limiting simultaneous user logins can insulate the system from denial of
+service problems caused by excessive logins. Automated login processes
+operating improperly or maliciously may result in an exceptional number of
+simultaneous login sessions.
+
+Details: `V-38684 in STIG Viewer`_.
+
+.. _V-38684 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38684
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38684.rst

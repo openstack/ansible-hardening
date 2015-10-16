@@ -1,0 +1,15 @@
+V-38591: The rsh-server package must not be installed.
+------------------------------------------------------
+
+The "rsh-server" package provides several obsolete and insecure network
+services. Removing it decreases the risk of those services' accidental (or
+intentional) activation.
+
+Details: `V-38591 in STIG Viewer`_.
+
+.. _V-38591 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38591
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38591.rst

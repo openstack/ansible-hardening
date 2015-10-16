@@ -1,0 +1,15 @@
+V-38467: The system must use a separate file system for the system audit data path.
+-----------------------------------------------------------------------------------
+
+Placing "/var/log/audit" in its own partition enables better separation
+between audit files and other files, and helps ensure that auditing cannot be
+halted due to the partition running out of space.
+
+Details: `V-38467 in STIG Viewer`_.
+
+.. _V-38467 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38467
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38467.rst

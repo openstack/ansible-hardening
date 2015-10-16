@@ -1,0 +1,16 @@
+V-38615: The SSH daemon must be configured with the Department of Defense (DoD) login banner.
+---------------------------------------------------------------------------------------------
+
+The warning message reinforces policy awareness during the logon process and
+facilitates possible legal action against attackers. Alternatively, systems
+whose ownership should not be obvious should ensure usage of a banner that
+does not provide easy attribution.
+
+Details: `V-38615 in STIG Viewer`_.
+
+.. _V-38615 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38615
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38615.rst

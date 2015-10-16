@@ -1,0 +1,19 @@
+V-38589: The telnet daemon must not be running.
+-----------------------------------------------
+
+The telnet protocol uses unencrypted network communication, which means that
+data from the login session, including passwords and all other information
+transmitted during the session, can be stolen by eavesdroppers on the network.
+The telnet protocol is also subject to man-in-the-middle attacks.  Mitigation:
+If an enabled telnet daemon is configured to only allow encrypted sessions,
+such as with Kerberos or the use of encrypted network tunnels, the risk of
+exposing sensitive information is mitigated.
+
+Details: `V-38589 in STIG Viewer`_.
+
+.. _V-38589 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38589
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38589.rst

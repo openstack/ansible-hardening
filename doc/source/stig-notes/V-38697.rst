@@ -1,0 +1,18 @@
+V-38697: The sticky bit must be set on all public directories.
+--------------------------------------------------------------
+
+Failing to set the sticky bit on public directories allows unauthorized users
+to delete files in the directory structure.   The only authorized public
+directories are those temporary directories supplied with the system, or those
+designed to be temporary file repositories. The setting is normally reserved
+for directories used by the system, and by users for temporary file storage -
+such as /tmp - and for directories requiring global read/write access.
+
+Details: `V-38697 in STIG Viewer`_.
+
+.. _V-38697 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38697
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38697.rst

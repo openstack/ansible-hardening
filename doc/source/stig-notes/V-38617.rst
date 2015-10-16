@@ -1,0 +1,14 @@
+V-38617: The SSH daemon must be configured to use only FIPS 140-2 approved ciphers.
+-----------------------------------------------------------------------------------
+
+Approved algorithms should impart some level of confidence in their
+implementation. These are also required for compliance.
+
+Details: `V-38617 in STIG Viewer`_.
+
+.. _V-38617 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38617
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38617.rst

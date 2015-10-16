@@ -1,0 +1,15 @@
+V-38490: The operating system must enforce requirements for the connection of mobile devices to operating systems.
+------------------------------------------------------------------------------------------------------------------
+
+USB storage devices such as thumb drives can be used to introduce unauthorized
+software and other vulnerabilities. Support for these devices should be
+disabled and the devices themselves should be tightly controlled.
+
+Details: `V-38490 in STIG Viewer`_.
+
+.. _V-38490 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38490
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38490.rst

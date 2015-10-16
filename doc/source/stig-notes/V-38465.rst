@@ -1,0 +1,15 @@
+V-38465: Library files must have mode 0755 or less permissive.
+--------------------------------------------------------------
+
+Files from shared library directories are loaded into the address space of
+processes (including privileged ones) or of the kernel itself at runtime.
+Restrictive permissions are necessary to protect the integrity of the system.
+
+Details: `V-38465 in STIG Viewer`_.
+
+.. _V-38465 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38465
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38465.rst

@@ -1,0 +1,14 @@
+V-38533: The system must ignore ICMPv4 redirect messages by default.
+--------------------------------------------------------------------
+
+This feature of the IPv4 protocol has few legitimate uses. It should be
+disabled unless it is absolutely required.
+
+Details: `V-38533 in STIG Viewer`_.
+
+.. _V-38533 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38533
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38533.rst

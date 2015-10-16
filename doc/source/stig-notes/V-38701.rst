@@ -1,0 +1,15 @@
+V-38701: The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.
+------------------------------------------------------------------------------------------------------------------------------
+
+Using the "-s" option causes the TFTP service to only serve files from the
+given directory. Serving files from an intentionally specified directory
+reduces the risk of sharing files which should remain private.
+
+Details: `V-38701 in STIG Viewer`_.
+
+.. _V-38701 in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/V-38701
+
+Notes for deployers
+~~~~~~~~~~~~~~~~~~~
+
+.. include:: developer-notes/V-38701.rst

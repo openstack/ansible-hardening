@@ -72,6 +72,37 @@
     - cat2
     - V-38636
 
+- name: Ensure debsums package is installed (for V-38637)
+  apt:
+    name: debsums
+    state: present
+  tags:
+    - auditd
+    - cat2
+    - V-38637
+
+# The debsums command returns 0 if the files haven't been altered but it
+# returns 2 otherwise. We also will check to see if auditd has been installed
+# and fail if it's not installed.
+- name: Checking auditd package contents for alterations with debsums (for V-38637)
+  shell: debsums auditd -c
+  register: v38637_result
+  changed_when: False
+  failed_when: "'not installed' in v38637_result.stdout"
+  tags:
+    - auditd
+    - cat2
+    - V-38637
+
+- name: V-38637 - Contents of auditd package must be verified
+  fail:
+    msg: "FAILED: Could not verify that files from auditd package are unaltered"
+  when: v38637_result.rc == 2
+  tags:
+    - auditd
+    - cat2
+    - V-38637
+
 - name: V-38445 - Audit log files must be group-owned by root
   file:
     dest: /var/log/audit/

@@ -68,6 +68,7 @@
   shell: "awk -F: '$1 !~ /^root$/ && $2 !~ /^[!*]/ {print $1 \":\" $2}' /etc/shadow | wc -l"
   register: v38496_result
   changed_when: v38496_result.stdout != '0'
+  failed_when: False
   tags:
     - auth
     - cat2
@@ -90,6 +91,7 @@
   command: grep nullok /etc/pam.d/common-auth
   register: v38497_result
   changed_when: False
+  failed_when: False
   tags:
     - auth
     - cat1
@@ -249,6 +251,7 @@
   shell: dpkg --status vsftpd
   register: v38599_result
   changed_when: False
+  failed_when: False
   tags:
     - auth
     - cat2

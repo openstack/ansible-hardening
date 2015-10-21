@@ -44,6 +44,7 @@
   command: grep -r AllowUnauthenticated /etc/apt/apt.conf.d/
   register: v38462_result
   changed_when: False
+  failed_when: False
   tags:
     - auth
     - cat1

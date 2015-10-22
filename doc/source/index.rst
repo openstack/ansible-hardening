@@ -1,6 +1,8 @@
 Security hardening for openstack-ansible
 ========================================
 
+`Work in progress -- this role is in the early stages of development.`
+
 The openstack-ansible-security role provides security hardening for `OpenStack`_
 environments deployed with `openstack-ansible`_.  The role has multiple goals:
 

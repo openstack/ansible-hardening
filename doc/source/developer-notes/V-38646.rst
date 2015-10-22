@@ -1,0 +1,5 @@
+**Special case**
+
+Ubuntu doesn't package the ``oddjobd`` daemon, so there are no packages to
+remove or daemons to stop. There is no action to be taken for this STIG on
+Ubuntu 14.04.

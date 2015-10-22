@@ -1,0 +1,7 @@
+**Special case**
+
+Ubuntu doesn't provide the same ``ntpdate`` service that a Red Hat Enterprise
+Linux 6 server would have. In addition, time synchronization is added within
+the fixes for V-38620 (where ``chrony`` is installed and configured).
+
+There is no action to be taken on Ubuntu for this STIG.

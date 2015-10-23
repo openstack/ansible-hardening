@@ -53,5 +53,10 @@
 - name: generate auditd rules
   command: augenrules --load
 
+# This will take a while to complete the first run, so we will fork it into
+# the background so it doesn't hold up the whole playbook.
+- name: initialize AIDE
+  shell: "aideinit -b"
+
 - name: rehash aliases
   command: newaliases

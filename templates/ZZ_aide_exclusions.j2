@@ -1,0 +1,7 @@
+# This file was deployed by openstack-ansible-security.
+# These excluded paths prevent AIDE from wandering into directories where it
+# shouldn't be hashing/monitoring files.
+
+{% for dir in aide_exclude_dirs %}
+!{{ dir }}
+{% endfor %}

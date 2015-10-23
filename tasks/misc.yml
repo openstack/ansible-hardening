@@ -13,10 +13,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: V-38429 - Install AIDE
+- name: V-38489 - Install AIDE
   apt:
     name: aide
     state: present
+  tags:
+    - cat2
+    - V-38489
+
+- name: V-38489 - Exclude certain directories from AIDE and initialize DB
+  template:
+    src: ZZ_aide_exclusions.j2
+    dest: /etc/aide/aide.conf.d/ZZ_aide_exclusions
+  notify:
+    - initialize AIDE
   tags:
     - cat2
     - V-38489

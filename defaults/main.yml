@@ -156,6 +156,9 @@ max_log_file_action: ROTATE                       # V-38634
 # Set the number of rotated audit logs to keep.  Ubuntu has 5 as the default
 # and this matches the STIG's requirements.
 num_logs: 5                                       # V-38636
+# Set the email address of someone who can receive and respond to notifications
+# about low disk space for log volumes.
+action_mail_acct: root                            # V-38680
 # **IMMINENT DANGER**
 # The STIG says that the system should switch to single user mode when the
 # storage capacity gets very low. This can cause serious service disruptions

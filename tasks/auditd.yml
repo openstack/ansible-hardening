@@ -161,6 +161,18 @@
     - cat2
     - V-38470
 
+- name: V-38680 - Audit system must send email notifications when storage capacity is low
+  lineinfile:
+    dest: /etc/audit/auditd.conf
+    regexp: "^(#)?action_mail_acct"
+    line: "action_mail_acct = {{ action_mail_acct }}"
+  notify:
+    - restart auditd
+  tags:
+    - auditd
+    - cat2
+    - V-38680
+
 - name: V-38495 - Audit log files must be owned by root
   file:
     dest: /var/log/audit/

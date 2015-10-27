@@ -1,0 +1,16 @@
+**Exception**
+
+The STIG requires administrators to search for directories meeting all of the
+following criteria:
+
+* World writable
+* Owned by a normal user (UID > 499)
+
+It requires that those directories are owned by root to prevent users from
+removing and replacing files. This ``find`` command isn't run within the
+Ansible tasks in openstack-ansible-security because it can be a very
+time-consuming task and it can slow down disk I/O while it runs.
+
+Deployers are strongly urged to review the permissions and ownerships of
+critical directories on their systems regularly to verify that they meet
+the requirements of this STIG.

@@ -161,21 +161,46 @@
     - cat3
     - V-38684
 
-- name: Check if vsftpd is installed (for V-38702)
-  stat:
-    path: /etc/vsftpd.conf
-  register: v38702_result
+- name: Check if vsftpd installed (for V-38599 and V-38702)
+  shell: "dpkg --status vsftpd | grep \"^Status:.*ok installed\""
+  register: v38599_result
   changed_when: False
+  failed_when: False
   tags:
+    - cat2
     - cat3
+    - V-38599
     - V-38702
+
+- name: Copy login banner (for V-38599)
+  copy:
+    src: login_banner.txt
+    dest: /etc/issue.net
+  when: v38599_result.rc == 0
+  notify:
+    - restart vsftpd
+  tags:
+    - cat2
+    - V-38599
+
+- name: V-38599 - Set warning banner for FTPS/FTP logins
+  lineinfile:
+    dest: /etc/vsftpd/vsftpd.conf
+    regexp: "^(#)?banner_file"
+    line: "banner_file=/etc/issue.net"
+  when: v38599_result.rc == 0
+  notify:
+    - restart vsftpd
+  tags:
+   - cat2
+   - V-38599
 
 - name: V-38702 - Enable xferlog
   lineinfile:
     dest: /etc/vsftpd.conf
     regexp: "^(#)?xferlog_enable"
     line: "xferlog_enable=YES"
-  when: v38702_result.stat.exists == True
+  when: v38599_result.rc == 0
   notify:
     - restart vsftpd
   tags:
@@ -187,7 +212,7 @@
     dest: /etc/vsftpd.conf
     regexp: "^(#)?xferlog_std_format"
     line: "xferlog_std_format=NO"
-  when: v38702_result.stat.exists == True
+  when: v38599_result.rc == 0
   notify:
     - restart vsftpd
   tags:
@@ -199,7 +224,7 @@
     dest: /etc/vsftpd.conf
     regexp: "^(#)?log_ftp_protocol"
     line: "log_ftp_protocol=YES"
-  when: v38702_result.stat.exists == True
+  when: v38599_result.rc == 0
   notify:
     - restart vsftpd
   tags:

@@ -1,0 +1,7 @@
+The STIG requires that daemons have their umask set to ``027`` or ``022``.
+Since changing umasks can disrupt some systems, this is an opt-in change.
+
+Deployers that want this change applied to their systems must set the
+Ansible variable ``umask_daemons_init`` to ``027``. The current default
+for Ubuntu 14.04 is ``027`` already, so deployers do not need to make any
+adjustments to Ansible variables to meet the STIG requirement.

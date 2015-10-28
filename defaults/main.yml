@@ -250,3 +250,28 @@ aide_exclude_dirs:
   - /var/lib/lxc
   - /openstack
   - /opt
+
+## umask settings
+# The STIG recommends changing various default umask settings for users and
+# daemons via different methods. However, this could cause serious issues for
+# production OpenStack environements which haven't been tested with these
+# changes.
+#
+# The variables below are set to match the STIG requirements, but they are
+# commented out to ensure they require deployers to opt-in for each change. To
+# opt in for one of the changes below, simply uncomment the line and run the
+# playbook. Deployers are strongly advised to review the documentation for
+# these changes and review their systems to ensure these changes won't cause
+# service disruptions.
+#
+# V-38642 - Set umask for daemons in init scripts to 027 or 022
+#umask_daemons_init: 027                          # V-38642
+#
+# V-38645 - System default umask in /etc/login.defs must be 077
+#umask_login_defs: 077                            # V-38645
+#
+# V-38649 - System default umask for csh must be 077
+#umask_csh: 077                                   # V-38649
+#
+# V-38651 - System default umask for bash must be 077
+#umask_bash: 077                                  # V-38651

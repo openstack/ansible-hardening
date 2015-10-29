@@ -238,7 +238,8 @@
     - cat2
     - V-38451
 
-- name: V38457 - The /etc/passwd file must have mode 0644 or less permissive
+# Ubuntu's default is 0644 already
+- name: V-38457 - The /etc/passwd file must have mode 0644 or less permissive
   file:
     path: /etc/passwd
     mode: 0644
@@ -246,6 +247,84 @@
     - auth
     - cat2
     - V-38457
+
+# SHA512 is the minimum requirement and it happens to be Ubuntu 14.04's default
+# hashing algorithm as well.
+- name: Check password hashing algorithm used by PAM (for V-38574)
+  shell: "grep '^\\s*password.*pam_unix.*sha512' /etc/pam.d/common-password"
+  register: v38574_result
+  changed_when: False
+  failed_when: False
+  tags:
+    - auth
+    - cat2
+    - V-38574
+
+# If SHA512 isn't in use for some reason, we should fail and display an error.
+- name: V-38574 - System must use FIPS 140-2 approved hashing algorithm for passwords (PAM)
+  fail:
+    msg: "FAILED: Must use SHA512 for password hashing (via PAM)"
+  when: v38574_result.rc != 0
+  tags:
+    - auth
+    - cat2
+    - V-38574
+
+- name: Check password hashing algorithm used in login.defs (for V-38576)
+  shell: "grep '^ENCRYPT_METHOD.*SHA512' /etc/login.defs"
+  register: v38576_result
+  changed_when: v38576_result.rc != 0
+  tags:
+    - auth
+    - cat2
+    - V-38576
+
+# If SHA512 isn't in use for some reason, we should fail and display an error.
+- name: V-38576 - System must use FIPS 140-2 approved hashing algorithm for passwords (login.defs)
+  debug:
+    msg: "FAILED: Must use SHA512 for password hashing (in /etc/login.defs)"
+  when: v38576_result.rc != 0
+  failed_when: v38576_result.rc != 0
+  tags:
+    - auth
+    - cat2
+    - V-38576
+
+# Neither Ubuntu or openstack-ansible installs libuser by default, so there's
+# no need to install it here unless the deployer has it installed for some
+# reason.
+- name: Check if libuser is installed (for V-38577)
+  shell: "dpkg --status libuser | grep '^Status.*ok installed'"
+  register: v38577_libuser_check
+  changed_when: False
+  failed_when: False
+  tags:
+    - auth
+    - cat2
+    - V-38577
+
+# Only look at libuser.conf when we are sure that libuser is installed
+- name: If libuser is installed, verify hashing algorithm in use (for V-38577)
+  shell: "grep '^crypt_style = sha512' /etc/libuser.conf"
+  register: v38577_result
+  when: v38577_libuser_check.rc == 0
+  changed_when: v38577_result.rc != 0
+  tags:
+    - auth
+    - cat2
+    - V-38577
+
+# If libuser is installed *AND* it's using unacceptable password hashing
+# algorithms, throw an error and a failure.
+- name: V-38577 - System must use FIPS 140-2 approved hashing algorithm for passwords (libuser)
+  debug:
+    msg: "FAILED: libuser isn't configured to use SHA512 hashing for passwords"
+  when: v38577_libuser_check.rc == 0 and v38577_result.rc != 0
+  failed_when: v38577_libuser_check.rc == 0 and v38577_result.rc != 0
+  tags:
+    - auth
+    - cat2
+    - V-38577
 
 - name: V-38681 - Check for missing GID's in /etc/group
   shell: "pwck -r | grep 'no group'"

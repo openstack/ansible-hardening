@@ -141,6 +141,35 @@
     - cat3
     - V-38656
 
+- name: Check if SNMP daemon is installed (for V-38660)
+  shell: "dpkg --status snmpd | grep \"^Status:.*ok installed\""
+  register: v38660_snmpd_installed
+  changed_when: False
+  failed_when: False
+  tags:
+    - cat2
+    - V-38660
+
+# We shouldn't get any output from this grep since it looks for configuration
+# lines for the SNMP v1 and v2c protocols.
+- name: Check for insecure SNMP protocols (for V-38660)
+  shell: "egrep 'v1|v2c|com2sec|community' /etc/snmp/snmpd.conf | grep -v '^\\s*#'"
+  register: v38660_result
+  when: v38660_snmpd_installed.rc == 0
+  changed_when: False
+  failed_when: False
+  tags:
+    - cat2
+    - V-38660
+
+- name: V-38660 - The snmpd service must only use SNMPv3 or newer
+  fail:
+    msg: "FAILED: Insecure SNMP configuration found -- use SNMPv3 only"
+  when: v38660_snmpd_installed.rc == 0 and v38660_result.rc == 0
+  tags:
+    - cat2
+    - V-38660
+
 - name: V-38675 - Process core dump must be disabled
   lineinfile:
     dest: /etc/security/limits.d/V-38675-coredump.conf

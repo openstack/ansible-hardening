@@ -1,7 +1,7 @@
 .. include:: <xhtml1-lat1.txt>
 `Home <index.html>`__ |raquo| Security hardening for openstack-ansible
 
-Category 2 (Medium) configurations
+Category 2 (Medium) controls
 ================================
 
 .. toctree::

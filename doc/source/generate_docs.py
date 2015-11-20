@@ -68,7 +68,7 @@ with open('rhel6stig.csv', 'r') as csvfile:
 category_template = """.. include:: <xhtml1-lat1.txt>
 `Home <index.html>`__ |raquo| Security hardening for openstack-ansible
 
-Category {{ level }} ({{ name | capitalize }}) configurations
+Category {{ level }} ({{ name | capitalize }}) controls
 ================================
 
 .. toctree::
@@ -86,7 +86,7 @@ categories = {
 
 for category_name, category_level in categories.items():
     matching_stigs = [x for x in stigs if x['severity'] == category_name]
-    cat_file = open("configurations-cat{0}.rst".format(category_level), 'w')
+    cat_file = open("controls-cat{0}.rst".format(category_level), 'w')
     template = Template(category_template)
     cat_file.write(template.render(name=category_name,
                                    level=category_level))

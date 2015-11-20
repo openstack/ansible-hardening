@@ -1,12 +1,12 @@
 .. include:: <xhtml1-lat1.txt>
 `Home <index.html>`__ |raquo| Security hardening for openstack-ansible
 
-Security hardening configurations
+Security hardening controls in detail
 =================================
 
 .. toctree::
    :maxdepth: 2
 
-   configurations-cat3.rst
-   configurations-cat2.rst
-   configurations-cat1.rst
+   controls-cat1.rst
+   controls-cat2.rst
+   controls-cat3.rst

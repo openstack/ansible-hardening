@@ -1,11 +1,11 @@
 .. include:: <xhtml1-lat1.txt>
 `Home <index.html>`__ |raquo| Security hardening for openstack-ansible
 
-Writing docs for openstack-ansible-security
-===========================================
+Writing documentation
+=====================
 
-The configurations-cat[number].rst files are automatically generated with the
-``stigcsv-to-rst.py`` script and the ``rhel6stig.csv``.
+The ``controls-cat[number].rst`` files are automatically generated with the
+``generate_docs.py`` script and the ``rhel6stig.csv``.
 
 Each hardening configuration does an import from the developer-notes directory
 and looks for a file called ``[STIG_ID].rst``.  As an example, the

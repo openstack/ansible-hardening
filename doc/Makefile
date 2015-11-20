@@ -2,8 +2,8 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
+SPHINXOPTS    = "-p 8001"
+SPHINXBUILD   = sphinx-autobuild
 PAPER         =
 BUILDDIR      = build
 

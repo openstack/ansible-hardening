@@ -1,7 +1,7 @@
 .. include:: <xhtml1-lat1.txt>
 `Home <index.html>`__ |raquo| Security hardening for openstack-ansible
 
-Category 3 (High) configurations
+Category 3 (High) controls
 ================================
 
 .. toctree::

@@ -35,6 +35,8 @@ Table of Contents
 .. toctree::
    :maxdepth: 2
 
+   benefits.rst
+   configuration.rst
    getting-started.rst
    writing-docs.rst
-   configurations.rst
+   controls.rst

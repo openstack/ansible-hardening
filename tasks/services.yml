@@ -17,6 +17,7 @@
   shell: "find /etc/init.d/ -printf '%f\n'"
   register: sysv_services
   changed_when: false
+  always_run: True
   tags:
     - services
     - cat1

@@ -22,11 +22,12 @@
     - cat3
     - V-38669
 
-- name: V-38669 - The postfix service must be enabled for mail delivery (ebable postfix)
+- name: V-38669 - The postfix service must be enabled for mail delivery (enable postfix)
   service:
     name: postfix
     state: started
     enabled: yes
+  when: not check_mode
   tags:
     - mail
     - cat3
@@ -47,11 +48,20 @@
     - cat2
     - V-38446
 
+- name: Verify that Postfix's main.cf exists
+  stat:
+    path: /etc/postfix/main.cf
+  register: postfix_main_cf
+  always_run: true
+  tags:
+    - always
+
 - name: V-38622 - Mail relaying must be restricted
   lineinfile:
     dest: /etc/postfix/main.cf
     regexp: "^(#)?inet_interfaces"
     line: "inet_interfaces = {{ postfix_inet_interfaces }}"
+  when: postfix_main_cf.stat.exists | bool
   notify:
     - restart postfix
   tags:

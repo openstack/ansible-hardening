@@ -13,6 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+  - name: Verify if we're using check mode
+    command: /bin/true
+    register: noop_result
+
+  - name: Set a fact if we're in check mode
+    set_fact:
+      check_mode: "{{ noop_result|skipped }}"
+
   - include: apt.yml
   - include: auditd.yml
   - include: auth.yml

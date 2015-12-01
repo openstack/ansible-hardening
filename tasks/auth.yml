@@ -69,6 +69,7 @@
   register: v38496_result
   changed_when: v38496_result.stdout != '0'
   failed_when: False
+  always_run: True
   tags:
     - auth
     - cat2
@@ -92,6 +93,7 @@
   register: v38497_result
   changed_when: False
   failed_when: False
+  always_run: True
   tags:
     - auth
     - cat1
@@ -102,7 +104,7 @@
 - name: V-38497 - The system must not have accounts configured with blank or null passwords.
   fail:
     msg: "FAILED: Remove 'nullok' from /etc/pam.d/system-auth for better security."
-  when: "v38497_result.rc == 0"
+  when: not check_mode and v38497_result.rc == 0
   tags:
     - auth
     - cat1
@@ -141,6 +143,7 @@
   shell: "awk -F: '($1 != \"root\") && ($3 == 0) {print}' /etc/passwd | wc -l"
   register: v38500_result
   changed_when: v38500_result.stdout != '0'
+  always_run: True
   tags:
     - auth
     - cat2
@@ -206,6 +209,7 @@
   shell: "awk -F: '($2 != \"x\") {print}' /etc/passwd | wc -l"
   register: v38499_result
   changed_when: False
+  always_run: True
   tags:
     - auth
     - cat2
@@ -255,6 +259,7 @@
   register: v38574_result
   changed_when: False
   failed_when: False
+  always_run: True
   tags:
     - auth
     - cat2
@@ -274,6 +279,7 @@
   shell: "grep '^ENCRYPT_METHOD.*SHA512' /etc/login.defs"
   register: v38576_result
   changed_when: v38576_result.rc != 0
+  always_run: True
   tags:
     - auth
     - cat2
@@ -298,6 +304,7 @@
   register: v38577_libuser_check
   changed_when: False
   failed_when: False
+  always_run: True
   tags:
     - auth
     - cat2
@@ -331,6 +338,7 @@
   register: v38681_result
   changed_when: False
   failed_when: v38681_result.rc > 1
+  always_run: True
   tags:
     - auth
     - cat3
@@ -360,6 +368,7 @@
   shell: pwck -rq | wc -l
   register: v38683_result
   changed_when: False
+  always_run: True
   tags:
     - auth
     - cat3
@@ -379,6 +388,7 @@
   register: v58901_nopasswd_result
   changed_when: False
   failed_when: v58901_nopasswd_result.rc > 1
+  always_run: True
   tags:
     - auth
     - cat2
@@ -389,6 +399,7 @@
   register: v58901_authenticate_result
   changed_when: False
   failed_when: v58901_authenticate_result.rc > 1
+  always_run: True
   tags:
     - auth
     - cat2
@@ -397,7 +408,9 @@
 - name: V-58901 - The sudo command must require authentication
   fail:
     msg: "FAILED: NOPASSWD or !authenticate found in sudo configuration"
-  when: v58901_nopasswd_result.rc == 0 or v58901_authenticate_result.rc == 0
+  when: >
+    not check_mode
+    and (v58901_nopasswd_result.rc == 0 or v58901_authenticate_result.rc == 0)
   tags:
     - auth
     - cat2

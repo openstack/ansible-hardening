@@ -30,17 +30,28 @@
     name: auditd
     state: started
     enabled: true
+  when: not check_mode
   tags:
     - auditd
     - cat2
     - V-38632
     - V-38631
 
+- name: Verify that auditd.conf exists
+  stat:
+    path: /etc/audit/auditd.conf
+  register: auditd_conf
+  always_run: true
+  tags:
+    - auditd
+    - always
+
 - name: V-38633 - The system must set a maximum audit log file size
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?max_log_file ="
     line: "max_log_file = {{ max_log_file }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -53,6 +64,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?max_log_file_action ="
     line: "max_log_file_action = {{ max_log_file_action }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -65,6 +77,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?num_logs ="
     line: "num_logs = {{ num_logs }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -97,17 +110,27 @@
 - name: V-38637 - Contents of auditd package must be verified
   fail:
     msg: "FAILED: Could not verify that files from auditd package are unaltered"
-  when: v38637_result.rc == 2
+  when: not check_mode and v38637_result.rc == 2
   tags:
     - auditd
     - cat2
     - V-38637
+
+- name: Verify that auditd log directory exists (for V-38445)
+  stat:
+    path: /var/log/audit/
+  register: auditd_log_dir
+  always_run: True
+  tags:
+    - auditd
+    - always
 
 - name: V-38445 - Audit log files must be group-owned by root
   file:
     dest: /var/log/audit/
     group: root
     recurse: true
+  when: auditd_log_dir.stat.exists | bool
   tags:
     - auditd
     - cat2
@@ -118,6 +141,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?disk_error_action"
     line: "disk_error_action = {{ disk_error_action }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -130,6 +154,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?disk_full_action"
     line: "disk_full_action = {{ disk_full_action }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -142,6 +167,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?space_left"
     line: "space_left = {{ space_left }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -154,6 +180,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?space_left_action"
     line: "space_left_action = {{ space_left_action }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -166,6 +193,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?action_mail_acct"
     line: "action_mail_acct = {{ action_mail_acct }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -178,6 +206,7 @@
     dest: /var/log/audit/
     owner: root
     recurse: true
+  when: auditd_log_dir.stat.exists | bool
   tags:
     - auditd
     - cat2
@@ -202,6 +231,7 @@
     dest: "/var/log/audit/{{ item }}"
     mode: 0400
   with_items: v38498_result.stdout_lines
+  when: v_38498_result is defined
   tags:
     - auditd
     - cat2
@@ -223,6 +253,7 @@
     regexp: "^(#)?active"
     line: "active = yes"
     state: present
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:
@@ -235,6 +266,7 @@
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?admin_space_left_action"
     line: "admin_space_left_action = {{ admin_space_left_action }}"
+  when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
   tags:

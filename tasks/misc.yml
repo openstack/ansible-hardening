@@ -52,6 +52,7 @@
   shell: find /root /home -xdev -name .netrc | wc -l
   register: v38619_result
   changed_when: False
+  always_run: True
   tags:
     - cat2
     - V-38619
@@ -77,14 +78,24 @@
     name: chrony
     state: started
     enabled: yes
+  when: not check_mode
   tags:
     - cat2
+    - V-38620
+
+- name: Check for chrony.conf
+  stat:
+    path: /etc/chrony/chrony.conf
+  register: chrony_conf
+  tags:
+    - always
     - V-38620
 
 - name: V-38620 - Synchronize system clock (configuration file)
   template:
     src: chrony.conf.j2
     dest: /etc/chrony/chrony.conf
+  when: chrony_conf.stat.exists | bool
   notify:
     - restart chrony
   tags:
@@ -146,6 +157,7 @@
   register: v38660_snmpd_installed
   changed_when: False
   failed_when: False
+  always_run: True
   tags:
     - cat2
     - V-38660
@@ -158,6 +170,7 @@
   when: v38660_snmpd_installed.rc == 0
   changed_when: False
   failed_when: False
+  always_run: True
   tags:
     - cat2
     - V-38660
@@ -195,6 +208,7 @@
   register: v38599_result
   changed_when: False
   failed_when: False
+  always_run: True
   tags:
     - cat2
     - cat3
@@ -264,6 +278,7 @@
   shell: "grep 'DEFAULT_RUNLEVEL=2' /etc/init/rc-sysinit.conf"
   register: v38674_result
   changed_when: False
+  always_run: True
   tags:
     - cat2
     - V-38674
@@ -280,6 +295,7 @@
   shell: "apparmor_status 2>&1 | head -n 1"
   register: v51337_result
   changed_when: False
+  always_run: True
   tags:
     - cat2
     - V-51337

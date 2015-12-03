@@ -16,7 +16,6 @@
 set -euov
 
 FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-false}
-CHECK_MODE_TEST=${CHECK_MODE_TEST:-true}
 
 # prep the host
 if [ "$(which apt-get)" ]; then
@@ -36,10 +35,6 @@ pip install tox
 for tox_env in $(awk -F= '/envlist/ {print $2}' tox.ini | sed 's/,/ /g'); do
   if [ "${tox_env}" == "ansible-functional" ]; then
     if ${FUNCTIONAL_TEST}; then
-      tox -e ${tox_env}
-    fi
-  elif [ "${tox_env}" == "ansible-check" ]; then
-    if ${CHECK_MODE_TEST}; then
       tox -e ${tox_env}
     fi
   else

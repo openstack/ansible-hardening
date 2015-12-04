@@ -1,5 +1,17 @@
-Making adjustments to PAM configuration can be **very dangerous** for a
-production system, so the Ansible task runs a check for text matching
-``nullok`` in ``/etc/pam.d/common-auth`` (different than
-``/etc/pam.d/system-auth`` found in RHEL 6) and prints a warning if it is
-found.
+Ubuntu 14.04 allows accounts with null passwords to authenticate via PAM by
+default. This STIG requires that those login attempts are blocked.
+
+In Ubuntu, this functionality is controlled by the ``nullok_secure`` parameter
+found in ``/etc/pam.d/common-auth``.  The Ansible task for this STIG will
+remove the ``nullok_secure`` from the PAM configuration file.  The effects of
+the change are immediate and no service restarts are required.
+
+However, deployers can opt-out of this change by adjusting an Ansible variable:
+
+.. code-block:: yaml
+
+    pam_remove_nullok: yes
+
+Setting the variable to ``yes`` (the default) will cause the Ansible tasks to
+remove the ``nullok_secure`` parameter while setting the variable to ``no``
+will leave the PAM configuration unchanged.

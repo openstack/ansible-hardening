@@ -167,7 +167,7 @@ action_mail_acct: root                            # V-38680
 # **IMMENENT DANGER**
 admin_space_left_action: SUSPEND                  # V-54381
 
-## Authentication
+## Password complexity and aging
 # V-38475 - There is no password length requirement by default in Ubuntu
 # 14.04. To set a password length requirement, uncomment
 # password_minimum_length below. The STIG recommendation is 14 characters.
@@ -231,7 +231,13 @@ disable_ipv6: no                                  # V-38546
 # necessary. Set this variable to 'no' to skip this change.
 disable_core_dumps: yes                           # V-38675
 
-## Fail2ban
+## PAM and authentication
+# V-38497 requires that accounts with null passwords aren't allowed to
+# authenticate via PAM. Ubuntu 14.04's default allows these logins -- see the
+# documentation for V-38497 for more details. Set the variable below to 'yes'
+# to remove 'nullok_secure' from the PAM configuration or set it to 'no' to
+# leave the PAM configuration unaltered.
+pam_remove_nullok: yes                             # V-38497
 # V-38501 requires that failed login attempts must lock a user account using
 # pam_faillock, but Ubuntu doesn't package that PAM module. Instead, fail2ban
 # can be installed to lock out IP addresses with failed logins for 15 minutes.
@@ -240,6 +246,16 @@ install_fail2ban: no                               # V-38501
 # The STIG requires bans to last 15 minutes. Adjust the following variable
 # to set the time an IP is banned by fail2ban (in seconds).
 fail2ban_bantime: 900                              # V-38501
+
+## sudo
+# V-58901 requires that 'NOPASSWD' and '!authenticate' do not appear in any
+# sudoers files since they could lead to a compromise. Set the following
+# variables to 'yes' to comment out any lines found with these prohibited
+# parameters or leave them set to 'no' (the default) to leave sudoers files
+# unaltered. Deployers are urged to review the documentation for this STIG
+# before making changes.
+sudoers_remove_nopasswd: no                        # V-58901
+sudoers_remove_authenticate: no                    # V-58901
 
 ## AIDE
 # The default Ubuntu configuration for AIDE will cause it to wander into some

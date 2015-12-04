@@ -4,9 +4,6 @@
 Getting started
 ===============
 
-`This role is still a work in progress.  These instructions are subject to
-change frequently until the development work is feature complete.`
-
 The openstack-ansible-security role can be used along with the
 `openstack-ansible`_ project or as a standalone role that can be used along
 with other Ansible playbooks.

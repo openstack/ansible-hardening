@@ -1,14 +1,13 @@
 Security hardening for openstack-ansible
 ========================================
 
-`Work in progress -- this role is in the early stages of development.`
-
 The openstack-ansible-security role provides security hardening for `OpenStack`_
 environments deployed with `openstack-ansible`_.  The role has multiple goals:
 
-* Provide additional security in a highly configurable, integrated way
+* Provide additional security in a highly configurable, integrated way without
+  disrupting a production OpenStack environment.
 * Make it easier for organizations to meet the requirements of compliance
-  programs, such as `Payment Card Industry Data Security Standard (PCI-DSS)`_
+  programs, such as `Payment Card Industry Data Security Standard (PCI-DSS)`_.
 * Document all changes to allow deployers to make educated decisions on which
   security configuration changes to apply.
 

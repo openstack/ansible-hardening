@@ -21,10 +21,19 @@
     - cat2
     - V-38489
 
+- name: Verify that AIDE configuration directory exists
+  stat:
+    path: /etc/aide/aide.conf.d
+  register: aide_conf
+  always_run: true
+  tags:
+    - always
+
 - name: V-38489 - Exclude certain directories from AIDE and initialize DB
   template:
     src: ZZ_aide_exclusions.j2
     dest: /etc/aide/aide.conf.d/ZZ_aide_exclusions
+  when: aide_conf.stat.exists | bool
   notify:
     - initialize AIDE
   tags:
@@ -43,7 +52,9 @@
 - name: V-38670 - System must detect unauthorized changes to software and information
   fail:
     msg: "FAILED: AIDE cron job is missing"
-  when: v38670_result.stat.exists == False
+  when:
+    - not check_mode
+    - v38670_result.stat.exists == False
   tags:
     - cat2
     - V-38670
@@ -125,7 +136,9 @@
 - name: V-38624 - System logs must be rotated daily (verify cron job)
   fail:
     msg: "FAILED: Cron job for logrotate is missing"
-  when: v38624_result.stat.exists == False
+  when:
+    - not check_mode
+    - v38624_result.stat.exists == False
   tags:
    - cat3
    - V-38624
@@ -178,7 +191,10 @@
 - name: V-38660 - The snmpd service must only use SNMPv3 or newer
   fail:
     msg: "FAILED: Insecure SNMP configuration found -- use SNMPv3 only"
-  when: v38660_snmpd_installed.rc == 0 and v38660_result.rc == 0
+  when:
+    - not check_mode
+    - v38660_snmpd_installed.rc == 0
+    - v38660_result.rc == 0
   tags:
     - cat2
     - V-38660

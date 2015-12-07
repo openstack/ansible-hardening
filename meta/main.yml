@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: OpenStack
-  description: Security hardening role for OpenStack Ansible
+  description: Security hardening role for OpenStack-Ansible
   company: OpenStack
   license: Apache
   min_ansible_version: 1.8

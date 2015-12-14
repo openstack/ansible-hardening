@@ -13,50 +13,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cat3_services:
-  - name: abrtd
-    state: stopped
-    enabled: no
-
-  - name: atd
-    state: stopped
-    enabled: no
-
-## Disabling services
-# The STIG recommends ensuring that some services are running if no services
-# utilizing it are enabled.  Setting a boolean to 'yes' here will ensure that
-# a service isn't actively running and will not be started after boot-up.
-# Setting a 'no' will ensure that this Ansible role does not alter the service
-# in any way from its current configuration.
+### Default configurations for openstack-ansible-security #####################
 #
-disable_services:
-  abrtd: yes                                      # V-38641
-  atd: yes                                        # V-38640
-  autofs: yes                                     # V-38437
-  avahi: yes                                      # V-31618
-  bluetooth: yes                                  # V-38691
-  qpidd: yes                                      # V-38648
-  rsh: yes                                        # V-38594
-  ypbind: yes                                     # V-38604
-  xinetd: yes                                     # V-38582
-
-## Removing services
-# The STIG recommends ensuring that some services aren't installed at any time.
-# Those services are listed here.  Setting a boolean here to 'yes' wiil
-# ensure that the STIG is followed and the service is removed.  Setting a
-# boolean to 'no' means that the playbook will not alter the service.
+# All of the configuration items below are documented in the developer notes
+# found here:
 #
-remove_services:
-  ldap-server: yes                                # V-38627
-  rsh-server: yes                                 # V-38591
-  sendmail: yes                                   # V-38671
-  telnet_server: yes                              # V-38587
-  tftp-server: yes                                # V-38606
-  xinetd: yes                                     # V-38584
-  xorg: yes                                       # v-38676
-  ypserv: yes                                     # V-38603
+#    http://docs.openstack.org/developer/openstack-ansible-security/
+#
+###############################################################################
 
-## Additional rules for auditd
+## AIDE
+# The default Ubuntu configuration for AIDE will cause it to wander into some
+# terrible places on the system, such as /var/lib/lxc and images in /opt.
+# The following three default exclusions are highly recommended for AIDE to
+# work properly, but additional exclusions can be added to this list if needed.
+aide_exclude_dirs:
+  - /var/lib/lxc
+  - /openstack
+  - /opt
+
+## Audit daemon
 # The following booleans control the rule sets added to auditd's default
 # set of auditing rules.  To see which rules will be added for each boolean,
 # refer to the templates/osas-auditd.j2 file.
@@ -91,22 +67,55 @@ auditd_rules:
   kernel_modules: yes                             # V-38580
   network_changes: yes                            # V-38540
   sudoers: yes                                    # V-38578
-
-## SSH configuration
-# The following configuration items will adjust how the ssh daemon is
-# configured.  The recommendations from the RHEL 6 STIG are shown below, but
-# they can be adjusted to fit a particular environment.
 #
-# V-38608 - Set a 15 minute time out for SSH sessions if there is no activity
-ssh_client_alive_interval: 900
-# V-38610 - Timeout ssh sessions as soon as ClientAliveInterval is reached once
-ssh_client_alive_count_max: 0
-# V-38613 - The ssh daemon must not permit root logins
-# Deviation from the STIG due to operational requirements in openstack-ansible.
-# See documentation for V-38613 for more details.
-ssh_permit_root_login: 'yes'
+# **DANGER**
+# Changing the options below can cause systems to go offline unexpectedly or
+# stop serving requests as a security precaution. Read the developer notes for
+# each STIG prior to adjusting the following variables.
+# **DANGER**
+#
+# Set an action to occur when there is a disk error. Review the
+# documentation for V-38464 before changing this option.
+disk_error_action: SYSLOG                         # V-38464
+#
+# Set an action to occur when the disk is full. Review the documentation for
+# V-38468 before changing this option.
+disk_full_action: SYSLOG                          # V-38468
+#
+# V-38678 - Set the amount of megabytes left when the space_left_action
+# triggers. The STIG guideline doesn't specify a size, but Ubuntu chooses a
+# default of 75MB, which is reasonable.
+space_left: 75                                    # V-38678
+#
+# Set an action to occur when the disk is approaching its capacity.
+# Review the documentation for V-38470 before changing this option.
+space_left_action: SYSLOG                         # V-38470
+#
+# Set the maximum size of a rotated log file. Ubuntu's default
+# matches the STIG requirement of 6MB.
+max_log_file: 6                                   # V 38633
+#
+# Sets the action to take when log files reach the maximum file size.
+# Review the documentation for V-38634 before changing this option.
+max_log_file_action: ROTATE                       # V-38634
+#
+# Set the number of rotated audit logs to keep.  Ubuntu has 5 as the default
+# and this matches the STIG's requirements.
+num_logs: 5                                       # V-38636
+#
+# Set the email address of someone who can receive and respond to notifications
+# about low disk space for log volumes.
+action_mail_acct: root                            # V-38680
+#
+# **IMMINENT DANGER**
+# The STIG says that the system should switch to single user mode when the
+# storage capacity gets very low. This can cause serious service disruptions
+# and should only be set to 'single' for deployers in extremely high security
+# environments. Ubuntu's default is SUSPEND, which will suspend logging.
+# **IMMENENT DANGER**
+admin_space_left_action: SUSPEND                  # V-54381
 
-## Chrony configuration
+## Chrony (NTP) configuration
 # Adjust the following NTP servers if necessary.
 ntp_servers:
   - 0.north-america.pool.ntp.org
@@ -120,52 +129,118 @@ allowed_ntp_subnets:
   - 192.168/16
   - 172.16/12
 
-## Mail configuration
+## Core dumps
+# V-38675 requires disabling core dumps for all users unless absolutely
+# necessary. Set this variable to 'no' to skip this change.
+disable_core_dumps: yes                           # V-38675
+
+## Services
+# The STIG recommends ensuring that some services are running if no services
+# utilizing it are enabled.  Setting a boolean to 'yes' here will ensure that
+# a service isn't actively running and will not be started after boot-up.
+# Setting a 'no' will ensure that this Ansible role does not alter the service
+# in any way from its current configuration.
+#
+disable_services:
+  abrtd: yes                                      # V-38641
+  atd: yes                                        # V-38640
+  autofs: yes                                     # V-38437
+  avahi: yes                                      # V-31618
+  bluetooth: yes                                  # V-38691
+  qpidd: yes                                      # V-38648
+  rsh: yes                                        # V-38594
+  ypbind: yes                                     # V-38604
+  xinetd: yes                                     # V-38582
+#
+# The STIG recommends ensuring that some services aren't installed at ANY time.
+# Those services are listed here.  Setting a boolean here to 'yes' wiil
+# ensure that the STIG is followed and the service is removed.  Setting a
+# boolean to 'no' means that the playbook will not alter the service.
+#
+remove_services:
+  ldap-server: yes                                # V-38627
+  rsh-server: yes                                 # V-38591
+  sendmail: yes                                   # V-38671
+  telnet_server: yes                              # V-38587
+  tftp-server: yes                                # V-38606
+  xinetd: yes                                     # V-38584
+  xorg: yes                                       # v-38676
+  ypserv: yes                                     # V-38603
+
+## SSH configuration
+# The following configuration items will adjust how the ssh daemon is
+# configured.  The recommendations from the RHEL 6 STIG are shown below, but
+# they can be adjusted to fit a particular environment.
+#
+# Set a 15 minute time out for SSH sessions if there is no activity
+ssh_client_alive_interval: 900                    # V-38608
+#
+# Timeout ssh sessions as soon as ClientAliveInterval is reached once
+ssh_client_alive_count_max: 0                     # V-38610
+#
+# The ssh daemon must not permit root logins. The default value of 'yes' is a
+# deviation from the STIG requirements due to how openstack-ansible operates,
+# especially within OpenStack CI gate jobs. See documentation for V-38613 for
+# more details.
+ssh_permit_root_login: 'yes'                      # V-38613
+
+## Kernel
+# Set these booleans to 'yes' to disable the kernel module (following the
+# STIG requirements). Set the boolean to 'no' to ensure no changes are made.
+disable_module:
+  bluetooth: yes                                  # V-38682
+  dccp: yes                                       # V-38514
+  rds: yes                                        # V-38516
+  sctp: yes                                       # V-38515
+  tipc: yes                                       # V-38517
+  usb_storage: no                                 # V-38490
+#
+# ** DANGER **
+# It's strongly recommended to fully understand the effects of changing the
+# following sysctl tunables. Refer to the documentation under 'Developer
+# Notes' for each of the STIGs below before making any changes.
+# ** DANGER **
+#
+sysctl_tunable:
+  tcp_syncookies: 1                               # V-38539
+#
+# Deployers who wish to disable IPv6 entirely must set this configuration
+# variable to 'yes'. See the documentation for V-38546 before making this
+# change.
+disable_ipv6: no                                  # V-38546
+
+## Mail
+# The STIG requires inet_interfaces to be set to 'localhost', but Ubuntu will
+# configure it to be 'all' when dpkg-reconfigure is unavailable (as it is when
+# Ansible installs packages). The default here is 'localhost' to meet the STIG
+# requirement, but some deployers may want this set to 'all' if their hosts
+# need to receive emails over the network (which isn't common).
+#
+# See the documentation for V-38622 for more details.
+postfix_inet_interfaces: localhost                # V-38622
+#
 # Configuring an email address here will cause hosts to forward the root user's
 # email to another address.
+#
 #root_forward_email: user@example.com
 
-## Auditd configuration
-# **DANGER**
-# Set an action to occur when there is a disk error. Review the
-# documentation for V-38464 before changing this option.
-# **DANGER**
-disk_error_action: SYSLOG                         # V-38464
-# **DANGER**
-# Set an action to occur when the disk is full. Review the documentation for
-# V-38468 before changing this option.
-# **DANGER**
-disk_full_action: SYSLOG                          # V-38468
-# V-38678 - Set the amount of megabytes left when the space_left_action
-# triggers. The STIG guideline doesn't specify a size, but Ubuntu chooses a
-# default of 75MB, which is reasonable.
-space_left: 75                                    # V-38678
-# **DANGER**
-# Set an action to occur when the disk is approaching its capacity.
-# Review the documentation for V-38470 before changing this option.
-# **DANGER**
-space_left_action: SYSLOG                         # V-38470
-# Set the maximum size of a rotated log file. Ubuntu's default
-# matches the STIG requirement of 6MB.
-max_log_file: 6                                   # V 38633
-# **DANGER**
-# Sets the action to take when log files reach the maximum file size.
-# Review the documentation for V-38634 before changing this option.
-# **DANGER**
-max_log_file_action: ROTATE                       # V-38634
-# Set the number of rotated audit logs to keep.  Ubuntu has 5 as the default
-# and this matches the STIG's requirements.
-num_logs: 5                                       # V-38636
-# Set the email address of someone who can receive and respond to notifications
-# about low disk space for log volumes.
-action_mail_acct: root                            # V-38680
-# **IMMINENT DANGER**
-# The STIG says that the system should switch to single user mode when the
-# storage capacity gets very low. This can cause serious service disruptions
-# and should only be set to 'single' for deployers in extremely high security
-# environments. Ubuntu's default is SUSPEND, which will suspend logging.
-# **IMMENENT DANGER**
-admin_space_left_action: SUSPEND                  # V-54381
+## PAM and authentication
+# V-38497 requires that accounts with null passwords aren't allowed to
+# authenticate via PAM. Ubuntu 14.04's default allows these logins -- see the
+# documentation for V-38497 for more details. Set the variable below to 'yes'
+# to remove 'nullok_secure' from the PAM configuration or set it to 'no' to
+# leave the PAM configuration unaltered.
+pam_remove_nullok: yes                            # V-38497
+#
+# V-38501 requires that failed login attempts must lock a user account using
+# pam_faillock, but Ubuntu doesn't package that PAM module. Instead, fail2ban
+# can be installed to lock out IP addresses with failed logins for 15 minutes.
+# Set the variable below to 'yes' to install and configure fail2ban.
+install_fail2ban: no                              # V-38501
+#
+# The STIG requires bans to last 15 minutes. Adjust the following variable
+# to set the time an IP is banned by fail2ban (in seconds).
+fail2ban_bantime: 900                             # V-38501
 
 ## Password complexity and aging
 # V-38475 - There is no password length requirement by default in Ubuntu
@@ -188,65 +263,6 @@ admin_space_left_action: SUSPEND                  # V-54381
 # V-38692 - Lock accounts that are inactive for 35 days.
 #inactive_account_lock_days: 35                   # V-38692
 
-## Kernel modules
-# Set these booleans to 'yes' to disable the kernel module (following the
-# STIG requirements). Set the boolean to 'no' to ensure no changes are made.
-disable_module:
-  bluetooth: yes                                  # V-38682
-  dccp: yes                                       # V-38514
-  rds: yes                                        # V-38516
-  sctp: yes                                       # V-38515
-  tipc: yes                                       # V-38517
-  usb_storage: no                                 # V-38490
-
-## sysctl tunables
-# ** DANGER **
-# It's strongly recommended to fully understand the effects of changing the
-# following sysctl tunables. Refer to the documentation under 'Developer
-# Notes' for each of the STIGs below before making any changes.
-# ** DANGER **
-#
-sysctl_tunable:
-  tcp_syncookies: 1                               # V-38539
-
-## Postfix
-# The STIG requires inet_interfaces to be set to 'localhost', but Ubuntu will
-# configure it to be 'all' when dpkg-reconfigure is unavailable (as it is when
-# Ansible installs packages). The default here is 'localhost' to meet the STIG
-# requirement, but some deployers may want this set to 'all' if their hosts
-# need to receive emails over the network (which isn't common).
-#
-# See the documentation for V-38622 for more details.
-#
-postfix_inet_interfaces: localhost                # V-38622
-
-## Disabling IPv6
-# Deployers who wish to disable IPv6 entirely must set this configuration
-# variable to 'yes'. See the documentation for V-38546 before making this
-# change.
-disable_ipv6: no                                  # V-38546
-
-## Core dumps
-# V-38675 requires disabling core dumps for all users unless absolutely
-# necessary. Set this variable to 'no' to skip this change.
-disable_core_dumps: yes                           # V-38675
-
-## PAM and authentication
-# V-38497 requires that accounts with null passwords aren't allowed to
-# authenticate via PAM. Ubuntu 14.04's default allows these logins -- see the
-# documentation for V-38497 for more details. Set the variable below to 'yes'
-# to remove 'nullok_secure' from the PAM configuration or set it to 'no' to
-# leave the PAM configuration unaltered.
-pam_remove_nullok: yes                             # V-38497
-# V-38501 requires that failed login attempts must lock a user account using
-# pam_faillock, but Ubuntu doesn't package that PAM module. Instead, fail2ban
-# can be installed to lock out IP addresses with failed logins for 15 minutes.
-# Set the variable below to 'yes' to install and configure fail2ban.
-install_fail2ban: no                               # V-38501
-# The STIG requires bans to last 15 minutes. Adjust the following variable
-# to set the time an IP is banned by fail2ban (in seconds).
-fail2ban_bantime: 900                              # V-38501
-
 ## sudo
 # V-58901 requires that 'NOPASSWD' and '!authenticate' do not appear in any
 # sudoers files since they could lead to a compromise. Set the following
@@ -254,18 +270,8 @@ fail2ban_bantime: 900                              # V-38501
 # parameters or leave them set to 'no' (the default) to leave sudoers files
 # unaltered. Deployers are urged to review the documentation for this STIG
 # before making changes.
-sudoers_remove_nopasswd: no                        # V-58901
-sudoers_remove_authenticate: no                    # V-58901
-
-## AIDE
-# The default Ubuntu configuration for AIDE will cause it to wander into some
-# terrible places on the system, such as /var/lib/lxc and images in /opt.
-# The following three default exclusions are highly recommended for AIDE to
-# work properly, but additional exclusions can be added to this list if needed.
-aide_exclude_dirs:
-  - /var/lib/lxc
-  - /openstack
-  - /opt
+sudoers_remove_nopasswd: no                       # V-58901
+sudoers_remove_authenticate: no                   # V-58901
 
 ## umask settings
 # The STIG recommends changing various default umask settings for users and

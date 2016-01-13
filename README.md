@@ -28,6 +28,15 @@ Using the role is fairly straightforward:
       roles:
          - openstack-ansible-security
 
+Running with Vagrant
+--------------------
+
+Security Ansible can be easily run for testing using Vagrant.
+
+To do so run:
+    `vagrant destroy` To destroy any previously created Vagrant setup
+    `vagrant up` Spin up Ubuntu Trusty VM and run ansible-security against it
+
 License
 -------
 

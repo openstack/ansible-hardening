@@ -32,6 +32,17 @@ long time indexing the disk.  Additional directories can be added to the
 exclusion list, but the directories currenty listed **should not be removed**.
 Deployers can add directories to ``aide_exlude_dirs``.
 
+The first AIDE database initialization can consume lots of CPU time and I/O
+resources. By default, the role won't run the database initialization after
+the role is applied to avoid causing performance degradation. The database will
+be initialized automatically when the AIDE cron job runs the next day. To force
+the initialization to run as soon as the role finishes running, change the
+the following variable to ``true``:
+
+.. code-block:: yaml
+
+    initialize_aide: true
+
 Audit daemon
 ------------
 

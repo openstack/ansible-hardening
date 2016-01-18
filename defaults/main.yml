@@ -31,6 +31,12 @@ aide_exclude_dirs:
   - /var/lib/lxc
   - /openstack
   - /opt
+#
+# By default, the AIDE database won't be initialized immediately since it can
+# consume plenty of CPU and I/O resources while it runs. To initialize the
+# AIDE database immediately when the playbook finishes, set the following
+# variable to 'true':
+initialize_aide: false
 
 ## Audit daemon
 # The following booleans control the rule sets added to auditd's default

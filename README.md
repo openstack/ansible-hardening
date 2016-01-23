@@ -7,7 +7,7 @@ Requirements
 ------------
 
 This role can be used with or without the openstack-ansible role. It requires
-Ansible 1.8 at a minimum.
+Ansible 1.8.3 at a minimum.
 
 Role Variables
 --------------

@@ -55,11 +55,11 @@ auditd_rules:
   clock_settime: yes                              # V-38527
   clock_settimeofday: yes                         # V-38522
   clock_stime: yes                                # V-38525
-  DAC_chmod: yes                                  # V-38543
+  DAC_chmod: no                                   # V-38543
   DAC_chown: yes                                  # V-38545
   DAC_lchown: yes                                 # V-38558
-  DAC_fchmod: yes                                 # V-38547
-  DAC_fchmodat: yes                               # V-38550
+  DAC_fchmod: no                                  # V-38547
+  DAC_fchmodat: no                                # V-38550
   DAC_fchown: yes                                 # V-38552
   DAC_fchownat: yes                               # V-38554
   DAC_fremovexattr: yes                           # V-38556

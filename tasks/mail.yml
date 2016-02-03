@@ -33,6 +33,17 @@
     - cat3
     - V-38669
 
+- name: V-38669 - Use only IPv4 addresses in mynetworks if IPv6 is disabled
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: "^(#)?mynetworks"
+    line: "mynetworks = 127.0.0.0/8"
+  when: disable_ipv6 | bool
+  tags:
+    - mail
+    - cat3
+    - V-38669
+
 # Be sure to set root_forward_email so that this task is executed. See the
 # documentation for more details.
 - name: V-38446 - Mail system must forward root's email

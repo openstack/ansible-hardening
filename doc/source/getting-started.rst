@@ -1,96 +1,40 @@
 .. include:: <xhtml1-lat1.txt>
-`Home <index.html>`__ |raquo| Security hardening for openstack-ansible
+`Home <index.html>`__ |raquo| Security hardening for OpenStack-Ansible
 
 Getting started
 ===============
 
 The openstack-ansible-security role can be used along with the
-`openstack-ansible`_ project or as a standalone role that can be used along
+`OpenStack-Ansible`_ project or as a standalone role that can be used along
 with other Ansible playbooks.
 
-Using with openstack-ansible
+.. _OpenStack-Ansible: https://github.com/openstack/openstack-ansible/
+
+Using with OpenStack-Ansible
 ----------------------------
 
-This portion of the guide assumes that openstack-ansible is already cloned
-into ``/opt/openstack-ansible`` and it has been properly configured.  Start by
-cloning openstack-ansible-security into Ansible's default role location::
-
-    git clone https://github.com/openstack/openstack-ansible-security \
-        /etc/ansible/roles/openstack-ansible-security
-
-Before getting started, review the ``defaults/main.yml`` file from the
-openstack-ansible-security repository.  There are some documented options there
-for changes which may require opt-in or opt-out configuration.  Some options
-can be adjusted depending on the security level of a particular environment.
-
-Create a directory to hold an Ansible configuration file and a small playbook::
-
-    mkdir /opt/openstack-ansible-security
-    cd /opt/openstack-ansible-security
-
-Create a small Ansible playbook at
-``/opt/openstack-ansible-security/os-security.yml``:
+Starting with the Mitaka release, OpenStack-Ansible installs the
+openstack-ansible-security role automatically. It's disabled by default for
+deployments and can be enabled with an Ansible variable:
 
 .. code-block:: yaml
 
-    ---
+     apply_security_hardening: true
 
-    - name: Run openstack-ansible-security
-      hosts: "{{ host_group|default('hosts') }}"
-      user: root
-      roles:
-        - openstack-ansible-security
+If the variable is set, the security hardening configurations will be applied
+automatically on new builds that use the ``scripts/run_playbooks.sh`` script
+provided with OpenStack-Ansible. However, the role can be applied anytime by
+using the playbook provided with OpenStack-Ansible:
 
-Add an Ansible configuration file so that your playbook can use
-openstack-ansible's dynamic inventory.  Create a new file at
-``/opt/openstack-ansible-security/ansible.cfg``::
+.. code-block:: bash
 
-    [defaults]
-    gathering = smart
-    host_key_checking = False
+     cd /opt/openstack-ansible/playbooks/
+     openstack-ansible -e "apply_security_hardening=true" security-hardening.yml
 
-    # SSH timeout
-    timeout = 120
+For more information, refer to the OpenStack-Ansible documentation on
+`configuring security hardening`_.
 
-    # Set the path to the folder in openstack-ansible which holds the dynamic
-    # inventory script - new config setting for ansible v1.9 and above
-    inventory = ../openstack-ansible/playbooks/inventory/
-
-    # Set the path to the folder in openstack-ansible which holds the dynamic
-    # inventory script - uncomment if using ansible below v1.9
-    #hostfile = ../openstack-ansible/playbooks/inventory/
-
-    # Set the path to the folder in openstack-ansible which holds the
-    # libraries required
-    library = ../openstack-ansible/playbooks/library/
-
-    # Set the path to the folder in openstack-ansible which holds the
-    # lookup plugins required
-    lookup_plugins = ../openstack-ansible/playbooks/plugins/lookups/
-
-    # Set the path to the folder in openstack-ansible which holds the filter
-    # plugins required
-    filter_plugins = ../openstack-ansible/playbooks/plugins/filters/
-
-    # Set the path to the folder in openstack-ansible which holds the action
-    # plugins required
-    action_plugins = ../openstack-ansible/playbooks/plugins/actions/
-
-    [ssh_connection]
-    pipelining = True
-
-Run the playbook::
-
-    cd /opt/openstack-ansible-security/
-    openstack-ansible os-security.yml
-
-There are lots of tags throughout the tasks in the role that will allow
-deployers to select certain tasks or groups of tasks to run.  For example, just
-the ``auditd`` improvements can be deployed by using the appropriate tag::
-
-    openstack-ansible os-security.yml -t auditd
-
-.. _openstack-ansible: https://github.com/openstack/openstack-ansible/
+.. _configuring security hardening: http://docs.openstack.org/developer/openstack-ansible/install-guide/configure-initial.html
 
 Using as a standalone role
 --------------------------

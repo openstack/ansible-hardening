@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+## APT Cache Options
+cache_timeout: 600
+
 ### Default configurations for openstack-ansible-security #####################
 #
 # All of the configuration items below are documented in the developer notes

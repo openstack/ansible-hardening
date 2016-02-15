@@ -13,12 +13,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#TODO(evrardjp): Replace the next 2 tasks by a standard apt with cache
+#when https://github.com/ansible/ansible-modules-core/pull/1517 is merged
+#in 1.9.x or we move to 2.0 (if tested working)
+- name: Check apt last update file
+  stat:
+    path: /var/cache/apt
+  register: apt_cache_stat
+  tags:
+    - auditd-apt-packages
+
+- name: Update apt if needed
+  apt:
+    update_cache: yes
+  when: "ansible_date_time.epoch|float - apt_cache_stat.stat.mtime > {{cache_timeout}}"
+  tags:
+    - auditd-apt-packages
+
 - name: V-38631/38632 - The operating system must produce audit records (install auditd)
   apt:
     name: auditd
     state: present
-    cache_valid_time: 3600
-    update_cache: yes
   tags:
     - auditd
     - cat2

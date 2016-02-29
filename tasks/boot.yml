@@ -13,6 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Check to see if grub.cfg exists
+  stat:
+    path: /boot/grub/grub.cfg
+  register: grub_cfg
+  always_run: True
+
 - name: V-38579 - Bootloader configuration files must be owned by root
   file:
     path: /boot/grub/grub.cfg
@@ -21,6 +27,7 @@
     - boot
     - cat2
     - V-38579
+  when: grub_cfg.stat.exists
 
 - name: V-38581 - Bootloader configuration files must be group-owned by root
   file:
@@ -30,6 +37,7 @@
     - boot
     - cat2
     - V-38581
+  when: grub_cfg.stat.exists
 
 - name: V-38582 - Bootloader configuration files must have mode 0644 or less
   file:
@@ -39,3 +47,4 @@
     - boot
     - cat2
     - V-38582
+  when: grub_cfg.stat.exists

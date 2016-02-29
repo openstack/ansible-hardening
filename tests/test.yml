@@ -15,5 +15,9 @@
 
 - name: Playbook for role testing
   hosts: localhost
+  pre_tasks:
+    - name: Ensure apt cache is updated before testing
+      apt:
+        update_cache: yes
   roles:
     - role: "{{ rolename }}"

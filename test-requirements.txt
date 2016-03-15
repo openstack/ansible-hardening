@@ -1,4 +1,4 @@
-ansible-lint
+ansible-lint<=2.3.9
 ansible>=1.9.1,<2.0.0
 bashate
 flake8

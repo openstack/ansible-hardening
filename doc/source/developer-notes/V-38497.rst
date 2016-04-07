@@ -10,7 +10,7 @@ However, deployers can opt-out of this change by adjusting an Ansible variable:
 
 .. code-block:: yaml
 
-    pam_remove_nullok: yes
+    pam_remove_nullok: no
 
 Setting the variable to ``yes`` (the default) will cause the Ansible tasks to
 remove the ``nullok_secure`` parameter while setting the variable to ``no``

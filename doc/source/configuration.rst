@@ -124,7 +124,7 @@ disabled on the next boot.
 sysctl settings
 ^^^^^^^^^^^^^^^
 
-The STIG requires that TCP SYNcookes are enabled by default to protect against
+The STIG requires that TCP SYN cookies enabled by default to protect against
 certain types of attacks, like SYN floods.  This can cause issues in some
 environments with busy load balancers.  Deployers should review the notes for
 V-38539 for more details.

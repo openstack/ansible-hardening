@@ -1,6 +1,6 @@
 Ubuntu's default for ``space_left_action`` is ``SUSPEND``, which actually
 only suspends audit logging. That could be a security issue, so ``SYSLOG``
-is recommended and is set by default be openstack-ansible-security. If syslog
+is recommended and is set by default by openstack-ansible-security. If syslog
 messages are being sent to remote servers, these log messages should alert
 an administrator about the disk being almost full. There are additional options
 available, like ``EXEC``, ``SINGLE`` or ``HALT``.

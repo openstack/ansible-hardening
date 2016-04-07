@@ -1,6 +1,5 @@
 V-38690: Emergency accounts must be provisioned with an expiration date.
-
--------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 When emergency accounts are created, there is a risk they may remain in place
 and active after the need for them no longer exists. Account expiration

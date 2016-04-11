@@ -306,3 +306,7 @@ sudoers_remove_authenticate: no                   # V-58901
 #
 # V-38651 - System default umask for bash must be 077
 #umask_bash: 077                                  # V-38651
+
+## Unattended upgrades (APT) configuration
+unattended_upgrades_enabled: false
+unattended_upgrades_notifications: false

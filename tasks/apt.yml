@@ -60,3 +60,36 @@
     - auth
     - cat1
     - V-38462
+
+- name: Install unattended-upgrades package (for V-38481)
+  apt:
+    name: unattended-upgrades
+    state: present
+  when: unattended_upgrades_enabled | bool
+  tags:
+    - apt
+    - cat2
+    - V-38481
+
+- name: V-38481 - System security patches and updates must be installed and up-to-date
+  copy:
+    src: 20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+  when: unattended_upgrades_enabled | bool
+  tags:
+    - apt
+    - cat2
+    - V-38481
+
+- name: Enable unattended upgrades notifications (for V-38481)
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    regexp: '^(\/\/)?Unattended-Upgrade::Mail "root";'
+    line: 'Unattended-Upgrade::Mail "root";'
+  when:
+    - unattended_upgrades_enabled | bool
+    - unattended_upgrades_notifications | bool
+  tags:
+    - apt
+    - cat2
+    - V-38481

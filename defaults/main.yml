@@ -71,7 +71,7 @@ auditd_rules:
   DAC_lsetxattr: yes                              # V-38561
   DAC_setxattr: yes                               # V-38565
   deletions: no                                   # V-38575
-  failed_access: yes                              # V-38566
+  failed_access: no                               # V-38566
   filesystem_mounts: yes                          # V-38568
   kernel_modules: yes                             # V-38580
   network_changes: yes                            # V-38540

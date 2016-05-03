@@ -1,1 +1,11 @@
-Rules are added for auditd to log failed access attempts to files and programs.
+**Exception**
+
+The audit rules for logging failed accesses can generate significant amounts of
+log traffic in some environments. These rules are disabled by default.
+
+To opt-in for this change and enable audit logging for these events, adjust
+the following Ansible variable:
+
+.. code-block:: yaml
+
+    auditd_rules['failed_access']: yes

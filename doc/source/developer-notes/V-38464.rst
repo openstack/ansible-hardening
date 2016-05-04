@@ -8,7 +8,7 @@ variable:
 
 .. code-block:: yaml
 
-    disk_error_action = SYSLOG
+    disk_error_action: SYSLOG
 
 For details on available settings and what they do, run ``man auditd.conf``.
 Some options can cause the host to go offline until the issue is fixed.

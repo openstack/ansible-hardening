@@ -7,7 +7,7 @@ To disallow root logins via ssh, simply adjust this configuration variable:
 
 .. code-block:: yaml
 
-    ssh_permit_root_login = 'no'
+    ssh_permit_root_login: 'no'
 
 **NOTE:** The quotes around ``'no'`` or ``'yes'`` are very important. Ansible
 will treat ``no`` and ``yes`` as booleans by default and that will cause a

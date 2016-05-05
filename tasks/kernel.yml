@@ -52,7 +52,7 @@
 - name: V-38539 - Enable TCP syncookies
   sysctl:
     name: net.ipv4.tcp_syncookies
-    value: "{{ sysctl_tunable['tcp_syncookies'] }}"
+    value: "{{ security_sysctl_tcp_syncookies }}"
     state: present
     sysctl_set: yes
   tags:
@@ -99,7 +99,7 @@
     dest: /etc/modprobe.d/V-38490-disable-usb-storage.conf
     line: "install usb-storage /bin/true"
     create: yes
-  when: disable_module['usb_storage'] | bool
+  when: security_disable_module_usb_storage | bool
   tags:
     - kernel
     - cat2
@@ -110,7 +110,7 @@
     dest: /etc/modprobe.d/V-38514-disable-dccp.conf
     line: "install dccp /bin/true"
     create: yes
-  when: disable_module['dccp'] | bool
+  when: security_disable_module_dccp | bool
   tags:
     - kernel
     - cat2
@@ -121,7 +121,7 @@
     dest: /etc/modprobe.d/V-38515-disable-sctp.conf
     line: "install sctp /bin/true"
     create: yes
-  when: disable_module['sctp'] | bool
+  when: security_disable_module_sctp | bool
   tags:
     - kernel
     - cat2
@@ -132,7 +132,7 @@
     dest: /etc/modprobe.d/V-38516-disable-rds.conf
     line: "install rds /bin/true"
     create: yes
-  when: disable_module['rds'] | bool
+  when: security_disable_module_rds | bool
   tags:
     - kernel
     - cat3
@@ -143,7 +143,7 @@
     dest: /etc/modprobe.d/V-38517-disable-tipc.conf
     line: "install tipc /bin/true"
     create: yes
-  when: disable_module['tipc'] | bool
+  when: security_disable_module_tipc | bool
   tags:
     - kernel
     - cat2
@@ -168,7 +168,7 @@
   copy:
     src: V-38682-modprobe.conf
     dest: /etc/modprobe.d/disable-bluetooth.conf
-  when: disable_module['bluetooth'] | bool
+  when: security_disable_module_bluetooth | bool
   tags:
     - kernel
     - cat2

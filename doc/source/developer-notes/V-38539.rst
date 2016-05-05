@@ -9,6 +9,12 @@ events. Putting well-configured hardware network devices in front of OpenStack
 environments is always recommended and this may allow some deployers to turn
 off SYN cookies within their environment.
 
+Deployers can disable TCP SYN cookies by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_sysctl_tcp_syncookies: 0
+
 For more information on TCP SYN cookies and TCP SYN floods, refer to these
 links:
 

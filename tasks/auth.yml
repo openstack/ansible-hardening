@@ -195,7 +195,7 @@
   apt:
     name: rsh-server
     state: absent
-  when: remove_services['rsh-server'] | bool
+  when: security_remove_rsh_server | bool
   tags:
     - auth
     - cat1
@@ -205,7 +205,7 @@
   apt:
     name: telnetd
     state: absent
-  when: remove_services['telnet_server'] | bool
+  when: security_remove_telnet_server | bool
   tags:
     - auth
     - cat1

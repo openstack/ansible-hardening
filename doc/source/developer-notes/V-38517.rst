@@ -8,6 +8,6 @@ To opt-out of this change, set the following variable to ``no``:
 
 .. code-block:: yaml
 
-    disable_module['tipc']: no
+    security_disable_module_tipc: no
 
 **NOTE:** The module will be disabled on the next reboot.

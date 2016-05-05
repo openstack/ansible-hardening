@@ -6,6 +6,6 @@ set the following variable to ``yes``:
 
 .. code-block:: yaml
 
-    disable_module['usb_storage']: yes
+    security_disable_module_usb_storage: yes
 
 **NOTE:** The module will be disabled on the next reboot.

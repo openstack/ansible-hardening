@@ -29,7 +29,7 @@
     name: autofs
     state: stopped
     enabled: no
-  when: disable_services['autofs'] | bool and 'autofs' in sysv_services.stdout
+  when: security_disable_autofs | bool and 'autofs' in sysv_services.stdout
   tags:
     - services
     - cat3
@@ -40,7 +40,7 @@
     name: abrtd
     state: stopped
     enabled: no
-  when: disable_services['abrtd'] | bool and 'abrtd' in sysv_services.stdout
+  when: security_disable_abrtd | bool and 'abrtd' in sysv_services.stdout
   tags:
     - services
     - cat3
@@ -51,7 +51,7 @@
     name: atd
     state: stopped
     enabled: no
-  when: disable_services['atd'] | bool and 'atd' in sysv_services.stdout
+  when: security_disable_atd | bool and 'atd' in sysv_services.stdout
   tags:
     - services
     - cat3
@@ -62,7 +62,7 @@
     name: qpidd
     state: stopped
     enabled: no
-  when: disable_services['qpidd'] | bool and 'qpidd' in sysv_services.stdout
+  when: security_disable_qpidd | bool and 'qpidd' in sysv_services.stdout
   tags:
     - services
     - cat3
@@ -73,7 +73,7 @@
     name: bluetooth
     state: stopped
     enabled: no
-  when: disable_services['bluetooth'] | bool and 'bluetooth' in sysv_services.stdout
+  when: security_disable_bluetooth | bool and 'bluetooth' in sysv_services.stdout
   tags:
     - services
     - cat2
@@ -84,7 +84,7 @@
     name: xinetd
     state: stopped
     enabled: no
-  when: disable_services['xinetd'] | bool and 'xinetd' in sysv_services.stdout
+  when: security_disable_xinetd | bool and 'xinetd' in sysv_services.stdout
   tags:
     - services
     - cat2
@@ -94,7 +94,7 @@
   apt:
     name: xinetd
     state: absent
-  when: remove_services['xinetd'] | bool
+  when: security_remove_xinetd | bool
   tags:
     - services
     - cat3
@@ -105,7 +105,7 @@
   apt:
     name: nis
     state: absent
-  when: remove_services['ypserv'] | bool
+  when: security_remove_ypserv | bool
   tags:
     - services
     - cat2
@@ -125,7 +125,7 @@
   apt:
     name: tftpd
     state: absent
-  when: remove_services['tftp-server'] | bool
+  when: security_remove_tftp_server | bool
   tags:
     - services
     - cat2
@@ -136,7 +136,7 @@
     name: avahi-daemon
     state: stopped
     enabled: no
-  when: disable_services['avahi'] | bool and 'avahi' in sysv_services.stdout
+  when: security_disable_avahi | bool and 'avahi' in sysv_services.stdout
   tags:
     - services
     - cat3
@@ -146,7 +146,7 @@
   apt:
     name: slapd
     state: absent
-  when: remove_services['ldap-server'] | bool
+  when: security_remove_ldap_server | bool
   tags:
     - services
     - cat3
@@ -156,7 +156,7 @@
   apt:
     name: sendmail
     state: absent
-  when: remove_services['sendmail'] | bool
+  when: security_remove_sendmail | bool
   tags:
     - services
     - cat2
@@ -166,7 +166,7 @@
   apt:
     name: xserver-xorg
     state: absent
-  when: remove_services['xorg'] | bool
+  when: security_remove_xorg | bool
   tags:
     - services
     - cat3

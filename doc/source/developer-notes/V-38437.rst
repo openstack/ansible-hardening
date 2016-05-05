@@ -3,4 +3,4 @@ of this change, adjust the following variable:
 
 .. code-block:: yaml
 
-    disable_services['autofs'] = no
+    security_disable_autofs: no

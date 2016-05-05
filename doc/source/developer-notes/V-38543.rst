@@ -8,6 +8,6 @@ These audit rules can be enabled by setting any of the following variables:
 
 .. code-block:: yaml
 
-    auditd_rules['DAC_chmod']: yes
-    auditd_rules['DAC_fchmod']: yes
-    auditd_rules['DAC_fchmodat']: yes
+    security_audit_DAC_chmod: yes
+    security_audit_DAC_fchmod: yes
+    security_audit_DAC_fchmodat: yes

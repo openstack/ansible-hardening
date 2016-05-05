@@ -10,4 +10,4 @@ following Ansible variable:
 
 .. code-block:: yaml
 
-    auditd_rules['deletions'] = yes
+    security_audit_deletions: yes

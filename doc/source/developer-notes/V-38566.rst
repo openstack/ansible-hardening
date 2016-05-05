@@ -9,4 +9,4 @@ the following Ansible variable:
 
 .. code-block:: yaml
 
-    auditd_rules['failed_access']: yes
+    security_auditd_failed_access: yes

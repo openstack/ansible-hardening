@@ -4,4 +4,4 @@ opt-out of this change, adjust the following configuration variable to ``no``:
 
 .. code-block:: yaml
 
-    remove_services['ypserv'] = no
+    security_remove_ypserv: no

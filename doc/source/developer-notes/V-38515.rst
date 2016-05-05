@@ -5,6 +5,6 @@ To opt-out of this change, set the following variable to ``no``:
 
 .. code-block:: yaml
 
-    disable_module['sctp']: no
+    security_disable_module_sctp: no
 
 **NOTE:** The module will be disabled on the next reboot.

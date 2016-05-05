@@ -1,31 +1,31 @@
-{% if auditd_rules['clock_settimeofday'] | bool %}
+{% if security_audit_clock_settimeofday | bool %}
 # RHEL 6 STIG V-38522
 # Audits changes to system time via settimeofday
 -a always,exit -F arch=b32 -S settimeofday -k audit_time_rules
 -a always,exit -F arch=b64 -S settimeofday -k audit_time_rules
 {% endif %}
 
-{% if auditd_rules['clock_stime'] | bool %}
+{% if security_audit_clock_stime | bool %}
 # RHEL 6 STIG V-38525
 # Audits changes to system time via stime
 -a always,exit -F arch=b32 -S stime -k audit_time_rules
 -a always,exit -F arch=b64 -S adjtimex -S settimeofday -S clock_settime -k audit_time_rules
 {% endif %}
 
-{% if auditd_rules['clock_settime'] | bool %}
+{% if security_audit_clock_settime | bool %}
 # RHEL 6 STIG V-38527
 # Audits changes to system time via clock_settime
 -a always,exit -F arch=b32 -S clock_settime -k audit_time_rules
 -a always,exit -F arch=b64 -S clock_settime -k audit_time_rules
 {% endif %}
 
-{% if auditd_rules['change_localtime'] | bool %}
+{% if security_audit_change_localtime | bool %}
 # RHEL 6 STIG V-38530
 # Audits clock changes made via /etc/localtime
 -w /etc/localtime -p wa -k audit_time_rules
 {% endif %}
 
-{% if auditd_rules['account_modification'] | bool %}
+{% if security_audit_account_modification | bool %}
 # RHEL 6 STIG V-38531, V-38534, V-38536, V-38538
 # Audits account modifications and terminations
 -w /etc/group -p wa -k audit_account_changes
@@ -35,7 +35,7 @@
 -w /etc/security/opasswd -p wa -k audit_account_changes
 {% endif %}
 
-{% if auditd_rules['network_changes'] | bool %}
+{% if security_audit_network_changes | bool %}
 # RHEL 6 STIG V-38540
 # Audits network configuration changes
 -a always,exit -F arch=b32 -S sethostname -S setdomainname -k audit_network_modifications
@@ -46,13 +46,13 @@
 -w /etc/network -p wa -k audit_network_modifications
 {% endif %}
 
-{% if auditd_rules['apparmor_changes'] | bool %}
+{% if security_audit_apparmor_changes | bool %}
 # RHEL 6 STIG V-38541
 # Audits changes to AppArmor policies
 -w /etc/apparmor/ -p wa -k MAC-policy
 {% endif %}
 
-{% if auditd_rules['DAC_chmod'] | bool %}
+{% if security_audit_DAC_chmod | bool %}
 # RHEL 6 STIG V-38543
 # Audits DAC changes via chmod
 -a always,exit -F arch=b32 -S removexattr -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -61,7 +61,7 @@
 -a always,exit -F arch=b64 -S removexattr -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_chown'] | bool %}
+{% if security_audit_DAC_chown | bool %}
 # RHEL 6 STIG V-38545
 # Audits DAC changes via chown
 -a always,exit -F arch=b32 -S chown -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -70,7 +70,7 @@
 -a always,exit -F arch=b64 -S chown -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_fchmod'] | bool %}
+{% if security_audit_DAC_fchmod | bool %}
 # RHEL 6 STIG V-38547
 # Audits DAC changes via fchmod
 -a always,exit -F arch=b32 -S fchmod -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -79,7 +79,7 @@
 -a always,exit -F arch=b64 -S fchmod -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_fchmodat'] | bool %}
+{% if security_audit_DAC_fchmodat | bool %}
 # RHEL 6 STIG V-38550
 # Audits DAC changes via fchmodat
 -a always,exit -F arch=b32 -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -88,7 +88,7 @@
 -a always,exit -F arch=b64 -S fchmodat -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_fchown'] | bool %}
+{% if security_audit_DAC_fchown | bool %}
 # RHEL 6 STIG V-38552
 # Audits DAC changes via fchown
 -a always,exit -F arch=b32 -S fchown -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -97,7 +97,7 @@
 -a always,exit -F arch=b64 -S fchown -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_fchownat'] | bool %}
+{% if security_audit_DAC_fchownat | bool %}
 # RHEL 6 STIG V-38554
 # Audits DAC changes via fchownat
 -a always,exit -F arch=b32 -S fchownat -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -106,7 +106,7 @@
 -a always,exit -F arch=b64 -S fchownat -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_fremovexattr'] | bool %}
+{% if security_audit_DAC_fremovexattr | bool %}
 # RHEL 6 STIG V-38556
 # Audits DAC changes via fremovexattr
 -a always,exit -F arch=b32 -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -115,7 +115,7 @@
 -a always,exit -F arch=b64 -S fremovexattr -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_fsetxattr'] | bool %}
+{% if security_audit_DAC_fsetxattr | bool %}
 # RHEL 6 STIG V-38557
 # Audits DAC changes via fsetxattr
 -a always,exit -F arch=b32 -S fsetxattr -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -124,7 +124,7 @@
 -a always,exit -F arch=b64 -S fsetxattr -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_lchown'] | bool %}
+{% if security_audit_DAC_lchown | bool %}
 # RHEL 6 STIG V-38558
 # Audits DAC changes via lchown
 -a always,exit -F arch=b32 -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -133,7 +133,7 @@
 -a always,exit -F arch=b64 -S lchown -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_lremovexattr'] | bool %}
+{% if security_audit_DAC_lremovexattr | bool %}
 # RHEL 6 STIG V-38559
 # Audits DAC changes via lremovexattr
 -a always,exit -F arch=b32 -S lremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -142,7 +142,7 @@
 -a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_lsetxattr'] | bool %}
+{% if security_audit_DAC_lsetxattr | bool %}
 # RHEL 6 STIG V-38561
 # Audits DAC changes via lsetxattr
 -a always,exit -F arch=b32 -S lsetxattr -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -151,7 +151,7 @@
 -a always,exit -F arch=b64 -S lsetxattr -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['DAC_setxattr'] | bool %}
+{% if security_audit_DAC_setxattr | bool %}
 # RHEL 6 STIG V-38565
 # Audits DAC changes via setxattr
 -a always,exit -F arch=b32 -S setxattr -F auid>=500 -F auid!=4294967295 -k perm_mod
@@ -160,7 +160,7 @@
 -a always,exit -F arch=b64 -S setxattr -F auid=0 -k perm_mod
 {% endif %}
 
-{% if auditd_rules['failed_access'] | bool %}
+{% if security_audit_failed_access | bool %}
 # RHEL 6 STIG V-38566
 # Audits failed attempts to access files and programs
 -a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=500 -F auid!=4294967295 -k access
@@ -173,7 +173,7 @@
 -a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid=0 -k access
 {% endif %}
 
-{% if auditd_rules['filesystem_mounts'] | bool %}
+{% if security_audit_filesystem_mounts | bool %}
 # RHEL 6 STIG V-38568
 # Audits filesystem mounts
 -a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k export
@@ -182,7 +182,7 @@
 -a always,exit -F arch=b64 -S mount -F auid=0 -k export
 {% endif %}
 
-{% if auditd_rules['deletions'] %}
+{% if security_audit_deletions | bool %}
 # RHEL 6 STIG V-38575
 # Audits deletion of files and programs
 -a always,exit -F arch=b32 -S rmdir -S unlink -S unlinkat -S rename -S renameat -F auid>=500 -F auid!=4294967295 -k delete
@@ -191,13 +191,13 @@
 -a always,exit -F arch=b64 -S rmdir -S unlink -S unlinkat -S rename -S renameat -F auid=0 -k delete
 {% endif %}
 
-{% if auditd_rules['sudoers'] %}
+{% if security_audit_sudoers | bool %}
 # RHEL 6 STIG V-38578
 # Audits /etc/sudoers changes
 -w /etc/sudoers -p wa -k actions
 {% endif %}
 
-{% if auditd_rules['kernel_modules'] | bool %}
+{% if security_audit_kernel_modules | bool %}
 # RHEL 6 STIG V-38580
 # Audits kernel module loading/unloading
 -w /sbin/insmod -p x -k modules
@@ -207,7 +207,7 @@
 -a always,exit -F arch=b64 -S init_module -S delete_module -k modules
 {% endif %}
 
-{% if auditd_rules['change_system_time'] | bool %}
+{% if security_audit_change_system_time | bool %}
 # RHEL 6 STIG V-38635
 # Audits system time changes
 -a always,exit -F arch=b32 -S adjtimex -k audit_time_rules

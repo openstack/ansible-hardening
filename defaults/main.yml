@@ -50,32 +50,31 @@ initialize_aide: false
 # will be deployed onto the host and auditd will get the new rules loaded
 # automatically with augenrules.
 #
-auditd_rules:
-  account_modification: yes                       # V-38531, V-38534, V-38538
-  apparmor_changes: yes                           # V-38541
-  change_localtime: yes                           # V-38530
-  change_system_time: yes                         # V-38635
-  clock_settime: yes                              # V-38527
-  clock_settimeofday: yes                         # V-38522
-  clock_stime: yes                                # V-38525
-  DAC_chmod: no                                   # V-38543
-  DAC_chown: yes                                  # V-38545
-  DAC_lchown: yes                                 # V-38558
-  DAC_fchmod: no                                  # V-38547
-  DAC_fchmodat: no                                # V-38550
-  DAC_fchown: yes                                 # V-38552
-  DAC_fchownat: yes                               # V-38554
-  DAC_fremovexattr: yes                           # V-38556
-  DAC_lremovexattr: yes                           # V-38559
-  DAC_fsetxattr: yes                              # V-38557
-  DAC_lsetxattr: yes                              # V-38561
-  DAC_setxattr: yes                               # V-38565
-  deletions: no                                   # V-38575
-  failed_access: no                               # V-38566
-  filesystem_mounts: yes                          # V-38568
-  kernel_modules: yes                             # V-38580
-  network_changes: yes                            # V-38540
-  sudoers: yes                                    # V-38578
+security_audit_account_modification: yes          # V-38531, V-38534, V-38538
+security_audit_apparmor_changes: yes              # V-38541
+security_audit_change_localtime: yes              # V-38530
+security_audit_change_system_time: yes            # V-38635
+security_audit_clock_settime: yes                 # V-38527
+security_audit_clock_settimeofday: yes            # V-38522
+security_audit_clock_stime: yes                   # V-38525
+security_audit_DAC_chmod: no                      # V-38543
+security_audit_DAC_chown: yes                     # V-38545
+security_audit_DAC_lchown: yes                    # V-38558
+security_audit_DAC_fchmod: no                     # V-38547
+security_audit_DAC_fchmodat: no                   # V-38550
+security_audit_DAC_fchown: yes                    # V-38552
+security_audit_DAC_fchownat: yes                  # V-38554
+security_audit_DAC_fremovexattr: yes              # V-38556
+security_audit_DAC_lremovexattr: yes              # V-38559
+security_audit_DAC_fsetxattr: yes                 # V-38557
+security_audit_DAC_lsetxattr: yes                 # V-38561
+security_audit_DAC_setxattr: yes                  # V-38565
+security_audit_deletions: no                      # V-38575
+security_audit_failed_access: no                  # V-38566
+security_audit_filesystem_mounts: yes             # V-38568
+security_audit_kernel_modules: yes                # V-38580
+security_audit_network_changes: yes               # V-38540
+security_audit_sudoers: yes                       # V-38578
 #
 # **DANGER**
 # Changing the options below can cause systems to go offline unexpectedly or
@@ -150,31 +149,29 @@ disable_core_dumps: yes                           # V-38675
 # Setting a 'no' will ensure that this Ansible role does not alter the service
 # in any way from its current configuration.
 #
-disable_services:
-  abrtd: yes                                      # V-38641
-  atd: yes                                        # V-38640
-  autofs: yes                                     # V-38437
-  avahi: yes                                      # V-31618
-  bluetooth: yes                                  # V-38691
-  qpidd: yes                                      # V-38648
-  rsh: yes                                        # V-38594
-  ypbind: yes                                     # V-38604
-  xinetd: yes                                     # V-38582
+security_disable_abrtd: yes                       # V-38641
+security_disable_atd: yes                         # V-38640
+security_disable_autofs: yes                      # V-38437
+security_disable_avahi: yes                       # V-31618
+security_disable_bluetooth: yes                   # V-38691
+security_disable_qpidd: yes                       # V-38648
+security_disable_rsh: yes                         # V-38594
+security_disable_ypbind: yes                      # V-38604
+security_disable_xinetd: yes                      # V-38582
 #
 # The STIG recommends ensuring that some services aren't installed at ANY time.
 # Those services are listed here.  Setting a boolean here to 'yes' wiil
 # ensure that the STIG is followed and the service is removed.  Setting a
 # boolean to 'no' means that the playbook will not alter the service.
 #
-remove_services:
-  ldap-server: yes                                # V-38627
-  rsh-server: yes                                 # V-38591
-  sendmail: yes                                   # V-38671
-  telnet_server: yes                              # V-38587
-  tftp-server: yes                                # V-38606
-  xinetd: yes                                     # V-38584
-  xorg: yes                                       # v-38676
-  ypserv: yes                                     # V-38603
+security_remove_ldap_server: yes                  # V-38627
+security_remove_rsh_server: yes                   # V-38591
+security_remove_sendmail: yes                     # V-38671
+security_remove_telnet_server: yes                # V-38587
+security_remove_tftp_server: yes                  # V-38606
+security_remove_xinetd: yes                       # V-38584
+security_remove_xorg: yes                         # v-38676
+security_remove_ypserv: yes                       # V-38603
 
 ## SSH configuration
 # The following configuration items will adjust how the ssh daemon is
@@ -196,13 +193,12 @@ ssh_permit_root_login: 'yes'                      # V-38613
 ## Kernel
 # Set these booleans to 'yes' to disable the kernel module (following the
 # STIG requirements). Set the boolean to 'no' to ensure no changes are made.
-disable_module:
-  bluetooth: yes                                  # V-38682
-  dccp: yes                                       # V-38514
-  rds: yes                                        # V-38516
-  sctp: yes                                       # V-38515
-  tipc: yes                                       # V-38517
-  usb_storage: no                                 # V-38490
+security_disable_module_bluetooth: yes            # V-38682
+security_disable_module_dccp: yes                 # V-38514
+security_disable_module_rds: yes                  # V-38516
+security_disable_module_sctp: yes                 # V-38515
+security_disable_module_tipc: yes                 # V-38517
+security_disable_module_usb_storage: no           # V-38490
 #
 # ** DANGER **
 # It's strongly recommended to fully understand the effects of changing the
@@ -210,8 +206,7 @@ disable_module:
 # Notes' for each of the STIGs below before making any changes.
 # ** DANGER **
 #
-sysctl_tunable:
-  tcp_syncookies: 1                               # V-38539
+security_sysctl_tcp_syncookies: 1                 # V-38539
 #
 # Deployers who wish to disable IPv6 entirely must set this configuration
 # variable to 'yes'. See the documentation for V-38546 before making this

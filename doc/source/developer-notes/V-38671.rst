@@ -6,4 +6,4 @@ To opt-out of this change, adjust the following Ansible variable to ``no``:
 
 .. code-block:: yaml
 
-    remove_services['sendmail']: no
+    security_remove_sendmail: no

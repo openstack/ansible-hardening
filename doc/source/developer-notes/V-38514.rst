@@ -6,6 +6,6 @@ To opt-out of this change, simply change the following variable to ``no``:
 
 .. code-block:: yaml
 
-    disable_module['dccp']: no
+    security_disable_module_dccp: no
 
 **NOTE:** The module will be disabled on the next reboot.

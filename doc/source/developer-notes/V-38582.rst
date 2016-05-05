@@ -6,4 +6,4 @@ To opt-out of this change, simply adjust the following configuration item to
 
 .. code-block:: yaml
 
-    disable_services['xinetd'] = no
+    security_disable_xinetd: no

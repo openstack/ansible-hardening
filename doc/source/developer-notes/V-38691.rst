@@ -6,4 +6,4 @@ To opt-out of this change, adjust the following Ansible variable to ``no``:
 
 .. code-block:: yaml
 
-    disable_services['bluetooth']: no
+    security_disable_bluetooth: no

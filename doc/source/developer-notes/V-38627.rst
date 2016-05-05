@@ -5,4 +5,4 @@ To opt-out of this change, set the following Ansible variable to ``no``:
 
 .. code-block:: yaml
 
-   remove_services['ldap-server']: no
+   security_remove_ldap_server: no

@@ -54,14 +54,17 @@ critical events on a Linux server.
 Rules for auditd
 ^^^^^^^^^^^^^^^^
 
-The openstack-ansible-security creates a file full of audit rules for hosts
-and these rules can be configured via the ``auditd_rules`` dictionary in
-``defaults/main.yml``.
+The openstack-ansible-security role creates a file containing audit rules for
+hosts.
 
-Each key within the dictionary refers to a block of rules that perform a
-certain function.  Setting a value of ``yes`` for these keys will ensure that
-the rules are present in the final auditd configuration file.  Setting a value
-of ``no`` will ensure that they are omitted.
+Each group of rules are controlled by Ansible variables that begin with
+``security_audit_``. To omit a set of rules on a host, set the variable to
+``no``. To include a set of rules on a host, set the variable to ``yes``.
+
+For example, setting ``security_audit_filesystem_mounts`` to ``yes`` will
+ensure that the rules for auditing filesystem mounts are included on each host.
+Setting ``security_audit_filesystem_mounts`` to ``no`` will omit that group of
+rules on each host.
 
 To review the full list of rules and variables, refer to
 ``templates/osas-auditd.j2``.
@@ -109,10 +112,14 @@ Kernel
 Kernel modules
 ^^^^^^^^^^^^^^
 
-Certain kernel modules are restricted by the STIG and those are reflected in
-the ``disable_module`` dictionary within ``defaults/main.yml``.  A setting of
-``yes`` means that the module will be disabled on the next boot and a setting
-of ``no`` means that the state of the module will not be changed.
+Certain kernel modules are restricted by the STIG because they can become a
+security threat to a server. The Ansible tasks will disable most of these
+variables in accordance with the STIG. These changes are controlled by Ansible
+variables matching the pattern ``security_disable_module_MODULENAME``. Refer to
+``defaults/main.yml`` for a full list of these variables.
+
+A setting of ``yes`` means that the module will be disabled on the next boot
+and a setting of ``no`` means that the state of the module will not be changed.
 
 All of the defaults are set in accordance with the STIG's requitements with
 the exception of the ``usb_storage`` kernel module.  This module is used
@@ -156,8 +163,9 @@ Disabling services
 ^^^^^^^^^^^^^^^^^^
 
 By default, the role will disable any services that are recommended to be
-disabled by the STIG.  The list of these services can be found within the
-``disable_services`` dictionary in ``defaults/main.yml``.
+disabled by the STIG. These changes are controlled by Ansible variables that
+match the ``security_disable_SERVICENAME`` pattern. Review these variables in
+``defaults/main.yml`` for more details.
 
 A setting of ``yes`` for a service will cause the service to be disabled in
 accordance to the STIG's requirements.
@@ -169,10 +177,11 @@ it will remain stopped.
 Removing services
 ^^^^^^^^^^^^^^^^^
 
-The STIG requires that some packages are completely removed from the server.
-By default, the role will remove the packages in accordance with the STIG's
-requirements.  These services are found within the ``remove_services``
-dictionary within ``defaults/main.yml``.
+The STIG requires that some packages are completely removed from the server. By
+default, the role will remove the packages in accordance with the STIG's
+requirements. These changes are controlled by Ansible variables that match the
+``security_remove_SERVICENAME`` pattern. Review these variables in
+``defaults/main.yml`` for more details.
 
 A setting of ``yes`` for a service will cause the package that contains the
 service to be removed from the system.  If the service happens to be running

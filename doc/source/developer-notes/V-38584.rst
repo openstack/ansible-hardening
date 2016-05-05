@@ -4,4 +4,4 @@ to ``no``:
 
 .. code-block:: yaml
 
-    remove_services['xinetd'] = no
+    security_remove_xinetd: no

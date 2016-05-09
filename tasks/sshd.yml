@@ -13,12 +13,64 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Adding additional sshd configuration options is usually easy, but if a
+# configuration file ends with certain configurations, like a "Match" stanza,
+# we need a blank line to separate those configurations from the ones that
+# are added by the security role. For that reason, we check for the existence
+# of a marker line here and add a marker line to the file if it doesn't exist.
+- name: Check for security role marker in sshd_config
+  command: "grep '^# openstack-ansible-security configurations' /etc/ssh/sshd_config"
+  register: sshd_marker_check
+  always_run: True
+  failed_when: False
+  tags:
+    - ssh
+
+# Check for "Match" stanzas in the sshd_config.
+- name: Check for Match stanzas in sshd_config
+  command: "grep '^Match' /etc/ssh/sshd_config"
+  register: sshd_match_check
+  always_run: True
+  failed_when: False
+  tags:
+    - ssh
+
+# If the marker is missing, and "Match" stanzas are present, we must carefully
+# add a marker line above any "Match" stanzas in the configuration file. This
+# is done by finding the first match with sed and then adding a marker
+# line above it.
+- name: Add security role marker with sed above Match stanza
+  shell: |
+    sed -i '0,/^Match/s/^Match/\n# openstack-ansible-security configurations\n\n&/' /etc/ssh/sshd_config
+  when:
+    - sshd_marker_check.rc != 0
+    - sshd_match_check.rc == 0
+  tags:
+    - ssh
+
+# If the marker is missing, but there are no "Match" stanzas present, we can
+# simply add the security role marker to the bottom of the sshd_config.
+- name: Add security role marker to the end of the sshd_config
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: "\n# openstack-ansible-security configurations"
+    state: present
+    insertbefore: EOF
+    validate: '/usr/sbin/sshd -T -f %s'
+  when:
+    - sshd_marker_check.rc != 0
+    - sshd_match_check.rc != 0
+  tags:
+    - ssh
+
 - name: V-38484 - User must get date/time of last successful login
   lineinfile:
     state: present
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PrintLastLog'
     line: 'PrintLastLog yes'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -32,6 +84,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?Protocol \d'
     line: 'Protocol 2'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -45,6 +99,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PermitEmptyPasswords'
     line: 'PermitEmptyPasswords no'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -52,12 +108,14 @@
     - cat1
     - V-38614
 
-- name: V-38612 Medium  The SSH daemon must not allow host-based authentication
+- name: V-38612 - The SSH daemon must not allow host-based authentication
   lineinfile:
     state: present
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?HostbasedAuthentication'
     line: 'HostbasedAuthentication no'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -71,6 +129,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?ClientAliveInterval'
     line: 'ClientAliveInterval {{ ssh_client_alive_interval }}'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -84,6 +144,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?ClientAliveCountMax'
     line: 'ClientAliveCountMax {{ ssh_client_alive_count_max }}'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -97,6 +159,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?IgnoreRhosts'
     line: 'IgnoreRhosts yes'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -110,6 +174,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PermitRootLogin'
     line: 'PermitRootLogin {{ ssh_permit_root_login }}'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
   tags:
@@ -132,6 +198,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?Banner'
     line: 'Banner /etc/issue.net'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   tags:
     - ssh
     - cat2
@@ -143,6 +211,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PermitUserEnvironment'
     line: 'PermitUserEnvironment no'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   tags:
     - ssh
     - cat3
@@ -154,6 +224,8 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?Ciphers'
     line: 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
   tags:
     - ssh
     - cat2

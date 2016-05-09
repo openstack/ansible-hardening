@@ -128,7 +128,7 @@
     state: present
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?ClientAliveInterval'
-    line: 'ClientAliveInterval {{ ssh_client_alive_interval }}'
+    line: 'ClientAliveInterval {{ security_ssh_client_alive_interval }}'
     insertafter: "^# openstack-ansible-security configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
@@ -143,7 +143,7 @@
     state: present
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?ClientAliveCountMax'
-    line: 'ClientAliveCountMax {{ ssh_client_alive_count_max }}'
+    line: 'ClientAliveCountMax {{ security_ssh_client_alive_count_max }}'
     insertafter: "^# openstack-ansible-security configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
@@ -173,7 +173,7 @@
     state: present
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PermitRootLogin'
-    line: 'PermitRootLogin {{ ssh_permit_root_login }}'
+    line: 'PermitRootLogin {{ security_ssh_permit_root_login }}'
     insertafter: "^# openstack-ansible-security configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:

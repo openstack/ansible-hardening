@@ -42,5 +42,5 @@
   roles:
     - role: "{{ rolename }}"
   vars:
-    unattended_upgrades_enabled: true
-    unattended_upgrades_notifications: true
+    security_unattended_upgrades_enabled: true
+    security_unattended_upgrades_notifications: true

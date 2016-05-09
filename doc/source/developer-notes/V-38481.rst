@@ -9,7 +9,7 @@ variable to ``true``:
 
 .. code-block:: yaml
 
-    unattended_upgrades: true
+    security_unattended_upgrades: true
 
 Note that this will only apply updates made available to the distro-security
 (eg. trusty-security) repositories.

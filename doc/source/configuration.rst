@@ -41,7 +41,7 @@ the following variable to ``true``:
 
 .. code-block:: yaml
 
-    initialize_aide: true
+    security_initialize_aide: true
 
 Audit daemon
 ------------
@@ -102,9 +102,10 @@ The fail2ban service is installed to meet some requirements around failed login
 attempts.  The STIG requires ``pam_faillock``, but that module isn't available
 in Ubuntu 14.04.
 
-To opt-in for the fail2ban service to be installed, set ``install_fail2ban`` to
-``yes`` and set an appropriate time for bans with ``fail2ban_bantime``.  See
-the notes for V-38501 for more details.
+To opt-in for the fail2ban service to be installed, set
+``security_install_fail2ban`` to ``yes`` and set an appropriate time for bans
+with ``security_fail2ban_bantime``.  See the notes for V-38501 for more
+details.
 
 Kernel
 ------
@@ -136,9 +137,9 @@ certain types of attacks, like SYN floods.  This can cause issues in some
 environments with busy load balancers.  Deployers should review the notes for
 V-38539 for more details.
 
-Also, the STIG requires IPv6 support to be fully disabled, and this could
-cause issues for production systems.  The role will not disable IPv6 by
-default, but deployers can adjust this by changing ``disable_ipv6`` to ``yes``.
+Also, the STIG requires IPv6 support to be fully disabled, and this could cause
+issues for production systems.  The role will not disable IPv6 by default, but
+deployers can adjust this by changing ``security_disable_ipv6`` to ``yes``.
 
 Core dumps are also disabled by default in the openstack-ansible-security role.
 
@@ -146,8 +147,8 @@ Mail
 ----
 
 Deployers are strongly urged to configure an address to receive the ``root``
-user's email on various hosts.  This is done with the ``root_forward_email``
-variable.
+user's email on various hosts.  This is done with the
+``security_root_forward_email`` variable.
 
 The STIG requires that a valid user receives the email in case of errors or a
 security issue.
@@ -229,5 +230,5 @@ umask adjustments
 Certain umask adjustments are required by the STIG, but these can cause
 problems with production systems.  The requirements are commented out within
 ``defaults/main.yml`` and can be applied by uncommenting the variables that
-start with ``umask_*``.  There is extensive documentation available within
-the developer notes for each STIG requirement.
+start with ``security_umask_*``.  There is extensive documentation available
+within the developer notes for each STIG requirement.

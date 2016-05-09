@@ -1,12 +1,12 @@
-Ubuntu's default setting for ``max_log_files`` matches the STIG requirement of
-rotating logs when they reach 6MB. The Ansible task for this STIG
-requirement ensures that the secure default is maintained.
+Ubuntu's default setting for ``security_max_log_file`` matches the STIG
+requirement of rotating logs when they reach 6MB. The Ansible task for this
+STIG requirement ensures that the secure default is maintained.
 
 Deployers who want to exceed the STIG guideline can increase the size of logs
 by adjusting the following Ansible variable:
 
 .. code-block:: yaml
 
-    max_log_file: 6
+    security_max_log_file: 6
 
 

@@ -8,4 +8,4 @@ To opt-in for this change, set the following Ansible variable:
 
 .. code-block:: yaml
 
-    max_simultaneous_logins: 10
+    security_max_simultaneous_logins: 10

@@ -19,14 +19,14 @@ addresses using the following logic
 * That IP will be banned for 15 minutes (via iptables rules)
 
 Deployers must opt-in for fail2ban to be installed and configured. To opt-in,
-set the ``install_fail2ban`` Ansible variable to ``yes``. The time period for
-bans can also be configured (in seconds) via tha ``fail2ban_bantime``
-variable:
+set the ``security_install_fail2ban`` Ansible variable to ``yes``. The time
+period for bans can also be configured (in seconds) via tha
+``security_fail2ban_bantime`` variable:
 
 .. code-block:: yaml
 
-    install_fail2ban: yes
-    fail2ban_bantime: 900
+    security_install_fail2ban: yes
+    security_fail2ban_bantime: 900
 
 **NOTE:** Fail2ban can only review authentication attempts for services that
 listen on the network, such as ssh. It has no control over physical consoles.

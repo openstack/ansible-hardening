@@ -5,4 +5,4 @@ To opt-out of this change, set the following Ansible variable to ``no``:
 
 .. code-block:: yaml
 
-    disable_core_dumps: no
+    security_disable_core_dumps: no

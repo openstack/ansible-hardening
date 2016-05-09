@@ -8,7 +8,7 @@ To opt-in for this change, set the following Ansible variable to ``yes``:
 
 .. code-block:: yaml
 
-    disable_ipv6: yes
+    security_disable_ipv6: yes
 
 **NOTE:** This change will go into effect **immediately** on the system and
 persist through reboots.

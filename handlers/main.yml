@@ -62,7 +62,7 @@
 # the background so it doesn't hold up the whole playbook.
 - name: initialize AIDE
   shell: "aideinit -b"
-  when: initialize_aide | bool
+  when: security_initialize_aide | bool
 
 - name: rehash aliases
   command: newaliases

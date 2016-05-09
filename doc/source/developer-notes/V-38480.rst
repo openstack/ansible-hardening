@@ -7,4 +7,4 @@ variable to configure the warning:
 
 .. code-block:: yaml
 
-    password_warn_age: 7
+    security_password_warn_age: 7

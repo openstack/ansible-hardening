@@ -17,7 +17,7 @@
 # fails they will be discarded.  Thus under some circumstances it is
 # better to use IP numbers than host names.
 
-{% for ntp_server in ntp_servers %}
+{% for ntp_server in security_ntp_servers %}
 server {{ ntp_server }} offline minpoll 8
 {% endfor %}
 
@@ -62,7 +62,7 @@ local stratum 10
 
 # Allow computers on the unrouted nets to use the server.
 
-{% for subnet in allowed_ntp_subnets %}
+{% for subnet in security_allowed_ntp_subnets %}
 allow {{ subnet }}
 {% endfor %}
 

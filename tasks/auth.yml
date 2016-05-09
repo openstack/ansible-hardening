@@ -17,8 +17,8 @@
   lineinfile:
     dest: /etc/login.defs
     regexp: "^(#)?PASS_MIN_LEN"
-    line: "PASS_MIN_LEN {{ password_minimum_length }}"
-  when: password_minimum_length is defined
+    line: "PASS_MIN_LEN {{ security_password_minimum_length }}"
+  when: security_password_minimum_length is defined
   tags:
     - auth
     - cat2
@@ -28,8 +28,8 @@
   lineinfile:
     dest: /etc/login.defs
     regexp: "^(#)?PASS_MIN_DAYS"
-    line: "PASS_MIN_DAYS {{ password_minimum_days }}"
-  when: password_minimum_days is defined
+    line: "PASS_MIN_DAYS {{ security_password_minimum_days }}"
+  when: security_password_minimum_days is defined
   tags:
     - auth
     - cat2
@@ -39,8 +39,8 @@
   lineinfile:
     dest: /etc/login.defs
     regexp: "^(#)?PASS_MAX_DAYS"
-    line: "PASS_MAX_DAYS {{ password_maximum_days }}"
-  when: password_maximum_days is defined
+    line: "PASS_MAX_DAYS {{ security_password_maximum_days }}"
+  when: security_password_maximum_days is defined
   tags:
     - auth
     - cat2
@@ -50,8 +50,8 @@
   lineinfile:
     dest: /etc/login.defs
     regexp: "^(#)?PASS_WARN_DAYS"
-    line: "PASS_WARN_DAYS {{ password_warn_age }}"
-  when: password_warn_age is defined
+    line: "PASS_WARN_DAYS {{ security_password_warn_age }}"
+  when: security_password_warn_age is defined
   tags:
     - auth
     - cat3
@@ -110,7 +110,7 @@
     line: '\1\2'
     backup: yes
     backrefs: yes
-  when: pam_remove_nullok | bool
+  when: security_pam_remove_nullok | bool
   tags:
     - auth
     - cat1
@@ -171,7 +171,7 @@
   apt:
     name: fail2ban
     state: present
-  when: install_fail2ban | bool
+  when: security_install_fail2ban | bool
   tags:
     - auth
     - cat2
@@ -183,7 +183,7 @@
   template:
     src: jail.local.j2
     dest: /etc/fail2ban/jail.d/jail.local
-  when: install_fail2ban | bool
+  when: security_install_fail2ban | bool
   notify:
     - restart fail2ban
   tags:
@@ -363,8 +363,8 @@
   lineinfile:
     dest: /etc/default_useradd
     regexp: "^(#)?INACTIVE"
-    line: "INACTIVE {{ inactive_account_lock_days }}"
-  when: inactive_account_lock_days is defined
+    line: "INACTIVE {{ security_inactive_account_lock_days }}"
+  when: security_inactive_account_lock_days is defined
   tags:
     - auth
     - cat3
@@ -404,7 +404,7 @@
 - name: Comment out sudoers lines with NOPASSWD present (for V-58901)
   shell: "sed -e '/NOPASSWD/ s/^#*/#/' -i {{ item }}"
   with_items: v58901_result.stdout_lines
-  when: sudoers_remove_nopasswd | bool
+  when: security_sudoers_remove_nopasswd | bool
   tags:
     - auth
     - cat2
@@ -415,7 +415,7 @@
 - name: Comment out sudoers lines with !authenticate present (for V-58901)
   shell: "sed -e '/!authenticate/ s/^#*/#/' -i {{ item }}"
   with_items: v58901_result.stdout_lines
-  when: sudoers_remove_authenticate | bool
+  when: security_sudoers_remove_authenticate | bool
   tags:
     - auth
     - cat2

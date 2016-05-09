@@ -8,7 +8,7 @@ the following Ansible variable:
 
 .. code-block:: yaml
 
-    postfix_inet_interfaces: all
+    security_postfix_inet_interfaces: all
 
 Note that postfix can have ``inet_interfaces`` set to ``localhost`` and it can
 still send email on the network. The ``inet_interfaces`` directive only

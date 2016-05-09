@@ -3,7 +3,7 @@
 Neither Ubuntu or openstack-ansible installs the csh shell by default.
 
 Since umask changes can be disruptive on some systems, the deployer must
-opt-in for this change to happen. If the ``umask_csh`` Ansible variable is
+opt-in for this change to happen. If the ``security_umask_csh`` Ansible variable is
 set **and** the csh package is installed, the Ansible tasks will ensure the
 appropriate umask is set in the csh configuration file.
 

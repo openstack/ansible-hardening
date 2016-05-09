@@ -158,7 +158,7 @@
   with_items:
     - net.ipv6.conf.all.disable_ipv6
     - net.ipv6.conf.default.disable_ipv6
-  when: disable_ipv6 | bool
+  when: security_disable_ipv6 | bool
   tags:
     - kernel
     - cat2

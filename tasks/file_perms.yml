@@ -126,8 +126,8 @@
   lineinfile:
     dest: /etc/init.d/rc
     regexp: "^umask "
-    line: "umask {{ umask_daemons_init }}"
-  when: umask_daemons_init is defined
+    line: "umask {{ security_umask_daemons_init }}"
+  when: security_umask_daemons_init is defined
   tags:
     - file_perms
     - cat3
@@ -138,8 +138,8 @@
   lineinfile:
     dest: /etc/login.defs
     regexp: "^UMASK"
-    line: "UMASK {{ umask_login_defs }}"
-  when: umask_login_defs is defined
+    line: "UMASK {{ security_umask_login_defs }}"
+  when: security_umask_login_defs is defined
   tags:
     - file_perms
     - cat3
@@ -152,7 +152,7 @@
   register: v38649_result
   changed_when: False
   failed_when: False
-  when: umask_csh is defined
+  when: security_umask_csh is defined
   tags:
     - file_perms
     - cat3
@@ -162,9 +162,9 @@
   lineinfile:
     dest: /etc/csh.cshrc
     regexp: "^(#)?umask"
-    line: "umask {{ umask_csh }}"
+    line: "umask {{ security_umask_csh }}"
     create: yes
-  when: umask_csh is defined and v38649_result.rc == 0
+  when: security_umask_csh is defined and v38649_result.rc == 0
   tags:
     - file_perms
     - cat3
@@ -174,8 +174,8 @@
   lineinfile:
     dest: /etc/bash.bashrc
     regexp: "^(#)?umask"
-    line: "umask {{ umask_bash }}"
-  when: umask_bash is defined
+    line: "umask {{ security_umask_bash }}"
+  when: security_umask_bash is defined
   tags:
     - file_perms
     - cat3

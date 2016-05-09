@@ -8,5 +8,5 @@ To enable this configuration, use this Ansible variable:
 
 .. code-block:: yaml
 
-    password_maximum_days: 60
+    security_password_maximum_days: 60
 

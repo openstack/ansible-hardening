@@ -65,7 +65,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?max_log_file ="
-    line: "max_log_file = {{ max_log_file }}"
+    line: "max_log_file = {{ security_max_log_file }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -78,7 +78,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?max_log_file_action ="
-    line: "max_log_file_action = {{ max_log_file_action }}"
+    line: "max_log_file_action = {{ security_max_log_file_action }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -91,7 +91,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?num_logs ="
-    line: "num_logs = {{ num_logs }}"
+    line: "num_logs = {{ security_num_logs }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -155,7 +155,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?disk_error_action"
-    line: "disk_error_action = {{ disk_error_action }}"
+    line: "disk_error_action = {{ security_disk_error_action }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -168,7 +168,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?disk_full_action"
-    line: "disk_full_action = {{ disk_full_action }}"
+    line: "disk_full_action = {{ security_disk_full_action }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -181,7 +181,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?space_left"
-    line: "space_left = {{ space_left }}"
+    line: "space_left = {{ security_space_left }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -194,7 +194,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?space_left_action"
-    line: "space_left_action = {{ space_left_action }}"
+    line: "space_left_action = {{ security_space_left_action }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -207,7 +207,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?action_mail_acct"
-    line: "action_mail_acct = {{ action_mail_acct }}"
+    line: "action_mail_acct = {{ security_action_mail_acct }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd
@@ -280,7 +280,7 @@
   lineinfile:
     dest: /etc/audit/auditd.conf
     regexp: "^(#)?admin_space_left_action"
-    line: "admin_space_left_action = {{ admin_space_left_action }}"
+    line: "admin_space_left_action = {{ security_admin_space_left_action }}"
   when: auditd_conf.stat.exists | bool
   notify:
     - restart auditd

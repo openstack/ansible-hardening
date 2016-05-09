@@ -38,20 +38,20 @@
     dest: /etc/postfix/main.cf
     regexp: "^(#)?mynetworks"
     line: "mynetworks = 127.0.0.0/8"
-  when: disable_ipv6 | bool
+  when: security_disable_ipv6 | bool
   tags:
     - mail
     - cat3
     - V-38669
 
-# Be sure to set root_forward_email so that this task is executed. See the
-# documentation for more details.
+# Be sure to set security_root_forward_email so that this task is executed. See
+# the documentation for more details.
 - name: V-38446 - Mail system must forward root's email
   lineinfile:
     dest: /etc/aliases
     regexp: "^root"
-    line: "root: {{ root_forward_email }}"
-  when: root_forward_email is defined
+    line: "root: {{ security_root_forward_email }}"
+  when: security_root_forward_email is defined
   notify:
     - rehash aliases
   tags:
@@ -71,7 +71,7 @@
   lineinfile:
     dest: /etc/postfix/main.cf
     regexp: "^(#)?inet_interfaces"
-    line: "inet_interfaces = {{ postfix_inet_interfaces }}"
+    line: "inet_interfaces = {{ security_postfix_inet_interfaces }}"
   when: postfix_main_cf.stat.exists | bool
   notify:
     - restart postfix

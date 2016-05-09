@@ -6,7 +6,7 @@ setting, set the following Ansible variable:
 
 .. code-block:: yaml
 
-    password_minimum_length: 14
+    security_password_minimum_length: 14
 
 Deployers are urged to avoid the use of passwords and rely upon SSH keys if
 possible.

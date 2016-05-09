@@ -14,6 +14,8 @@
 # limitations under the License.
 
 ## APT Cache Options
+# This variable is used across multiple OpenStack-Ansible roles to handle the
+# apt cache updates as efficiently as possible.
 cache_timeout: 600
 
 ### Default configurations for openstack-ansible-security #####################
@@ -30,7 +32,7 @@ cache_timeout: 600
 # terrible places on the system, such as /var/lib/lxc and images in /opt.
 # The following three default exclusions are highly recommended for AIDE to
 # work properly, but additional exclusions can be added to this list if needed.
-aide_exclude_dirs:
+security_aide_exclude_dirs:
   - /var/lib/lxc
   - /openstack
   - /opt
@@ -39,7 +41,7 @@ aide_exclude_dirs:
 # consume plenty of CPU and I/O resources while it runs. To initialize the
 # AIDE database immediately when the playbook finishes, set the following
 # variable to 'true':
-initialize_aide: false
+security_initialize_aide: false
 
 ## Audit daemon
 # The following booleans control the rule sets added to auditd's default
@@ -84,36 +86,36 @@ security_audit_sudoers: yes                       # V-38578
 #
 # Set an action to occur when there is a disk error. Review the
 # documentation for V-38464 before changing this option.
-disk_error_action: SYSLOG                         # V-38464
+security_disk_error_action: SYSLOG                # V-38464
 #
 # Set an action to occur when the disk is full. Review the documentation for
 # V-38468 before changing this option.
-disk_full_action: SYSLOG                          # V-38468
+security_disk_full_action: SYSLOG                 # V-38468
 #
 # V-38678 - Set the amount of megabytes left when the space_left_action
 # triggers. The STIG guideline doesn't specify a size, but Ubuntu chooses a
 # default of 75MB, which is reasonable.
-space_left: 75                                    # V-38678
+security_space_left: 75                           # V-38678
 #
 # Set an action to occur when the disk is approaching its capacity.
 # Review the documentation for V-38470 before changing this option.
-space_left_action: SYSLOG                         # V-38470
+security_space_left_action: SYSLOG                # V-38470
 #
 # Set the maximum size of a rotated log file. Ubuntu's default
 # matches the STIG requirement of 6MB.
-max_log_file: 6                                   # V 38633
+security_max_log_file: 6                          # V 38633
 #
 # Sets the action to take when log files reach the maximum file size.
 # Review the documentation for V-38634 before changing this option.
-max_log_file_action: ROTATE                       # V-38634
+security_max_log_file_action: ROTATE              # V-38634
 #
 # Set the number of rotated audit logs to keep.  Ubuntu has 5 as the default
 # and this matches the STIG's requirements.
-num_logs: 5                                       # V-38636
+security_num_logs: 5                              # V-38636
 #
 # Set the email address of someone who can receive and respond to notifications
 # about low disk space for log volumes.
-action_mail_acct: root                            # V-38680
+security_action_mail_acct: root                   # V-38680
 #
 # **IMMINENT DANGER**
 # The STIG says that the system should switch to single user mode when the
@@ -121,18 +123,18 @@ action_mail_acct: root                            # V-38680
 # and should only be set to 'single' for deployers in extremely high security
 # environments. Ubuntu's default is SUSPEND, which will suspend logging.
 # **IMMENENT DANGER**
-admin_space_left_action: SUSPEND                  # V-54381
+security_admin_space_left_action: SUSPEND                  # V-54381
 
 ## Chrony (NTP) configuration
 # Adjust the following NTP servers if necessary.
-ntp_servers:
+security_ntp_servers:
   - 0.north-america.pool.ntp.org
   - 1.north-america.pool.ntp.org
   - 2.north-america.pool.ntp.org
   - 3.north-america.pool.ntp.org
 # Chrony limits access to clients that are on certain subnets.  Adjust the
 # following subnets here to limit client access to chrony servers.
-allowed_ntp_subnets:
+security_allowed_ntp_subnets:
   - 10/8
   - 192.168/16
   - 172.16/12
@@ -140,7 +142,7 @@ allowed_ntp_subnets:
 ## Core dumps
 # V-38675 requires disabling core dumps for all users unless absolutely
 # necessary. Set this variable to 'no' to skip this change.
-disable_core_dumps: yes                           # V-38675
+security_disable_core_dumps: yes                  # V-38675
 
 ## Services
 # The STIG recommends ensuring that some services are running if no services
@@ -179,16 +181,16 @@ security_remove_ypserv: yes                       # V-38603
 # they can be adjusted to fit a particular environment.
 #
 # Set a 15 minute time out for SSH sessions if there is no activity
-ssh_client_alive_interval: 900                    # V-38608
+security_ssh_client_alive_interval: 900           # V-38608
 #
 # Timeout ssh sessions as soon as ClientAliveInterval is reached once
-ssh_client_alive_count_max: 0                     # V-38610
+security_ssh_client_alive_count_max: 0            # V-38610
 #
 # The ssh daemon must not permit root logins. The default value of 'yes' is a
 # deviation from the STIG requirements due to how openstack-ansible operates,
 # especially within OpenStack CI gate jobs. See documentation for V-38613 for
 # more details.
-ssh_permit_root_login: 'yes'                      # V-38613
+security_ssh_permit_root_login: 'yes'             # V-38613
 
 ## Kernel
 # Set these booleans to 'yes' to disable the kernel module (following the
@@ -211,7 +213,7 @@ security_sysctl_tcp_syncookies: 1                 # V-38539
 # Deployers who wish to disable IPv6 entirely must set this configuration
 # variable to 'yes'. See the documentation for V-38546 before making this
 # change.
-disable_ipv6: no                                  # V-38546
+security_disable_ipv6: no                         # V-38546
 
 ## Mail
 # The STIG requires inet_interfaces to be set to 'localhost', but Ubuntu will
@@ -221,12 +223,12 @@ disable_ipv6: no                                  # V-38546
 # need to receive emails over the network (which isn't common).
 #
 # See the documentation for V-38622 for more details.
-postfix_inet_interfaces: localhost                # V-38622
+security_postfix_inet_interfaces: localhost       # V-38622
 #
 # Configuring an email address here will cause hosts to forward the root user's
 # email to another address.
 #
-#root_forward_email: user@example.com
+#security_root_forward_email: user@example.com
 
 ## PAM and authentication
 # V-38497 requires that accounts with null passwords aren't allowed to
@@ -234,38 +236,40 @@ postfix_inet_interfaces: localhost                # V-38622
 # documentation for V-38497 for more details. Set the variable below to 'yes'
 # to remove 'nullok_secure' from the PAM configuration or set it to 'no' to
 # leave the PAM configuration unaltered.
-pam_remove_nullok: yes                            # V-38497
+security_pam_remove_nullok: yes                   # V-38497
 #
 # V-38501 requires that failed login attempts must lock a user account using
 # pam_faillock, but Ubuntu doesn't package that PAM module. Instead, fail2ban
 # can be installed to lock out IP addresses with failed logins for 15 minutes.
 # Set the variable below to 'yes' to install and configure fail2ban.
-install_fail2ban: no                              # V-38501
+security_install_fail2ban: no                     # V-38501
 #
 # The STIG requires bans to last 15 minutes. Adjust the following variable
 # to set the time an IP is banned by fail2ban (in seconds).
-fail2ban_bantime: 900                             # V-38501
+security_fail2ban_bantime: 900                    # V-38501
 
 ## Password complexity and aging
-# V-38475 - There is no password length requirement by default in Ubuntu
-# 14.04. To set a password length requirement, uncomment
-# password_minimum_length below. The STIG recommendation is 14 characters.
-#password_minimum_length: 14                      # V-38475
-# V-38477 - There is no password change limitation set by default in Ubuntu.
-# To set the minimum number of days between password changes, uncomment
-# the password_minimum_days variable below.  The STIG recommendation is 1 day.
-#password_minimum_days: 1                         # V-38477
+# V-38475 - There is no password length requirement by default in Ubuntu 14.04.
+# To set a password length requirement, uncomment
+# security_password_minimum_length below. The STIG recommendation is 14
+# characters.
+#security_password_minimum_length: 14             # V-38475
+# V-38477 - There is no password change limitation set by default in Ubuntu. To
+# set the minimum number of days between password changes, uncomment the
+# security_password_minimum_days variable below.  The STIG recommendation is 1
+# day.
+#security_password_minimum_days: 1                # V-38477
 # V-38479 - There is no age limit on password by default in Ubuntu. Uncomment
 # line below to use the STIG recommendation of 60 days.
-#password_maximum_days: 60                        # V-38479
+#security_password_maximum_days: 60               # V-38479
 # V-38480 - To warn users before their password expires, uncomment the line
 # below and they will be warned 7 days prior (following the STIG).
-#password_warn_age: 7                             # V-38480
+#security_password_warn_age: 7                    # V-38480
 # V-38684 - Setting the maximum number of simultaneous logins per user. The
 # STIG sets a limit of 10.
-#max_simultaneous_logins: 10                      # V-38684
+#security_max_simultaneous_logins: 10             # V-38684
 # V-38692 - Lock accounts that are inactive for 35 days.
-#inactive_account_lock_days: 35                   # V-38692
+#security_inactive_account_lock_days: 35          # V-38692
 
 ## sudo
 # V-58901 requires that 'NOPASSWD' and '!authenticate' do not appear in any
@@ -274,8 +278,8 @@ fail2ban_bantime: 900                             # V-38501
 # parameters or leave them set to 'no' (the default) to leave sudoers files
 # unaltered. Deployers are urged to review the documentation for this STIG
 # before making changes.
-sudoers_remove_nopasswd: no                       # V-58901
-sudoers_remove_authenticate: no                   # V-58901
+security_sudoers_remove_nopasswd: no              # V-58901
+security_sudoers_remove_authenticate: no          # V-58901
 
 ## umask settings
 # The STIG recommends changing various default umask settings for users and
@@ -291,17 +295,17 @@ sudoers_remove_authenticate: no                   # V-58901
 # service disruptions.
 #
 # V-38642 - Set umask for daemons in init scripts to 027 or 022
-#umask_daemons_init: 027                          # V-38642
+#security_umask_daemons_init: 027                 # V-38642
 #
 # V-38645 - System default umask in /etc/login.defs must be 077
-#umask_login_defs: 077                            # V-38645
+#security_umask_login_defs: 077                   # V-38645
 #
 # V-38649 - System default umask for csh must be 077
-#umask_csh: 077                                   # V-38649
+#security_umask_csh: 077                          # V-38649
 #
 # V-38651 - System default umask for bash must be 077
-#umask_bash: 077                                  # V-38651
+#security_umask_bash: 077                         # V-38651
 
 ## Unattended upgrades (APT) configuration
-unattended_upgrades_enabled: false
-unattended_upgrades_notifications: false
+security_unattended_upgrades_enabled: false
+security_unattended_upgrades_notifications: false

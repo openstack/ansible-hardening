@@ -5,4 +5,4 @@ to something other than ``0``:
 
 .. code-block:: yaml
 
-    ssh_client_alive_count_max: 0
+    security_ssh_client_alive_count_max: 0

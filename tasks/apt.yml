@@ -65,7 +65,7 @@
   apt:
     name: unattended-upgrades
     state: present
-  when: unattended_upgrades_enabled | bool
+  when: security_unattended_upgrades_enabled | bool
   tags:
     - apt
     - cat2
@@ -75,7 +75,7 @@
   copy:
     src: 20auto-upgrades
     dest: /etc/apt/apt.conf.d/20auto-upgrades
-  when: unattended_upgrades_enabled | bool
+  when: security_unattended_upgrades_enabled | bool
   tags:
     - apt
     - cat2
@@ -87,8 +87,8 @@
     regexp: '^(\/\/)?Unattended-Upgrade::Mail "root";'
     line: 'Unattended-Upgrade::Mail "root";'
   when:
-    - unattended_upgrades_enabled | bool
-    - unattended_upgrades_notifications | bool
+    - security_unattended_upgrades_enabled | bool
+    - security_unattended_upgrades_notifications | bool
   tags:
     - apt
     - cat2

@@ -7,4 +7,4 @@ down the playbook run.
 Some directories are excluded from AIDE runs to prevent AIDE from wandering
 into directories where it shouldn't be hashing/monitoring files. The
 ``defaults/main.yml`` file has some recommended directories as part of the
-``aide_exclude_dirs`` variable.
+``security_aide_exclude_dirs`` variable.

@@ -46,7 +46,7 @@
 
 - name: restart ssh
   service:
-    name: ssh
+    name: "{{ ssh_service }}"
     state: restarted
 
 - name: restart vsftpd

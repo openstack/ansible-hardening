@@ -13,6 +13,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#TODO(evrardjp): Replace the next 2 tasks by a standard apt with cache
+#when https://github.com/ansible/ansible-modules-core/pull/1517 is merged
+#in 1.9.x or we move to 2.0 (if tested working)
+- name: Check apt last update file
+  stat:
+    path: /var/cache/apt
+  register: apt_cache_stat
+  tags:
+    - auditd-apt-packages
+
+- name: Update apt if needed
+  apt:
+    update_cache: yes
+  when: "ansible_date_time.epoch|float - apt_cache_stat.stat.mtime > {{cache_timeout}}"
+  tags:
+    - auditd-apt-packages
+
 # Notes for V-38476 ###########################################################
 #
 # These GPG keys are valid as of Ubuntu 14.04 in late 2015, but they could
@@ -29,7 +46,7 @@
     msg: "FAILED: Missing Ubuntu 14.04 Archive signing keys"
   when: "'437D05B5' not in v38476_result.stdout or 'C0B21F32' not in v38476_result.stdout"
   tags:
-    - apt
+    - package
     - cat1
     - V-38476
 
@@ -48,7 +65,7 @@
   failed_when: False
   always_run: True
   tags:
-    - auth
+    - package
     - cat1
     - V-38462
 
@@ -57,7 +74,7 @@
     msg: "FAILED: Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
   when: "v38462_result.rc == 0"
   tags:
-    - auth
+    - package
     - cat1
     - V-38462
 
@@ -67,7 +84,7 @@
     state: present
   when: security_unattended_upgrades_enabled | bool
   tags:
-    - apt
+    - package
     - cat2
     - V-38481
 
@@ -77,7 +94,7 @@
     dest: /etc/apt/apt.conf.d/20auto-upgrades
   when: security_unattended_upgrades_enabled | bool
   tags:
-    - apt
+    - package
     - cat2
     - V-38481
 
@@ -90,6 +107,6 @@
     - security_unattended_upgrades_enabled | bool
     - security_unattended_upgrades_notifications | bool
   tags:
-    - apt
+    - package
     - cat2
     - V-38481

@@ -19,26 +19,32 @@
     - name: Ensure apt cache is updated before testing
       apt:
         update_cache: yes
+      when: ansible_pkg_mgr == 'apt'
   post_tasks:
     - name: Stat 20auto-upgrades file
       stat:
         path: /etc/apt/apt.conf.d/20auto-upgrades
       register: auto_upgrades_file
+      when: ansible_pkg_mgr == 'apt'
     - name: Slurp contents of 50unattended-upgrades file
       slurp:
         src: /etc/apt/apt.conf.d/50unattended-upgrades
       register: unattended_upgrades_file_encoded
+      when: ansible_pkg_mgr == 'apt'
     - name: Decode slurp'd 50-unattended-upgrades file
       set_fact:
         unattended_upgrades_file: "{{ unattended_upgrades_file_encoded.content | b64decode }}"
+      when: ansible_pkg_mgr == 'apt'
     - name: Ensure auto updates has been enabled
       assert:
         that:
           - auto_upgrades_file.stat.exists
+      when: ansible_pkg_mgr == 'apt'
     - name: Ensure that auto update notifications has been enabled
       assert:
         that:
           - "'\nUnattended-Upgrade::Mail \"root\";\n' in unattended_upgrades_file"
+      when: ansible_pkg_mgr == 'apt'
   roles:
     - role: "{{ rolename }}"
   vars:

@@ -13,10 +13,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: V-38489 - Install AIDE
+- name: V-38489 - Install AIDE (with apt)
   apt:
-    name: aide
-    state: present
+      name: aide
+      state: present
+  when: ansible_pkg_mgr == 'apt'
+  tags:
+    - cat2
+    - V-38489
+
+- name: V-38489 - Install AIDE (with yum)
+  yum:
+      name: aide
+      state: present
+  when: ansible_pkg_mgr == 'yum'
   tags:
     - cat2
     - V-38489
@@ -76,10 +86,20 @@
     - cat2
     - V-38619
 
-- name: V-38620 - Synchronize system clock (installing chrony)
+- name: V-38620 - Synchronize system clock (installing chrony with apt)
   apt:
     name: chrony
     state: present
+  when: ansible_pkg_mgr == 'apt'
+  tags:
+    - cat2
+    - V-38620
+
+- name: V-38620 - Synchronize system clock (installing chrony with yum)
+  yum:
+    name: chrony
+    state: present
+  when: ansible_pkg_mgr == 'yum'
   tags:
     - cat2
     - V-38620
@@ -117,10 +137,20 @@
 # The openstack-ansible project will configure logs to be rotated weekly and
 # compressed with each run. We won't change the interval here, but we will
 # ensure that logrotate is installed (to meet the STIG requirement).
-- name: V-38624 - System logs must be rotated daily (install logrotate)
+- name: V-38624 - System logs must be rotated daily (install logrotate with apt)
   apt:
     name: logrotate
     state: present
+  when: ansible_pkg_mgr == 'apt'
+  tags:
+    - cat3
+    - V-38624
+
+- name: V-38624 - System logs must be rotated daily (install logrotate with yum)
+  yum:
+    name: logrotate
+    state: present
+  when: ansible_pkg_mgr == 'yum'
   tags:
     - cat3
     - V-38624
@@ -138,7 +168,7 @@
     msg: "FAILED: Cron job for logrotate is missing"
   when:
     - not check_mode
-    - v38624_result.stat.exists == False
+    - not v38624_result.stat.exists | bool
   tags:
    - cat3
    - V-38624
@@ -158,32 +188,53 @@
     regexp: "^(;)?client signing"
     line: "client signing = mandatory"
     insertafter: "############ Misc ############"
-  when: v38656_result.stat.exists == True
+  when: v38656_result.stat.exists | bool
   notify:
     - restart samba
   tags:
     - cat3
     - V-38656
 
-- name: Check if SNMP daemon is installed (for V-38660)
+- name: Check if SNMP daemon is installed using dpkg (for V-38660)
   shell: "dpkg --status snmpd | grep \"^Status:.*ok installed\""
-  register: v38660_snmpd_installed
+  register: v38660_snmpd_apt
   changed_when: False
   failed_when: False
   always_run: True
+  when: ansible_pkg_mgr == 'apt'
   tags:
     - cat2
     - V-38660
+
+- name: Check if SNMP daemon is installed using rpm (for V-38660)
+  shell: "rpm -qi net-snmp"
+  register: v38660_snmpd_rpm
+  changed_when: False
+  failed_when: False
+  always_run: True
+  when: ansible_pkg_mgr == 'yum'
+  tags:
+    - cat2
+    - V-38660
+
+- name: Set fact for SNMP being installed
+  set_fact:
+    snmpd_installed: True
+  when: |
+    (v38660_snmpd_apt.rc is defined and v38660_snmpd_apt.rc == 0) or
+    (v38660_snmpd_rpm.rc is defined and v38660_snmpd_rpm.rc == 0)
 
 # We shouldn't get any output from this grep since it looks for configuration
 # lines for the SNMP v1 and v2c protocols.
 - name: Check for insecure SNMP protocols (for V-38660)
   shell: "egrep 'v1|v2c|com2sec|community' /etc/snmp/snmpd.conf | grep -v '^\\s*#'"
   register: v38660_result
-  when: v38660_snmpd_installed.rc == 0
   changed_when: False
   failed_when: False
   always_run: True
+  when:
+    - snmpd_installed is defined
+    - snmpd_installed | bool
   tags:
     - cat2
     - V-38660
@@ -193,7 +244,8 @@
     msg: "FAILED: Insecure SNMP configuration found -- use SNMPv3 only"
   when:
     - not check_mode
-    - v38660_snmpd_installed.rc == 0
+    - snmpd_installed is defined
+    - snmpd_installed | bool
     - v38660_result.rc == 0
   tags:
     - cat2
@@ -219,23 +271,46 @@
     - cat3
     - V-38684
 
-- name: Check if vsftpd installed (for V-38599 and V-38702)
+- name: Check if vsftpd installed using dpkg (for V-38599 and V-38702)
   shell: "dpkg --status vsftpd | grep \"^Status:.*ok installed\""
-  register: v38599_result
+  register: v38599_vsftpd_apt
   changed_when: False
   failed_when: False
   always_run: True
+  when: ansible_pkg_mgr == 'apt'
   tags:
     - cat2
     - cat3
     - V-38599
     - V-38702
 
+- name: Check if vsftpd installed using rpm (for V-38599 and V-38702)
+  shell: "rpm -qi vsftpd"
+  register: v38599_vsftpd_rpm
+  changed_when: False
+  failed_when: False
+  always_run: True
+  when: ansible_pkg_mgr == 'yum'
+  tags:
+    - cat2
+    - cat3
+    - V-38599
+    - V-38702
+
+- name: Set fact for vsftpd being installed
+  set_fact:
+    vsftpd_installed: True
+  when: |
+    (v38599_vsftpd_apt.rc is defined and v38599_vsftpd_apt.rc == 0) or
+    (v38599_vsftpd_rpm.rc is defined and v38599_vsftpd_rpm.rc == 0)
+
 - name: Copy login banner (for V-38599)
   copy:
     src: login_banner.txt
     dest: /etc/issue.net
-  when: v38599_result.rc == 0
+  when:
+    - vsftpd_installed is defined
+    - vsftpd_installed | bool
   notify:
     - restart vsftpd
   tags:
@@ -244,10 +319,12 @@
 
 - name: V-38599 - Set warning banner for FTPS/FTP logins
   lineinfile:
-    dest: /etc/vsftpd/vsftpd.conf
+    dest: "{{ vsftpd_conf_file }}"
     regexp: "^(#)?banner_file"
     line: "banner_file=/etc/issue.net"
-  when: v38599_result.rc == 0
+  when:
+    - vsftpd_installed is defined
+    - vsftpd_installed | bool
   notify:
     - restart vsftpd
   tags:
@@ -256,10 +333,12 @@
 
 - name: V-38702 - Enable xferlog
   lineinfile:
-    dest: /etc/vsftpd.conf
+    dest: "{{ vsftpd_conf_file }}"
     regexp: "^(#)?xferlog_enable"
     line: "xferlog_enable=YES"
-  when: v38599_result.rc == 0
+  when:
+    - vsftpd_installed is defined
+    - vsftpd_installed | bool
   notify:
     - restart vsftpd
   tags:
@@ -268,10 +347,12 @@
 
 - name: V-38702 - Disable xferlog_std_format
   lineinfile:
-    dest: /etc/vsftpd.conf
+    dest: "{{ vsftpd_conf_file }}"
     regexp: "^(#)?xferlog_std_format"
     line: "xferlog_std_format=NO"
-  when: v38599_result.rc == 0
+  when:
+    - vsftpd_installed is defined
+    - vsftpd_installed | bool
   notify:
     - restart vsftpd
   tags:
@@ -280,10 +361,12 @@
 
 - name: V-38702 - Enable log_ftp_protocol
   lineinfile:
-    dest: /etc/vsftpd.conf
+    dest: "{{ vsftpd_conf_file }}"
     regexp: "^(#)?log_ftp_protocol"
     line: "log_ftp_protocol=YES"
-  when: v38599_result.rc == 0
+  when:
+    - vsftpd_installed is defined
+    - vsftpd_installed | bool
   notify:
     - restart vsftpd
   tags:
@@ -295,6 +378,7 @@
   register: v38674_result
   changed_when: False
   always_run: True
+  when: not systemd_running | bool
   tags:
     - cat2
     - V-38674
@@ -302,7 +386,29 @@
 - name: V-38674 - X Windows must not be enabled
   fail:
     msg: "FAILED: Default runlevel should be 2 (no X windows)"
-  when: v38674_result.rc != 0
+  when:
+    - not systemd_running | bool
+    - v38674_result.rc != 0
+  tags:
+    - cat2
+    - V-38674
+
+- name: Check if systemd is configured to load the graphical target
+  shell: "systemctl list-units --type=target | grep '^graphical.target.*loaded active active'"
+  register: v38674_result
+  always_run: True
+  failed_when: v38674_result.rc > 1
+  when: systemd_running | bool
+  tags:
+    - cat2
+    - V-38674
+
+- name: V-38674 - X Windows must not be enabled
+  fail:
+    msg: "FAILED: Graphical target must not be enabled in systemd."
+  when:
+    - systemd_running | bool
+    - v38674_result.rc == 0
   tags:
     - cat2
     - V-38674
@@ -312,6 +418,7 @@
   register: v51337_result
   changed_when: False
   always_run: True
+  when: ansible_pkg_mgr == 'apt'
   tags:
     - cat2
     - V-51337
@@ -319,7 +426,30 @@
 - name: V-51337 - The system must use a Linux Security Module at boot time
   fail:
     msg: "FAILED: AppArmor isn't enabled"
-  when: "'apparmor module is loaded' not in v51337_result.stdout"
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - "'apparmor module is loaded' not in v51337_result.stdout"
+  tags:
+    - cat2
+    - V-51337
+
+
+- name: Check if SELinux is enforcing (for V-51337)
+  command: getenforce
+  register: v51337_result
+  changed_when: False
+  always_run: True
+  when: ansible_pkg_mgr == 'yum'
+  tags:
+    - cat2
+    - V-51337
+
+- name: V-51337 - The system must use a Linux Security Module at boot time
+  fail:
+    msg: "FAILED: SELinux is not in enforcing mode."
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - "'Enforcing' not in v51337_result.stdout"
   tags:
     - cat2
     - V-51337

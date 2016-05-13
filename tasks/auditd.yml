@@ -13,27 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#TODO(evrardjp): Replace the next 2 tasks by a standard apt with cache
-#when https://github.com/ansible/ansible-modules-core/pull/1517 is merged
-#in 1.9.x or we move to 2.0 (if tested working)
-- name: Check apt last update file
-  stat:
-    path: /var/cache/apt
-  register: apt_cache_stat
-  tags:
-    - auditd-apt-packages
-
-- name: Update apt if needed
+- name: V-38631/38632 - The operating system must produce audit records (install auditd with apt)
   apt:
-    update_cache: yes
-  when: "ansible_date_time.epoch|float - apt_cache_stat.stat.mtime > {{cache_timeout}}"
-  tags:
-    - auditd-apt-packages
-
-- name: V-38631/38632 - The operating system must produce audit records (install auditd)
-  apt:
-    name: auditd
+    name: "{{ auditd_pkg }}"
     state: present
+  when: ansible_pkg_mgr == 'apt'
+  tags:
+    - auditd
+    - cat2
+    - V-38632
+    - V-38631
+
+- name: V-38631/38632 - The operating system must produce audit records (install auditd with yum)
+  yum:
+    name: "{{ auditd_pkg }}"
+    state: present
+  when: ansible_pkg_mgr == 'yum'
   tags:
     - auditd
     - cat2
@@ -104,6 +99,7 @@
   apt:
     name: debsums
     state: present
+  when: ansible_pkg_mgr == 'apt'
   tags:
     - auditd
     - cat2
@@ -117,6 +113,7 @@
   register: v38637_result
   changed_when: False
   failed_when: "'not installed' in v38637_result.stdout"
+  when: ansible_pkg_mgr == 'apt'
   tags:
     - auditd
     - cat2
@@ -125,7 +122,31 @@
 - name: V-38637 - Contents of auditd package must be verified
   fail:
     msg: "FAILED: Could not verify that files from auditd package are unaltered"
-  when: not check_mode and v38637_result.rc == 2
+  when:
+    - not check_mode
+    - ansible_pkg_mgr == 'apt'
+    - v38637_result.rc == 2
+  tags:
+    - auditd
+    - cat2
+    - V-38637
+
+- name: Check audit package contents for alterations with rpm (for V-38637)
+  shell: rpmverify audit audit-libs | grep -v audit.conf | wc -l
+  register: v38637_result
+  when: ansible_pkg_mgr == 'yum'
+  tags:
+    - auditd
+    - cat2
+    - V-38637
+
+- name: V-38637 - Contents of auditd package must be verified
+  fail:
+    msg: "FAILED: Could not verify that files from auditd package are unaltered"
+  when:
+    - not check_mode
+    - ansible_pkg_mgr == 'yum'
+    - v38637_result.stdout != "0"
   tags:
     - auditd
     - cat2

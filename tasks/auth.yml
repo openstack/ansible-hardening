@@ -104,7 +104,7 @@
 # /etc/pam.d/common-auth
 - name: V-38497 - The system must not have accounts configured with blank or null passwords.
   lineinfile:
-    dest: /etc/pam.d/common-auth
+    dest: "{{ pam_auth_file }}"
     state: present
     regexp: "^(.*)nullok_secure(.*)$"
     line: '\1\2'
@@ -191,21 +191,49 @@
     - cat2
     - V-38501
 
-- name: V-38591 - Remove rshd
+- name: V-38591 - Remove rshd with apt
   apt:
     name: rsh-server
     state: absent
-  when: security_remove_rsh_server | bool
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_rsh_server | bool
   tags:
     - auth
     - cat1
     - V-38591
 
-- name: V-38587 - Remove telnet-server
-  apt:
-    name: telnetd
+- name: V-38591 - Remove rshd with yum
+  yum:
+    name: rsh-server
     state: absent
-  when: security_remove_telnet_server | bool
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_rsh_server | bool
+  tags:
+    - auth
+    - cat1
+    - V-38591
+
+- name: V-38587 - Remove telnet-server with apt
+  apt:
+    name: "{{ telnet_server_pkg }}"
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_telnet_server | bool
+  tags:
+    - auth
+    - cat1
+    - V-38587
+
+- name: V-38587 - Remove telnet-server with yum
+  yum:
+    name: "{{ telnet_server_pkg }}"
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_telnet_server | bool
   tags:
     - auth
     - cat1
@@ -261,7 +289,7 @@
 # SHA512 is the minimum requirement and it happens to be Ubuntu 14.04's default
 # hashing algorithm as well.
 - name: Check password hashing algorithm used by PAM (for V-38574)
-  shell: "grep '^\\s*password.*pam_unix.*sha512' /etc/pam.d/common-password"
+  shell: "grep '^\\s*password.*pam_unix.*sha512' {{ pam_password_file }}"
   register: v38574_result
   changed_when: False
   failed_when: False

@@ -14,7 +14,13 @@
 # TODO(odyssey4me) remove this once https://review.openstack.org/288634 has merged
 # and the disk images are rebuilt and redeployed.
 curl
+wget
 
 # Requirements for Paramiko 2.0
-libssl-dev
-libffi-dev
+libssl-dev        [platform:dpkg]
+libffi-dev        [platform:dpkg]
+libffi-devel      [platform:rpm]
+openssl-devel     [platform:rpm]
+
+# For selinux
+libselinux-python [platform:rpm]

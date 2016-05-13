@@ -8,5 +8,3 @@ by adjusting the following Ansible variable:
 .. code-block:: yaml
 
     security_max_log_file: 6
-
-

@@ -29,6 +29,7 @@
   shell: grep all_squash /etc/exports
   register: v38460_result
   changed_when: v38460_result.rc == 0
+  failed_when: False
   when: exports.stat.exists
   tags:
     - nfs
@@ -49,6 +50,7 @@
   shell: grep insecure_locks /etc/exports
   register: v38677_result
   changed_when: v38677_result.rc == 0
+  failed_when: False
   when: exports.stat.exists
   tags:
     - nfs

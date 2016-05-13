@@ -6,9 +6,13 @@ galaxy_info:
   license: Apache
   min_ansible_version: 1.8.3
   platforms:
+  - name: EL
+    versions:
+    - 7
   - name: Ubuntu
     versions:
     - trusty
+    - xenial
   categories:
   - cloud
   - security

@@ -19,6 +19,15 @@
     regexp: '^(#)?exec shutdown -r now "Control-Alt-Delete pressed"'
     line: '#exec shutdown -r now "Control-Alt-Delete pressed"'
     state: present
+  when: not systemd_running | bool
+  tags:
+    - console
+    - cat1
+    - V-38668
+
+- name: V-38668 - The x86 Ctrl-Alt-Delete key sequence must be disabled
+  command: systemctl mask ctrl-alt-del.target
+  when: systemd_running | bool
   tags:
     - console
     - cat1

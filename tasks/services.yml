@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Generate list of sysv_services
+- name: Generate list of services_installed
   shell: "find /etc/init.d/ -printf '%f\n'"
-  register: sysv_services
+  register: sysv_services_installed
   changed_when: false
   always_run: True
   tags:
@@ -24,12 +24,29 @@
     - cat2
     - cat3
 
+- name: Generate a list of systemd service unit files
+  shell: "systemctl list-units --type=service --no-legend | awk '{print $1}'"
+  register: systemd_services_installed
+  changed_when: false
+  always_run: True
+  tags:
+    - services
+    - cat1
+    - cat2
+    - cat3
+
+- name: Register which services are installed depending on platform
+  set_fact:
+    services_installed: "{{ (systemd_running | bool) | ternary (systemd_services_installed, sysv_services_installed)}}"
+
 - name: V-38437 - Automated file system mounting tools must be disabled
   service:
     name: autofs
     state: stopped
     enabled: no
-  when: security_disable_autofs | bool and 'autofs' in sysv_services.stdout
+  when:
+    - security_disable_autofs | bool
+    - "'autofs' in services_installed.stdout"
   tags:
     - services
     - cat3
@@ -40,7 +57,9 @@
     name: abrtd
     state: stopped
     enabled: no
-  when: security_disable_abrtd | bool and 'abrtd' in sysv_services.stdout
+  when:
+    - security_disable_abrtd | bool
+    - "'abrtd' in services_installed.stdout"
   tags:
     - services
     - cat3
@@ -51,7 +70,9 @@
     name: atd
     state: stopped
     enabled: no
-  when: security_disable_atd | bool and 'atd' in sysv_services.stdout
+  when:
+    - security_disable_atd | bool
+    - "'atd' in services_installed.stdout"
   tags:
     - services
     - cat3
@@ -62,7 +83,9 @@
     name: qpidd
     state: stopped
     enabled: no
-  when: security_disable_qpidd | bool and 'qpidd' in sysv_services.stdout
+  when:
+    - security_disable_qpidd | bool
+    - "'qpidd' in services_installed.stdout"
   tags:
     - services
     - cat3
@@ -73,7 +96,9 @@
     name: bluetooth
     state: stopped
     enabled: no
-  when: security_disable_bluetooth | bool and 'bluetooth' in sysv_services.stdout
+  when:
+    - security_disable_bluetooth | bool
+    - "'bluetooth' in services_installed.stdout"
   tags:
     - services
     - cat2
@@ -84,28 +109,58 @@
     name: xinetd
     state: stopped
     enabled: no
-  when: security_disable_xinetd | bool and 'xinetd' in sysv_services.stdout
+  when:
+    - security_disable_xinetd | bool
+    - "'xinetd' in services_installed.stdout"
   tags:
     - services
     - cat2
     - V-38582
 
-- name: V-38584 - xinetd must be uninstalled if not in use
+- name: V-38584 - xinetd must be uninstalled if not in use (apt)
   apt:
     name: xinetd
     state: absent
-  when: security_remove_xinetd | bool
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_xinetd | bool
+  tags:
+    - services
+    - cat3
+    - V-38584
+
+- name: V-38584 - xinetd must be uninstalled if not in use (yum)
+  yum:
+    name: xinetd
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_xinetd | bool
   tags:
     - services
     - cat3
     - V-38584
 
 # Ubuntu's equivalent of Red Hat's ypserv package is 'nis'
-- name: V-38603 - Remove ypserv (nis) package
+- name: V-38603 - Remove ypserv package with apt
   apt:
-    name: nis
+    name: "{{ ypserv_pkg }}"
     state: absent
-  when: security_remove_ypserv | bool
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_ypserv | bool
+  tags:
+    - services
+    - cat2
+    - V-38603
+
+- name: V-38603 - Remove ypserv package with yum
+  yum:
+    name: "{{ ypserv_pkg }}"
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_ypserv | bool
   tags:
     - services
     - cat2
@@ -113,7 +168,7 @@
 
 - name: V-38605 - The cron service must be running
   service:
-    name: cron
+    name: "{{ cron_service }}"
     state: started
     enabled: yes
   tags:
@@ -121,11 +176,25 @@
     - cat2
     - V-38605
 
-- name: V-38606 - The tftp-server package must not be installed unless required
+- name: V-38606 - The tftp-server package must not be installed unless required (apt)
   apt:
-    name: tftpd
+    name: "{{ tftp_pkg }}"
     state: absent
-  when: security_remove_tftp_server | bool
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_tftp_server | bool
+  tags:
+    - services
+    - cat2
+    - V-38606
+
+- name: V-38606 - The tftp-server package must not be installed unless required (yum)
+  yum:
+    name: "{{ tftp_pkg }}"
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_tftp_server | bool
   tags:
     - services
     - cat2
@@ -136,37 +205,81 @@
     name: avahi-daemon
     state: stopped
     enabled: no
-  when: security_disable_avahi | bool and 'avahi' in sysv_services.stdout
+  when:
+    - security_disable_avahi | bool
+    - "'avahi' in services_installed.stdout"
   tags:
     - services
     - cat3
     - V-38618
 
-- name: V-38627 - Remove LDAP servers unless required
+- name: V-38627 - Remove LDAP servers unless required (apt)
   apt:
-    name: slapd
+    name: "{{ ldap_server_pkg }}"
     state: absent
-  when: security_remove_ldap_server | bool
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_ldap_server | bool
   tags:
     - services
     - cat3
     - V-38627
 
-- name: V-38671 - Remove sendmail
+- name: V-38627 - Remove LDAP servers unless required (yum)
+  yum:
+    name: "{{ ldap_server_pkg }}"
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_ldap_server | bool
+  tags:
+    - services
+    - cat3
+    - V-38627
+
+- name: V-38671 - Remove sendmail with apt
   apt:
     name: sendmail
     state: absent
-  when: security_remove_sendmail | bool
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_sendmail | bool
   tags:
     - services
     - cat2
     - V-38671
 
-- name: V-38676 - The X windows package must not be installed
-  apt:
-    name: xserver-xorg
+- name: V-38671 - Remove sendmail with yum
+  yum:
+    name: sendmail
     state: absent
-  when: security_remove_xorg | bool
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_sendmail | bool
+  tags:
+    - services
+    - cat2
+    - V-38671
+
+- name: V-38676 - The X windows package must not be installed (apt)
+  apt:
+    name: "{{ xserver_pkg }}"
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'apt'
+    - security_remove_xorg | bool
+  tags:
+    - services
+    - cat3
+    - V-38676
+
+- name: V-38676 - The X windows package must not be installed (yum)
+  yum:
+    name: "{{ xserver_pkg }}"
+    state: absent
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_remove_xorg | bool
   tags:
     - services
     - cat3

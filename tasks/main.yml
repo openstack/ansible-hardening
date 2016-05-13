@@ -13,15 +13,42 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-  - name: Verify if we're using check mode
+  - name: Gather variables for each operating system
+    include_vars: "{{ item }}"
+    with_first_found:
+      - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+      - "{{ ansible_distribution | lower }}.yml"
+      - "{{ ansible_os_family | lower }}.yml"
+    tags:
+      - always
+
+  - name: Check if we're in check/audit mode
     command: /bin/true
     register: noop_result
 
-  - name: Set a fact if we're in check mode
+  - name: Check to see if systemd is in use
+    command: systemctl status
+    register: systemd_check
+    failed_when: False
+    always_run: True
+
+  - name: Set facts
     set_fact:
-      check_mode: "{{ noop_result|skipped }}"
+      check_mode: "{{ noop_result | skipped }}"
+      systemd_running: "{{ systemd_check | success }}"
 
   - include: apt.yml
+    when: ansible_pkg_mgr == 'apt'
+    tag:
+      - apt
+      - package
+
+  - include: rpm.yml
+    when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
+    tag:
+      - package
+      - rpm
+
   - include: auditd.yml
   - include: auth.yml
   - include: boot.yml

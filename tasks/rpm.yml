@@ -1,0 +1,76 @@
+---
+# Copyright 2015, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Check if CentOS 7 GPG keys are installed (for V-38476)
+  command: rpm -qi gpg-pubkey-f4a80eb5-53a7ff4b
+  register: v38476_result
+  changed_when: "v38476_result.rc != 0"
+  failed_when: False
+  always_run: True
+  tags:
+    - package
+    - cat1
+    - V-38476
+
+- name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
+  fail:
+    msg: "FAILED: Missing CentOS 7 GPG keys"
+  when: "v38476_result.rc != 0"
+  tags:
+    - package
+    - cat1
+    - V-38476
+
+- name: Search for yum repositories with GPG checks disabled
+  command: grep -r "gpgcheck=0" /etc/yum.repos.d/
+  register: v38462_result
+  changed_when: False
+  failed_when: False
+  always_run: True
+  tags:
+    - package
+    - cat1
+    - V-38462
+
+- name: V-38462 - Package management tool must verify authenticity of packages
+  fail:
+    msg: "FAILED: Ensure all repo files in /etc/yum.repos.d/ have 'gpgcheck=1' set."
+  when: "v38462_result.rc == 0"
+  tags:
+    - package
+    - cat1
+    - V-38462
+
+- name: V-38481 - Install yum-cron for automatic updates
+  yum:
+    name: yum-cron
+    state: installed
+  when: security_unattended_upgrades_enabled | bool
+  tags:
+    - package
+    - cat2
+    - V-38481
+
+- name: V-38481 - System security patches and updates must be installed and up-to-date
+  lineinfile:
+    dest: /etc/yum/yum-cron.conf
+    regexp: "^apply_updates"
+    line: "apply_updates = yes"
+    state: present
+  when: security_unattended_upgrades_enabled | bool
+  tags:
+    - package
+    - cat2
+    - V-38481

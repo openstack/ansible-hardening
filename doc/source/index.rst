@@ -13,10 +13,6 @@ environments deployed with `openstack-ansible`_.  The role has multiple goals:
 
 At this time, the role follows the requirements of the US Government's
 `Security Technical Implementation Guide (STIG)`_ for Red Hat Enterprise Linux 6.
-Since openstack-ansible only supports Ubuntu 14.04 (as of late 2015), many of
-the configuration changes in the STIG will be adapted to fit an Ubuntu 14.04
-system.  Those adaptations are noted within the playbook tasks themselves and
-also within this documentation.
 
 The easiest method for reviewing the STIG configurations and the relevant
 metadata is through the `STIG Viewer`_ service provided by `UCF`_.
@@ -28,8 +24,12 @@ metadata is through the `STIG Viewer`_ service provided by `UCF`_.
 .. _STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/
 .. _UCF: http://www.unifiedcompliance.com/
 
-Table of Contents
-=================
+Newton: Development
+===================
+
+The openstack-ansible-security role is currently under development for the
+Newton release. The Newton release will add support Ubuntu 16.04 and CentOS 7
+in addition to the existing support for Ubuntu 14.04.
 
 .. toctree::
    :maxdepth: 2
@@ -39,3 +39,27 @@ Table of Contents
    getting-started.rst
    writing-docs.rst
    controls.rst
+
+Mitaka: Stable release
+===================================================
+
+The Mitaka release of the openstack-ansible-security role was first released
+with the 13.0.0 tag on April 1st, 2016.  Refer to the `release notes
+<http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html>`_
+for more details on the improvements and fixes.
+
+* `openstack-ansible-security Mitaka Documentation`_
+
+.. _openstack-ansible-security Mitaka Documentation: http://docs.openstack.org/developer/openstack-ansible-security/mitaka/
+
+Liberty: Previous stable release (EOL: 2016-11-17)
+==================================================
+
+Refer to the `release notes
+<http://docs.openstack.org/releasenotes/openstack-ansible-security/liberty.html>`_
+for more details on the improvements and fixes.
+
+* `openstack-ansible-security Liberty Documentation`_
+
+.. _openstack-ansible-security Liberty Documentation: http://docs.openstack.org/developer/openstack-ansible-security/liberty/
+

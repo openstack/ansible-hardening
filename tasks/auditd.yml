@@ -266,7 +266,7 @@
   file:
     dest: "/var/log/audit/{{ item }}"
     mode: 0400
-  with_items: v38498_result.stdout_lines
+  with_items: "{{ v38498_result.stdout_lines }}"
   when: v_38498_result is defined
   tags:
     - auditd

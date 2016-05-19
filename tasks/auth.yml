@@ -321,10 +321,9 @@
 
 # If SHA512 isn't in use for some reason, we should fail and display an error.
 - name: V-38576 - System must use FIPS 140-2 approved hashing algorithm for passwords (login.defs)
-  debug:
+  fail:
     msg: "FAILED: Must use SHA512 for password hashing (in /etc/login.defs)"
   when: v38576_result.rc != 0
-  failed_when: v38576_result.rc != 0
   tags:
     - auth
     - cat2
@@ -358,10 +357,9 @@
 # If libuser is installed *AND* it's using unacceptable password hashing
 # algorithms, throw an error and a failure.
 - name: V-38577 - System must use FIPS 140-2 approved hashing algorithm for passwords (libuser)
-  debug:
+  fail:
     msg: "FAILED: libuser isn't configured to use SHA512 hashing for passwords"
   when: v38577_libuser_check.rc == 0 and v38577_result.rc != 0
-  failed_when: v38577_libuser_check.rc == 0 and v38577_result.rc != 0
   tags:
     - auth
     - cat2

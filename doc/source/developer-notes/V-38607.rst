@@ -1,1 +1,2 @@
-The tasks in sshd.yml will ensure that SSH does uses protocol version 2.
+The tasks in ``sshd.yml`` will ensure that SSH requires all connections to use
+protocol version 2.

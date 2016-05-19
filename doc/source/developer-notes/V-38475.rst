@@ -1,8 +1,7 @@
 **Configuration required**
 
-Ubuntu 14.04 does not set a password length requirement by default. The STIG
-recommends passwords to be a minimum of 14 characters in length. To apply this
-setting, set the following Ansible variable:
+The STIG recommends passwords to be a minimum of 14 characters in length. To
+apply this setting, set the following Ansible variable:
 
 .. code-block:: yaml
 

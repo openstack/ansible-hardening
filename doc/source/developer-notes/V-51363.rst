@@ -1,4 +1,7 @@
-The openstack-ansible project configures AppArmor to limit the actions of
-containers and reduce the changes (and potential damages) of a container
-breakout.  The RHEL 6 STIG mentions SELinux but the existing SELinux policies
-provided with Ubuntu aren't as well maintained as those provided with RHEL.
+For Ubuntu, the standard AppArmor policies provided by the AppArmor package are
+loaded. The OpenStack-Ansible project also configures AppArmor to limit the
+actions of containers and reduce the changes (and potential damages) of a
+container breakout.
+
+On CentOS 7, the ``selinux-policy-targeted`` package provides SELinux policies
+that enforce limits on system services and users.

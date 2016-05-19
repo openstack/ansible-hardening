@@ -1,7 +1,4 @@
-Although neither Ubuntu nor openstack-ansible install or configure sendmail
-by default, the Ansible task will remove the sendmail package if it exists on
-the system.
-
+The security role will remove the sendmail package if it exists on the system.
 To opt-out of this change, adjust the following Ansible variable to ``no``:
 
 .. code-block:: yaml

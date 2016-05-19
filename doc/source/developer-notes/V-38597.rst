@@ -1,6 +1,5 @@
-Although Red Hat kernels provide ExecShield, Ubuntu provides Non-Executable
-Memory (NX) support and it is enabled by default.  There's not an option
-to enable or disable it.
+Non-Executable Memory (NX) is the successor to ExecShield, and it is enabled by
+default on Ubuntu 14.04, Ubuntu 16.04, and CentOS 7.
 
 For more information, refer to `Ubuntu's security feature documentation on
 NX`_.

@@ -1,6 +1,7 @@
 The Datagram Congestion Control Protocol (DCCP) must be disabled if it's not
-needed. Neither Ubuntu 14.04 or openstack-ansible utilizes this kernel
-module and the Ansible tasks will disable it by default.
+needed. Although this protocol is occasionally used in some OpenStack
+environments for quality of service functions, it is not in the default
+implementation.
 
 To opt-out of this change, simply change the following variable to ``no``:
 

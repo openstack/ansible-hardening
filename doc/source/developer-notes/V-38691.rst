@@ -1,6 +1,5 @@
-Although neither Ubuntu 14.04 or openstack-ansible installs the ``bluetooth``
-package, the Ansible tasks will disable the service and stop it if it's found
-to be running on the system.
+The Ansible tasks will disable the ``bluetooth`` service and stop it if it is
+running on the system.
 
 To opt-out of this change, adjust the following Ansible variable to ``no``:
 

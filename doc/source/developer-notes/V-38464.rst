@@ -1,10 +1,14 @@
-Ubuntu's default for ``security_disk_error_action`` is ``SUSPEND``, which
-actually only suspends audit logging. That could be a security issue, so
-``SYSLOG`` is recommended and is set by default by openstack-ansible-security.
-There are additional options available, like ``EXEC``, ``SINGLE`` or ``HALT``.
+The default configuration for ``disk_error_action`` is ``SUSPEND``, which
+only suspends audit logging when there is a disk error on the system.
+Suspending audit logging can lead to security problems because the system is no
+longer keeping track of which syscalls were made.
 
-To configure a different ``security_disk_error_action``, set the following
-Ansible variable:
+The security role sets the configuration to ``SYSLOG`` so that messages are
+sent to syslog when disk errors occur. There are additional options available,
+like ``EXEC``, ``SINGLE`` or ``HALT``.
+
+To configure a different ``disk_error_action``, set the following Ansible
+variable:
 
 .. code-block:: yaml
 

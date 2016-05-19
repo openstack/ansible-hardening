@@ -1,7 +1,5 @@
-The Stream Control Transmission Protocol (SCTP) must be disabled. This module
-isn't used by Ubuntu 14.04 or openstack-ansible by default.
-
-To opt-out of this change, set the following variable to ``no``:
+The Stream Control Transmission Protocol (SCTP) must be disabled. To opt-out of
+this change, set the following variable to ``no``:
 
 .. code-block:: yaml
 

@@ -1,10 +1,14 @@
 Ubuntu loads the AppArmor module by default starting with version 8.04. For
 more information, review the `AppArmor documentation`_ on Ubuntu's site.
-In addition, the openstack-ansible project configures AppArmor policies
+In addition, the OpenStack-Ansible project configures AppArmor policies
 for the LXC containers which run the OpenStack infrastructure.
 
 The tasks for this STIG will verify that AppArmor is enabled via the
 ``apparmor_status``. The playbook will fail if AppArmor is found to be
 disabled on the host.
+
+On CentOS 7, the security role will verify that SELinux is in *Enforcing* mode.
+If SELinux is in *Disabled* or *Permissive* mode, the playbook will fail with
+an error message.
 
 .. _AppArmor documentation: https://help.ubuntu.com/community/AppArmor

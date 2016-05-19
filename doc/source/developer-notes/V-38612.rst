@@ -1,1 +1,2 @@
-The tasks in sshd.yml will ensure that SSH does not allow host based authentication.
+The Ansible tasks in the security role ensure that the ssh daemon does not
+allow host based authentication.

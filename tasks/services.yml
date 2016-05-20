@@ -261,6 +261,19 @@
     - cat2
     - V-38671
 
+- name: V-38672 - netconsole must be disabled
+  service:
+    name: netconsole
+    state: stopped
+    enabled: no
+  when:
+    - security_disable_netconsole | bool
+    - "'netconsole' in services_installed.stdout"
+  tags:
+    - services
+    - cat3
+    - V-38672
+
 - name: V-38676 - The X windows package must not be installed (apt)
   apt:
     name: "{{ xserver_pkg }}"

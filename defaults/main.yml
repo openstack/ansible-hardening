@@ -156,6 +156,7 @@ security_disable_atd: yes                         # V-38640
 security_disable_autofs: yes                      # V-38437
 security_disable_avahi: yes                       # V-31618
 security_disable_bluetooth: yes                   # V-38691
+security_disable_netconsole: yes                  # v-38672
 security_disable_qpidd: yes                       # V-38648
 security_disable_rsh: yes                         # V-38594
 security_disable_ypbind: yes                      # V-38604

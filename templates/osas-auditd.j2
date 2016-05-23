@@ -52,6 +52,7 @@
 # RHEL 6 STIG V-38541
 # Audits changes to AppArmor policies
 -w /etc/apparmor/ -p wa -k MAC-policy
+-w /etc/apparmor.d/ -p wa -k MAC-policy
 {% endif %}
 
 {% if linux_security_module == 'selinux' and security_audit_mac_changes | bool %}

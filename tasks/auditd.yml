@@ -255,6 +255,7 @@
   shell: ls /var/log/audit/
   register: v38498_result
   changed_when: false
+  when: auditd_log_dir.stat.exists | bool
   tags:
     - auditd
     - cat2
@@ -266,8 +267,8 @@
   file:
     dest: "/var/log/audit/{{ item }}"
     mode: 0400
-  with_items: "{{ v38498_result.stdout_lines }}"
-  when: v_38498_result is defined
+  with_items: "{{ v38498_result.stdout_lines | default([]) }}"
+  when: auditd_log_dir.stat.exists | bool
   tags:
     - auditd
     - cat2

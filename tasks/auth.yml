@@ -70,7 +70,7 @@
   shell: "awk -F: '$1 ~ /^{{ item }}$/ && $2 !~ /^[!*]/ {print $1}' /etc/shadow"
   register: v38496_unlocked_system_users
   always_run: True
-  with_items: "{{ v38496_system_users.stdout_lines }}"
+  with_items: "{{ v38496_system_users.stdout_lines | default([])}}"
   tags:
     - auth
     - cat2
@@ -429,7 +429,7 @@
 # multiple lines.
 - name: Comment out sudoers lines with NOPASSWD present (for V-58901)
   shell: "sed -e '/NOPASSWD/ s/^#*/#/' -i {{ item }}"
-  with_items: "{{ v58901_result.stdout_lines }}"
+  with_items: "{{ v58901_result.stdout_lines | default([]) }}"
   when: security_sudoers_remove_nopasswd | bool
   tags:
     - auth
@@ -440,7 +440,7 @@
 # multiple lines.
 - name: Comment out sudoers lines with !authenticate present (for V-58901)
   shell: "sed -e '/!authenticate/ s/^#*/#/' -i {{ item }}"
-  with_items: "{{ v58901_result.stdout_lines }}"
+  with_items: "{{ v58901_result.stdout_lines | default([]) }}"
   when: security_sudoers_remove_authenticate | bool
   tags:
     - auth

@@ -261,12 +261,12 @@
     - cat2
     - V-38498
 
-# Ubuntu 14.04 sets these to 0400 by default, so we will stick with that since
-# it exceeds the STIG's requirements.
+# On most systems, the active log file is 0600 and the older logs are 0400.
+# This task ensures that all logs meet or exceed the STIG requirement.
 - name: V-38498 - Audit log files must have mode 0640 or less
   file:
     dest: "/var/log/audit/{{ item }}"
-    mode: 0400
+    mode: "u-x,g-wx,o-rwx"
   with_items: "{{ v38498_result.stdout_lines | default([]) }}"
   when: auditd_log_dir.stat.exists | bool
   tags:

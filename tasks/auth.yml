@@ -100,9 +100,7 @@
     - cat2
     - V-38496
 
-# RHEL 6 keeps this content in /etc/pam.d/system-auth, but Ubuntu keeps it in
-# /etc/pam.d/common-auth
-- name: V-38497 - The system must not have accounts configured with blank or null passwords.
+- name: V-38497 - The system must not have accounts configured with blank or null passwords. (Ubuntu)
   lineinfile:
     dest: "{{ pam_auth_file }}"
     state: present
@@ -110,7 +108,25 @@
     line: '\1\2'
     backup: yes
     backrefs: yes
-  when: security_pam_remove_nullok | bool
+  when:
+    - ansible_os_family == 'Debian'
+    - security_pam_remove_nullok | bool
+  tags:
+    - auth
+    - cat1
+    - V-38497
+
+- name: V-38497 - The system must not have accounts configured with blank or null passwords. (CentOS)
+  lineinfile:
+    dest: "{{ pam_auth_file }}"
+    state: present
+    regexp: "^(auth.*sufficient.*)nullok(.*)$"
+    line: '\1\2'
+    backup: yes
+    backrefs: yes
+  when:
+    - ansible_os_family == 'RedHat'
+    - security_pam_remove_nullok | bool
   tags:
     - auth
     - cat1

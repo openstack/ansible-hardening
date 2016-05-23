@@ -1,12 +1,17 @@
-Ubuntu 14.04 allows accounts with null passwords to authenticate via PAM by
-default. This STIG requires that those login attempts are blocked.
+Ubuntu 14.04, Ubuntu 16.04, and CentOS 7 allow accounts with null passwords to
+authenticate via PAM by default. This STIG requires that those login attempts
+are blocked.
 
-In Ubuntu, this functionality is controlled by the ``nullok_secure`` parameter
-found in ``/etc/pam.d/common-auth``.  The Ansible task for this STIG will
-remove the ``nullok_secure`` from the PAM configuration file.  The effects of
-the change are immediate and no service restarts are required.
+For Ubuntu, the ``nullok_secure`` option will be removed from ``/etc/pam.d
+/common-auth``.
 
-However, deployers can opt-out of this change by adjusting an Ansible variable:
+For CentOS, the ``nullok`` option will be removed from ``/etc/pam.d/system-
+auth``.
+
+The effects of the change are **immediate** and no service restarts are
+required.
+
+Deployers can opt-out of this change by adjusting an Ansible variable:
 
 .. code-block:: yaml
 

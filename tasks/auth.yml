@@ -70,20 +70,17 @@
   shell: "awk -F: '$1 ~ /^{{ item }}$/ && $2 !~ /^[!*]/ {print $1}' /etc/shadow"
   register: v38496_unlocked_system_users
   always_run: True
-  with_items: "{{ v38496_system_users.stdout_lines | default([])}}"
+  with_items: "{{ v38496_system_users.stdout_lines | default([]) }}"
   tags:
     - auth
     - cat2
     - V-38496
 
+# We need to loop through our list of accounts and get the ones that were
+# returned by the awk command in the previous task.
 - name: V-38496 - Gather problematic system accounts
   set_fact:
-    v38496_violations: |
-      {% for i in v38496_unlocked_system_users.results %}
-      {% if i.stdout|length > 0 %}
-      {{ i.stdout }}
-      {% endif %}
-      {% endfor %}
+    v38496_violations: "{{ v38496_unlocked_system_users.results | map(attribute='stdout') | reject('equalto', '') | join(', ') }}"
   tags:
     - auth
     - cat2
@@ -93,8 +90,8 @@
 # not locked.
 - name: V-38496 - Default operating system accounts (other than root) must be locked
   fail:
-    msg: "System accounts are unlocked: {{ v38496_violations|trim|replace('\n',', ') }}"
-  when: v38496_violations|length > 0
+    msg: "FAILED: System accounts are unlocked: {{ v38496_violations }}"
+  when: v38496_violations | length > 0
   tags:
     - auth
     - cat2

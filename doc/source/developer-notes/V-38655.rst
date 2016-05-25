@@ -1,8 +1,7 @@
 **Exception**
 
-Neither Ubuntu nor openstack-ansible will configure any removable media mounts
-by default. Deploys are strongly urged to mount any additional disks with the
-``noexec`` mount option set.
+Deployers are strongly urged to mount any additional disks with the ``noexec``
+mount option set whenever possible.
 
 For more information about the ``noexec`` mount option, review this `good
 answer from a ServerFault user about noexec`_.

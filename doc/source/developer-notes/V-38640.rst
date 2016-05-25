@@ -1,1 +1,7 @@
-services.yml reads a list of services and their desired state from the 'defaults/main.yml' cat3_services variable. With this list the tasks will ensure the services are in the state desired by their corresponding STIG requirement.
+The Ansible tasks in the security role will disable the abrtd service and stop
+the service immediately. To opt-out of this change, set the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    security_disable_abrtd: no

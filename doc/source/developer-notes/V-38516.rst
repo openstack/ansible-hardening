@@ -1,5 +1,4 @@
-The `Reliable Datagram Sockets (RDS)`_ protocol must be disabled. Neither Ubuntu
-14.04 or openstack-ansible enables this module by default, so the Ansible
+The `Reliable Datagram Sockets (RDS)`_ protocol must be disabled. The Ansible
 tasks in this role will disable the module.
 
 .. _Reliable Datagram Sockets (RDS): https://en.wikipedia.org/wiki/Reliable_Datagram_Sockets

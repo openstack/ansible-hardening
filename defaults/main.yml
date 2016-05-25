@@ -53,7 +53,6 @@ security_initialize_aide: false
 # automatically with augenrules.
 #
 security_audit_account_modification: yes          # V-38531, V-38534, V-38538
-security_audit_apparmor_changes: yes              # V-38541
 security_audit_change_localtime: yes              # V-38530
 security_audit_change_system_time: yes            # V-38635
 security_audit_clock_settime: yes                 # V-38527
@@ -75,6 +74,7 @@ security_audit_deletions: no                      # V-38575
 security_audit_failed_access: no                  # V-38566
 security_audit_filesystem_mounts: yes             # V-38568
 security_audit_kernel_modules: yes                # V-38580
+security_audit_mac_changes: yes                   # V-38541
 security_audit_network_changes: yes               # V-38540
 security_audit_sudoers: yes                       # V-38578
 #

@@ -1,4 +1,8 @@
-**Special case**
-
 Ubuntu doesn't provide packages containing the ``rdisc`` service at this time.
-Therefore, no action is taken for this STIG.
+
+In CentOS, the ``rdisc`` service will be stopped and disabled if it is present
+on the system. To opt-out of this change, set the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_disable_rdisc: no

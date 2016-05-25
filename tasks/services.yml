@@ -237,6 +237,19 @@
     - cat3
     - V-38627
 
+- name: V-38650 - rdisc must be disabled
+  service:
+    name: rdisc
+    state: stopped
+    enabled: no
+  when:
+    - security_disable_rdisc | bool
+    - "'rdisc' in services_installed.stdout"
+  tags:
+    - services
+    - cat3
+    - V-38650
+
 - name: V-38671 - Remove sendmail with apt
   apt:
     name: sendmail

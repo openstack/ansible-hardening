@@ -55,6 +55,7 @@
   - include: console.yml
   - include: file_perms.yml
   - include: kernel.yml
+  - include: lsm.yml
   - include: mail.yml
   - include: misc.yml
   - include: nfsd.yml

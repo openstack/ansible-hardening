@@ -143,6 +143,16 @@ deployers can adjust this by changing ``security_disable_ipv6`` to ``yes``.
 
 Core dumps are also disabled by default in the openstack-ansible-security role.
 
+Linux Security Module (LSM)
+---------------------------
+
+The STIG requires that SELinux is in enforcing mode to provide additional
+security against attacks. The security role will enable SELinux on CentOS
+systems and enable AppArmor on Ubuntu systems.
+
+For more information on how these changes are applied, refer to the
+documentation for V-51337.
+
 Mail
 ----
 

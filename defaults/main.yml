@@ -232,6 +232,17 @@ security_postfix_inet_interfaces: localhost       # V-38622
 #
 #security_root_forward_email: user@example.com
 
+## Linux Security Module (LSM)
+# AppArmor and SELinux provide powerful security controls on a Linux system
+# by setting policies for allowed actions. By setting the following variable
+# to true, the appropriate LSM will be enabled for the Linux distribution:
+#
+#    Ubuntu: AppArmor
+#    CentOS: SELinux
+#
+# See the openstack-ansible-security documentation for more details.
+security_enable_linux_security_module: yes        # V-51337
+
 ## PAM and authentication
 # V-38497 requires that accounts with null passwords aren't allowed to
 # authenticate via PAM. Ubuntu 14.04's default allows these logins -- see the

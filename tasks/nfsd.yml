@@ -38,7 +38,7 @@
 
 - name: V-38460 - The NFS server must not have the all_squash option enabled
   fail:
-    msg: "FAILED: Remove all_squash from /etc/exports"
+    msg: "Remove all_squash from /etc/exports"
   changed_when: v38460_result.rc == 0
   when: exports.stat.exists and v38460_result.rc == 0
   tags:
@@ -59,7 +59,7 @@
 
 - name: V-38677 - The NFS server must not have the insecure_locks option enabled
   fail:
-    msg: "FAILED: Remove insecure_locks from /etc/exports"
+    msg: "Remove insecure_locks from /etc/exports"
   changed_when: v38677_result.rc == 0
   when: exports.stat.exists and v38677_result.rc == 0
   tags:

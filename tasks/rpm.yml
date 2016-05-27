@@ -26,7 +26,7 @@
 
 - name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
   fail:
-    msg: "FAILED: Missing CentOS 7 GPG keys"
+    msg: "Missing CentOS 7 GPG keys"
   when: "v38476_result.rc != 0"
   tags:
     - package
@@ -46,7 +46,7 @@
 
 - name: V-38462 - Package management tool must verify authenticity of packages
   fail:
-    msg: "FAILED: Ensure all repo files in /etc/yum.repos.d/ have 'gpgcheck=1' set."
+    msg: "Ensure all repo files in /etc/yum.repos.d/ have 'gpgcheck=1' set."
   when: "v38462_result.rc == 0"
   tags:
     - package

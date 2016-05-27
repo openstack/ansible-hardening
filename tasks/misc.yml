@@ -61,7 +61,7 @@
 
 - name: V-38670 - System must detect unauthorized changes to software and information
   fail:
-    msg: "FAILED: AIDE cron job is missing"
+    msg: "AIDE cron job is missing"
   when:
     - not check_mode
     - v38670_result.stat.exists == False
@@ -80,7 +80,7 @@
 
 - name: V-38619 - There must be no .netrc files on the system
   fail:
-    msg: "FAILED: .netrc files found -- they must be removed"
+    msg: ".netrc files found -- they must be removed"
   when: v38619_result.stdout != '0'
   tags:
     - cat2
@@ -165,7 +165,7 @@
 
 - name: V-38624 - System logs must be rotated daily (verify cron job)
   fail:
-    msg: "FAILED: Cron job for logrotate is missing"
+    msg: "Cron job for logrotate is missing"
   when:
     - not check_mode
     - not v38624_result.stat.exists | bool
@@ -241,7 +241,7 @@
 
 - name: V-38660 - The snmpd service must only use SNMPv3 or newer
   fail:
-    msg: "FAILED: Insecure SNMP configuration found -- use SNMPv3 only"
+    msg: "Insecure SNMP configuration found -- use SNMPv3 only"
   when:
     - not check_mode
     - snmpd_installed is defined
@@ -385,7 +385,7 @@
 
 - name: V-38674 - X Windows must not be enabled
   fail:
-    msg: "FAILED: Default runlevel should be 2 (no X windows)"
+    msg: "Default runlevel should be 2 (no X windows)"
   when:
     - not systemd_running | bool
     - v38674_result.rc != 0
@@ -405,7 +405,7 @@
 
 - name: V-38674 - X Windows must not be enabled
   fail:
-    msg: "FAILED: Graphical target must not be enabled in systemd."
+    msg: "Graphical target must not be enabled in systemd."
   when:
     - systemd_running | bool
     - v38674_result.rc == 0

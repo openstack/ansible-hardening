@@ -121,7 +121,7 @@
 
 - name: V-38637 - Contents of auditd package must be verified
   fail:
-    msg: "FAILED: Could not verify that files from auditd package are unaltered"
+    msg: "Could not verify that files from auditd package are unaltered"
   when:
     - not check_mode
     - ansible_pkg_mgr == 'apt'
@@ -142,7 +142,7 @@
 
 - name: V-38637 - Contents of auditd package must be verified
   fail:
-    msg: "FAILED: Could not verify that files from auditd package are unaltered"
+    msg: "Could not verify that files from auditd package are unaltered"
   when:
     - not check_mode
     - ansible_pkg_mgr == 'yum'

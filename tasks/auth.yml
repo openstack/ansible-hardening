@@ -93,7 +93,7 @@
 # not locked.
 - name: V-38496 - Default operating system accounts (other than root) must be locked
   fail:
-    msg: "FAILED: System accounts are unlocked: {{ v38496_violations|trim|replace('\n',', ') }}"
+    msg: "System accounts are unlocked: {{ v38496_violations|trim|replace('\n',', ') }}"
   when: v38496_violations|length > 0
   tags:
     - auth
@@ -154,7 +154,7 @@
 
 - name: V-38491 - No .rhosts or hosts.equiv present on system
   fail:
-    msg: "FAILED: Remove all .rhosts and hosts.equiv files"
+    msg: "Remove all .rhosts and hosts.equiv files"
   when: v38491_equiv_check.stat.exists == True or v38491_rhosts_check.stat.exists == True
   tags:
     - auth
@@ -173,7 +173,7 @@
 
 - name: V-38500 - The root account must be the only account with UID 0
   fail:
-    msg: "FAILED: Another account besides root has UID 0"
+    msg: "Another account besides root has UID 0"
   when: v38500_result.stdout != '0'
   tags:
     - auth
@@ -267,7 +267,7 @@
 
 - name: V-38499 - The /etc/passwd file must not contain password hashes
   fail:
-    msg: "FAILED: Remove password hashes from /etc/password to remediate"
+    msg: "Remove password hashes from /etc/password to remediate"
   when: "v38499_result.stdout != '0'"
   tags:
     - auth
@@ -318,7 +318,7 @@
 # If SHA512 isn't in use for some reason, we should fail and display an error.
 - name: V-38574 - System must use FIPS 140-2 approved hashing algorithm for passwords (PAM)
   fail:
-    msg: "FAILED: Must use SHA512 for password hashing (via PAM)"
+    msg: "Must use SHA512 for password hashing (via PAM)"
   when: v38574_result.rc != 0
   tags:
     - auth
@@ -338,7 +338,7 @@
 # If SHA512 isn't in use for some reason, we should fail and display an error.
 - name: V-38576 - System must use FIPS 140-2 approved hashing algorithm for passwords (login.defs)
   fail:
-    msg: "FAILED: Must use SHA512 for password hashing (in /etc/login.defs)"
+    msg: "Must use SHA512 for password hashing (in /etc/login.defs)"
   when: v38576_result.rc != 0
   tags:
     - auth
@@ -374,7 +374,7 @@
 # algorithms, throw an error and a failure.
 - name: V-38577 - System must use FIPS 140-2 approved hashing algorithm for passwords (libuser)
   fail:
-    msg: "FAILED: libuser isn't configured to use SHA512 hashing for passwords"
+    msg: "libuser isn't configured to use SHA512 hashing for passwords"
   when: v38577_libuser_check.rc == 0 and v38577_result.rc != 0
   tags:
     - auth
@@ -394,7 +394,7 @@
 
 - name: V-38681 - All GID's in /etc/passwd must be defined in /etc/group
   fail:
-    msg: "FAILED: GID's in /etc/passwd aren't in /etc/group"
+    msg: "GID's in /etc/passwd aren't in /etc/group"
   when: v38681_result.rc != 1
   tags:
     - auth
@@ -424,7 +424,7 @@
 
 - name: V-38683 - All accounts on the system must have unique user/account names
   fail:
-    msg: "FAILED: Found accounts without unique usernames"
+    msg: "Found accounts without unique usernames"
   when: v38683_result.stdout != '0'
   tags:
     - auth

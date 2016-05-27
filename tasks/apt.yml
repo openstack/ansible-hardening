@@ -43,7 +43,7 @@
 
 - name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
   fail:
-    msg: "FAILED: Missing Ubuntu 14.04 Archive signing keys"
+    msg: "Missing Ubuntu Archive signing keys"
   when: "'437D05B5' not in v38476_result.stdout or 'C0B21F32' not in v38476_result.stdout"
   tags:
     - package
@@ -71,7 +71,7 @@
 
 - name: V-38462 - Package management tool must verify authenticity of packages
   fail:
-    msg: "FAILED: Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
+    msg: "Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
   when: "v38462_result.rc == 0"
   tags:
     - package

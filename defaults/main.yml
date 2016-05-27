@@ -138,6 +138,8 @@ security_allowed_ntp_subnets:
   - 10/8
   - 192.168/16
   - 172.16/12
+# Listen for NTP requests only on local interfaces.
+security_ntp_bind_local_interfaces_only: yes
 
 ## Core dumps
 # V-38675 requires disabling core dumps for all users unless absolutely

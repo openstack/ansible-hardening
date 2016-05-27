@@ -228,9 +228,14 @@ openstack-ansible-security role.
 
 The default settings will work for most environments, but some deployers may
 prefer to use NTP servers which are geographically closer to their servers.
-Also, the default configuration allows `RFC1918`_ addresses to reach the NTP
-server running on each host. That could be reduced to ``127.0.0.1/32`` for
-greater security.
+
+The role configures the chrony daemon to listen only on localhost. To allow
+chrony to listen on all addresses (the upstream default for chrony),
+set the ``security_ntp_bind_local_interfaces_only`` variable to ``False``.
+
+The default configuration allows `RFC1918`_ addresses to reach the NTP server
+running on each host. That could be changed by using the
+``security_allowed_ntp_subnets`` parameter.
 
 .. _RFC1918: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
 

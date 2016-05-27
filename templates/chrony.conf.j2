@@ -93,3 +93,11 @@ logchange 0.5
 # chrony postinst based on what it found in /etc/default/rcS.  You may
 # change it if necessary.
 rtconutc
+
+{% if security_ntp_bind_local_interfaces_only | bool %}
+# Listen for NTP requests only on local interfaces.
+bindaddress 127.0.0.1
+{% if not security_disable_ipv6 | bool %}
+bindaddress ::1
+{% endif %}
+{% endif %}

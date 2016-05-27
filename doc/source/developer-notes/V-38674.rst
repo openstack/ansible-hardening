@@ -1,10 +1,26 @@
-Ubuntu 14.04 sets the default runlevel in ``/etc/init/rc-sysinit.conf`` and it
-should be set to ``2`` on Ubuntu systems. The Ansible task will verify that the
-correct runlevel is set.
+In Ubuntu 14.04, the upstart init system looks for the default runlevel in the
+``/etc/init/rc-sysinit.conf`` file. The tasks in the security role will ensure
+that the ``DEFAULT_RUNLEVEL`` environment variable is set to ``2``, which is a
+non-graphical runlevel.
 
-For operating systems that use systemd, such as Ubuntu 16.04 and CentOS 7, the
-Ansible tasks will verify that the ``graphical.target`` is not loaded by
-default.
+In Ubuntu 16.04 and CentOS 7, systemd handles various targets, which are
+similar to runlevels from earlier init systems. There are two targets that are
+important for this STIG:
 
-If any of these verifications fails, an error will be printed and the playbook
-will fail.
+* ``graphical.target``: similar to runlevel 5 from earlier init systems
+* ``multi-user.target``: similar to runlevel 2 or 3 from earlier init systems
+
+The tasks in the security role will ensure that the default target is the
+``multi-user.target``, which provides a text-based system.
+
+Deployers can opt out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_disable_x_windows: no
+
+.. note::
+
+    This change will not take effect until the server is rebooted. Changing a
+    runlevel on an actively running system can cause certain services to stop,
+    start, or restart.

@@ -29,3 +29,11 @@ Questions or comments?
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Join ``#openstack-ansible`` on Freenode or email openstack-dev@lists.openstack.org with the tag ``[openstack-ansible]`` in the subject line.
+
+Where to report bugs?
+~~~~~~~~~~~~~~~~~~~~~
+
+The openstack-ansible-security role is a part of the `OpenStack Ansible project`_. Please report bugs on `Launchpad in the openstack-ansible project`_.
+
+.. _OpenStack Ansible project: http://governance.openstack.org/reference/projects/openstackansible.html
+.. _Launchpad in the openstack-ansible project: https://launchpad.net/openstack-ansible

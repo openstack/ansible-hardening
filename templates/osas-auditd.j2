@@ -50,6 +50,7 @@
 # RHEL 6 STIG V-38541
 # Audits changes to AppArmor policies
 -w /etc/apparmor/ -p wa -k MAC-policy
+-w /etc/apparmor.d/ -p wa -k MAC-policy
 {% endif %}
 
 {% if security_audit_DAC_chmod | bool %}

@@ -90,7 +90,7 @@
 # not locked.
 - name: V-38496 - Default operating system accounts (other than root) must be locked
   fail:
-    msg: "FAILED: System accounts are unlocked: {{ v38496_violations }}"
+    msg: "System accounts are unlocked: {{ v38496_violations }}"
   when: v38496_violations | length > 0
   tags:
     - auth

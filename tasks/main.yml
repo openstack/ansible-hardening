@@ -36,6 +36,7 @@
     set_fact:
       check_mode: "{{ noop_result | skipped }}"
       systemd_running: "{{ systemd_check | success }}"
+      linux_security_module: "{{ (ansible_os_family == 'Debian') | ternary('apparmor','selinux') }}"
 
   - include: apt.yml
     when: ansible_pkg_mgr == 'apt'

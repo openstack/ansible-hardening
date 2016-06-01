@@ -48,10 +48,16 @@
 -w /etc/network -p wa -k audit_network_modifications
 {% endif %}
 
-{% if security_audit_apparmor_changes | bool %}
+{% if linux_security_module == 'apparmor' and security_audit_mac_changes | bool %}
 # RHEL 6 STIG V-38541
 # Audits changes to AppArmor policies
 -w /etc/apparmor/ -p wa -k MAC-policy
+{% endif %}
+
+{% if linux_security_module == 'selinux' and security_audit_mac_changes | bool %}
+# RHEL 6 STIG V-38541
+# Audits changes to SELinux policies
+-w /etc/selinux/ -p wa -k MAC-policy
 {% endif %}
 
 {% if security_audit_DAC_chmod | bool %}

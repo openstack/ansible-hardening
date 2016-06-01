@@ -1,5 +1,11 @@
-The RHEL 6 STIG requires that changes to SELinux policies and configuration are
-audited.  However, Ubuntu's preference for Mandatory Access Control (MAC) is
-AppArmor and openstack-ansible configures AppArmor by default.
+For Ubuntu, rules are added to auditd that will log any changes made in the
+``/etc/apparmor`` directory.
 
-This requirement has been modified to fit AppArmor on an Ubuntu system.
+For CentOS, rules are added to auditd that will log any changes made in the
+``/etc/selinux`` directory.
+
+To opt-out of this change, set the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_audit_mac_changes: no

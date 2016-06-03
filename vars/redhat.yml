@@ -15,7 +15,7 @@
 
 # Configuration file paths
 pam_auth_file: /etc/pam.d/system-auth
-pam_password_file: /etc/pam.d/password-auth-ac
+pam_password_file: /etc/pam.d/password-auth
 vsftpd_conf_file: /etc/vsftpd/vsftpd.conf
 
 # Package names

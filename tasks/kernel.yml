@@ -173,3 +173,15 @@
     - kernel
     - cat2
     - V-38682
+
+- name: V-38524 - The system must not accept ICMPv4 redirect packets on any interface
+  sysctl:
+    name: net.ipv4.conf.all.accept_redirects
+    value: 0
+    state: present
+    sysctl_set: yes
+  when: security_disable_icmpv4_redirects | bool
+  tags:
+    - kernel
+    - cat2
+    - V-38524

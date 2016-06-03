@@ -36,6 +36,7 @@
   when:
     - ansible_os_family == "Debian"
     - security_enable_linux_security_module | bool
+    - not check_mode
   tags:
     - cat2
     - V-51337
@@ -64,6 +65,7 @@
   when:
     - ansible_os_family == "RedHat"
     - security_enable_linux_security_module | bool
+    - not check_mode
   tags:
     - cat2
     - V-51337

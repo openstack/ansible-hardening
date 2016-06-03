@@ -178,6 +178,10 @@ security_remove_tftp_server: yes                  # V-38606
 security_remove_xinetd: yes                       # V-38584
 security_remove_xorg: yes                         # v-38676
 security_remove_ypserv: yes                       # V-38603
+#
+# The STIG does not allow the system to run a graphical interface. Set this
+# variable to 'no' if you need a graphical interface on the server.
+security_disable_x_windows: yes                   # V-38674
 
 ## SSH configuration
 # The following configuration items will adjust how the ssh daemon is

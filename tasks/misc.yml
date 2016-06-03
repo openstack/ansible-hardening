@@ -373,42 +373,25 @@
    - cat3
    - V-38702
 
-- name: Check for default runlevel (for V-38674)
-  shell: "grep 'DEFAULT_RUNLEVEL=2' /etc/init/rc-sysinit.conf"
-  register: v38674_result
-  changed_when: False
-  always_run: True
-  when: not systemd_running | bool
-  tags:
-    - cat2
-    - V-38674
-
-- name: V-38674 - X Windows must not be enabled
-  fail:
-    msg: "Default runlevel should be 2 (no X windows)"
+- name: V-38674 - X Windows must not be enabled (upstart)
+  lineinfile:
+    dest: /etc/init/rc-sysinit.conf
+    regexp: "^env DEFAULT_RUNLEVEL"
+    line: "env DEFAULT_RUNLEVEL=2"
   when:
+    - security_disable_x_windows | bool
     - not systemd_running | bool
-    - v38674_result.rc != 0
   tags:
     - cat2
     - V-38674
 
-- name: Check if systemd is configured to load the graphical target
-  shell: "systemctl list-units --type=target | grep '^graphical.target.*loaded active active'"
-  register: v38674_result
-  always_run: True
-  failed_when: v38674_result.rc > 1
-  when: systemd_running | bool
-  tags:
-    - cat2
-    - V-38674
-
-- name: V-38674 - X Windows must not be enabled
-  fail:
-    msg: "Graphical target must not be enabled in systemd."
+- name: V-38674 - X Windows must not be enabled (systemd)
+  shell: "systemctl set-default multi-user.target"
+  register: systemctl_default_target
+  changed_when: "'Created symlink' in systemctl_default_target.stdout"
   when:
+    - security_disable_x_windows | bool
     - systemd_running | bool
-    - v38674_result.rc == 0
   tags:
     - cat2
     - V-38674

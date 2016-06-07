@@ -15,13 +15,13 @@
 
 - name: Check to see if grub.cfg exists
   stat:
-    path: /boot/grub/grub.cfg
+    path: "{{ grub_conf_file }}"
   register: grub_cfg
   always_run: True
 
 - name: V-38579 - Bootloader configuration files must be owned by root
   file:
-    path: /boot/grub/grub.cfg
+    path: "{{ grub_conf_file }}"
     owner: root
   tags:
     - boot
@@ -31,7 +31,7 @@
 
 - name: V-38581 - Bootloader configuration files must be group-owned by root
   file:
-    path: /boot/grub/grub.cfg
+    path: "{{ grub_conf_file }}"
     group: root
   tags:
     - boot
@@ -41,7 +41,7 @@
 
 - name: V-38582 - Bootloader configuration files must have mode 0644 or less
   file:
-    path: /boot/grub/grub.cfg
+    path: "{{ grub_conf_file }}"
     mode: 0644
   tags:
     - boot

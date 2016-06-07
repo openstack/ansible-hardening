@@ -209,6 +209,7 @@ security_disable_module_rds: yes                  # V-38516
 security_disable_module_sctp: yes                 # V-38515
 security_disable_module_tipc: yes                 # V-38517
 security_disable_module_usb_storage: no           # V-38490
+security_disable_icmpv4_redirects: no             # V-38524
 #
 # ** DANGER **
 # It's strongly recommended to fully understand the effects of changing the

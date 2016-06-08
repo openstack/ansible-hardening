@@ -31,11 +31,35 @@ Using the role is fairly straightforward:
 Running with Vagrant
 --------------------
 
-Security Ansible can be easily run for testing using Vagrant.
+This role can be tested easily on multiple platforms using Vagrant.
 
-To do so run:
-    `vagrant destroy` To destroy any previously created Vagrant setup
-    `vagrant up` Spin up Ubuntu Trusty VM and run ansible-security against it
+The `Vagrantfile` supports testing on:
+ * Ubuntu 14.04
+ * Ubuntu 16.04
+ * CentOS 7
+
+To test on all platforms:
+
+```shell
+vagrant destroy --force && vagrant up
+```
+
+To test on Ubuntu 14.04 only:
+
+```shell
+vagrant destroy ubuntu1404 --force && vagrant up ubuntu1404
+```
+
+To test on Ubuntu 16.04 only:
+```shell
+vagrant destroy ubuntu1604 --force && vagrant up ubuntu1604
+```
+
+To test on CentOS 7 only:
+
+```shell
+vagrant destroy centos7 --force && vagrant up centos7
+```
 
 License
 -------

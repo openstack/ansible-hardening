@@ -37,5 +37,5 @@ Table of Contents
    benefits.rst
    configuration.rst
    getting-started.rst
-   writing-docs.rst
    controls.rst
+   developer-guide.rst

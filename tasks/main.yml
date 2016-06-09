@@ -16,10 +16,14 @@
   - name: Verify if we're using check mode
     command: /bin/true
     register: noop_result
+    tags:
+      - always
 
-  - name: Set a fact if we're in check mode
+  - name: Set facts
     set_fact:
-      check_mode: "{{ noop_result|skipped }}"
+      check_mode: "{{ noop_result | skipped }}"
+    tags:
+      - always
 
   - include: apt.yml
   - include: auditd.yml

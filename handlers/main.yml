@@ -57,6 +57,7 @@
 # Miscellaneous ##############################################################
 - name: generate auditd rules
   command: augenrules --load
+  notify: restart auditd
 
 # This will take a while to complete the first run, so we will fork it into
 # the background so it doesn't hold up the whole playbook.

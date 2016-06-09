@@ -27,18 +27,23 @@
   - name: Check if we're in check/audit mode
     command: /bin/true
     register: noop_result
+    tags:
+      - always
 
   - name: Check to see if systemd is in use
     command: systemctl status
     register: systemd_check
     failed_when: False
-    always_run: True
+    tags:
+      - always
 
   - name: Set facts
     set_fact:
       check_mode: "{{ noop_result | skipped }}"
       systemd_running: "{{ systemd_check | success }}"
       linux_security_module: "{{ (ansible_os_family == 'Debian') | ternary('apparmor','selinux') }}"
+    tags:
+      - always
 
   - include: apt.yml
     when: ansible_pkg_mgr == 'apt'

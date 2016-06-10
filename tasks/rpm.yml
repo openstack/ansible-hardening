@@ -16,18 +16,49 @@
 - name: Check if CentOS 7 GPG keys are installed (for V-38476)
   command: rpm -qi gpg-pubkey-f4a80eb5-53a7ff4b
   register: v38476_result
-  changed_when: "v38476_result.rc != 0"
+  changed_when: v38476_result | failed
   failed_when: False
   always_run: True
+  when:
+    - ansible_distribution == 'CentOS'
   tags:
     - package
     - cat1
     - V-38476
 
-- name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
+- name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software. (CentOS)
   fail:
     msg: "Missing CentOS 7 GPG keys"
-  when: "v38476_result.rc != 0"
+  when:
+    - ansible_distribution == 'CentOS'
+    - v38476_result | failed
+  tags:
+    - package
+    - cat1
+    - V-38476
+
+- name: Check if Red Hat Enterprise Linux 7 GPG keys are installed (for V-38476)
+  command: "rpm -qi {{ item }}"
+  register: v38476_result
+  changed_when: v38476_result | failed
+  failed_when: False
+  always_run: True
+  with_items:
+    - gpg-pubkey-fd431d51-4ae0493b
+    - gpg-pubkey-2fa658e0-45700c69
+  when:
+    - ansible_distribution == 'RedHat'
+  tags:
+    - package
+    - cat1
+    - V-38476
+
+- name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software. (Red Hat Enteprise Linux)
+  fail:
+    msg: "Missing Red Hat Enterprise Linux 7 GPG keys"
+  when:
+    - ansible_distribution == 'RedHat'
+    - v38476_result | failed
   tags:
     - package
     - cat1

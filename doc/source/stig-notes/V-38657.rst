@@ -1,3 +1,5 @@
+:orphan:
+
 V-38657: The system must use SMB client signing for connecting to samba servers using mount.cifs.
 -------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38657 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38657.rst
+.. include:: /developer-notes/V-38657.rst

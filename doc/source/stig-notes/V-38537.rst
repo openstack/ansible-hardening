@@ -1,3 +1,5 @@
+:orphan:
+
 V-38537: The system must ignore ICMPv4 bogus error responses.
 -------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38537 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38537.rst
+.. include:: /developer-notes/V-38537.rst

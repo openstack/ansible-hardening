@@ -1,3 +1,5 @@
+:orphan:
+
 The package containing the tftp daemon has different names depending on the
 Linux distribution:
 

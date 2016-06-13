@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Although Ubuntu provides the ``debsums`` command for checking the contents of

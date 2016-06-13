@@ -1,3 +1,5 @@
+:orphan:
+
 All versions of Ubuntu and CentOS supported by the role verify packages against
 GPG signatures by default.
 

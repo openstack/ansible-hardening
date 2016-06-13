@@ -1,3 +1,5 @@
+:orphan:
+
 V-38611: The SSH daemon must ignore .rhosts files.
 --------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38611 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38611.rst
+.. include:: /developer-notes/V-38611.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38612: The SSH daemon must not allow host-based authentication.
 -----------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38612 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38612.rst
+.. include:: /developer-notes/V-38612.rst

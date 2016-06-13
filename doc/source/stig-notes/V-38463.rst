@@ -1,3 +1,5 @@
+:orphan:
+
 V-38463: The system must use a separate file system for /var/log.
 -----------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38463 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38463.rst
+.. include:: /developer-notes/V-38463.rst

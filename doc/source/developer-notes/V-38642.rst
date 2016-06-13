@@ -1,3 +1,5 @@
+:orphan:
+
 **Opt-in required**
 
 The STIG requires that daemons have their umask set to ``027`` or ``022``.

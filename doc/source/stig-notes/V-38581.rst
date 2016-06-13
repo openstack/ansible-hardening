@@ -1,3 +1,5 @@
+:orphan:
+
 V-38581: The system boot loader configuration file(s) must be group-owned by root.
 ----------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38581 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38581.rst
+.. include:: /developer-notes/V-38581.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38596: The system must implement virtual address space randomization.
 -----------------------------------------------------------------------
 
@@ -15,4 +17,4 @@ Details: `V-38596 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38596.rst
+.. include:: /developer-notes/V-38596.rst

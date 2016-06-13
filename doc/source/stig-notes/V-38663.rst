@@ -1,3 +1,5 @@
+:orphan:
+
 V-38663: The system package management tool must verify permissions on all files and directories associated with the audit package.
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38663 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38663.rst
+.. include:: /developer-notes/V-38663.rst

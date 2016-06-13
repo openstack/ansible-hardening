@@ -1,3 +1,5 @@
+:orphan:
+
 By default, Ubuntu sets the default recipient for storage capacity issues in
 auditd to the root user. The Ansible task ensures that the default remains set.
 

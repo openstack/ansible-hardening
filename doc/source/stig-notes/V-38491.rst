@@ -1,3 +1,5 @@
+:orphan:
+
 V-38491: There must be no .rhosts or hosts.equiv files on the system.
 ---------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38491 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38491.rst
+.. include:: /developer-notes/V-38491.rst

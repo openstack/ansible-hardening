@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Ubuntu and CentOS do not use the Red Hat Network Service. However, there are

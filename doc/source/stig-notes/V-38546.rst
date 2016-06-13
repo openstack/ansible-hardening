@@ -1,3 +1,5 @@
+:orphan:
+
 V-38546: The IPv6 protocol handler must not be bound to the network stack unless needed.
 ----------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38546 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38546.rst
+.. include:: /developer-notes/V-38546.rst

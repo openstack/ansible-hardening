@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception for Ubuntu**
 
 The security role will search for unlabeled devices on CentOS and the playbook

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38500: The root account must be the only account having a UID of 0.
 ---------------------------------------------------------------------
 
@@ -14,4 +16,4 @@ Details: `V-38500 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38500.rst
+.. include:: /developer-notes/V-38500.rst

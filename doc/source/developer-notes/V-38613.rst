@@ -1,3 +1,5 @@
+:orphan:
+
 Although the STIG recommends disabling root logins via ssh, the default in
 this role is to allow it. The openstack-ansible deployment uses the root
 user by default at this time, but that may change later and allow for this

@@ -1,3 +1,5 @@
+:orphan:
+
 **Opt-in required**
 
 Ubuntu does not set a limit on the maximum number of active sessions that

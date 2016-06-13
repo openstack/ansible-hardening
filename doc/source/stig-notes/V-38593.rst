@@ -1,3 +1,5 @@
+:orphan:
+
 V-38593: The Department of Defense (DoD) login banner must be displayed immediately prior to, or as part of, console login prompts.
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38593 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38593.rst
+.. include:: /developer-notes/V-38593.rst

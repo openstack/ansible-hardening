@@ -1,3 +1,5 @@
+:orphan:
+
 **Configuration required**
 
 The STIG recommends passwords to be a minimum of 14 characters in length. To

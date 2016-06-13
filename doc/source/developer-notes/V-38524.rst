@@ -1,3 +1,5 @@
+:orphan:
+
 This patch disables ICMPv4 redirects feature on the host.
 Accepting ICMP redirects has few legitimate uses.
 It should be disabled unless it is absolutely required.

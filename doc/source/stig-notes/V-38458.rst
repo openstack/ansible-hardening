@@ -1,3 +1,5 @@
+:orphan:
+
 V-38458: The /etc/group file must be owned by root.
 ---------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38458 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38458.rst
+.. include:: /developer-notes/V-38458.rst

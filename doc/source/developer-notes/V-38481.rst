@@ -1,3 +1,5 @@
+:orphan:
+
 **Opt-in required**
 
 Operating system patching policies vary from organization to organization and
@@ -14,7 +16,7 @@ are typically established based on business requirements and risk tolerance.
     and the associated risks prior to enabling automatic upgrades.
 
 Deployers can enable automatic updates by setting
-``security_unattended_upgrades`` to ``True`::
+``security_unattended_upgrades`` to ``True``:
 
 .. code-block:: yaml
 

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38672: The netconsole service must be disabled unless required.
 -----------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38672 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38672.rst
+.. include:: /developer-notes/V-38672.rst

@@ -2,7 +2,7 @@
 `Home <index.html>`__ |raquo| Security hardening for openstack-ansible
 
 Security hardening controls in detail
-=================================
+=====================================
 
 .. toctree::
    :maxdepth: 2

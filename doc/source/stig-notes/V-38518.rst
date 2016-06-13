@@ -1,3 +1,5 @@
+:orphan:
+
 V-38518: All rsyslog-generated log files must be owned by root.
 ---------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38518 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38518.rst
+.. include:: /developer-notes/V-38518.rst

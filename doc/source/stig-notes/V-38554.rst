@@ -1,3 +1,5 @@
+:orphan:
+
 V-38554: The audit system must be configured to audit all discretionary access control permission modifications using fchownat.
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38554 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38554.rst
+.. include:: /developer-notes/V-38554.rst

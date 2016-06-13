@@ -1,3 +1,5 @@
+:orphan:
+
 V-38460: The NFS server must not have the all_squash option enabled.
 --------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38460 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38460.rst
+.. include:: /developer-notes/V-38460.rst

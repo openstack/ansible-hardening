@@ -1,3 +1,5 @@
+:orphan:
+
 The default configuration for ``disk_full_action`` is ``SUSPEND``, which only
 suspends audit logging. Suspending audit logging can lead to security problems
 because the system is no longer keeping track of which syscalls were made.

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38684: The system must limit users to 10 simultaneous system logins, or a site-defined number, in accordance with operational requirements.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38684 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38684.rst
+.. include:: /developer-notes/V-38684.rst

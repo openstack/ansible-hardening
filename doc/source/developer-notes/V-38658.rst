@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Making adjustments to PAM configurations via automated methods is risky since

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38600: The system must not send ICMPv4 redirects by default.
 --------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38600 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38600.rst
+.. include:: /developer-notes/V-38600.rst

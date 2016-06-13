@@ -1,3 +1,5 @@
+:orphan:
+
 V-38449: The /etc/gshadow file must have mode 0000.
 ---------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38449 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38449.rst
+.. include:: /developer-notes/V-38449.rst

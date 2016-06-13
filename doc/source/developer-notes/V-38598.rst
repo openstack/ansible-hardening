@@ -1,3 +1,5 @@
+:orphan:
+
 **Fixed by V-38591**
 
 On Ubuntu, the ``rexecd`` daemon is part of the package that contains the

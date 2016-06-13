@@ -1,3 +1,5 @@
+:orphan:
+
 **Configuration required**
 
 The STIG recommends setting a limit of one password change per day. To enable

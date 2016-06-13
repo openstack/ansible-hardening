@@ -1,3 +1,5 @@
+:orphan:
+
 The Ansible tasks will disable the ``bluetooth`` service and stop it if it is
 running on the system.
 

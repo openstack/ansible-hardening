@@ -1,3 +1,5 @@
+:orphan:
+
 V-38497: The system must not have accounts configured with blank or null passwords.
 -----------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38497 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38497.rst
+.. include:: /developer-notes/V-38497.rst

@@ -44,7 +44,7 @@ Mitaka: Stable release
 ===================================================
 
 The Mitaka release of the openstack-ansible-security role was first released
-with the 13.0.0 tag on April 1st, 2016.  Refer to the `release notes
+with the 13.0.0 tag on April 1st, 2016.  Refer to the `Mitaka release notes
 <http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html>`_
 for more details on the improvements and fixes.
 
@@ -55,7 +55,7 @@ for more details on the improvements and fixes.
 Liberty: Previous stable release (EOL: 2016-11-17)
 ==================================================
 
-Refer to the `release notes
+Refer to the `Liberty release notes
 <http://docs.openstack.org/releasenotes/openstack-ansible-security/liberty.html>`_
 for more details on the improvements and fixes.
 

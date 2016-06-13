@@ -1,3 +1,5 @@
+:orphan:
+
 For Ubuntu, rules are added to auditd that will log any changes made in the
 ``/etc/apparmor`` directory.
 

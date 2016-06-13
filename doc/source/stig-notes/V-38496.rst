@@ -1,3 +1,5 @@
+:orphan:
+
 V-38496: Default operating system accounts, other than root, must be locked.
 ----------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38496 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38496.rst
+.. include:: /developer-notes/V-38496.rst

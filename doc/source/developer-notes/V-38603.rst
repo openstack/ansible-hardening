@@ -1,3 +1,5 @@
+:orphan:
+
 This packages is named differently depending on the Linux distribution:
 
 * Ubuntu 14.04: ``nis``

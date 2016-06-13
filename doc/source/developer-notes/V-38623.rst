@@ -1,3 +1,5 @@
+:orphan:
+
 The mode on rsyslog files is set to ``0640`` by default in Ubuntu 14.04 and
 Ubuntu 16.04 by default. CentOS 7 sets the mode to ``0600`` by default. The
 Ansible tasks will adjust the rsyslog configuration so that any new log files

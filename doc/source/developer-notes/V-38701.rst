@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Neither OpenStack-Ansible or any of the operating systems supported by the

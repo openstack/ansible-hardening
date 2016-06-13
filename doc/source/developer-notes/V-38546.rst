@@ -1,3 +1,5 @@
+:orphan:
+
 **Opt-in required**
 
 The STIG requires IPv6 to be disabled system-wide unless it is needed for the

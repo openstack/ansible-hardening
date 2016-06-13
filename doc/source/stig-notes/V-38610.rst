@@ -1,3 +1,5 @@
+:orphan:
+
 V-38610: The SSH daemon must set a timeout count on idle sessions.
 ------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38610 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38610.rst
+.. include:: /developer-notes/V-38610.rst

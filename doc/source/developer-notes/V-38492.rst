@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Virtual consoles are helpful during an emergency and they can only be reached

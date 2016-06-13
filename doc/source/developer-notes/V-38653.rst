@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 The OpenStack-Ansible project doesn't install snmpd by default. Deployers are

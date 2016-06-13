@@ -1,3 +1,5 @@
+:orphan:
+
 V-38498: Audit log files must have mode 0640 or less permissive.
 ----------------------------------------------------------------
 
@@ -10,4 +12,4 @@ Details: `V-38498 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38498.rst
+.. include:: /developer-notes/V-38498.rst

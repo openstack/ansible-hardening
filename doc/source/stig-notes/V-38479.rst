@@ -1,3 +1,5 @@
+:orphan:
+
 V-38479: User passwords must be changed at least every 60 days.
 ---------------------------------------------------------------
 
@@ -14,4 +16,4 @@ Details: `V-38479 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38479.rst
+.. include:: /developer-notes/V-38479.rst

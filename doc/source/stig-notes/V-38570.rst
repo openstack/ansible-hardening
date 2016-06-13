@@ -1,3 +1,5 @@
+:orphan:
+
 V-38570: The system must require passwords to contain at least one special character.
 -------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38570 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38570.rst
+.. include:: /developer-notes/V-38570.rst

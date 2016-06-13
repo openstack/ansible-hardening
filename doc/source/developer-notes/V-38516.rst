@@ -1,3 +1,5 @@
+:orphan:
+
 The `Reliable Datagram Sockets (RDS)`_ protocol must be disabled. The Ansible
 tasks in this role will disable the module.
 

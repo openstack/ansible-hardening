@@ -1,3 +1,5 @@
+:orphan:
+
 V-38573: The system must disable accounts after three consecutive unsuccessful logon attempts.
 ----------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38573 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38573.rst
+.. include:: /developer-notes/V-38573.rst

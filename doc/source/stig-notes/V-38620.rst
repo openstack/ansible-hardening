@@ -1,3 +1,5 @@
+:orphan:
+
 V-38620: The system clock must be synchronized continuously, or at least daily.
 -------------------------------------------------------------------------------
 
@@ -16,4 +18,4 @@ Details: `V-38620 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38620.rst
+.. include:: /developer-notes/V-38620.rst

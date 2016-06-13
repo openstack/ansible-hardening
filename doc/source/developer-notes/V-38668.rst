@@ -1,3 +1,5 @@
+:orphan:
+
 In Ubuntu 14.04, the Ansible tasks disable the control-alt-delete keyboard
 sequence via a configuration in ``/etc/init/control-alt-delete.conf``.  A
 reboot is recommended to apply the change.

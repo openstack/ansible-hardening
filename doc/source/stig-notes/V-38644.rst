@@ -1,3 +1,5 @@
+:orphan:
+
 V-38644: The ntpdate service must not be running.
 -------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38644 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38644.rst
+.. include:: /developer-notes/V-38644.rst

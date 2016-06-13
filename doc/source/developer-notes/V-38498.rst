@@ -1,3 +1,5 @@
+:orphan:
+
 Ubuntu and CentOS set the current audit log (the one that is actively being
 written to) to ``0600`` so that only the root user can read and write to it.
 The older, rotated logs are set to ``0400`` since they should not receive

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38533: The system must ignore ICMPv4 redirect messages by default.
 --------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38533 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38533.rst
+.. include:: /developer-notes/V-38533.rst

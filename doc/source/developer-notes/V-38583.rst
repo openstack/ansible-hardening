@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception for grub2**
 
 For Ubuntu 14.04, the permissions on ``/boot/grub/grub.cfg`` will be set to

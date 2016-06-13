@@ -1,3 +1,5 @@
+:orphan:
+
 Ubuntu 14.04, Ubuntu 16.04, and CentOS 7 allow accounts with null passwords to
 authenticate via PAM by default. This STIG requires that those login attempts
 are blocked.

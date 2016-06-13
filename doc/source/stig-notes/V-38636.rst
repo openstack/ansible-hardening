@@ -1,3 +1,5 @@
+:orphan:
+
 V-38636: The system must retain enough rotated audit logs to cover the required log retention period.
 -----------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38636 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38636.rst
+.. include:: /developer-notes/V-38636.rst

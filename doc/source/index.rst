@@ -28,8 +28,12 @@ Newton: Development
 ===================
 
 The openstack-ansible-security role is currently under development for the
-Newton release. The Newton release will add support Ubuntu 16.04 and CentOS 7
-in addition to the existing support for Ubuntu 14.04.
+Newton release. The Newton release supports the following Linux distributions:
+
+* Ubuntu 14.04
+* Ubuntu 16.04
+* CentOS 7
+* Red Hat Enterprise Linux 7 `(partial automated test coverage)`
 
 .. toctree::
    :maxdepth: 2
@@ -48,6 +52,8 @@ with the 13.0.0 tag on April 1st, 2016.  Refer to the `release notes
 <http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html>`_
 for more details on the improvements and fixes.
 
+Ubuntu 14.04 is supported in the Mitaka release.
+
 * `openstack-ansible-security Mitaka Documentation`_
 
 .. _openstack-ansible-security Mitaka Documentation: http://docs.openstack.org/developer/openstack-ansible-security/mitaka/
@@ -58,6 +64,8 @@ Liberty: Previous stable release (EOL: 2016-11-17)
 Refer to the `release notes
 <http://docs.openstack.org/releasenotes/openstack-ansible-security/liberty.html>`_
 for more details on the improvements and fixes.
+
+Ubuntu 14.04 is supported in the Liberty release.
 
 * `openstack-ansible-security Liberty Documentation`_
 

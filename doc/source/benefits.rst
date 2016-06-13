@@ -25,9 +25,16 @@ infrastructure components.
 What systems are covered by openstack-ansible-security?
 -------------------------------------------------------
 
-At this time, the openstack-ansible-security role provides security hardening
-for physical servers running Ubuntu 14.04.  The containers that run various
-OpenStack services on these physical servers are currently out of scope.
+The openstack-ansible-security role provides security hardening for physical
+servers running the following Linux distributions:
+
+* Ubuntu 14.04
+* Ubuntu 16.04
+* CentOS 7
+* Red Hat Enterprise Linux 7
+
+The containers that run various OpenStack services on physical servers in
+OpenStack-Ansible deployments are currently out of scope.
 
 Virtual machines that are created within the OpenStack environment are also
 not affected by this role, although this role could be applied within those

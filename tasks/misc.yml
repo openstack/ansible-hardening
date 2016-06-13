@@ -15,8 +15,11 @@
 
 - name: V-38489 - Install AIDE (with apt)
   apt:
-      name: aide
+      name: "{{ item }}"
       state: present
+  with_items:
+    - aide
+    - aide-common
   when: ansible_pkg_mgr == 'apt'
   tags:
     - cat2

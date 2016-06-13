@@ -228,6 +228,14 @@ postfix_inet_interfaces: localhost                # V-38622
 #
 #root_forward_email: user@example.com
 
+## Linux Security Module (LSM)
+# AppArmor and provides additional security controls on a Linux system
+# by setting policies for allowed actions. By setting the following variable
+# to 'yes', AppArmor will automatically by enabled.
+#
+# See the openstack-ansible-security documentation for more details.
+security_enable_linux_security_module: no         # V-51337
+
 ## PAM and authentication
 # V-38497 requires that accounts with null passwords aren't allowed to
 # authenticate via PAM. Ubuntu 14.04's default allows these logins -- see the

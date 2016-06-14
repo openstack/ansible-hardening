@@ -24,23 +24,32 @@
     tags:
       - always
 
-  - name: Check if we're in check/audit mode
-    command: /bin/true
-    register: noop_result
+  # NOTE(major): This task differs from other OSA roles because it has
+  # "always_run" set. This is required for check/audit mode to operate
+  # properly.
+  - name: Check init system
+    command: cat /proc/1/comm
+    register: _pid1_name
+    always_run: True
     tags:
       - always
 
-  - name: Check to see if systemd is in use
-    command: systemctl status
-    register: systemd_check
-    failed_when: False
+  - name: Set the name of pid1
+    set_fact:
+      pid1_name: "{{ _pid1_name.stdout }}"
+    tags:
+      - always
+
+  - name: Check for check/audit mode
+    command: /bin/true
+    register: noop_result
     tags:
       - always
 
   - name: Set facts
     set_fact:
       check_mode: "{{ noop_result | skipped }}"
-      systemd_running: "{{ systemd_check | success }}"
+      systemd_running: "{{ pid1_name == 'systemd' }}"
       linux_security_module: "{{ (ansible_os_family == 'Debian') | ternary('apparmor','selinux') }}"
     tags:
       - always

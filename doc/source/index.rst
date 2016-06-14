@@ -37,8 +37,8 @@ in addition to the existing support for Ubuntu 14.04.
    benefits.rst
    configuration.rst
    getting-started.rst
-   writing-docs.rst
    controls.rst
+   developer-guide.rst
 
 Mitaka: Stable release
 ===================================================

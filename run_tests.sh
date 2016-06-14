@@ -15,14 +15,19 @@
 
 set -euov
 
-FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-false}
+FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-true}
 
-# prep the host
+# Prepare Ubuntu 14.04 and 16.04 hosts
 if [ "$(which apt-get)" ]; then
   apt-get install -y build-essential python2.7 python-dev git-core libssl-dev libffi-dev
 fi
 
-# get pip, if necessary
+# Prepare CentOS and Red Hat Enterprise Linux 7 hosts
+if [ "$(which yum)" ]; then
+  yum -y install libffi-devel openssl-devel git python-devel "@Development Tools"
+fi
+
+# Download and install pip
 if [ ! "$(which pip)" ]; then
   curl --silent --show-error --retry 5 \
     https://bootstrap.pypa.io/get-pip.py | sudo python2.7

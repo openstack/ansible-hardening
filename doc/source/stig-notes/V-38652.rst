@@ -1,3 +1,5 @@
+:orphan:
+
 V-38652: Remote file systems must be mounted with the nodev option.
 -------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38652 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38652.rst
+.. include:: /developer-notes/V-38652.rst

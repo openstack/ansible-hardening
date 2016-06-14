@@ -1,3 +1,5 @@
+:orphan:
+
 V-38583: The system boot loader configuration file(s) must have mode 0600 or less permissive.
 ---------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38583 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38583.rst
+.. include:: /developer-notes/V-38583.rst

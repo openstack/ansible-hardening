@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception and opt-in alternative**
 
 Adjusting PAM configurations is very risky since it affects how all users

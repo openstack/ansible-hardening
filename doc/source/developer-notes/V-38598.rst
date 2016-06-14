@@ -1,3 +1,5 @@
+:orphan:
+
 **Fixed by another STIG**
 
 The ``rexecd`` daemon is part of the package that contains the ``rsh`` daemon.

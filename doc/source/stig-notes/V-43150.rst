@@ -1,3 +1,5 @@
+:orphan:
+
 V-43150: The login user list must be disabled.
 ----------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-43150 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-43150.rst
+.. include:: /developer-notes/V-43150.rst

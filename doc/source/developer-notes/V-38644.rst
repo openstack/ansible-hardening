@@ -1,3 +1,5 @@
+:orphan:
+
 **Special case**
 
 Ubuntu doesn't provide the same ``ntpdate`` service that a Red Hat Enterprise

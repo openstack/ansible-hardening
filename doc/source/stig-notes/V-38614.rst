@@ -1,3 +1,5 @@
+:orphan:
+
 V-38614: The SSH daemon must not allow authentication using an empty password.
 ------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38614 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38614.rst
+.. include:: /developer-notes/V-38614.rst

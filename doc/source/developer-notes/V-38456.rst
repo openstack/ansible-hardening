@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Configuring another mount for ``/var`` can disrupt a running system and this

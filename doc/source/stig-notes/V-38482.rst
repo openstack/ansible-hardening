@@ -1,3 +1,5 @@
+:orphan:
+
 V-38482: The system must require passwords to contain at least one numeric character.
 -------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38482 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38482.rst
+.. include:: /developer-notes/V-38482.rst

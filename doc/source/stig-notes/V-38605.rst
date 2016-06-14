@@ -1,3 +1,5 @@
+:orphan:
+
 V-38605: The cron service must be running.
 ------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38605 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38605.rst
+.. include:: /developer-notes/V-38605.rst

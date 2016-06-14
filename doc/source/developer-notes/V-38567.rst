@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Keeping the list of setuid/setgid applications up to date and adding the paths

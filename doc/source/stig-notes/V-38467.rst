@@ -1,3 +1,5 @@
+:orphan:
+
 V-38467: The system must use a separate file system for the system audit data path.
 -----------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38467 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38467.rst
+.. include:: /developer-notes/V-38467.rst

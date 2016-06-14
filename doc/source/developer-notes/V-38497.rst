@@ -1,3 +1,5 @@
+:orphan:
+
 Ubuntu 14.04 allows accounts with null passwords to authenticate via PAM by
 default. This STIG requires that those login attempts are blocked.
 

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38639: The system must display a publicly-viewable pattern during a graphical desktop environment session lock.
 -----------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38639 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38639.rst
+.. include:: /developer-notes/V-38639.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Verifying contents of files installed from packages is more difficult in

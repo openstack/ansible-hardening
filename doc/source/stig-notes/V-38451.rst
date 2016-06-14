@@ -1,3 +1,5 @@
+:orphan:
+
 V-38451: The /etc/passwd file must be group-owned by root.
 ----------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38451 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38451.rst
+.. include:: /developer-notes/V-38451.rst

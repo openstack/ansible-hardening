@@ -1,3 +1,5 @@
+:orphan:
+
 V-38629: The graphical desktop environment must set the idle timeout to no more than 15 minutes.
 ------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38629 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38629.rst
+.. include:: /developer-notes/V-38629.rst

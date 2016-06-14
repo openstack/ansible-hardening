@@ -1,3 +1,5 @@
+:orphan:
+
 V-38685: Temporary accounts must be provisioned with an expiration date.
 ------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38685 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38685.rst
+.. include:: /developer-notes/V-38685.rst

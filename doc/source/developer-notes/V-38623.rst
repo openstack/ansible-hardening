@@ -1,3 +1,5 @@
+:orphan:
+
 Ubuntu sets the mode on rsyslog files to ``0640`` by default, but the STIG
 requires ``0600`` or less. The Ansible tasks will adjust the rsyslog
 configuration so that any new log files will have the mode set to ``0600``.

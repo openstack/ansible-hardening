@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 The STIG makes several requirements for IPv4 network restrictions, but these

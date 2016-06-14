@@ -1,3 +1,5 @@
+:orphan:
+
 V-38478: The Red Hat Network Service (rhnsd) service must not be running, unless using RHN or an RHN Satellite.
 ---------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38478 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38478.rst
+.. include:: /developer-notes/V-38478.rst

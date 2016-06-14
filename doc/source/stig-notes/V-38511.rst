@@ -1,3 +1,5 @@
+:orphan:
+
 V-38511: IP forwarding for IPv4 must not be enabled, unless the system is a router.
 -----------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38511 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38511.rst
+.. include:: /developer-notes/V-38511.rst

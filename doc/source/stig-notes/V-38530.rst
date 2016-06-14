@@ -1,3 +1,5 @@
+:orphan:
+
 V-38530: The audit system must be configured to audit all attempts to alter system time through /etc/localtime.
 ---------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38530 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38530.rst
+.. include:: /developer-notes/V-38530.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Adjusting the bootloader configuration can cause issues with reboots and this

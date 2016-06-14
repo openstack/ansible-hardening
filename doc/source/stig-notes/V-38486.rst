@@ -1,3 +1,5 @@
+:orphan:
+
 V-38486: The operating system must conduct backups of system-level information contained in the information system per organization defined frequency to conduct backups that are consistent with recovery time and recovery point objectives.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38486 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38486.rst
+.. include:: /developer-notes/V-38486.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38602: The rlogind service must not be running.
 -------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38602 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38602.rst
+.. include:: /developer-notes/V-38602.rst

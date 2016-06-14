@@ -1,3 +1,5 @@
+:orphan:
+
 V-38465: Library files must have mode 0755 or less permissive.
 --------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38465 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38465.rst
+.. include:: /developer-notes/V-38465.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38697: The sticky bit must be set on all public directories.
 --------------------------------------------------------------
 
@@ -15,4 +17,4 @@ Details: `V-38697 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38697.rst
+.. include:: /developer-notes/V-38697.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38674: X Windows must not be enabled unless required.
 -------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38674 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38674.rst
+.. include:: /developer-notes/V-38674.rst

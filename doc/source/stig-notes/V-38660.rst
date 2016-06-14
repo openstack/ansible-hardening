@@ -1,3 +1,5 @@
+:orphan:
+
 V-38660: The snmpd service must use only SNMP protocol version 3 or newer.
 --------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38660 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38660.rst
+.. include:: /developer-notes/V-38660.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Altering partitions and how they are mounted is left up to the deployer

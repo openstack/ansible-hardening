@@ -1,3 +1,5 @@
+:orphan:
+
 V-38653: The snmpd service must not use a default password.
 -----------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38653 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38653.rst
+.. include:: /developer-notes/V-38653.rst

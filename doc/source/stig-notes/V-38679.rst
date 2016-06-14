@@ -1,3 +1,5 @@
+:orphan:
+
 V-38679: The DHCP client must be disabled if not needed.
 --------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38679 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38679.rst
+.. include:: /developer-notes/V-38679.rst

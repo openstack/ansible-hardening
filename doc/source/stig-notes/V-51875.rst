@@ -1,3 +1,5 @@
+:orphan:
+
 V-51875: The operating system, upon successful logon/access, must display to the user the number of unsuccessful logon/access attempts since the last successful logon/access.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -14,4 +16,4 @@ Details: `V-51875 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-51875.rst
+.. include:: /developer-notes/V-51875.rst

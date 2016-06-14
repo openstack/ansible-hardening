@@ -1,3 +1,5 @@
+:orphan:
+
 V-38683: All accounts on the system must have unique user or account names
 --------------------------------------------------------------------------
 
@@ -10,4 +12,4 @@ Details: `V-38683 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38683.rst
+.. include:: /developer-notes/V-38683.rst

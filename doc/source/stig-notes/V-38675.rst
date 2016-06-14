@@ -1,3 +1,5 @@
+:orphan:
+
 V-38675: Process core dumps must be disabled unless needed.
 -----------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38675 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38675.rst
+.. include:: /developer-notes/V-38675.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38535: The system must not respond to ICMPv4 sent to a broadcast address.
 ---------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38535 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38535.rst
+.. include:: /developer-notes/V-38535.rst

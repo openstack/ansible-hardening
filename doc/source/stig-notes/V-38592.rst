@@ -1,3 +1,5 @@
+:orphan:
+
 V-38592: The system must require administrator action to unlock an account locked by excessive failed login attempts.
 ---------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38592 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38592.rst
+.. include:: /developer-notes/V-38592.rst

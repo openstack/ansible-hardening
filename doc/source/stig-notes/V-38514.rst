@@ -1,3 +1,5 @@
+:orphan:
+
 V-38514: The Datagram Congestion Control Protocol (DCCP) must be disabled unless required.
 ------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38514 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38514.rst
+.. include:: /developer-notes/V-38514.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 When auditd notices that free disk space on its logging partition is low, it
 will trigger the ``space_left_action``. The threshold of remaining disk space
 is configured by ``space_left`` in ``/etc/audit/auditd.conf``.

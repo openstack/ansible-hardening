@@ -1,3 +1,5 @@
+:orphan:
+
 V-38437: Automated file system mounting tools must not be enabled unless needed.
 --------------------------------------------------------------------------------
 
@@ -19,4 +21,4 @@ Details: `V-38437 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38437.rst
+.. include:: /developer-notes/V-38437.rst

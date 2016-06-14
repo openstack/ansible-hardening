@@ -1,3 +1,5 @@
+:orphan:
+
 V-38635: The audit system must be configured to audit all attempts to alter system time through adjtimex.
 ---------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38635 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38635.rst
+.. include:: /developer-notes/V-38635.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38628: The operating system must produce audit records containing sufficient information to establish the identity of any user/subject associated with the event.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38628 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38628.rst
+.. include:: /developer-notes/V-38628.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 **Configuration required**
 
 Ubuntu 14.04 does not set a password length requirement by default. The STIG

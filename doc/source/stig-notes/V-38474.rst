@@ -1,3 +1,5 @@
+:orphan:
+
 V-38474: The system must allow locking of graphical desktop sessions.
 ---------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38474 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38474.rst
+.. include:: /developer-notes/V-38474.rst

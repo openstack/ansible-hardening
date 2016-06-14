@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Ubuntu and openstack-ansible do not currently configure any samba share mounts

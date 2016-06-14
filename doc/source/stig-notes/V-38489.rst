@@ -1,3 +1,5 @@
+:orphan:
+
 V-38489: A file integrity tool must be installed.
 -------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38489 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38489.rst
+.. include:: /developer-notes/V-38489.rst

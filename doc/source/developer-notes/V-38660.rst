@@ -1,3 +1,5 @@
+:orphan:
+
 Although neither Ubuntu 14.04 or openstack-ansible install or configure the
 SNMP daemon by default, the Ansible tasks will check to see if the SNMP
 configuration file is present. If the file is present, and the file contains

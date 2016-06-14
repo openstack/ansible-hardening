@@ -1,3 +1,5 @@
+:orphan:
+
 V-38623: All rsyslog-generated log files must have mode 0600 or less permissive.
 --------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38623 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38623.rst
+.. include:: /developer-notes/V-38623.rst

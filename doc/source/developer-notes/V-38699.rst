@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 The STIG requires administrators to search for directories meeting all of the

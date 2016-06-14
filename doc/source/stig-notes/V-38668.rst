@@ -1,3 +1,5 @@
+:orphan:
+
 V-38668: The x86 Ctrl-Alt-Delete key sequence must be disabled.
 ---------------------------------------------------------------
 
@@ -15,4 +17,4 @@ Details: `V-38668 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38668.rst
+.. include:: /developer-notes/V-38668.rst

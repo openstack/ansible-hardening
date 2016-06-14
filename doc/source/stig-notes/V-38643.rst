@@ -1,3 +1,5 @@
+:orphan:
+
 V-38643: There must be no world-writable files on the system.
 -------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38643 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38643.rst
+.. include:: /developer-notes/V-38643.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38555: The system must employ a local IPv4 firewall.
 ------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38555 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38555.rst
+.. include:: /developer-notes/V-38555.rst

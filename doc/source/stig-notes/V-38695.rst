@@ -1,3 +1,5 @@
+:orphan:
+
 V-38695: A file integrity tool must be used at least weekly to check for unauthorized file changes, particularly the addition of unauthorized system libraries or binaries, or for unauthorized modification to authorized system libraries or binaries.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38695 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38695.rst
+.. include:: /developer-notes/V-38695.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38648: The qpidd service must not be running.
 -----------------------------------------------
 
@@ -14,4 +16,4 @@ Details: `V-38648 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38648.rst
+.. include:: /developer-notes/V-38648.rst

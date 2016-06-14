@@ -1,3 +1,5 @@
+:orphan:
+
 V-38580: The audit system must be configured to audit the loading and unloading of dynamic kernel modules.
 ----------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38580 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38580.rst
+.. include:: /developer-notes/V-38580.rst

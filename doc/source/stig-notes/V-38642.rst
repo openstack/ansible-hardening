@@ -1,3 +1,5 @@
+:orphan:
+
 V-38642: The system default umask for daemons must be 027 or 022.
 -----------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38642 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38642.rst
+.. include:: /developer-notes/V-38642.rst

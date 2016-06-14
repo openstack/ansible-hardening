@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 The STIG requires that the audit system must switch the entire system into

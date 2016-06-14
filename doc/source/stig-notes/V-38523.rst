@@ -1,3 +1,5 @@
+:orphan:
+
 V-38523: The system must not accept IPv4 source-routed packets on any interface.
 --------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38523 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38523.rst
+.. include:: /developer-notes/V-38523.rst

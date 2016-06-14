@@ -1,3 +1,5 @@
+:orphan:
+
 The ``tftpd`` package in Ubuntu will be removed. To opt-out, adjust the
 following configuration variable to ``no``:
 

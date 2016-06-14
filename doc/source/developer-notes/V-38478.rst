@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Ubuntu doesn't use the Red Hat Network Service, so this requirement doesn't

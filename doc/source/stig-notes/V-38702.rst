@@ -1,3 +1,5 @@
+:orphan:
+
 V-38702: The FTP daemon must be configured for logging or verbose mode.
 -----------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38702 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38702.rst
+.. include:: /developer-notes/V-38702.rst

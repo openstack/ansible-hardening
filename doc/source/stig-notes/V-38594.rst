@@ -1,3 +1,5 @@
+:orphan:
+
 V-38594: The rshd service must not be running.
 ----------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38594 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38594.rst
+.. include:: /developer-notes/V-38594.rst

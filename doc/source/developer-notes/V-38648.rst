@@ -1,3 +1,5 @@
+:orphan:
+
 Although some OpenStack implementations use ``qpidd`` for their messaging hub,
 neither Ubuntu or openstack-ansible configures the service on the hosts by
 default. The Ansible task for this STIG will check to see if the init script

@@ -1,3 +1,5 @@
+:orphan:
+
 Although neither Ubuntu nor openstack-ansible installs or configures
 ``vsftpd`` by default, the Ansible task will ensure that the appropriate
 log configuration lines are applied to ``/etc/vsftpd.conf`` to meet the

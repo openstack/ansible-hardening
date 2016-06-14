@@ -1,3 +1,5 @@
+:orphan:
+
 V-38589: The telnet daemon must not be running.
 -----------------------------------------------
 
@@ -16,4 +18,4 @@ Details: `V-38589 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38589.rst
+.. include:: /developer-notes/V-38589.rst

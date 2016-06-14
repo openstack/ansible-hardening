@@ -1,3 +1,5 @@
+:orphan:
+
 V-38597: The system must limit the ability of processes to have simultaneous write and execute access to memory.
 ----------------------------------------------------------------------------------------------------------------
 
@@ -15,4 +17,4 @@ Details: `V-38597 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38597.rst
+.. include:: /developer-notes/V-38597.rst

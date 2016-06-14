@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Creating encrypted storage is left up to the deployer to consider and

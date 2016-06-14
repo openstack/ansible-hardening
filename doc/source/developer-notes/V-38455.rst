@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Configuring another mount for ``/tmp`` can disrupt a running system and this

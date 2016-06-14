@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 The ``ypbind`` service is removed as part of V-38603 where the ``nis`` package

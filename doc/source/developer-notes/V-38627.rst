@@ -1,3 +1,5 @@
+:orphan:
+
 The STIG requires that any LDAP server packages on the system are removed.
 The Ansible role will remove ``slapd`` from the server if it is present.
 

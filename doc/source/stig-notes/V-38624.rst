@@ -1,3 +1,5 @@
+:orphan:
+
 V-38624: System logs must be rotated daily.
 -------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38624 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38624.rst
+.. include:: /developer-notes/V-38624.rst

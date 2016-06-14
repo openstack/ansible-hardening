@@ -1,3 +1,5 @@
+:orphan:
+
 V-38681: All GIDs referenced in /etc/passwd must be defined in /etc/group
 -------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38681 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38681.rst
+.. include:: /developer-notes/V-38681.rst

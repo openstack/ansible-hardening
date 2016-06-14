@@ -1,3 +1,5 @@
+:orphan:
+
 V-57569: The noexec option must be added to the /tmp partition.
 ---------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-57569 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-57569.rst
+.. include:: /developer-notes/V-57569.rst

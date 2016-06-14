@@ -1,3 +1,5 @@
+:orphan:
+
 V-38492: The system must prevent the root account from logging in from virtual consoles.
 ----------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38492 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38492.rst
+.. include:: /developer-notes/V-38492.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 Ubuntu doesn't restrict core dumps by default, but the STIG requires that core
 dumps are disabled for all users unless absolutely necessary.
 

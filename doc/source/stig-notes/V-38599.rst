@@ -1,3 +1,5 @@
+:orphan:
+
 V-38599: The FTPS/FTP service on the system must be configured with the Department of Defense (DoD) login banner.
 -----------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38599 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38599.rst
+.. include:: /developer-notes/V-38599.rst

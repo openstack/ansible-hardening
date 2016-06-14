@@ -1,3 +1,5 @@
+:orphan:
+
 V-38461: The /etc/group file must have mode 0644 or less permissive.
 --------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38461 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38461.rst
+.. include:: /developer-notes/V-38461.rst

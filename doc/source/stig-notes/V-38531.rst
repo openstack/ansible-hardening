@@ -1,3 +1,5 @@
+:orphan:
+
 V-38531: The operating system must automatically audit account creation.
 ------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38531 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38531.rst
+.. include:: /developer-notes/V-38531.rst

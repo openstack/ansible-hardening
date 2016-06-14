@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Removing serial consoles from ``/etc/securetty`` can make troubleshooting

@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Ubuntu's default umask setting in ``/etc/login.defs`` is ``022``, but the STIG

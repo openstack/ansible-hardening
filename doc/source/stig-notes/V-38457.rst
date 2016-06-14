@@ -1,3 +1,5 @@
+:orphan:
+
 V-38457: The /etc/passwd file must have mode 0644 or less permissive.
 ---------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38457 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38457.rst
+.. include:: /developer-notes/V-38457.rst

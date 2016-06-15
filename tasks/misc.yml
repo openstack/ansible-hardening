@@ -15,8 +15,11 @@
 
 - name: V-38489 - Install AIDE
   apt:
-    name: aide
-    state: present
+      name: "{{ item }}"
+      state: present
+  with_items:
+    - aide
+    - aide-common
   tags:
     - cat2
     - V-38489

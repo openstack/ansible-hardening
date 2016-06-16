@@ -1,3 +1,5 @@
+:orphan:
+
 V-38638: The graphical desktop environment must have automatic lock enabled.
 ----------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38638 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38638.rst
+.. include:: /developer-notes/V-38638.rst

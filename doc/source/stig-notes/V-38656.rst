@@ -1,3 +1,5 @@
+:orphan:
+
 V-38656: The system must use SMB client signing for connecting to samba servers using smbclient.
 ------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38656 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38656.rst
+.. include:: /developer-notes/V-38656.rst

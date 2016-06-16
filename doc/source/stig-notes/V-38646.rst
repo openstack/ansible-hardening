@@ -1,3 +1,5 @@
+:orphan:
+
 V-38646: The oddjobd service must not be running.
 -------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38646 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38646.rst
+.. include:: /developer-notes/V-38646.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Neither Ubuntu nor openstack-ansible will configure any removable media mounts

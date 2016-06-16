@@ -1,3 +1,5 @@
+:orphan:
+
 Rules are added so that all permission modifications made via `setxattr`_ are
 logged.
 

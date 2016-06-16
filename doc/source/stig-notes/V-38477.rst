@@ -1,3 +1,5 @@
+:orphan:
+
 V-38477: Users must not be able to change passwords more than once every 24 hours.
 ----------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38477 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38477.rst
+.. include:: /developer-notes/V-38477.rst

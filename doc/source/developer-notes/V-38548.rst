@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Disabling IPv6 redirects can cause issues with OpenStack environments which

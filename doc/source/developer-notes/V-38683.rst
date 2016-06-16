@@ -1,3 +1,5 @@
+:orphan:
+
 The Ansible task will use the ``pwck`` command to search for non-unique
 usernames on the system. If any matching usernames are found, an error
 will be printed and the playbook will fail.

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38582: The xinetd service must be disabled if no network services utilizing it are enabled.
 ---------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38582 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38582.rst
+.. include:: /developer-notes/V-38582.rst

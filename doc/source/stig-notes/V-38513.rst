@@ -1,3 +1,5 @@
+:orphan:
+
 V-38513: The systems local IPv4 firewall must implement a deny-all, allow-by-exception policy for inbound packets.
 ------------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38513 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38513.rst
+.. include:: /developer-notes/V-38513.rst

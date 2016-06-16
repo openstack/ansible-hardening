@@ -1,3 +1,5 @@
+:orphan:
+
 V-38468: The audit system must take appropriate action when the audit storage volume is full.
 ---------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38468 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38468.rst
+.. include:: /developer-notes/V-38468.rst

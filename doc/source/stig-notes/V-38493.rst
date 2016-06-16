@@ -1,3 +1,5 @@
+:orphan:
+
 V-38493: Audit log directories must have mode 0755 or less permissive.
 ----------------------------------------------------------------------
 
@@ -10,4 +12,4 @@ Details: `V-38493 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38493.rst
+.. include:: /developer-notes/V-38493.rst

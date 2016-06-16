@@ -1,3 +1,5 @@
+:orphan:
+
 V-38495: Audit log files must be owned by root.
 -----------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38495 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38495.rst
+.. include:: /developer-notes/V-38495.rst

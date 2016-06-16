@@ -1,3 +1,5 @@
+:orphan:
+
 V-38666: The system must use and update a DoD-approved virus scan program.
 --------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38666 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38666.rst
+.. include:: /developer-notes/V-38666.rst

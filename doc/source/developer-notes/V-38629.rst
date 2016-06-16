@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Neither Ubuntu or openstack-ansible installs a graphical desktop by default.

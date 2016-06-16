@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Disabling the ``usb-storage`` module can add extra security, but it's not

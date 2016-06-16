@@ -1,3 +1,5 @@
+:orphan:
+
 The control-alt-delete keyboard sequence is disable by an Ansible task in
 ``/etc/init/control-alt-delete.conf``.  A reboot is recommended to apply the
 change.

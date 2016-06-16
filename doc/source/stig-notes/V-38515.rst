@@ -1,3 +1,5 @@
+:orphan:
+
 V-38515: The Stream Control Transmission Protocol (SCTP) must be disabled unless required.
 ------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38515 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38515.rst
+.. include:: /developer-notes/V-38515.rst

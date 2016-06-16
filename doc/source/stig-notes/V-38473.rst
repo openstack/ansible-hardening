@@ -1,3 +1,5 @@
+:orphan:
+
 V-38473: The system must use a separate file system for user home directories.
 ------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38473 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38473.rst
+.. include:: /developer-notes/V-38473.rst

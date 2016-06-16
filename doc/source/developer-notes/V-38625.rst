@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Neither Ubuntu 14.04 or openstack-ansible configures LDAP authentication by

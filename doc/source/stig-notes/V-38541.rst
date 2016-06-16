@@ -1,3 +1,5 @@
+:orphan:
+
 V-38541: The audit system must be configured to audit modifications to the systems Mandatory Access Control (MAC) configuration (SELinux).
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38541 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38541.rst
+.. include:: /developer-notes/V-38541.rst

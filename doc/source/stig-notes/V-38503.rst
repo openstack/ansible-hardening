@@ -1,3 +1,5 @@
+:orphan:
+
 V-38503: The /etc/shadow file must be group-owned by root.
 ----------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38503 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38503.rst
+.. include:: /developer-notes/V-38503.rst

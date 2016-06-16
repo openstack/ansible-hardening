@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Installing an antivirus program on openstack-ansible infrastructure is left

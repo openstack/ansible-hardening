@@ -1,3 +1,5 @@
+:orphan:
+
 V-38625: If the system is using LDAP for authentication or account information, the system must use a TLS connection using FIPS 140-2 approved cryptographic algorithms.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38625 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38625.rst
+.. include:: /developer-notes/V-38625.rst

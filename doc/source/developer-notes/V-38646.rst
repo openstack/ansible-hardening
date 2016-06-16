@@ -1,3 +1,5 @@
+:orphan:
+
 **Special case**
 
 Ubuntu doesn't package the ``oddjobd`` daemon, so there are no packages to

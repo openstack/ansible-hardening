@@ -1,3 +1,5 @@
+:orphan:
+
 V-38586: The system must require authentication upon booting into single-user and maintenance modes.
 ----------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38586 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38586.rst
+.. include:: /developer-notes/V-38586.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38476: Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
 -----------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38476 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38476.rst
+.. include:: /developer-notes/V-38476.rst

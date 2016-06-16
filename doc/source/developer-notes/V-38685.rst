@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 It's not possible to determine which accounts may be temporary or permanent

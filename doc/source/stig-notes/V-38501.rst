@@ -1,3 +1,5 @@
+:orphan:
+
 V-38501: The system must disable accounts after excessive login failures within a 15-minute interval.
 -----------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38501 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38501.rst
+.. include:: /developer-notes/V-38501.rst

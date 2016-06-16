@@ -1,3 +1,5 @@
+:orphan:
+
 V-38637: The system package management tool must verify contents of all files associated with the audit package.
 ----------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38637 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38637.rst
+.. include:: /developer-notes/V-38637.rst

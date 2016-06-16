@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Storing audit logs on a separate partition is recommended, but this change

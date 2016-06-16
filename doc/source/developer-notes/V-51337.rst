@@ -1,3 +1,5 @@
+:orphan:
+
 **Opt-in required**
 
 The tasks in the security role can enable the Linux Security Module (LSM) that

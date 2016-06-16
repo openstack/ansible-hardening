@@ -1,3 +1,5 @@
+:orphan:
+
 V-38606: The tftp-server package must not be installed unless required.
 -----------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38606 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38606.rst
+.. include:: /developer-notes/V-38606.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38525: The audit system must be configured to audit all attempts to alter system time through stime.
 ------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38525 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38525.rst
+.. include:: /developer-notes/V-38525.rst

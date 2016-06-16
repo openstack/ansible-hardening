@@ -1,3 +1,5 @@
+:orphan:
+
 V-38542: The system must use a reverse-path filter for IPv4 network traffic when possible on all interfaces.
 ------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38542 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38542.rst
+.. include:: /developer-notes/V-38542.rst

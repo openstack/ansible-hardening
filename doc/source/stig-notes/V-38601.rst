@@ -1,3 +1,5 @@
+:orphan:
+
 V-38601: The system must not send ICMPv4 redirects from any interface.
 ----------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38601 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38601.rst
+.. include:: /developer-notes/V-38601.rst

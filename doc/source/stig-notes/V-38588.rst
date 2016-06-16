@@ -1,3 +1,5 @@
+:orphan:
+
 V-38588: The system must not permit interactive boot.
 -----------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38588 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38588.rst
+.. include:: /developer-notes/V-38588.rst

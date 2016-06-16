@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Ubuntu sets the permissions for system commands to ``0755`` or less already.

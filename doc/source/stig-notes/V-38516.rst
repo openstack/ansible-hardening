@@ -1,3 +1,5 @@
+:orphan:
+
 V-38516: The Reliable Datagram Sockets (RDS) protocol must be disabled unless required.
 ---------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38516 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38516.rst
+.. include:: /developer-notes/V-38516.rst

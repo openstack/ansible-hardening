@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Operating system patching is left up to the deployer to configure based on

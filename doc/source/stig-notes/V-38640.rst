@@ -1,3 +1,5 @@
+:orphan:
+
 V-38640: The Automatic Bug Reporting Tool (abrtd) service must not be running.
 ------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38640 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38640.rst
+.. include:: /developer-notes/V-38640.rst

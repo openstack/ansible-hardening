@@ -1,3 +1,5 @@
+:orphan:
+
 V-38447: The system package management tool must verify contents of all files associated with packages.
 -------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38447 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38447.rst
+.. include:: /developer-notes/V-38447.rst

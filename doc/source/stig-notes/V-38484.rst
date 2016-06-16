@@ -1,3 +1,5 @@
+:orphan:
+
 V-38484: The operating system, upon successful logon, must display to the user the date and time of the last logon or access via ssh.
 -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -14,4 +16,4 @@ Details: `V-38484 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38484.rst
+.. include:: /developer-notes/V-38484.rst

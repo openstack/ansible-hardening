@@ -1,3 +1,5 @@
+:orphan:
+
 V-38699: All public directories must be owned by a system account.
 ------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38699 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38699.rst
+.. include:: /developer-notes/V-38699.rst

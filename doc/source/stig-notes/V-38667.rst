@@ -1,3 +1,5 @@
+:orphan:
+
 V-38667: The system must have a host-based intrusion detection tool installed.
 ------------------------------------------------------------------------------
 
@@ -14,4 +16,4 @@ Details: `V-38667 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38667.rst
+.. include:: /developer-notes/V-38667.rst

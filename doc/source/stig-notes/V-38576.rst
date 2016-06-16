@@ -1,3 +1,5 @@
+:orphan:
+
 V-38576: The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (login.defs).
 ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38576 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38576.rst
+.. include:: /developer-notes/V-38576.rst

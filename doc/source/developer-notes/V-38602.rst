@@ -1,3 +1,5 @@
+:orphan:
+
 **Fixed by another STIG**
 
 The ``rlogind`` daemon is part of the package that contains the ``rsh`` daemon.

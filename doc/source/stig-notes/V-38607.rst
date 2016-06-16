@@ -1,3 +1,5 @@
+:orphan:
+
 V-38607: The SSH daemon must be configured to use only the SSHv2 protocol.
 --------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38607 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38607.rst
+.. include:: /developer-notes/V-38607.rst

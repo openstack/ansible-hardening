@@ -1,3 +1,5 @@
+:orphan:
+
 V-51379: All device files must be monitored by the system Linux Security Module.
 --------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-51379 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-51379.rst
+.. include:: /developer-notes/V-51379.rst

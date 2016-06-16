@@ -1,3 +1,5 @@
+:orphan:
+
 V-51363: The system must use a Linux Security Module configured to enforce limits on system services.
 -----------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-51363 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-51363.rst
+.. include:: /developer-notes/V-51363.rst

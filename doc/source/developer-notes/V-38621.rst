@@ -1,3 +1,5 @@
+:orphan:
+
 **Fixed by another STIG**
 
 The Ansible tasks for V-38620 will configure the ``chrony`` daemon and allow

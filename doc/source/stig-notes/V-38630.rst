@@ -1,3 +1,5 @@
+:orphan:
+
 V-38630: The graphical desktop environment must automatically lock after 15 minutes of inactivity and the system must require user reauthentication to unlock the environment.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -14,4 +16,4 @@ Details: `V-38630 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38630.rst
+.. include:: /developer-notes/V-38630.rst

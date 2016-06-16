@@ -1,3 +1,5 @@
+:orphan:
+
 V-38464: The audit system must take appropriate action when there are disk errors on the audit storage volume.
 --------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38464 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38464.rst
+.. include:: /developer-notes/V-38464.rst

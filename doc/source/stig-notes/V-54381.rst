@@ -1,3 +1,5 @@
+:orphan:
+
 V-54381: The audit system must switch the system to single-user mode when available audit storage volume becomes dangerously low.
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-54381 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-54381.rst
+.. include:: /developer-notes/V-54381.rst

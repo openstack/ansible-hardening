@@ -1,3 +1,5 @@
+:orphan:
+
 V-38590: The system must allow locking of the console screen in text mode.
 --------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38590 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38590.rst
+.. include:: /developer-notes/V-38590.rst

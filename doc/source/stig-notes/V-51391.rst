@@ -1,3 +1,5 @@
+:orphan:
+
 V-51391: A file integrity baseline must be created.
 ---------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-51391 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-51391.rst
+.. include:: /developer-notes/V-51391.rst

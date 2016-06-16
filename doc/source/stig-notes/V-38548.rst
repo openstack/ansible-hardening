@@ -1,3 +1,5 @@
+:orphan:
+
 V-38548: The system must ignore ICMPv6 redirects by default.
 ------------------------------------------------------------
 
@@ -10,4 +12,4 @@ Details: `V-38548 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38548.rst
+.. include:: /developer-notes/V-38548.rst

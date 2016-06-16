@@ -1,3 +1,5 @@
+:orphan:
+
 V-38527: The audit system must be configured to audit all attempts to alter system time through clock_settime.
 --------------------------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38527 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38527.rst
+.. include:: /developer-notes/V-38527.rst

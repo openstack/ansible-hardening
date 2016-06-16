@@ -1,3 +1,5 @@
+:orphan:
+
 V-38603: The ypserv package must not be installed.
 --------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38603 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38603.rst
+.. include:: /developer-notes/V-38603.rst

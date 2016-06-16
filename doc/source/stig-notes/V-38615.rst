@@ -1,3 +1,5 @@
+:orphan:
+
 V-38615: The SSH daemon must be configured with the Department of Defense (DoD) login banner.
 ---------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38615 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38615.rst
+.. include:: /developer-notes/V-38615.rst

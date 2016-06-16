@@ -1,3 +1,5 @@
+:orphan:
+
 V-38676: The xorg-x11-server-common (X Windows) package must not be installed, unless required.
 -----------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38676 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38676.rst
+.. include:: /developer-notes/V-38676.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38455: The system must use a separate file system for /tmp.
 -------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38455 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38455.rst
+.. include:: /developer-notes/V-38455.rst

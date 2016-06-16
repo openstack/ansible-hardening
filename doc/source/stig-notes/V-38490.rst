@@ -1,3 +1,5 @@
+:orphan:
+
 V-38490: The operating system must enforce requirements for the connection of mobile devices to operating systems.
 ------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38490 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38490.rst
+.. include:: /developer-notes/V-38490.rst

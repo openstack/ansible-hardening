@@ -1,3 +1,5 @@
+:orphan:
+
 **Configuration required**
 
 Ubuntu doesn't set a limitation on the age of passwords.

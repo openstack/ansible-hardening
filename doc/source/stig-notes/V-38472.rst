@@ -1,3 +1,5 @@
+:orphan:
+
 V-38472: All system command files must be owned by root.
 --------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38472 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38472.rst
+.. include:: /developer-notes/V-38472.rst

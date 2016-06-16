@@ -1,3 +1,5 @@
+:orphan:
+
 **Fixed by another STIG**
 
 Neither Ubuntu or openstack-ansible installs the telnet daemon by default.

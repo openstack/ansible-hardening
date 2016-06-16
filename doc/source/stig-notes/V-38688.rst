@@ -1,3 +1,5 @@
+:orphan:
+
 V-38688: A login banner must be displayed immediately prior to, or as part of, graphical desktop environment login prompts.
 ---------------------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38688 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38688.rst
+.. include:: /developer-notes/V-38688.rst

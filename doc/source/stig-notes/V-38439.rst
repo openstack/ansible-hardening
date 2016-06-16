@@ -1,3 +1,5 @@
+:orphan:
+
 V-38439: The system must provide automated support for account management functions.
 ------------------------------------------------------------------------------------
 
@@ -15,4 +17,4 @@ Details: `V-38439 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38439.rst
+.. include:: /developer-notes/V-38439.rst

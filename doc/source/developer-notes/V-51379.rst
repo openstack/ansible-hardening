@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Although SELinux works through a labeling system where every file (including

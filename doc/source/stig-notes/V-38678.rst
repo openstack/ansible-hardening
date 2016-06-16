@@ -1,3 +1,5 @@
+:orphan:
+
 V-38678: The audit system must provide a warning when allocated audit record storage volume reaches a documented percentage of maximum audit record storage capacity.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38678 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38678.rst
+.. include:: /developer-notes/V-38678.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38481: System security patches and updates must be installed and up-to-date.
 ------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38481 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38481.rst
+.. include:: /developer-notes/V-38481.rst

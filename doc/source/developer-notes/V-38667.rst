@@ -1,3 +1,5 @@
+:orphan:
+
 **Fixed by another STIG**
 
 The openstack-ansible project already installs and configures AppArmor, which

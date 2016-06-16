@@ -1,3 +1,5 @@
+:orphan:
+
 V-38567: The audit system must be configured to audit all use of setuid and setgid programs.
 --------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38567 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38567.rst
+.. include:: /developer-notes/V-38567.rst

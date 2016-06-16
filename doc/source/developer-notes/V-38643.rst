@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Searching for world-writable files on a host deployed with openstack-ansible

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38701: The TFTP daemon must operate in secure mode which provides access only to a single directory on the host file system.
 ------------------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38701 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38701.rst
+.. include:: /developer-notes/V-38701.rst

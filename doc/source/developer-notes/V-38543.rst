@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 The audit rules which monitor ``chmod``, ``fchmod``, and ``fchmodat``

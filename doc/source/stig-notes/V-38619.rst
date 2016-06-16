@@ -1,3 +1,5 @@
+:orphan:
+
 V-38619: There must be no .netrc files on the system.
 -----------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38619 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38619.rst
+.. include:: /developer-notes/V-38619.rst

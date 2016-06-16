@@ -1,3 +1,5 @@
+:orphan:
+
 V-38584: The xinetd service must be uninstalled if no network services utilizing it are enabled.
 ------------------------------------------------------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38584 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38584.rst
+.. include:: /developer-notes/V-38584.rst

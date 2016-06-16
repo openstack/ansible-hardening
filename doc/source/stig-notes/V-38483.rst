@@ -1,3 +1,5 @@
+:orphan:
+
 V-38483: The system package management tool must cryptographically verify the authenticity of system software packages during installation.
 -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38483 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38483.rst
+.. include:: /developer-notes/V-38483.rst

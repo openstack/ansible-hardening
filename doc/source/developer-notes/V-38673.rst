@@ -1,3 +1,5 @@
+:orphan:
+
 **Exception**
 
 Installing AIDE on Ubuntu isn't an issue, but there's a bug that causes AIDE

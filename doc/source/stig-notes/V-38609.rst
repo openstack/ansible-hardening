@@ -1,3 +1,5 @@
+:orphan:
+
 V-38609: The TFTP service must not be running.
 ----------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38609 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38609.rst
+.. include:: /developer-notes/V-38609.rst

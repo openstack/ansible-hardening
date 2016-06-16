@@ -1,3 +1,5 @@
+:orphan:
+
 V-38621: The system clock must be synchronized to an authoritative DoD time source.
 -----------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38621 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38621.rst
+.. include:: /developer-notes/V-38621.rst

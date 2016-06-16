@@ -1,3 +1,5 @@
+:orphan:
+
 V-38532: The system must not accept ICMPv4 secure redirect packets by default.
 ------------------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38532 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38532.rst
+.. include:: /developer-notes/V-38532.rst

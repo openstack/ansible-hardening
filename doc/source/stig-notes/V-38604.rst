@@ -1,3 +1,5 @@
+:orphan:
+
 V-38604: The ypbind service must not be running.
 ------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38604 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38604.rst
+.. include:: /developer-notes/V-38604.rst

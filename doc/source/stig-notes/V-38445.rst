@@ -1,3 +1,5 @@
+:orphan:
+
 V-38445: Audit log files must be group-owned by root.
 -----------------------------------------------------
 
@@ -11,4 +13,4 @@ Details: `V-38445 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38445.rst
+.. include:: /developer-notes/V-38445.rst

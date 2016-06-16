@@ -1,3 +1,5 @@
+:orphan:
+
 V-38471: The system must forward audit records to the syslog service.
 ---------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38471 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38471.rst
+.. include:: /developer-notes/V-38471.rst

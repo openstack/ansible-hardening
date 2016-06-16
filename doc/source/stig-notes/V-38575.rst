@@ -1,3 +1,5 @@
+:orphan:
+
 V-38575: The audit system must be configured to audit user deletions of files and programs.
 -------------------------------------------------------------------------------------------
 
@@ -13,4 +15,4 @@ Details: `V-38575 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38575.rst
+.. include:: /developer-notes/V-38575.rst

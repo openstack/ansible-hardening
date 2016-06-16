@@ -1,3 +1,5 @@
+:orphan:
+
 V-38654: Remote file systems must be mounted with the nosuid option.
 --------------------------------------------------------------------
 
@@ -12,4 +14,4 @@ Details: `V-38654 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38654.rst
+.. include:: /developer-notes/V-38654.rst

@@ -1,3 +1,5 @@
+:orphan:
+
 V-38539: The system must be configured to use TCP syncookies when experiencing a TCP SYN flood.
 -----------------------------------------------------------------------------------------------
 
@@ -15,4 +17,4 @@ Details: `V-38539 in STIG Viewer`_.
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
 
-.. include:: developer-notes/V-38539.rst
+.. include:: /developer-notes/V-38539.rst

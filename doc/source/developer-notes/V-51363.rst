@@ -1,5 +1,3 @@
-:orphan:
-
 For Ubuntu, the standard AppArmor policies provided by the AppArmor package are
 loaded. The OpenStack-Ansible project also configures AppArmor to limit the
 actions of containers and reduce the changes (and potential damages) of a

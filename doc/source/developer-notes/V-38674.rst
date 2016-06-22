@@ -1,5 +1,3 @@
-:orphan:
-
 In Ubuntu 14.04, the upstart init system looks for the default runlevel in the
 ``/etc/init/rc-sysinit.conf`` file. The tasks in the security role will ensure
 that the ``DEFAULT_RUNLEVEL`` environment variable is set to ``2``, which is a

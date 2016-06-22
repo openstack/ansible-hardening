@@ -1,5 +1,3 @@
-:orphan:
-
 The tasks in the security role will enable the Linux Security
 Module (LSM) that is appropriate for the Linux distribution in use.
 

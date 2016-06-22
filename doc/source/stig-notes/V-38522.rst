@@ -1,5 +1,3 @@
-:orphan:
-
 V-38522: The audit system must be configured to audit all attempts to alter system time through settimeofday.
 -------------------------------------------------------------------------------------------------------------
 

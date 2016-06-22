@@ -1,5 +1,3 @@
-:orphan:
-
 V-38496: Default operating system accounts, other than root, must be locked.
 ----------------------------------------------------------------------------
 

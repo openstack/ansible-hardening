@@ -1,5 +1,3 @@
-:orphan:
-
 V-38672: The netconsole service must be disabled unless required.
 -----------------------------------------------------------------
 

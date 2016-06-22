@@ -1,5 +1,3 @@
-:orphan:
-
 V-38500: The root account must be the only account having a UID of 0.
 ---------------------------------------------------------------------
 

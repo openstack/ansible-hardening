@@ -1,5 +1,3 @@
-:orphan:
-
 The STIG requires that postfix only listens on the localhost so that it isn't
 abused as a mail relay. The Ansible task will adjust the ``inet_interfaces``
 line in the Postfix configuration and restart postfix if the line is changed.

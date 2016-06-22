@@ -1,5 +1,3 @@
-:orphan:
-
 The STIG recommends enabling TCP SYN cookies to deal with TCP SYN floods.
 Ubuntu 14.04 already enables SYN cookies by default, and this role will ensure
 that the default is maintained.

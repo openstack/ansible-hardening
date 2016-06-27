@@ -1,5 +1,3 @@
-:orphan:
-
 V-38572: The system must require at least four characters be changed between the old and new passwords during a password change.
 --------------------------------------------------------------------------------------------------------------------------------
 

@@ -1,5 +1,3 @@
-:orphan:
-
 V-38694: The operating system must manage information system identifiers for users and devices by disabling the user identifier after an organization defined time period of inactivity.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

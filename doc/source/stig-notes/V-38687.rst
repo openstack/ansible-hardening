@@ -1,5 +1,3 @@
-:orphan:
-
 V-38687: The system must provide VPN connectivity for communications over untrusted networks.
 ---------------------------------------------------------------------------------------------
 

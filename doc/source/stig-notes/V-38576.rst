@@ -1,5 +1,3 @@
-:orphan:
-
 V-38576: The system must use a FIPS 140-2 approved cryptographic hashing algorithm for generating account password hashes (login.defs).
 ---------------------------------------------------------------------------------------------------------------------------------------
 

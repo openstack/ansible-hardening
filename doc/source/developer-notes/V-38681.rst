@@ -1,5 +1,3 @@
-:orphan:
-
 The Ansible tasks will run ``pwck`` to find any groups that are defined in
 ``/etc/passwd`` but not in ``/etc/group``. This could be a sign of an
 accidental misconfiguration or a more serious security problem. If the command

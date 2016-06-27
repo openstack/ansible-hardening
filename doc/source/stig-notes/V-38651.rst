@@ -1,5 +1,3 @@
-:orphan:
-
 V-38651: The system default umask for the bash shell must be 077.
 -----------------------------------------------------------------
 

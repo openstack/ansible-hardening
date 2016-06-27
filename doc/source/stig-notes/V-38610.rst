@@ -1,5 +1,3 @@
-:orphan:
-
 V-38610: The SSH daemon must set a timeout count on idle sessions.
 ------------------------------------------------------------------
 

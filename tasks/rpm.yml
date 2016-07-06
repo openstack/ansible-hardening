@@ -25,6 +25,7 @@
     - package
     - cat1
     - V-38476
+    - skip_ansible_lint
 
 - name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software. (CentOS)
   fail:
@@ -52,6 +53,7 @@
     - package
     - cat1
     - V-38476
+    - skip_ansible_lint
 
 - name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software. (Red Hat Enteprise Linux)
   fail:

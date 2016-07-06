@@ -219,6 +219,7 @@
   tags:
     - cat2
     - V-38660
+    - skip_ansible_lint
 
 - name: Set fact for SNMP being installed
   set_fact:
@@ -299,6 +300,7 @@
     - cat3
     - V-38599
     - V-38702
+    - skip_ansible_lint
 
 - name: Set fact for vsftpd being installed
   set_fact:

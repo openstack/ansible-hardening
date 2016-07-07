@@ -22,8 +22,8 @@ PCI-DSS, ISO 27001/27002, or NIST 800-53.  Many of these programs require
 hardening standards to be applied to critical systems, such as OpenStack
 infrastructure components.
 
-What systems are covered by openstack-ansible-security?
--------------------------------------------------------
+Which systems are covered?
+--------------------------------------------------------
 
 The openstack-ansible-security role provides security hardening for physical
 servers running the following Linux distributions:
@@ -33,8 +33,17 @@ servers running the following Linux distributions:
 * CentOS 7
 * Red Hat Enterprise Linux 7
 
+The OpenStack gating system tests the role against each of these distributions
+regularly except for Red Hat Enterprise Linux 7, since it is a non-free
+Linux distribution. CentOS 7 is very similar to Red Hat Enterprise Linux 7 and
+the existing test coverage for CentOS is very thorough.
+
+Which systems are not covered?
+------------------------------
+
 The containers that run various OpenStack services on physical servers in
-OpenStack-Ansible deployments are currently out of scope.
+OpenStack-Ansible deployments are currently out of scope and are not changed
+by the role.
 
 Virtual machines that are created within the OpenStack environment are also
 not affected by this role, although this role could be applied within those

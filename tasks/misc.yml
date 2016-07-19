@@ -109,7 +109,7 @@
 
 - name: V-38620 - Synchronize system clock (enable chrony)
   service:
-    name: chrony
+    name: "{{ chrony_service }}"
     state: started
     enabled: yes
   when: not check_mode

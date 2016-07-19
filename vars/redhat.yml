@@ -30,3 +30,4 @@ ypserv_pkg: ypserv
 # Service names
 cron_service: crond
 ssh_service: sshd
+chrony_service: chronyd

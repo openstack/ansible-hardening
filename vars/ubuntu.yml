@@ -33,3 +33,4 @@ ypserv_pkg: nis
 # Service name
 cron_service: cron
 ssh_service: ssh
+chrony_service: chrony

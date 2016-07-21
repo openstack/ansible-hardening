@@ -59,7 +59,7 @@
 - name: V-38633 - The system must set a maximum audit log file size
   lineinfile:
     dest: /etc/audit/auditd.conf
-    regexp: "^(#)?max_log_file ="
+    regexp: "^(#)?max_log_file(?!_action)"
     line: "max_log_file = {{ security_max_log_file }}"
   when: auditd_conf.stat.exists | bool
   notify:
@@ -201,7 +201,7 @@
 - name: V-38678 - Lower limit of available disk space when auditd triggers space_left_action
   lineinfile:
     dest: /etc/audit/auditd.conf
-    regexp: "^(#)?space_left"
+    regexp: "^(#)?space_left(?!_action)"
     line: "space_left = {{ security_space_left }}"
   when: auditd_conf.stat.exists | bool
   notify:

@@ -21,6 +21,7 @@
 - name: Check for security role marker in sshd_config
   command: "grep '^# openstack-ansible-security configurations' /etc/ssh/sshd_config"
   register: sshd_marker_check
+  changed_when: False
   always_run: True
   failed_when: False
   tags:
@@ -30,6 +31,7 @@
 - name: Check for Match stanzas in sshd_config
   command: "grep '^Match' /etc/ssh/sshd_config"
   register: sshd_match_check
+  changed_when: False
   always_run: True
   failed_when: False
   tags:

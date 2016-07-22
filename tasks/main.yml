@@ -30,6 +30,7 @@
   - name: Check init system
     command: cat /proc/1/comm
     register: _pid1_name
+    changed_when: False
     always_run: True
     tags:
       - always
@@ -43,6 +44,7 @@
   - name: Check for check/audit mode
     command: /bin/true
     register: noop_result
+    changed_when: False
     tags:
       - always
 

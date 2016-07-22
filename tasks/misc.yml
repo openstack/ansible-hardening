@@ -404,6 +404,7 @@
 - name: Check for unlabeled device files (for V-51379)
   shell: "find /dev -context '*unlabeled_t*'"
   register: v51379_unlabeled_devices
+  changed_when: False
   always_run: True
   when:
     - ansible_os_family == 'RedHat'

@@ -12,5 +12,3 @@ Details: `V-51363 in STIG Viewer`_.
 
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
-
-.. include:: /developer-notes/V-51363.rst

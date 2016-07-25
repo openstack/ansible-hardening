@@ -1,5 +1,5 @@
-V-38661: The operating system must protect the confidentiality and integrity of data at rest. 
-----------------------------------------------------------------------------------------------
+V-38661: The operating system must protect the confidentiality and integrity of data at rest.
+---------------------------------------------------------------------------------------------
 
 The risk of a system's physical compromise, particularly mobile systems such
 as laptops, places its data at risk of compromise. Encrypting this data
@@ -11,5 +11,3 @@ Details: `V-38661 in STIG Viewer`_.
 
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
-
-.. include:: /developer-notes/V-38661.rst

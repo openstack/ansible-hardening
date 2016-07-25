@@ -1,0 +1,6 @@
+**Exception**
+
+It's not possible to determine which accounts may be temporary or permanent
+via automated methods, so this configuration change is left to deployers to
+configure and manage. Refer to the documentation in the STIG Viewer (link
+above) about configuring temporary accounts with an expiration date.

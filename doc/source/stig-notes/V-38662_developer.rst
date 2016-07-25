@@ -1,0 +1,11 @@
+**Exception**
+
+Creating encrypted storage is left up to the deployer to consider and
+implement. Although encrypting data at rest on storage volumes does reduce
+the chances of data theft if the server is physically compromised, it doesn't
+provide protection from a user who is logged in while the server is running.
+
+Linux systems provide various options for storage encryption. The `Linux
+Unified Key Setup`_ is a good implementation to review.
+
+.. _Linux Unified Key Setup: https://en.wikipedia.org/wiki/Linux_Unified_Key_Setup

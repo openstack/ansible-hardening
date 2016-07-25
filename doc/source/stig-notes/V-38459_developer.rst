@@ -1,0 +1,2 @@
+The tasks in file_perms.yml will ensure that "/etc/group" is owned by
+the root account.

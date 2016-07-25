@@ -15,5 +15,3 @@ Details: `V-58901 in STIG Viewer`_.
 
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
-
-.. include:: /developer-notes/V-58901.rst

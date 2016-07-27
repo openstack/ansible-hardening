@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: V-38668 - The x86 Ctrl-Alt-Delete key sequence must be disabled
+- name: V-38668 - The x86 Ctrl-Alt-Delete key sequence must be disabled (init)
   lineinfile:
     dest: /etc/init/control-alt-delete.conf
     regexp: '^(#)?exec shutdown -r now "Control-Alt-Delete pressed"'
@@ -25,9 +25,25 @@
     - cat1
     - V-38668
 
-- name: V-38668 - The x86 Ctrl-Alt-Delete key sequence must be disabled
-  command: systemctl mask ctrl-alt-del.target
+# This returns an exit code of 0 if it's running, 3 if it's masked.
+- name: Check if ctrl-alt-del.target is already masked (systemd)
+  command: systemctl status ctrl-alt-del.target
+  register: cad_mask_check
+  changed_when: False
+  always_run: True
+  failed_when: False
   when: systemd_running | bool
+  tags:
+    - always
+    - console
+    - cat1
+    - V-38668
+
+- name: V-38668 - The x86 Ctrl-Alt-Delete key sequence must be disabled (systemd)
+  command: systemctl mask ctrl-alt-del.target
+  when:
+    - systemd_running | bool
+    - "'masked' in cad_mask_check.stdout"
   tags:
     - console
     - cat1

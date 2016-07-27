@@ -134,6 +134,7 @@
 - name: Check audit package contents for alterations with rpm (for V-38637)
   shell: rpmverify audit audit-libs | grep -v audit.conf | wc -l
   register: v38637_result
+  changed_when: False
   when: ansible_pkg_mgr == 'yum'
   tags:
     - auditd

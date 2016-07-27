@@ -1,5 +1,5 @@
-V-38670: The operating system must detect unauthorized changes to software and information. 
---------------------------------------------------------------------------------------------
+V-38670: The operating system must detect unauthorized changes to software and information.
+-------------------------------------------------------------------------------------------
 
 By default, AIDE does not install itself for periodic execution. Periodically
 running AIDE may reveal unexpected changes in installed files.
@@ -10,5 +10,3 @@ Details: `V-38670 in STIG Viewer`_.
 
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
-
-.. include:: /developer-notes/V-38670.rst

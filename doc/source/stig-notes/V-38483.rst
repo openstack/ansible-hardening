@@ -11,5 +11,3 @@ Details: `V-38483 in STIG Viewer`_.
 
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
-
-.. include:: /developer-notes/V-38483.rst

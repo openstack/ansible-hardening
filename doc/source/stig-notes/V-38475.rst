@@ -15,5 +15,3 @@ Details: `V-38475 in STIG Viewer`_.
 
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
-
-.. include:: /developer-notes/V-38475.rst

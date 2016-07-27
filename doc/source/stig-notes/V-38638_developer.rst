@@ -1,0 +1,5 @@
+**Exception**
+
+Deployers are urged to use graphical desktops only on client machines that
+connect to the OpenStack environment, rather than configuring graphical
+desktops within the OpenStack infrastructure itself.

@@ -1,0 +1,13 @@
+**Exception**
+
+The audit rules which monitor ``chmod``, ``fchmod``, and ``fchmodat``
+syscalls can cause high CPU and I/O load during OpenStack-Ansible deployments
+and while updating packages with apt. By default, these rules are disabled.
+
+These audit rules can be enabled by setting any of the following variables:
+
+.. code-block:: yaml
+
+    security_audit_DAC_chmod: yes
+    security_audit_DAC_fchmod: yes
+    security_audit_DAC_fchmodat: yes

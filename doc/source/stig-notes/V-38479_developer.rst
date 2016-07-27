@@ -1,0 +1,8 @@
+**Configuration required**
+
+The STIG recommends setting a limit of 60 days before a password must
+be changed. To enable this configuration, use this Ansible variable:
+
+.. code-block:: yaml
+
+    security_password_maximum_days: 60

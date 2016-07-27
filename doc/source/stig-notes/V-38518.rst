@@ -11,5 +11,3 @@ Details: `V-38518 in STIG Viewer`_.
 
 Notes for deployers
 ~~~~~~~~~~~~~~~~~~~
-
-.. include:: /developer-notes/V-38518.rst

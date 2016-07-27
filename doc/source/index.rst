@@ -5,8 +5,9 @@ Security hardening for OpenStack-Ansible
 Abstract
 ~~~~~~~~
 
-The openstack-ansible-security role provides security hardening for `OpenStack`_
-environments deployed with `openstack-ansible`_.  The role has multiple goals:
+The openstack-ansible-security role provides security hardening for
+`OpenStack`_ environments deployed with `openstack-ansible`_.  The role has
+multiple goals:
 
 * Provide additional security in a highly configurable, integrated way without
   disrupting a production OpenStack environment.
@@ -16,7 +17,8 @@ environments deployed with `openstack-ansible`_.  The role has multiple goals:
   security configuration changes to apply.
 
 At this time, the role follows the requirements of the US Government's
-`Security Technical Implementation Guide (STIG)`_ for Red Hat Enterprise Linux 6.
+`Security Technical Implementation Guide (STIG)`_ for Red Hat Enterprise Linux
+6.
 
 The easiest method for reviewing the STIG configurations and the relevant
 metadata is through the `STIG Viewer`_ service provided by `UCF`_.

@@ -15,8 +15,8 @@
 
 - name: V-38489 - Install AIDE (with apt)
   apt:
-      name: "{{ item }}"
-      state: present
+    name: "{{ item }}"
+    state: "{{ security_package_state }}"
   with_items:
     - aide
     - aide-common
@@ -27,8 +27,8 @@
 
 - name: V-38489 - Install AIDE (with yum)
   yum:
-      name: aide
-      state: present
+    name: aide
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'yum'
   tags:
     - cat2
@@ -92,7 +92,7 @@
 - name: V-38620 - Synchronize system clock (installing chrony with apt)
   apt:
     name: chrony
-    state: present
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'apt'
   tags:
     - cat2
@@ -101,7 +101,7 @@
 - name: V-38620 - Synchronize system clock (installing chrony with yum)
   yum:
     name: chrony
-    state: present
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'yum'
   tags:
     - cat2
@@ -143,7 +143,7 @@
 - name: V-38624 - System logs must be rotated daily (install logrotate with apt)
   apt:
     name: logrotate
-    state: present
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'apt'
   tags:
     - cat3
@@ -152,7 +152,7 @@
 - name: V-38624 - System logs must be rotated daily (install logrotate with yum)
   yum:
     name: logrotate
-    state: present
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'yum'
   tags:
     - cat3

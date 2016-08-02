@@ -18,6 +18,10 @@
 # apt cache updates as efficiently as possible.
 cache_timeout: 600
 
+# Set the package install state for distribution packages
+# Options are 'present' and 'latest'
+security_package_state: "latest"
+
 ### Default configurations for openstack-ansible-security #####################
 #
 # All of the configuration items below are documented in the developer notes

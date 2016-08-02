@@ -185,7 +185,7 @@
 - name: V-38501 - The system must disable accounts after excessive login failures (install fail2ban)
   apt:
     name: fail2ban
-    state: present
+    state: "{{ security_package_state }}"
   when: security_install_fail2ban | bool
   tags:
     - auth

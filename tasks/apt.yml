@@ -81,7 +81,7 @@
 - name: Install unattended-upgrades package (for V-38481)
   apt:
     name: unattended-upgrades
-    state: present
+    state: "{{ security_package_state }}"
   when: security_unattended_upgrades_enabled | bool
   tags:
     - package

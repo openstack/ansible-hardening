@@ -89,7 +89,7 @@
 - name: V-38481 - Install yum-cron for automatic updates
   yum:
     name: yum-cron
-    state: installed
+    state: "{{ security_package_state }}"
   when: security_unattended_upgrades_enabled | bool
   tags:
     - package

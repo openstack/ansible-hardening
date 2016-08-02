@@ -16,7 +16,7 @@
 - name: V-38631/38632 - The operating system must produce audit records (install auditd with apt)
   apt:
     name: "{{ auditd_pkg }}"
-    state: present
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'apt'
   tags:
     - auditd
@@ -27,7 +27,7 @@
 - name: V-38631/38632 - The operating system must produce audit records (install auditd with yum)
   yum:
     name: "{{ auditd_pkg }}"
-    state: present
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'yum'
   tags:
     - auditd
@@ -98,7 +98,7 @@
 - name: Ensure debsums package is installed (for V-38637)
   apt:
     name: debsums
-    state: present
+    state: "{{ security_package_state }}"
   when: ansible_pkg_mgr == 'apt'
   tags:
     - auditd

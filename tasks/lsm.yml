@@ -16,7 +16,7 @@
 - name: Install packages for AppArmor support (for V-51337)
   apt:
     name: "{{ item }}"
-    state: present
+    state: "{{ security_package_state }}"
   with_items:
     - apparmor
     - apparmor-profiles
@@ -44,7 +44,7 @@
 - name: Install packages for SELinux support (for V-51337)
   yum:
     name: "{{ item }}"
-    state: present
+    state: "{{ security_package_state }}"
   with_items:
     - libselinux-python
     - policycoreutils-python

@@ -56,13 +56,13 @@
 
   - include: apt.yml
     when: ansible_pkg_mgr == 'apt'
-    tag:
+    tags:
       - apt
       - package
 
   - include: rpm.yml
     when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
-    tag:
+    tags:
       - package
       - rpm
 

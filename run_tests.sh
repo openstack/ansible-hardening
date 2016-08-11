@@ -19,7 +19,7 @@ FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-true}
 
 # Prepare Ubuntu 14.04 and 16.04 hosts
 if [ "$(which apt-get)" ]; then
-  apt-get install -y build-essential python2.7 python-dev git-core libssl-dev libffi-dev
+  apt-get install -y build-essential python2.7 python-apt python-dev git-core libssl-dev libffi-dev
 fi
 
 # Prepare CentOS and Red Hat Enterprise Linux 7 hosts

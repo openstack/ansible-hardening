@@ -24,3 +24,6 @@ openssl-devel     [platform:rpm]
 
 # For selinux
 libselinux-python [platform:rpm]
+
+# For check mode on Ubuntu
+python-apt        [platform:dpkg]

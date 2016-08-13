@@ -48,11 +48,10 @@
     - cat3
     - V-38535
 
-# This is the default in Ubuntu 14.04
 - name: V-38539 - Enable TCP syncookies
   sysctl:
     name: net.ipv4.tcp_syncookies
-    value: "{{ security_sysctl_tcp_syncookies }}"
+    value: "{{ (security_sysctl_enable_tcp_syncookies | bool) | ternary('1', '0') }}"
     state: present
     sysctl_set: yes
   tags:

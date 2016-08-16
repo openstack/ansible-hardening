@@ -184,3 +184,15 @@
     - kernel
     - cat2
     - V-38524
+
+- name: CVE-2016-5696 - Sets the global challenge ACK counter to a large value
+  sysctl:
+    name: net.ipv4.tcp_challenge_ack_limit
+    value: 1073741823
+    state: present
+    sysctl_set: yes
+  when: security_set_tcp_challenge_ack_limit | bool
+  tags:
+    - kernel
+    - cat3
+    - CVE-2016-5696

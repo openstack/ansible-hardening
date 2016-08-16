@@ -228,6 +228,10 @@ security_sysctl_enable_tcp_syncookies: yes        # V-38539
 # change.
 security_disable_ipv6: no                         # V-38546
 
+# Sets the global challenge ACK counter to a large value such
+# that a potential attacker could not reasonably come up against it.
+security_set_tcp_challenge_ack_limit: yes    # CVE-2016-5696
+
 ## Mail
 # The STIG requires inet_interfaces to be set to 'localhost', but Ubuntu will
 # configure it to be 'all' when dpkg-reconfigure is unavailable (as it is when

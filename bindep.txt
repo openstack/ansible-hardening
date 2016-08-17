@@ -10,20 +10,31 @@
 # will fall back to installing its default packages which
 # will potentially be detrimental to the tests executed.
 
-# OpenStack-CI's Jenkins needs curl
-# TODO(odyssey4me) remove this once https://review.openstack.org/288634 has merged
-# and the disk images are rebuilt and redeployed.
-curl
-wget
-
-# Requirements for Paramiko 2.0
+# Base requirements for Ubuntu
+build-essential   [platform:dpkg]
+git-core          [platform:dpkg]
 libssl-dev        [platform:dpkg]
 libffi-dev        [platform:dpkg]
+python2.7         [platform:dpkg]
+python-dev        [platform:dpkg]
+
+# Base requirements for CentOS
+gcc               [platform:rpm]
+gcc-c++           [platform:rpm]
+git               [platform:rpm]
+python-devel      [platform:rpm]
+
+# Requirements for Paramiko 2.0
 libffi-devel      [platform:rpm]
 openssl-devel     [platform:rpm]
 
-# For selinux
+# For SELinux
 libselinux-python [platform:rpm]
 
-# For check mode on Ubuntu
-python-apt        [platform:dpkg]
+# For SSL SNI support
+python-pyasn1               [platform:dpkg]
+python-openssl              [platform:dpkg]
+python-ndg-httpsclient      [platform:ubuntu !platform:ubuntu-trusty]
+python2-pyasn1              [platform:rpm]
+pyOpenSSL                   [platform:rpm]
+python-ndg_httpsclient      [platform:rpm]

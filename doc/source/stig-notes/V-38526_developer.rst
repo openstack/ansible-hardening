@@ -1,13 +1,12 @@
-**Exception**
+**Opt-in required**
 
-The STIG makes several requirements for IPv4 network restrictions, but these
-restrictions can impact certain network interfaces and cause service
-disruptions. Some security configurations make sense for certain types of
-network interfaces, like bridges, but other restrictions cause the network
-interface to stop passing valid traffic between hosts, containers, or virtual
-machines.
+The STIG requires that secure ICMP redirects are disabled, but this can cause
+issues in some virtualized or containerized environments. The Ansible tasks
+in the security role will not disable these redirects by default.
 
-The default network scripts and LXC userspace tools already configure various
-network devices to their most secure setting. Since some hosts will act as
-routers, enabling security configurations that restrict network traffic can
-cause service disruptions for OpenStack environments.
+Deployers who want to enable the task (and disable ICMP redirects), should set
+the following Ansible variable:
+
+.. code-block:: yaml
+
+   security_disable_icmpv4_redirects_secure: yes

@@ -53,9 +53,22 @@
     - cat2
     - V-38489
 
+- name: Create AIDE cron job (for V-38670)
+  cron:
+    name: aide
+    cron_file: yes
+    user: root
+    special_time: daily
+    job: "aide --check"
+  when:
+    - ansible_os_family == 'RedHat'
+  tags:
+    - cat2
+    - V-38670
+
 - name: Check for AIDE cron job (for V-38670)
   stat:
-    path: /etc/cron.daily/aide
+    path: "{{ aide_cron_job_path }}"
   register: v38670_result
   changed_when: False
   tags:

@@ -17,6 +17,7 @@ libssl-dev        [platform:dpkg]
 libffi-dev        [platform:dpkg]
 python2.7         [platform:dpkg]
 python-dev        [platform:dpkg]
+python-apt        [platform:dpkg]
 
 # Base requirements for CentOS
 gcc               [platform:rpm]

@@ -56,7 +56,7 @@
 - name: Create AIDE cron job (for V-38670)
   cron:
     name: aide
-    cron_file: yes
+    cron_file: aide
     user: root
     special_time: daily
     job: "aide --check"

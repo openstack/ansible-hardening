@@ -39,12 +39,12 @@
     - V-38581
   when: grub_cfg.stat.exists
 
-- name: V-38582 - Bootloader configuration files must have mode 0644 or less
+- name: V-38583 - Bootloader configuration files must have mode 0644 or less
   file:
     path: "{{ grub_conf_file }}"
     mode: 0644
   tags:
     - boot
     - cat2
-    - V-38582
+    - V-38583
   when: grub_cfg.stat.exists

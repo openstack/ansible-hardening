@@ -215,6 +215,7 @@ security_disable_module_tipc: yes                 # V-38517
 security_disable_module_usb_storage: no           # V-38490
 security_disable_icmpv4_redirects: no             # V-38524
 security_disable_icmpv4_redirects_secure: no      # V-38526
+security_disable_icmpv6_redirects: no             # V-38548
 #
 # ** DANGER **
 # It's strongly recommended to fully understand the effects of changing the

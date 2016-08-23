@@ -208,3 +208,15 @@
     - kernel
     - cat2
     - V-38526
+
+- name: V-38548 - The system must ignore ICMPv6 redirects by default
+  sysctl:
+    name: net.ipv6.conf.all.accept_redirects
+    value: 0
+    state: present
+    sysctl_set: yes
+  when: security_disable_icmpv6_redirects | bool
+  tags:
+    - kernel
+    - cat2
+    - V-38548

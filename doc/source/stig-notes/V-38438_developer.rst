@@ -1,8 +1,18 @@
-**Exception**
+The role will add ``audit=1`` to the ``GRUB_CMDLINE_LINUX_DEFAULT`` variable
+in the GRUB configuration within ``/etc/default/grub.d/`` and it will also
+update the active ``grub.cfg`` so that the change takes effect on the next
+boot.
 
-Adjusting the bootloader configuration can cause issues with reboots and this
-work is left up to the deployer.  Enabling auditing at boot time is helpful,
-but the risk may not be worth the change in most environments.
+To opt-out of the change, set the following variable:
 
-The ``auditd`` process starts very early during the boot process to catch
-events already, and this should be sufficient for most environments.
+.. code-block:: yaml
+
+   security_enable_audit_during_boot: no
+
+Deployers may opt-in for the change without automatically updating the active
+``grub.cfg`` file by setting the following Ansible variables:
+
+.. code-block:: yaml
+
+   security_enable_audit_during_boot: yes
+   security_enable_grub_update: no

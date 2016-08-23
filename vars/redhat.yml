@@ -33,3 +33,6 @@ ypserv_pkg: ypserv
 cron_service: crond
 ssh_service: sshd
 chrony_service: chronyd
+
+# Commands
+grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"

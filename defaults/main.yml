@@ -37,9 +37,9 @@ security_package_state: "latest"
 # The following three default exclusions are highly recommended for AIDE to
 # work properly, but additional exclusions can be added to this list if needed.
 security_aide_exclude_dirs:
-  - /var/lib/lxc
   - /openstack
   - /opt
+  - /var
 #
 # By default, the AIDE database won't be initialized immediately since it can
 # consume plenty of CPU and I/O resources while it runs. To initialize the

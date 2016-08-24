@@ -22,6 +22,7 @@ pam_password_file: /etc/pam.d/common-password
 vsftpd_conf_file: /etc/vsftpd.conf
 grub_conf_file: /boot/grub/grub.cfg
 aide_cron_job_path: /etc/cron.daily/aide
+aide_database_file: /var/lib/aide/aide.db
 
 # Package names
 auditd_pkg: auditd

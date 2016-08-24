@@ -68,6 +68,7 @@
       - package
       - rpm
 
+  - include: aide.yml
   - include: auditd.yml
   - include: auth.yml
   - include: boot.yml

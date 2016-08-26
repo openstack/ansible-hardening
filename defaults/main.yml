@@ -39,6 +39,7 @@ security_package_state: "latest"
 security_aide_exclude_dirs:
   - /openstack
   - /opt
+  - /run
   - /var
 #
 # By default, the AIDE database won't be initialized immediately since it can

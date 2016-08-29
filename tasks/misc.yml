@@ -13,55 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: V-38489 - Install AIDE
-  apt:
-      name: "{{ item }}"
-      state: present
-  with_items:
-    - aide
-    - aide-common
-  tags:
-    - cat2
-    - V-38489
-
-- name: Verify that AIDE configuration directory exists
-  stat:
-    path: /etc/aide/aide.conf.d
-  register: aide_conf
-  always_run: true
-  tags:
-    - always
-
-- name: V-38489 - Exclude certain directories from AIDE and initialize DB
-  template:
-    src: ZZ_aide_exclusions.j2
-    dest: /etc/aide/aide.conf.d/ZZ_aide_exclusions
-  when: aide_conf.stat.exists | bool
-  notify:
-    - initialize AIDE
-  tags:
-    - cat2
-    - V-38489
-
-- name: Check for AIDE cron job (for V-38670)
-  stat:
-    path: /etc/cron.daily/aide
-  register: v38670_result
-  changed_when: False
-  tags:
-    - cat2
-    - V-38670
-
-- name: V-38670 - System must detect unauthorized changes to software and information
-  fail:
-    msg: "FAILED: AIDE cron job is missing"
-  when:
-    - not check_mode
-    - v38670_result.stat.exists == False
-  tags:
-    - cat2
-    - V-38670
-
 - name: Search for .netrc files (for V-38619)
   shell: find /root /home -xdev -name .netrc | wc -l
   register: v38619_result

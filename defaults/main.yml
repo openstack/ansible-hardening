@@ -31,9 +31,9 @@ cache_timeout: 600
 # The following three default exclusions are highly recommended for AIDE to
 # work properly, but additional exclusions can be added to this list if needed.
 aide_exclude_dirs:
-  - /var/lib/lxc
   - /openstack
   - /opt
+  - /var
 #
 # By default, the AIDE database won't be initialized immediately since it can
 # consume plenty of CPU and I/O resources while it runs. To initialize the

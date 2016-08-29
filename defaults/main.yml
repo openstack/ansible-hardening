@@ -33,6 +33,7 @@ cache_timeout: 600
 aide_exclude_dirs:
   - /openstack
   - /opt
+  - /run
   - /var
 #
 # By default, the AIDE database won't be initialized immediately since it can

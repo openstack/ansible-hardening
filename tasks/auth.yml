@@ -119,10 +119,13 @@
   lineinfile:
     dest: "{{ pam_auth_file }}"
     state: present
-    regexp: "^(auth.*sufficient.*)nullok(.*)$"
+    regexp: "^({{ item }}.*sufficient.*)nullok(.*)$"
     line: '\1\2'
     backup: yes
     backrefs: yes
+  with_items:
+    - auth
+    - password
   when:
     - ansible_os_family == 'RedHat'
     - security_pam_remove_nullok | bool

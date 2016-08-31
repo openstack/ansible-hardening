@@ -16,7 +16,7 @@
 - name: V-38528 - The system must log martian packets
   sysctl:
     name: net.ipv4.conf.all.log_martians
-    value: 1
+    value: "{{ (security_sysctl_enable_martian_logging | bool) | ternary('1', '0') }}"
     state: present
     sysctl_set: yes
   tags:

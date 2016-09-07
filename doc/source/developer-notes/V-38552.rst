@@ -1,2 +1,12 @@
-Rules are added for auditing discretionary access control changes
-made by fchown.
+**Exception**
+
+The audit rules for permission changes made with ``fchown`` are disabled by
+default as they can generate an excessive amount of logs in a short period of
+time, especially during a deployment.
+
+Deployers can enable auditing for ``fchown`` usage by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+   security_audit_DAC_fchown: yes

@@ -1,2 +1,12 @@
-Rules are added for auditing discretionary access control changes made via
-``lchown``.
+**Exception**
+
+The audit rules for permission changes made with ``lchown`` are disabled by
+default as they can generate an excessive amount of logs in a short period of
+time, especially during a deployment.
+
+Deployers can enable auditing for ``lchown`` usage by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+   security_audit_DAC_lchown: yes

@@ -1,2 +1,12 @@
-Rules are added for auditd to log discretionary access control permission
-changes done with chown.
+**Exception**
+
+The audit rules for permission changes made with ``chown`` are disabled by
+default as they can generate an excessive amount of logs in a short period of
+time, especially during a deployment.
+
+Deployers can enable auditing for ``chown`` usage by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+   security_audit_DAC_chown: yes

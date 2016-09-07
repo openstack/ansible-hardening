@@ -193,12 +193,12 @@
 # RHEL 6 STIG V-38558
 # Audits DAC changes via lchown
 {% if ansible_architecture == 'ppc64le' %}
--a always,exit -F arch=ppc64 -S lchown -F auid>=500 -F auid!=4294967295 -k perm_modV-38558
+-a always,exit -F arch=ppc64 -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod-V-38558
 -a always,exit -F arch=ppc64 -S lchown -F auid=0 -k perm_mod-V-38558
 {% else %}
 -a always,exit -F arch=b32 -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod-V-38558
 -a always,exit -F arch=b32 -S lchown -F auid=0 -k perm_mod-V-38558
--a always,exit -F arch=b64 -S lchown -F auid>=500 -F auid!=4294967295 -k perm_modV-38558
+-a always,exit -F arch=b64 -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod-V-38558
 -a always,exit -F arch=b64 -S lchown -F auid=0 -k perm_mod-V-38558
 {% endif %}
 {% endif %}
@@ -269,13 +269,13 @@
 # RHEL 6 STIG V-38568
 # Audits filesystem mounts
 {% if ansible_architecture == 'ppc64le' %}
--a always,exit -F arch=ppc64 -S mount -F auid>=500 -F auid!=4294967295 -k export-V-38568
--a always,exit -F arch=ppc64 -S mount -F auid=0 -k export-V-38568
+-a always,exit -F arch=ppc64 -S mount -F auid>=500 -F auid!=4294967295 -k filesystem_mount-V-38568
+-a always,exit -F arch=ppc64 -S mount -F auid=0 -k filesystem_mount-V-38568
 {% else %}
--a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k export-V-38568
--a always,exit -F arch=b32 -S mount -F auid=0 -k export-V-38568
--a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k export-V-38568
--a always,exit -F arch=b64 -S mount -F auid=0 -k export-V-38568
+-a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k filesystem_mount-V-38568
+-a always,exit -F arch=b32 -S mount -F auid=0 -k filesystem_mount-V-38568
+-a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k filesystem_mount-V-38568
+-a always,exit -F arch=b64 -S mount -F auid=0 -k filesystem_mount-V-38568
 {% endif %}
 {% endif %}
 

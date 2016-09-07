@@ -1,4 +1,12 @@
-Rules are added so that all permission modifications made via `setxattr`_ are
-logged.
+**Exception**
 
-.. _setxattr: http://man7.org/linux/man-pages/man2/setxattr.2.html
+The audit rules for permission changes made with ``setxattr`` are disabled by
+default as they can generate an excessive amount of logs in a short period of
+time, especially during a deployment.
+
+Deployers can enable auditing for ``lsetxattr`` usage by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+   security_audit_DAC_lsetxattr: yes

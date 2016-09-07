@@ -177,10 +177,10 @@
 {% if security_audit_filesystem_mounts | bool %}
 # RHEL 6 STIG V-38568
 # Audits filesystem mounts
--a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k export-V-38568
--a always,exit -F arch=b32 -S mount -F auid=0 -k export-V-38568
--a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k export-V-38568
--a always,exit -F arch=b64 -S mount -F auid=0 -k export-V-38568
+-a always,exit -F arch=b32 -S mount -F auid>=500 -F auid!=4294967295 -k filesystem_mount-V-38568
+-a always,exit -F arch=b32 -S mount -F auid=0 -k filesystem_mount-V-38568
+-a always,exit -F arch=b64 -S mount -F auid>=500 -F auid!=4294967295 -k filesystem_mount-V-38568
+-a always,exit -F arch=b64 -S mount -F auid=0 -k filesystem_mount-V-38568
 {% endif %}
 
 {% if security_audit_deletions | bool %}

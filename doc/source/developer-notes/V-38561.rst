@@ -1,3 +1,12 @@
-Rules are added to auditd to log all DAC modifications using `lsetxattr`_.
+**Exception**
 
-.. _lsetxattr: http://linux.die.net/man/2/lsetxattr
+The audit rules for permission changes made with ``lxsetxattr`` are disabled by
+default as they can generate an excessive amount of logs in a short period of
+time, especially during a deployment.
+
+Deployers can enable auditing for ``lsetxattr`` usage by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+   security_audit_DAC_lsetxattr: yes

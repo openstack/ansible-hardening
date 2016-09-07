@@ -1,2 +1,12 @@
-Rules are added for auditing discretionary access control changes made by
-fchownat.
+**Exception**
+
+The audit rules for permission changes made with ``fchownat`` are disabled by
+default as they can generate an excessive amount of logs in a short period of
+time, especially during a deployment.
+
+Deployers can enable auditing for ``fchownat`` usage by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+   security_audit_DAC_fchownat: yes

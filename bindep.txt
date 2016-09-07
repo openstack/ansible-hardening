@@ -41,5 +41,4 @@ pyOpenSSL                   [platform:rpm]
 python-ndg_httpsclient      [platform:rpm]
 
 # Required for compressing collected log files in CI
-gzip              [platform:dpkg]
-gzip              [platform:rpm]
+gzip

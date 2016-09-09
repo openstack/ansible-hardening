@@ -14,5 +14,5 @@ oslosphinx!=3.4.0,>=2.5.0 # Apache-2.0
 openstackdocstheme>=1.5.0 # Apache-2.0
 doc8 # Apache-2.0
 reno>=1.8.0 # Apache2
-Jinja2>=2.8  # BSD License (3 clause)
-lxml>=2.3  # BSD
+Jinja2>=2.8 # BSD License (3 clause)
+lxml>=2.3 # BSD

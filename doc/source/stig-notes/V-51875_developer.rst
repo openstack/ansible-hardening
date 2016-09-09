@@ -1,3 +1,0 @@
-Ubuntu 14.04, Ubuntu 16.04, and CentOS 7 already enable the display of the last
-successful login for a user immediately after login.  An Ansible task ensures
-this setting is applied and restarts the ssh daemon if necessary.

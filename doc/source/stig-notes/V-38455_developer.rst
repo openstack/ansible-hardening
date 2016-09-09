@@ -1,8 +1,0 @@
-**Exception**
-
-Configuring another mount for ``/tmp`` can disrupt a running system and this
-configuration is skipped.
-
-However, deployers are strongly urged to consider creating a separate
-partition and/or LVM logical volume for ``/tmp`` during installation of the OS
-if possible.

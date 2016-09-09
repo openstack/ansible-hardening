@@ -1,4 +1,0 @@
-The Ansible tasks will check for ``all_squash`` in ``/etc/exports`` (if it is
-present). If found, a warning message will be printed. No configuration
-changes will be made since neither Ubuntu or openstack-ansible configures
-the NFS server by default.

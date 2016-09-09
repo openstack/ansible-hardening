@@ -1,9 +1,0 @@
-**Exception**
-
-Deployers are strongly urged to mount any additional disks with the ``noexec``
-mount option set whenever possible.
-
-For more information about the ``noexec`` mount option, review this `good
-answer from a ServerFault user about noexec`_.
-
-.. _good answer from a ServerFault user about noexec: http://serverfault.com/questions/72356/how-useful-is-mounting-tmp-noexec

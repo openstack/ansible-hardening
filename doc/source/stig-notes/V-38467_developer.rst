@@ -1,4 +1,0 @@
-**Exception**
-
-Storing audit logs on a separate partition is recommended, but this change
-is left up to deployers to configure during the installation of the OS.

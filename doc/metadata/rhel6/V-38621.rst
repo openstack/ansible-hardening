@@ -1,0 +1,12 @@
+---
+id: V-38621
+status: implemented
+tag: misc
+---
+
+**Fixed by another STIG**
+
+The Ansible tasks for V-38620 will configure the ``chrony`` daemon and allow
+deployers to specify their NTP servers. Deployers that are subject to US DoD
+requirements will need to use DoD-approved time servers. Refer to the STIG in
+the STIG viewer using the link above this "Developer Notes" section.

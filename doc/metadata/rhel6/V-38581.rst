@@ -1,0 +1,7 @@
+---
+id: V-38581
+status: implemented
+tag: misc
+---
+
+The group ownership for ``/boot/grub/grub.cfg`` will be set to `root`.

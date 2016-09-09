@@ -1,0 +1,21 @@
+---
+id: V-38438
+status: exception
+tag: misc
+---
+
+**Exception**
+
+To opt-out of the change, set the following variable:
+
+.. code-block:: yaml
+
+   security_enable_audit_during_boot: no
+
+Deployers may opt-in for the change without automatically updating the active
+``grub.cfg`` file by setting the following Ansible variables:
+
+.. code-block:: yaml
+
+   security_enable_audit_during_boot: yes
+   security_enable_grub_update: no

@@ -1,0 +1,18 @@
+{% set page_title = rule['title'] | trim + ' (' + rule['id'] + ')'%}
+{{ page_title }}
+{{ "-" * page_title | length }}
+
+{{ rule['description']}}
+
+Details: `{{ rule['id'] }} in STIG Viewer`_
+
+.. _{{ rule['id'] }} in STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/2015-05-26/finding/{{ rule['id'] }}
+
+Notes for deployers and auditors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Implementation Status:** {{ notes['status'] | title }}
+
+{{ notes['content'] }}
+
+

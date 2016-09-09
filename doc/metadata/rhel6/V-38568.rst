@@ -1,0 +1,7 @@
+---
+id: V-38568
+status: implemented
+tag: misc
+---
+
+Rules are added for auditd to log successful filesystem mounts.

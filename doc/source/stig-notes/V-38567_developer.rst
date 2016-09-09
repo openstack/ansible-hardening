@@ -1,6 +1,0 @@
-**Exception**
-
-Keeping the list of setuid/setgid applications up to date and adding the paths
-to those files within the ``audit.rules`` file is challenging.  Deployers are
-urged to use setuid/setgid sparingly and carefully monitor all applications
-with those permissions set.

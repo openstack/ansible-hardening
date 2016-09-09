@@ -1,0 +1,7 @@
+---
+id: V-38522
+status: implemented
+tag: misc
+---
+
+Rules are added for auditing changes to system time made via ``settimeofday``.

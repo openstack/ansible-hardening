@@ -1,0 +1,9 @@
+---
+id: V-38534
+status: implemented
+tag: misc
+---
+
+Audit rules are added in a task so that any events associated with
+account modifications are logged. The new audit rule will be loaded immediately
+with ``augenrules --load``.

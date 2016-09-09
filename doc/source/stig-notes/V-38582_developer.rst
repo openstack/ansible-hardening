@@ -1,9 +1,0 @@
-If the ``xinetd`` package is installed, it will be stopped immediately and
-will not start on the next boot. No action is taken if xinetd isn't installed.
-
-To opt-out of this change, simply adjust the following configuration item to
-``no``:
-
-.. code-block:: yaml
-
-    security_disable_xinetd: no

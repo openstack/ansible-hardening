@@ -1,6 +1,0 @@
-**Fixed by another STIG**
-
-The openstack-ansible project already installs and configures AppArmor, which
-is a Linux Security Module providing similar functionality to SELinux. In
-addition, AIDE is installed to monitor system files in the Ansible tasks for
-V-38429.

@@ -1,0 +1,7 @@
+---
+id: V-38457
+status: implemented
+tag: misc
+---
+
+The permissions for ``/etc/passwd`` will be set to ``0644``.

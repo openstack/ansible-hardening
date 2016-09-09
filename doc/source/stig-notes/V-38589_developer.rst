@@ -1,6 +1,0 @@
-**Fixed by V-38587**
-
-Running a telnet daemon isn't recommended under most situations, so the telnet
-server package will be removed from the system if it is installed. The telnet
-server is removed by the Ansible tasks for V-38587, so no action is required
-here.

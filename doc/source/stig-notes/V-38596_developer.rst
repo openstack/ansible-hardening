@@ -1,3 +1,0 @@
-The Ansible tasks will set ``kernel.randomize_va_space=2`` immediately and
-will also ensure that the setting is applied on the next boot. This setting
-is currently the default in Ubuntu 14.04, Ubuntu 16.04, and CentOS 7.

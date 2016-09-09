@@ -1,0 +1,9 @@
+---
+id: V-38611
+status: implemented
+tag: misc
+---
+
+Ubuntu 14.04, Ubuntu 16.04, and CentOS 7 configure the ssh daemon so that rsh's
+.rhosts files are ignored by default. The Ansible tasks will ensure that this
+setting has not changed from the default.

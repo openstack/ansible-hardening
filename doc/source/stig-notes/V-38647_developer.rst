@@ -1,9 +1,0 @@
-**Fixed by another STIG**
-
-Ubuntu 14.04 doesn't use umask settings in ``/etc/profile``. Those settings
-are expected to be in ``/etc/login.defs`` instead.
-
-For CentOS 7, umask settings are present in ``/etc/profile`` but they are
-overidden by settings in ``/etc/login.defs``.
-
-See V-38645 for more details.

@@ -1,0 +1,24 @@
+{% set page_title = "STIG Controls by " + toc_type | title %}
+{{ "=" * page_title | length }}
+{{ page_title }}
+{{ "=" * page_title | length }}
+
+{% for section_header, stig_id_list in stig_dict.items() %}
+
+.. contents::
+   :depth: 2
+   :backlinks: none
+
+{% set section_title = section_header | title + " (" + stig_id_list | length | string + " controls)" %}
+{{ section_title }}
+{{ "=" * section_title | length }}
+
+{% for stig_id in stig_id_list | sort %}
+.. include:: auto_{{ stig_id }}.rst
+
+{% if not loop.last %}
+----
+{% endif %}
+
+{% endfor %}
+{% endfor %}

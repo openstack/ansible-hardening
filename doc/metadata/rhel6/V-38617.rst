@@ -1,0 +1,8 @@
+---
+id: V-38617
+status: implemented
+tag: misc
+---
+
+The ssh daemon will be configured to use the approved list of ciphers as
+recommended by the STIG.

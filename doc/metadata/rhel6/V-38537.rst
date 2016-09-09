@@ -1,0 +1,8 @@
+---
+id: V-38537
+status: implemented
+tag: misc
+---
+
+Ubuntu already ignores ICMPv4 bogus error messages by default. The role will
+ensure that this default setting is maintained.

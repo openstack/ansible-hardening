@@ -1,8 +1,0 @@
-The Ansible tasks will disable the ``bluetooth`` service and stop it if it is
-running on the system.
-
-To opt-out of this change, adjust the following Ansible variable to ``no``:
-
-.. code-block:: yaml
-
-    security_disable_bluetooth: no

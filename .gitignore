@@ -65,3 +65,6 @@ releasenotes/build
 
 # Vagrant testing artifacts
 .vagrant
+
+# Automatically generated documentation
+doc/source/auto_*

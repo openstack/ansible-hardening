@@ -1,0 +1,8 @@
+---
+id: V-38527
+status: implemented
+tag: misc
+---
+
+Rules are added for auditing changes to system time done via
+``clock_settime``.

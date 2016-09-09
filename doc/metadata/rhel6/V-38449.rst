@@ -1,0 +1,8 @@
+---
+id: V-38449
+status: implemented
+tag: misc
+---
+
+The ``/etc/gshadow`` file's permissions will be changed to ``0000`` to meet
+the requirements of the STIG.

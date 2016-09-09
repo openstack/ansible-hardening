@@ -1,0 +1,8 @@
+---
+id: V-38530
+status: implemented
+tag: misc
+---
+
+Rules are added to auditd to log all attempts to change the system time using
+``/etc/localtime``.

@@ -36,3 +36,6 @@ ypserv_pkg: nis
 cron_service: cron
 ssh_service: ssh
 chrony_service: chrony
+
+# Commands
+grub_update_cmd: "update-grub"

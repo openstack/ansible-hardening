@@ -49,6 +49,16 @@ security_aide_exclude_dirs:
 security_initialize_aide: false
 
 ## Audit daemon
+# V-38438 requires that auditd is enabled at boot time with a parameter in the
+# GRUB configuration.
+#
+# If 'security_enable_audit_during_boot' is set to 'yes', then the 'audit=1'
+# parameter will be added in /etc/default/grub.d/.
+# If 'security_enable_grub_update is set to 'yes', the grub.cfg will be
+# updated automatically.
+security_enable_audit_during_boot: yes            # V-38438
+security_enable_grub_update: yes                  # V-38438
+
 # The following booleans control the rule sets added to auditd's default
 # set of auditing rules.  To see which rules will be added for each boolean,
 # refer to the templates/osas-auditd.j2 file.

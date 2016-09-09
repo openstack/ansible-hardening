@@ -61,3 +61,17 @@
 
 - name: rehash aliases
   command: newaliases
+
+- name: update grub config
+  command: "{{ grub_update_cmd }}"
+  when:
+    - security_enable_grub_update | bool
+  notify:
+    - set bootloader file permissions after updating grub config
+
+# NOTE(mhayden): Running `update-grub` causes the bootloader permissions to
+# change, which breaks V-38583.
+- name: set bootloader file permissions after updating grub config
+  file:
+    path: "{{ grub_conf_file }}"
+    mode: 0644

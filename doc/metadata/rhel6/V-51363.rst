@@ -1,7 +1,7 @@
 ---
 id: V-51363
 status: implemented
-tag: misc
+tag: lsm
 ---
 
 For Ubuntu, the standard AppArmor policies provided by the AppArmor package are

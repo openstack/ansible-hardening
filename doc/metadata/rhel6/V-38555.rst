@@ -1,10 +1,8 @@
 ---
 id: V-38555
-status: exception
-tag: misc
+status: exception - manual intervention
+tag: network
 ---
-
-**Exception**
 
 Adding IPv4 firewalling on OpenStack hosts is left up to the deployer to
 configure. Deployers are urged to use proper network segmentation between

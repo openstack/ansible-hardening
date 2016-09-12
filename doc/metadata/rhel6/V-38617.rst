@@ -1,7 +1,7 @@
 ---
 id: V-38617
 status: implemented
-tag: misc
+tag: sshd
 ---
 
 The ssh daemon will be configured to use the approved list of ciphers as

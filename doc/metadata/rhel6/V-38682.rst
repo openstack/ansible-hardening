@@ -1,7 +1,7 @@
 ---
 id: V-38682
 status: implemented
-tag: misc
+tag: kernel
 ---
 
 The Ansible task will disable the bluetooth kernel modules to meet the STIG

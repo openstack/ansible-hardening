@@ -1,7 +1,7 @@
 ---
 id: V-38443
 status: implemented
-tag: misc
+tag: auth
 ---
 
 The ``/etc/gshadow`` file is owned by root by default on Ubuntu 14.04, Ubuntu

@@ -1,7 +1,7 @@
 ---
 id: V-38678
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 When auditd notices that free disk space on its logging partition is low, it

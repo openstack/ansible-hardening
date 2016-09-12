@@ -1,7 +1,7 @@
 ---
 id: V-38633
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 The default setting for ``security_max_log_file`` in Ubuntu 14.04, Ubuntu

@@ -1,7 +1,7 @@
 ---
 id: V-38700
 status: implemented
-tag: misc
+tag: aide
 ---
 
 The AIDE package is already installed as part of the Ansible tasks to fix

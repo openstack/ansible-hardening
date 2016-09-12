@@ -1,7 +1,7 @@
 ---
 id: V-38616
 status: implemented
-tag: misc
+tag: sshd
 ---
 
 The ssh daemon will be configured to disallow user environment settings that

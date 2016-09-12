@@ -1,7 +1,7 @@
 ---
 id: V-38502
 status: implemented
-tag: misc
+tag: auth
 ---
 
 The user and group ownership of ``/etc/passwd`` is root by default. The Ansible

@@ -1,10 +1,8 @@
 ---
 id: V-38643
 status: exception
-tag: misc
+tag: file_perms
 ---
-
-**Exception**
 
 Searching for world-writable files on a host deployed with openstack-ansible
 can be very time consuming and it can create unneccessary I/O load on hosts.

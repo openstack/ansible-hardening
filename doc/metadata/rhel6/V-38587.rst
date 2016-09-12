@@ -1,7 +1,7 @@
 ---
 id: V-38587
 status: implemented
-tag: misc
+tag: services
 ---
 
 The ``telnetd`` service will be removed by the Ansible tasks, if it is

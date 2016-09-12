@@ -1,7 +1,7 @@
 ---
 id: V-38641
 status: implemented
-tag: misc
+tag: services
 ---
 
 The Ansible tasks in the security role will disable the atd service and stop

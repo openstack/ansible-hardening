@@ -1,7 +1,7 @@
 ---
 id: V-38668
 status: implemented
-tag: misc
+tag: console
 ---
 
 In Ubuntu 14.04, the Ansible tasks disable the control-alt-delete keyboard

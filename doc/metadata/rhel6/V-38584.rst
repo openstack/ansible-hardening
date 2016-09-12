@@ -1,7 +1,7 @@
 ---
 id: V-38584
 status: implemented
-tag: misc
+tag: services
 ---
 
 The ``xinetd`` service will be removed by the Ansible tasks, if it is

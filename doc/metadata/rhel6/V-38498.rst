@@ -1,7 +1,7 @@
 ---
 id: V-38498
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 Ubuntu and CentOS set the current audit log (the one that is actively being

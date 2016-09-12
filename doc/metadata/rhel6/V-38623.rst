@@ -1,7 +1,7 @@
 ---
 id: V-38623
 status: implemented
-tag: misc
+tag: file_perms
 ---
 
 The mode on rsyslog files is set to ``0640`` by default in Ubuntu 14.04 and

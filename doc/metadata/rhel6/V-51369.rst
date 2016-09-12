@@ -4,9 +4,11 @@ status: implemented
 tag: misc
 ---
 
-Although SELinux is available on Ubuntu 14.04, the policies aren't maintained
-as well as they are on Red Hat-based systems.  The openstack-ansible project
-has chosen to use the more Ubuntu-compatible Linux security module, AppArmor.
+For Ubuntu, the standard AppArmor policies provided by the AppArmor package are
+loaded. The OpenStack-Ansible project also configures AppArmor to limit the
+actions of containers and reduce the changes (and potential damages) of a
+container breakout.
 
-AppArmor roles are configured in openstack-ansible to limit the chances of
-container breakout and the potential damage done in case it does occur.
+On CentOS 7, the ``selinux-policy-targeted`` package provides SELinux policies
+that enforce limits on system services and users. SELinux is configured to use
+the ``targeted`` policy by default.

@@ -1,7 +1,7 @@
 ---
 id: V-38487
 status: implemented
-tag: misc
+tag: package
 ---
 
 The Ansible task for V-38462 already checks for apt configurations that would

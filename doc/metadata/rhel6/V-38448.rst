@@ -1,7 +1,7 @@
 ---
 id: V-38448
 status: implemented
-tag: misc
+tag: auth
 ---
 
 Although the ``/etc/gshadow`` file is group-owned by root by default, the

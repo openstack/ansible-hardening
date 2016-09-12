@@ -1,10 +1,8 @@
 ---
 id: V-38439
-status: exception
-tag: misc
+status: exception - manual intervention
+tag: auth
 ---
-
-**Exception**
 
 Although adding centralized authentication and carefully managing user
 accounts is critical for securing any system, that's left up to deployers

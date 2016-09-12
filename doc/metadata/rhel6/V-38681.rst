@@ -1,7 +1,7 @@
 ---
 id: V-38681
 status: implemented
-tag: misc
+tag: auth
 ---
 
 The Ansible tasks will run ``pwck`` to find any groups that are defined in

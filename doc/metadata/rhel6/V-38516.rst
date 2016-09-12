@@ -1,7 +1,7 @@
 ---
 id: V-38516
 status: implemented
-tag: misc
+tag: kernel
 ---
 
 The `Reliable Datagram Sockets (RDS)`_ protocol must be disabled. The Ansible

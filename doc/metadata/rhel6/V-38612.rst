@@ -1,7 +1,7 @@
 ---
 id: V-38612
 status: implemented
-tag: misc
+tag: sshd
 ---
 
 The Ansible tasks in the security role ensure that the ssh daemon does not

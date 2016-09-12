@@ -1,7 +1,7 @@
 ---
 id: V-58901
 status: implemented
-tag: misc
+tag: auth
 ---
 
 This STIG requires that ``NOPASSWD`` and ``!authenticate`` are not used within

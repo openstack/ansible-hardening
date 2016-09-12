@@ -1,7 +1,7 @@
 ---
 id: V-38632
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 The tasks in auth.yml will install `auditd`_ and ensure it is running.

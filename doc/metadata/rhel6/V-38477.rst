@@ -1,10 +1,8 @@
 ---
 id: V-38477
-status: implemented
-tag: misc
+status: configuration required
+tag: auth
 ---
-
-**Configuration required**
 
 The STIG recommends setting a limit of one password change per day. To enable
 this configuration, use this Ansible variable:

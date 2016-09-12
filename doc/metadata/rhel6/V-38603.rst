@@ -1,7 +1,7 @@
 ---
 id: V-38603
 status: implemented
-tag: misc
+tag: services
 ---
 
 This packages is named differently depending on the Linux distribution:

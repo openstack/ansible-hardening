@@ -1,7 +1,7 @@
 ---
 id: V-38640
 status: implemented
-tag: misc
+tag: services
 ---
 
 The Ansible tasks in the security role will disable the abrtd service and stop

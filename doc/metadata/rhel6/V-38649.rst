@@ -1,10 +1,8 @@
 ---
 id: V-38649
 status: opt-in
-tag: misc
+tag: file_perms
 ---
-
-**Opt-in required**
 
 Since umask changes can be disruptive on some systems, the deployer must opt-in
 for this change to happen. If the ``security_umask_csh`` Ansible variable is

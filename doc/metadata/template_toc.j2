@@ -3,13 +3,17 @@
 {{ page_title }}
 {{ "=" * page_title | length }}
 
-{% for section_header, stig_id_list in stig_dict.items() %}
-
 .. contents::
    :depth: 2
    :backlinks: none
 
+{% for section_header, stig_id_list in stig_dict.items() %}
+
+{% if toc_type == 'tag' %}
+{% set section_title = section_header + " (" + stig_id_list | length | string + " controls)" %}
+{% else %}
 {% set section_title = section_header | title + " (" + stig_id_list | length | string + " controls)" %}
+{% endif %}
 {{ section_title }}
 {{ "=" * section_title | length }}
 

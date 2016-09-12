@@ -1,7 +1,7 @@
 ---
 id: V-38691
 status: implemented
-tag: misc
+tag: services
 ---
 
 The Ansible tasks will disable the ``bluetooth`` service and stop it if it is

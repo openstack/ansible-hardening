@@ -1,7 +1,7 @@
 ---
 id: V-38582
 status: implemented
-tag: misc
+tag: services
 ---
 
 If the ``xinetd`` package is installed, it will be stopped immediately and

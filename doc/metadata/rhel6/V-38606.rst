@@ -1,7 +1,7 @@
 ---
 id: V-38606
 status: implemented
-tag: misc
+tag: services
 ---
 
 The package containing the tftp daemon has different names depending on the

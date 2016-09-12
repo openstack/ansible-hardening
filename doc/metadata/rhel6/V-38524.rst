@@ -1,15 +1,15 @@
 ---
 id: V-38524
-status: implemented
-tag: misc
+status: opt-in
+tag: kernel
 ---
 
-This patch disables ICMPv4 redirects feature on the host.
-Accepting ICMP redirects has few legitimate uses.
-It should be disabled unless it is absolutely required.
+The STIG requires that ICMPv4 redirects are disabled on the host. However, this
+can cause problems with LXC-based deployments, such as environments deployed
+with OpenStack-Ansible.
 
-It is configurable by ``security_disable_icmpv4_redirects`` variable.
-This feature is disabled by default as it can disrupt ``LXC`` deployments.
+Deployers can opt-in for this change by setting the following Ansible variable:
 
-Deployers can skip or enable this task by setting
-``security_disable_icmpv4_redirects`` to ``no``  or ``yes``,  respectively.
+.. code-block:: yaml
+
+   security_disable_icmpv4_redirects: yes

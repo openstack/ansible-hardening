@@ -1,10 +1,8 @@
 ---
 id: V-38533
 status: exception
-tag: misc
+tag: kernel
 ---
-
-**Exception**
 
 The STIG makes several requirements for IPv4 network restrictions, but these
 restrictions can impact certain network interfaces and cause service

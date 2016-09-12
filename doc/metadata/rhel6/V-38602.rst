@@ -1,10 +1,8 @@
 ---
 id: V-38602
 status: implemented
-tag: misc
+tag: services
 ---
-
-**Fixed by V-38591**
 
 In Ubuntu, the ``rlogind`` daemon is part of the package that contains the
 ``rsh`` daemon. CentOS 7 does not provide the ``rlogind`` daemon in any

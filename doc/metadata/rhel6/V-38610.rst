@@ -1,7 +1,7 @@
 ---
 id: V-38610
 status: implemented
-tag: misc
+tag: sshd
 ---
 
 The STIG recommends setting ``ClientAliveCountMax`` to ensure that ssh

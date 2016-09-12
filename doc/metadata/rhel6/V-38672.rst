@@ -1,10 +1,10 @@
 ---
 id: V-38672
 status: implemented
-tag: misc
+tag: services
 ---
 
-Ubuntu doesn't provide the netconsole package and the daemon isn't included
+Ubuntu doesn't provide the ``netconsole`` package and the daemon isn't included
 in any other Ubuntu packages.
 
 In CentOS, the ``netconsole`` daemon will be stopped and disabled if it is

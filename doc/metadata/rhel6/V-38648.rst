@@ -1,7 +1,7 @@
 ---
 id: V-38648
 status: implemented
-tag: misc
+tag: services
 ---
 
 Although some OpenStack implementations use ``qpidd`` for their messaging hub,

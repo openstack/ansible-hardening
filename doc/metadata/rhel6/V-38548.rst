@@ -1,10 +1,8 @@
 ---
 id: V-38548
 status: opt-in
-tag: misc
+tag: kernel
 ---
-
-**Opt-in required**
 
 Accepting ICMP redirects has few legitimate uses. It should be disabled unless
 it is absolutely required.

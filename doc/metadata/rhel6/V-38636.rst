@@ -1,7 +1,7 @@
 ---
 id: V-38636
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 Ubuntu keeps 5 rotated logs with the ``security_num_logs`` option and this

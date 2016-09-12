@@ -1,10 +1,8 @@
 ---
 id: V-38658
-status: exception
-tag: misc
+status: exception - manual intervention
+tag: auth
 ---
-
-**Exception**
 
 Making adjustments to PAM configurations via automated methods is risky since
 it can disrupt user authentication on various hosts. Deployers are strongly

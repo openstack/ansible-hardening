@@ -1,7 +1,7 @@
 ---
 id: V-38462
 status: implemented
-tag: misc
+tag: package
 ---
 
 All versions of Ubuntu and CentOS supported by the role verify packages against

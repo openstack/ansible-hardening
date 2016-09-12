@@ -1,7 +1,7 @@
 ---
 id: V-38495
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 The Ansible tasks will ensure that files in ``/var/log/audit`` are owned

@@ -1,10 +1,8 @@
 ---
 id: V-38513
-status: exception
-tag: misc
+status: exception - manual intervention
+tag: network
 ---
-
-**Exception**
 
 Although a minimal set of iptables rules are configured on openstack-ansible
 hosts, the "deny all" requirement of the STIG is not met. This is largely left

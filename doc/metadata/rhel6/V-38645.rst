@@ -1,10 +1,8 @@
 ---
 id: V-38645
-status: exception
-tag: misc
+status: opt-in
+tag: file_perms
 ---
-
-**Exception**
 
 Changing umask settings can disrupt some systems and this change requires a
 deployer to opt-in. To opt-in for this change and adjust the umask, set the

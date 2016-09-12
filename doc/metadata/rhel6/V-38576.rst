@@ -1,7 +1,7 @@
 ---
 id: V-38576
 status: implemented
-tag: misc
+tag: auth
 ---
 
 The STIG requires SHA512 to be used for hashing password since it is

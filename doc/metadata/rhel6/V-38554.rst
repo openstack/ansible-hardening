@@ -1,10 +1,8 @@
 ---
 id: V-38554
-status: exception
-tag: misc
+status: opt-in
+tag: auditd
 ---
-
-**Exception**
 
 The audit rules for permission changes made with ``fchownat`` are disabled by
 default as they can generate an excessive amount of logs in a short period of

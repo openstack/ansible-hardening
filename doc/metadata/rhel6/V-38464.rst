@@ -1,7 +1,7 @@
 ---
 id: V-38464
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 The default configuration for ``disk_error_action`` is ``SUSPEND``, which

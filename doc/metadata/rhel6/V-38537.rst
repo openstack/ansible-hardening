@@ -1,8 +1,9 @@
 ---
 id: V-38537
 status: implemented
-tag: misc
+tag: kernel
 ---
 
-Ubuntu already ignores ICMPv4 bogus error messages by default. The role will
-ensure that this default setting is maintained.
+The Ansible tasks will ensure that
+``net.ipv4.icmp_ignore_bogus_error_responses`` is set to ``1``. This prevents
+a host from responding to bogus ICMPv4 error messages.

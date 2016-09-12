@@ -1,7 +1,7 @@
 ---
 id: V-38597
 status: implemented
-tag: misc
+tag: kernel
 ---
 
 Non-Executable Memory (NX) is the successor to ExecShield, and it is enabled by

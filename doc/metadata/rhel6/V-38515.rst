@@ -1,7 +1,7 @@
 ---
 id: V-38515
 status: implemented
-tag: misc
+tag: kernel
 ---
 
 The Stream Control Transmission Protocol (SCTP) must be disabled. To opt-out of

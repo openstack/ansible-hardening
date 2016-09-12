@@ -1,7 +1,7 @@
 ---
 id: V-38541
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 For Ubuntu, rules are added to auditd that will log any changes made in the

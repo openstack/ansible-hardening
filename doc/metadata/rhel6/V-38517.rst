@@ -1,7 +1,7 @@
 ---
 id: V-38517
 status: implemented
-tag: misc
+tag: kernel
 ---
 
 The `Transparent Inter-Process Communication (TIPC)`_ protocol must be

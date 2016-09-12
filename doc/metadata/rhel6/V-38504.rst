@@ -1,7 +1,7 @@
 ---
 id: V-38504
 status: implemented
-tag: misc
+tag: auth
 ---
 
 Ubuntu 14.04 and Ubuntu 16.04 set the mode of ``/etc/shadow`` to ``0640``, but

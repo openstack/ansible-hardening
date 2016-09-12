@@ -1,7 +1,7 @@
 ---
 id: V-38476
 status: implemented
-tag: misc
+tag: package
 ---
 
 The security role verifies that the GPG keys that correspond to each supported

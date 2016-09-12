@@ -1,10 +1,8 @@
 ---
 id: V-38646
-status: implemented
-tag: misc
+status: exception - manual intervention
+tag: services
 ---
-
-**Special case**
 
 Very few environments run the ``oddjobd`` service, and those that do run it are
 usually associated with highly-available, clustered systems. Deployers will

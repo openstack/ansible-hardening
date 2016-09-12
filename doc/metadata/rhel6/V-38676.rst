@@ -1,7 +1,7 @@
 ---
 id: V-38676
 status: implemented
-tag: misc
+tag: services
 ---
 
 The Ansible tasks will remove the ``xserver-xorg`` package if it is present.

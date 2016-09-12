@@ -1,10 +1,8 @@
 ---
 id: V-38528
-status: exception
-tag: misc
+status: opt-in
+tag: kernel
 ---
-
-**Exception**
 
 The STIG requires that all martian packets are logged by setting the sysctl
 parameter ``net.ipv4.conf.all.log_martians`` to ``1``.

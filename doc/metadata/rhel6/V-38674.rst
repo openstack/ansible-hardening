@@ -1,7 +1,7 @@
 ---
 id: V-38674
 status: implemented
-tag: misc
+tag: x11
 ---
 
 In Ubuntu 14.04, the upstart init system looks for the default runlevel in the

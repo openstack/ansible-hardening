@@ -1,7 +1,7 @@
 ---
 id: V-38470
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 The default configuration for ``security_space_left_action`` is ``SUSPEND``,

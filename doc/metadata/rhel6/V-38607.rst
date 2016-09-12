@@ -1,7 +1,7 @@
 ---
 id: V-38607
 status: implemented
-tag: misc
+tag: sshd
 ---
 
 The tasks in ``sshd.yml`` will ensure that SSH requires all connections to use

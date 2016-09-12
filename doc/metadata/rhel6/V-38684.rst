@@ -4,8 +4,6 @@ status: opt-in
 tag: misc
 ---
 
-**Opt-in required**
-
 Ubuntu does not set a limit on the maximum number of active sessions that
 a single user can have at one time. The STIG requires setting a limit of
 ``10``.

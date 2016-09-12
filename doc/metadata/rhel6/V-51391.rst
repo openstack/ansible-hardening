@@ -1,7 +1,7 @@
 ---
 id: V-51391
 status: implemented
-tag: misc
+tag: aide
 ---
 
 When AIDE is first installed for V-38429, a new database will be created.

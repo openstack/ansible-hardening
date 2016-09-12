@@ -1,10 +1,8 @@
 ---
 id: V-38679
 status: exception
-tag: misc
+tag: services
 ---
-
-**Exception**
 
 The DHCP client is needed for containers to function properly and may be
 needed for some hosts as well. Deployers should examine their networking

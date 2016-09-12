@@ -1,10 +1,8 @@
 ---
 id: V-38661
-status: exception
+status: exception - initial provisioning
 tag: misc
 ---
-
-**Exception**
 
 Creating encrypted storage is left up to the deployer to consider and
 implement. Although encrypting data at rest on storage volumes does reduce

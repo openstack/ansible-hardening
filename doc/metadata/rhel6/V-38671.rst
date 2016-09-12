@@ -1,7 +1,7 @@
 ---
 id: V-38671
 status: implemented
-tag: misc
+tag: services
 ---
 
 The security role will remove the sendmail package if it exists on the system.

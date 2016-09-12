@@ -1,7 +1,7 @@
 ---
 id: V-38669
 status: implemented
-tag: misc
+tag: mail
 ---
 
 The ``postfix`` package will be installed and configured to run at boot time.

@@ -1,7 +1,7 @@
 ---
 id: V-38637
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 The auditd package is verified with ``debsums`` in Ubuntu and with ``rpm`` in

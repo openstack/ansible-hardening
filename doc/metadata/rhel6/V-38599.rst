@@ -1,7 +1,7 @@
 ---
 id: V-38599
 status: implemented
-tag: misc
+tag: services
 ---
 
 If the ``vsftpd`` package is installed, a login banner will be applied so that

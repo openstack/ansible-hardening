@@ -1,10 +1,8 @@
 ---
 id: V-38452
 status: exception
-tag: misc
+tag: package
 ---
-
-**Exception**
 
 Although Ubuntu provides the ``debsums`` command for checking the contents of
 files installed from packages, it cannot perform a detailed level of checking

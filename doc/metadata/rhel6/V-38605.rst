@@ -1,7 +1,7 @@
 ---
 id: V-38605
 status: implemented
-tag: misc
+tag: services
 ---
 
 The ``cron`` service is running by default in Ubuntu 14.04, Ubuntu 16.04, and

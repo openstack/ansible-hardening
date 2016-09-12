@@ -1,7 +1,7 @@
 ---
 id: V-38539
 status: implemented
-tag: misc
+tag: kernel
 ---
 
 The STIG recommends enabling TCP SYN cookies to deal with TCP SYN floods.

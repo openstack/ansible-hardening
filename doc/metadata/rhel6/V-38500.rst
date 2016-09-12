@@ -1,7 +1,7 @@
 ---
 id: V-38500
 status: implemented
-tag: misc
+tag: auth
 ---
 
 The Ansible tasks will search for accounts in ``/etc/passwd`` that have UID 0

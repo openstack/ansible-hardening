@@ -1,10 +1,8 @@
 ---
 id: V-38598
 status: implemented
-tag: misc
+tag: services
 ---
-
-**Fixed by V-38591**
 
 On Ubuntu, the ``rexecd`` daemon is part of the package that contains the
 ``rsh`` daemon. CentOS 7 doesn't provide the ``rexecd`` daemon in any packages.

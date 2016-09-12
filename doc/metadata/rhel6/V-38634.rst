@@ -1,7 +1,7 @@
 ---
 id: V-38634
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 The default action for ``security_max_log_file_action`` on Ubuntu 14.04, Ubuntu

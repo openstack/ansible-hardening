@@ -1,10 +1,8 @@
 ---
 id: V-38685
-status: exception
+status: exception - manual intervention
 tag: misc
 ---
-
-**Exception**
 
 It's not possible to determine which accounts may be temporary or permanent
 via automated methods, so this configuration change is left to deployers to

@@ -1,7 +1,7 @@
 ---
 id: V-38613
-status: implemented
-tag: misc
+status: opt-in
+tag: sshd
 ---
 
 Although the STIG recommends disabling root logins via ssh, the default in

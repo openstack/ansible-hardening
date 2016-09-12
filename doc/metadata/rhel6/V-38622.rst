@@ -1,7 +1,7 @@
 ---
 id: V-38622
 status: implemented
-tag: misc
+tag: mail
 ---
 
 The STIG requires that postfix only listens on the localhost so that it isn't

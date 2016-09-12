@@ -1,10 +1,12 @@
 ---
 id: V-38446
-status: implemented
-tag: misc
+status: configuration required
+tag: mail
 ---
 
-Forwarding root's email to another user is highly recommended, but the Ansible
-tasks won't configure an email address to receive root's email unless that
-email address is configured. Set ``security_root_forward_email`` to an email
-address that is ready to receive root's email.
+Forwarding root's email to another user is highly recommended so that someone
+can receive emails about errors or security events.
+
+Deployers should set ``security_root_forward_email`` to a valid email address
+of a user or mailing list that should receive critical automated emails from
+the server.

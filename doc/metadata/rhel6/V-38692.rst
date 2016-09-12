@@ -1,10 +1,8 @@
 ---
 id: V-38692
 status: opt-in
-tag: misc
+tag: auth
 ---
-
-**Opt-in required**
 
 Deployers must opt-in for this change by setting the following Ansible
 variable:

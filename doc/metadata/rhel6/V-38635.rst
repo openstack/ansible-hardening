@@ -1,7 +1,7 @@
 ---
 id: V-38635
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 Audit rules are added in a task so that any events associated with altering

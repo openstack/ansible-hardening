@@ -1,7 +1,7 @@
 ---
 id: V-38591
 status: implemented
-tag: misc
+tag: services
 ---
 
 The ``rshd`` service will be removed by the Ansible tasks, if it is

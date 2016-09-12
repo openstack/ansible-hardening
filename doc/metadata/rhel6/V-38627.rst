@@ -1,7 +1,7 @@
 ---
 id: V-38627
 status: implemented
-tag: misc
+tag: services
 ---
 
 The STIG requires that any LDAP server packages on the system are removed.

@@ -1,7 +1,7 @@
 ---
 id: V-38608
 status: implemented
-tag: misc
+tag: sshd
 ---
 
 The ``ClientAliveInterval`` in the ssh configuration will be set to 15 minutes

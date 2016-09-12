@@ -1,7 +1,7 @@
 ---
 id: V-38497
 status: implemented
-tag: misc
+tag: auth
 ---
 
 Ubuntu 14.04, Ubuntu 16.04, and CentOS 7 allow accounts with null passwords to

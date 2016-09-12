@@ -1,10 +1,8 @@
 ---
 id: V-38592
-status: exception
-tag: misc
+status: exception - manual intervention
+tag: auth
 ---
-
-**Exception**
 
 Adjusting PAM configurations on a running system carries a fair amount of risk,
 and deployers are urged to rely upon ssh keys or centralized authentication

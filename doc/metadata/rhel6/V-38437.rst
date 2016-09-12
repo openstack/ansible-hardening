@@ -1,7 +1,7 @@
 ---
 id: V-38437
 status: implemented
-tag: misc
+tag: services
 ---
 
 If ``autofs`` is installed, it will be disabled by Ansible tasks. To opt-out

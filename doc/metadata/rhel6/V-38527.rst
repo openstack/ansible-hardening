@@ -1,7 +1,7 @@
 ---
 id: V-38527
 status: implemented
-tag: misc
+tag: auditd
 ---
 
 Rules are added for auditing changes to system time done via

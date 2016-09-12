@@ -1,10 +1,8 @@
 ---
 id: V-38496
-status: exception
-tag: misc
+status: exception - manual intervention
+tag: auth
 ---
-
-**Exception**
 
 The Ansible tasks will check for default system accounts (other than root)
 that are not locked. The tasks won't take any action, however, because

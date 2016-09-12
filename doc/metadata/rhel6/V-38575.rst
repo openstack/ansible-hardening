@@ -1,10 +1,8 @@
 ---
 id: V-38575
-status: exception
-tag: misc
+status: opt-in
+tag: auditd
 ---
-
-**Exception**
 
 The audit rules for monitoring deleted files can cause very high system load
 during OpenStack-Ansible deployments and during package updates using apt.

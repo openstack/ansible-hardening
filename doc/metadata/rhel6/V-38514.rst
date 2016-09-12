@@ -1,7 +1,7 @@
 ---
 id: V-38514
 status: implemented
-tag: misc
+tag: kernel
 ---
 
 The Datagram Congestion Control Protocol (DCCP) must be disabled if it's not

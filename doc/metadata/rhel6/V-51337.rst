@@ -1,7 +1,7 @@
 ---
 id: V-51337
 status: implemented
-tag: misc
+tag: lsm
 ---
 
 The tasks in the security role will enable the Linux Security

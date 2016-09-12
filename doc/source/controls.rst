@@ -31,7 +31,7 @@ You can also review the STIG controls in one very large page. This can be
 helpful when you need to search using your web browser.
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 2
 
    auto_controls-by-severity.rst
    auto_controls-by-status.rst

@@ -13,11 +13,14 @@ OpenStack environment.
 All of the default configurations are found within ``defaults/main.yml`` in the
 role itself.
 
-*NOTE: Deployers are strongly urged to test this role and any configuration
-changes in a non-production, test environment.*
+.. note::
+
+   Deployers are strongly urged to test this role and any configuration
+   changes in a non-production, test environment.
 
 .. contents::
    :local:
+   :backlinks: none
 
 AIDE
 ----
@@ -31,6 +34,11 @@ By default, this role exludes some directories that cause AIDE to spend a very
 long time indexing the disk.  Additional directories can be added to the
 exclusion list, but the directories currenty listed **should not be removed**.
 Deployers can add directories to ``aide_exlude_dirs``.
+
+.. literalinclude:: ../../defaults/main.yml
+   :language: yaml
+   :start-after: ## AIDE
+   :end-before: # By default, the AIDE database won't be initialized
 
 The first AIDE database initialization can consume lots of CPU time and I/O
 resources. By default, the role won't run the database initialization after

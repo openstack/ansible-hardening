@@ -1,5 +1,5 @@
 .. include:: <xhtml1-lat1.txt>
-`Home <index.html>`__ |raquo| Security hardening for openstack-ansible
+`Home <index.html>`__ |raquo| Security hardening for OpenStack-Ansible
 
 Developer Guide
 ===============
@@ -28,8 +28,27 @@ To install all of the prerequisites and run the functional tests, use the
 Writing documentation
 ---------------------
 
-Each security configuration has corresponding documentation found in
-``docs/source/developer-notes``. The documentation should be brief, but it must
+Documentation consists of two parts: metadata and deployer notes. The metadata
+exists as `YAML frontmatter <https://jekyllrb.com/docs/frontmatter/>`_ for each
+STIG configuration. The frontmatter is followed by the text of the deployer
+note itself.
+
+All of the notes are found within ``doc/metadata/rhel6``.  Here is an example
+of V-38497:
+
+.. literalinclude:: ../metadata/rhel6/V-38497.rst
+   :language: yaml
+
+The block after the first three dashes (``---``) is the metadata. The metadata
+must include:
+
+* ``id``: The ID of the STIG configuration item.
+* ``status``: The implementation status of the STIG configuration, such as
+  ``implemented``, ``exception``, or ``opt-in``.
+* ``tag``: The Ansible tag associated with the task(s) that make changes based
+  on the STIG requirement, such as ``auditd``, ``kernel``, or ``lsm``.
+
+The next block is the deployer note.  The note should be brief, but it must
 answer a few critical questions:
 
 * What does the change do to a system?
@@ -38,11 +57,8 @@ answer a few critical questions:
 * Is there additional documentation available online that may help a deployer
   decide whether or not this change is valuable to them?
 
-Each developer note is stored with the configuration number as its filename.
-For example, the documentation for V-38476 is stored in
-``doc/source/developer-notes/V-38476.rst``. If the developer notes for several
-security configurations are identical, symbolic links can be used to avoid
-repeating information.
+Run ``tox -e docs`` to rebuild the documentation from the metadata and review
+your changes.
 
 Release notes
 -------------

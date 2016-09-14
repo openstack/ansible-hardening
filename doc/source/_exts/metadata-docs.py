@@ -105,11 +105,12 @@ def get_deployer_notes(stig_id):
     return post
 
 
-def render_all(stig_ids):
+def render_all(stig_ids, all_deployer_notes):
     """Generate documentation RST for each STIG configuration."""
     template = JINJA_ENV.get_template('template_all.j2')
     return template.render(
-        stig_ids=stig_ids
+        stig_ids=stig_ids,
+        all_deployer_notes=all_deployer_notes,
     )
 
 
@@ -122,12 +123,13 @@ def render_doc(stig_rule, deployer_notes):
     )
 
 
-def render_toc(toc_type, stig_dict):
+def render_toc(toc_type, stig_dict, all_deployer_notes):
     """Generate documentation RST for each STIG configuration."""
     template = JINJA_ENV.get_template('template_toc.j2')
     return template.render(
         toc_type=toc_type,
-        stig_dict=stig_dict
+        stig_dict=stig_dict,
+        all_deployer_notes=all_deployer_notes,
     )
 
 
@@ -149,6 +151,7 @@ def generate_docs():
 
     # Create defaultdicts to hold information to build our table of
     # contents files for sphinx.
+    all_deployer_notes = defaultdict(list)
     severity = defaultdict(list)
     tag = defaultdict(list)
     status = defaultdict(list)
@@ -177,12 +180,9 @@ def generate_docs():
 
         # Get the deployer notes from YAML
         deployer_notes = get_deployer_notes(rule['id'])
+        rule['deployer_notes'] = deployer_notes
 
-        # Render our documentation
-        doc_rst = render_doc(rule, deployer_notes)
-        all_filename = "auto_{0}.rst".format(rule['id'])
-        write_file(all_filename, doc_rst)
-
+        all_deployer_notes[rule['id']] = rule
         stig_ids.append(rule['id'])
         severity[rule['severity']].append(rule['id'])
         status[deployer_notes['status']].append(rule['id'])
@@ -194,10 +194,16 @@ def generate_docs():
     status = OrderedDict(sorted(status.items(), key=lambda x: x[0]))
     tag = OrderedDict(sorted(tag.items(), key=lambda x: x[0]))
 
-    all_toc = render_all(stig_ids)
-    severity_toc = render_toc('severity', severity)
-    status_toc = render_toc('implementation status', status)
-    tag_toc = render_toc('tag', tag)
+    all_toc = render_all(stig_ids, all_deployer_notes)
+    severity_toc = render_toc('severity',
+                              severity,
+                              all_deployer_notes)
+    status_toc = render_toc('implementation status',
+                            status,
+                            all_deployer_notes)
+    tag_toc = render_toc('tag',
+                         tag,
+                         all_deployer_notes)
 
     write_file("auto_controls-all.rst", all_toc)
     write_file("auto_controls-by-severity.rst", severity_toc)

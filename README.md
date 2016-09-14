@@ -1,13 +1,25 @@
 openstack-ansible-security
 ==========================
 
-The goal of the openstack-ansible-security role is to improve security within [openstack-ansible](https://github.com/openstack/openstack-ansible) deployments. The role is based on the [Security Technical Implementation Guide (STIG)](http://iase.disa.mil/stigs/Pages/index.aspx) for [Red Hat Enterprise Linux 6](https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/).
+The openstack-ansible security role applies security hardening configurations
+from the [Security Technical Implementation Guide(STIG)](http://iase.disa.mil/stigs/Pages/index.aspx)
+to systems running Ubuntu 14.04, Ubuntu 16.04, CentOS 7, and Red Hat
+Enterprise Linux 7.
+
+The role is part of the
+[OpenStack-Ansible project](https://github.com/openstack/openstack-ansible),
+which deploys enterprise-grade OpenStack clouds using Ansible.  However, the
+role can easily be used outside of an OpenStack environment to secure hosts,
+virtual machines, and containers.
+
+For more details, review the
+[openstack-ansible-security documentation](http://docs.openstack.org/developer/openstack-ansible-security/).
 
 Requirements
 ------------
 
-This role can be used with or without the openstack-ansible role. It requires
-Ansible 1.8.3 at a minimum.
+This role can be used with or without the OpenStack-Ansible role. It requires
+Ansible 1.9.1 or later.
 
 Role Variables
 --------------

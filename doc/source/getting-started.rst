@@ -1,6 +1,3 @@
-.. include:: <xhtml1-lat1.txt>
-`Home <index.html>`__ |raquo| Security hardening for OpenStack-Ansible
-
 Getting started
 ===============
 
@@ -10,55 +7,74 @@ with other Ansible playbooks.
 
 .. _OpenStack-Ansible: https://github.com/openstack/openstack-ansible/
 
+.. contents::
+   :local:
+   :backlinks: none
+
+Prepare your system
+-------------------
+
+Start by installing ansible and then install the role itself using
+``ansible-galaxy``:
+
+.. code-block:: console
+
+   pip install ansible
+   ansible-galaxy install git+https://github.com/openstack/openstack-ansible-security
+
+The role will be installed into
+``/etc/ansible/roles/openstack-ansible-security``.
+
+Initial configuration
+---------------------
+
+Some of the security configurations need initial configuration or they may
+require you to opt-in for a change to be applied.  Start by reviewing the list
+of STIG controls that
+:ref:`require initial configuration <implementation-status-configuration-required>`
+or :ref:`require opt-in <implementation-status-opt-in>`.
+
+An example of a STIG requiring initial configuration is
+:ref:`V-38446 <stig-V-38446>`, which requires an email address for a person
+who can receive email sent to ``root``.
+
+Many of the STIG configurations are in an *opt-in* status because they can be
+helpful for some systems and harmful to others. A good example of this is
+:ref`V-38481 <stig-V-38481>`, which requires that automatic package updates are
+configured on a host. In some environments, this isn't a problem, but this
+could cause disruptions in environments with low tolerance for changes.
+
+Using as a standalone role
+--------------------------
+
+Adding the openstack-ansible-security role to existing playbooks is
+straightforward. Here is an example of an existing role for deploying web
+servers with the security hardening role added:
+
+.. code-block:: yaml
+
+   ---
+
+   - name: Deploy web servers
+     hosts: webservers
+     become: yes
+     roles:
+       - common
+       - webserver
+       - openstack-ansible-security
+
 Using with OpenStack-Ansible
 ----------------------------
 
-Starting with the Mitaka release, OpenStack-Ansible installs the
-openstack-ansible-security role automatically. It's disabled by default for
-deployments and can be enabled with an Ansible variable:
+The openstack-ansible-security role is automatically enabled and applied in the
+Newton release of OpenStack-Ansible. In the Liberty and Mitaka releases, the
+role is easily enabled by adjusting the following Ansible variable:
 
 .. code-block:: yaml
 
      apply_security_hardening: true
 
-If the variable is set, the security hardening configurations will be applied
-automatically on new builds that use the ``scripts/run_playbooks.sh`` script
-provided with OpenStack-Ansible. However, the role can be applied anytime by
-using the playbook provided with OpenStack-Ansible:
-
-.. code-block:: bash
-
-     cd /opt/openstack-ansible/playbooks/
-     openstack-ansible -e "apply_security_hardening=true" security-hardening.yml
-
 For more information, refer to the OpenStack-Ansible documentation on
 `configuring security hardening`_.
 
-.. _configuring security hardening: http://docs.openstack.org/developer/openstack-ansible/install-guide/configure-initial.html
-
-Using as a standalone role
---------------------------
-
-There are several options for using openstack-ansible-security as a standalone
-role or along with another existing project. Here are two fairly easy methods:
-
-* Add openstack-ansible-security as a git submodule in the roles directory
-  of an existing Ansible project
-* Clone the role into ``/etc/ansible/roles/`` on any system and write a custom
-  playbook and hosts inventory file
-
-The playbook for openstack-ansible-security can be fairly simple, depending
-on the configuration of the systems:
-
-.. code-block:: yaml
-
-    ---
-
-    - name: Run openstack-ansible-security
-      hosts: webservers
-      user: root
-      roles:
-        - openstack-ansible-security
-
-This playbook will run the tasks in the openstack-ansible-security role against
-all hosts in the ``webservers`` group (as defined in an inventory file).
+.. _configuring security hardening: http://docs.openstack.org/developer/openstack-ansible/install-guide/app-advanced-config-security.html#security-hardening

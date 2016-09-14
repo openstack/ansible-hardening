@@ -45,8 +45,8 @@ Newton release. The Newton release supports the following Linux distributions:
    :maxdepth: 2
 
    benefits.rst
-   configuration.rst
    getting-started.rst
+   special-notes.rst
    controls.rst
    developer-guide.rst
 

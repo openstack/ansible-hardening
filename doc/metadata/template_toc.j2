@@ -14,11 +14,14 @@
 {% else %}
 {% set section_title = section_header | title + " (" + stig_id_list | length | string + " controls)" %}
 {% endif %}
+.. _{{ toc_type | replace(' ', '-') }}-{{ section_header | replace(' ', '-') }}:
+
 {{ section_title }}
 {{ "=" * section_title | length }}
 
 {% for stig_id in stig_id_list | sort %}
-.. include:: auto_{{ stig_id }}.rst
+
+{% include "template_doc.j2" %}
 
 {% if not loop.last %}
 ----

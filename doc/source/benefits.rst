@@ -1,6 +1,3 @@
-.. include:: <xhtml1-lat1.txt>
-`Home <index.html>`__ |raquo| Security hardening for openstack-ansible
-
 Security benefits FAQ
 =====================
 

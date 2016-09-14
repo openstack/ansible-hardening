@@ -1,5 +1,6 @@
-.. include:: <xhtml1-lat1.txt>
-`Home <index.html>`__ |raquo| Security hardening for OpenStack-Ansible
+.. contents::
+   :local:
+   :backlinks: none
 
 Developer Guide
 ===============

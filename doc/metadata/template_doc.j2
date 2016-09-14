@@ -1,3 +1,4 @@
+{% set rule = all_deployer_notes[stig_id] %}
 {% set page_title = rule['title'] | trim + ' (' + rule['id'] + ')'%}
 {{ page_title }}
 {{ "-" * page_title | length }}
@@ -11,8 +12,5 @@ Details: `{{ rule['id'] }} in STIG Viewer`_
 Notes for deployers and auditors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Implementation Status:** {{ notes['status'] | title }}
-
-{{ notes['content'] }}
-
-
+**Implementation Status:** {{ rule['deployer_notes']['status'] | title }}
+{{ rule['deployer_notes']['content'] }}

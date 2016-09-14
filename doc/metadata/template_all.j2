@@ -13,7 +13,9 @@ ID numbers, such as ``V-38463``, or for particular topics, like ``audit``.
 ----
 
 {% for stig_id in stig_ids | sort %}
-.. include:: auto_{{ stig_id }}.rst
+.. _stig-{{ stig_id }}:
+
+{% include "template_doc.j2" %}
 
 {% if not loop.last %}
 ----

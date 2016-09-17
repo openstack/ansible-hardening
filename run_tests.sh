@@ -24,23 +24,23 @@ if [ ! "$(which pip)" ]; then
 fi
 
 # Install bindep and tox
-pip install bindep tox
+sudo pip install bindep tox
 
 # CentOS 7 requires two additional packages:
 #   redhat-lsb-core - for bindep profile support
 #   epel-release    - required to install python-ndg_httpsclient/python2-pyasn1
 if [ "$(which yum)" ]; then
-    yum -y install redhat-lsb-core epel-release
+    sudo yum -y install redhat-lsb-core epel-release
 fi
 
 # Install OS packages using bindep
 if apt-get -v >/dev/null 2>&1 ; then
-    apt-get update
+    sudo apt-get update
     DEBIAN_FRONTEND=noninteractive \
-      apt-get -q --option "Dpkg::Options::=--force-confold" \
+      sudo apt-get -q --option "Dpkg::Options::=--force-confold" \
       --assume-yes install `bindep -b -f bindep.txt test`
 else
-    yum install -y `bindep -b -f bindep.txt test`
+    sudo yum install -y `bindep -b -f bindep.txt test`
 fi
 
 # run through each tox env and execute the test

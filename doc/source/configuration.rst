@@ -27,10 +27,10 @@ will install AIDE to meet these requirements.  However, Ubuntu's default
 configuration will cause AIDE to search through container filesystems and this
 will cause a serious performance hit to disk I/O for very long periods.
 
-By default, this role exludes some directories that cause AIDE to spend a very
+By default, this role excludes some directories that cause AIDE to spend a very
 long time indexing the disk.  Additional directories can be added to the
 exclusion list, but the directories currenty listed **should not be removed**.
-Deployers can add directories to ``aide_exlude_dirs``.
+Deployers can add directories to ``aide_exclude_dirs``.
 
 The first AIDE database initialization can consume lots of CPU time and I/O
 resources. By default, the role won't run the database initialization after

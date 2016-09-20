@@ -56,7 +56,7 @@ will install AIDE to meet these requirements.
 
 By default AIDE will examine and monitor all of the files on a host unless
 directories are added to its exclusion list. The security role sets directories
-to exclude from AIDE monitoring via the ``aide_exlude_dirs`` variable. this
+to exclude from AIDE monitoring via the ``aide_exclude_dirs`` variable. this
 list excludes the most common directories that change very often via automated
 methods.
 

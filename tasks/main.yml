@@ -57,12 +57,14 @@
       - always
 
   - include: apt.yml
+    static: no
     when: ansible_pkg_mgr == 'apt'
     tags:
       - apt
       - package
 
   - include: rpm.yml
+    static: no
     when: ansible_pkg_mgr == 'yum' or ansible_pkg_mgr == 'dnf'
     tags:
       - package

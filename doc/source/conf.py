@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+"""Documentation configuration for the openstack-ansible-security role."""
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -32,6 +32,13 @@ import pbr.version
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.join(os.path.abspath('.'), '_exts'))
+
+# NOTE(mhayden): Since the security role docs are fairly lengthy and deeply
+# nested in places, sphinx occasionally throws a pickling error as shown in
+# Launchpad bug 1627732. Sphinx 1.4 now prints a recommendation in these
+# situations to increase Python's recursion limit a bit higher to avoid the
+# pickling error.
+sys.setrecursionlimit(4000)
 
 # -- General configuration ------------------------------------------------
 

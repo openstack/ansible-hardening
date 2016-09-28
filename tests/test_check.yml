@@ -16,4 +16,4 @@
 - name: Playbook for role testing (check mode)
   hosts: localhost
   roles:
-    - role: "{{ rolename }}"
+    - role: "openstack-ansible-security"

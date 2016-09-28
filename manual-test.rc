@@ -30,4 +30,4 @@ export ANSIBLE_SSH_ARGS="-o ControlMaster=no \
   -o ForwardAgent=yes"
 
 echo "Run manual functional tests by executing the following:"
-echo "# ./.tox/functional/bin/ansible-playbook -i tests/inventory tests/test.yml -e \"rolename=$(pwd)\""
+echo "# ./.tox/functional/bin/ansible-playbook -i tests/inventory tests/test.yml"

@@ -52,7 +52,7 @@
           - "'\nUnattended-Upgrade::Mail \"root\";\n' in unattended_upgrades_file"
       when: ansible_pkg_mgr == 'apt'
   roles:
-    - role: "{{ rolename }}"
+    - role: "openstack-ansible-security"
   vars:
     security_unattended_upgrades_enabled: true
     security_unattended_upgrades_notifications: true

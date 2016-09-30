@@ -13,6 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+## STIG version selection
+# During the Ocata development cycle, the role will begin adding the RHEL 7
+# STIG content. By default, all operating systems will use the RHEL 6 STIG
+# until the work has completed.
+#
+# This variable should only be adjusted for testing purposes.
+stig_version: rhel6
+
 ## APT Cache Options
 # This variable is used across multiple OpenStack-Ansible roles to handle the
 # apt cache updates as efficiently as possible.

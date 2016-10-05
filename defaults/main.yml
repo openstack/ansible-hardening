@@ -30,10 +30,16 @@ cache_timeout: 600
 # Options are 'present' and 'latest'
 security_package_state: "latest"
 
-### Default configurations for openstack-ansible-security #####################
+###############################################################################
+#   ____  _   _ _____ _        __     ____ _____ ___ ____
+#  |  _ \| | | | ____| |      / /_   / ___|_   _|_ _/ ___|
+#  | |_) | |_| |  _| | |     | '_ \  \___ \ | |  | | |  _
+#  |  _ <|  _  | |___| |___  | (_) |  ___) || |  | | |_| |
+#  |_| \_\_| |_|_____|_____|  \___/  |____/ |_| |___\____|
 #
-# All of the configuration items below are documented in the developer notes
-# found here:
+#  The default configurations after this marker apply to the RHEL 6 STIG
+#  content in the openstack-ansible-security role. Review the comments below
+#  as well as the main openstack-ansible-security documentation:
 #
 #    http://docs.openstack.org/developer/openstack-ansible-security/
 #
@@ -359,3 +365,19 @@ security_sudoers_remove_authenticate: no          # V-58901
 ## Unattended upgrades (APT) configuration
 security_unattended_upgrades_enabled: false
 security_unattended_upgrades_notifications: false
+
+###############################################################################
+#  ____  _   _ _____ _       _____   ____ _____ ___ ____
+# |  _ \| | | | ____| |     |___  | / ___|_   _|_ _/ ___|
+# | |_) | |_| |  _| | |        / /  \___ \ | |  | | |  _
+# |  _ <|  _  | |___| |___    / /    ___) || |  | | |_| |
+# |_| \_\_| |_|_____|_____|  /_/    |____/ |_| |___\____|
+#
+#  UNDER ACTIVE DEVELOPMENT
+#
+#  The default configurations after this marker apply to the RHEL 7 STIG
+#  content in the openstack-ansible-security role. This content is still under
+#  active development and will not be applied to systems by default until
+#  the development work is complete.
+#
+###############################################################################

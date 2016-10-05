@@ -68,4 +68,6 @@ tests/test.retry
 # Vagrant artifacts
 .vagrant
 
-
+# Auto-generated documentation
+doc/source/auto_*
+doc/source/rhel7

@@ -1,0 +1,7 @@
+---
+id: RHEL-07-030672
+status: not implemented
+tag: misc
+---
+
+This STIG requirement is not yet implemented.

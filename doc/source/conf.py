@@ -50,6 +50,7 @@ sys.setrecursionlimit(4000)
 # ones.
 extensions = [
     'metadata-docs',
+    'metadata-docs-rhel7',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

@@ -1,0 +1,25 @@
+{% set rule = all_deployer_notes[stig_id] %}
+{% set page_title = rule['title'] | trim + ' (' + rule['id'] + ')'%}
+{{ page_title }}
+{{ "-" * page_title | length }}
+
+Information from the STIG
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Description:**
+
+{{ rule['description']['VulnDiscussion'] | addmonospace }}
+
+**Fix:**
+
+{{ rule['fix'] | safe | addmonospace }}
+
+**Checking compliance:**
+
+{{ rule['check'] | safe | addmonospace }}
+
+Deployer/Auditor notes
+~~~~~~~~~~~~~~~~~~~~~~
+
+**Implementation Status:** {{ rule['deployer_notes']['status'] | title }}
+{{ rule['deployer_notes']['content'] }}

@@ -32,6 +32,7 @@
         path: /etc/apt/apt.conf.d/20auto-upgrades
       register: auto_upgrades_file
       when:
+        - not check_mode
         - stig_version == 'rhel6'
         - ansible_pkg_mgr == 'apt'
     - name: Slurp contents of 50unattended-upgrades file
@@ -39,12 +40,14 @@
         src: /etc/apt/apt.conf.d/50unattended-upgrades
       register: unattended_upgrades_file_encoded
       when:
+        - not check_mode
         - stig_version == 'rhel6'
         - ansible_pkg_mgr == 'apt'
     - name: Decode slurp'd 50-unattended-upgrades file
       set_fact:
         unattended_upgrades_file: "{{ unattended_upgrades_file_encoded.content | b64decode }}"
       when:
+        - not check_mode
         - stig_version == 'rhel6'
         - ansible_pkg_mgr == 'apt'
     - name: Ensure auto updates has been enabled
@@ -52,6 +55,7 @@
         that:
           - auto_upgrades_file.stat.exists
       when:
+        - not check_mode
         - stig_version == 'rhel6'
         - ansible_pkg_mgr == 'apt'
     - name: Ensure that auto update notifications has been enabled
@@ -59,6 +63,7 @@
         that:
           - "'\nUnattended-Upgrade::Mail \"root\";\n' in unattended_upgrades_file"
       when:
+        - not check_mode
         - stig_version == 'rhel6'
         - ansible_pkg_mgr == 'apt'
   roles:

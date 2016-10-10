@@ -56,7 +56,6 @@
     tags:
       - always
 
-
   - include: rhel6stig/main.yml
     when:
       - stig_version == 'rhel6'

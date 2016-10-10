@@ -103,6 +103,7 @@
     dest: /etc/apt/apt.conf.d/50unattended-upgrades
     regexp: '^(\/\/)?Unattended-Upgrade::Mail "root";'
     line: 'Unattended-Upgrade::Mail "root";'
+    create: yes
   when:
     - security_unattended_upgrades_enabled | bool
     - security_unattended_upgrades_notifications | bool

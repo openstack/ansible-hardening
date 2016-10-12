@@ -48,6 +48,10 @@
   tags:
     - apt
 
+- include: auth.yml
+  tags:
+    - auth
+
 - include: file_perms.yml
   tags:
     - file_perms

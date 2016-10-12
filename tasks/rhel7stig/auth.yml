@@ -1,0 +1,47 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
+  lineinfile:
+    dest: "{{ pam_auth_file }}"
+    state: present
+    regexp: "^(.*)nullok_secure(.*)$"
+    line: '\1\2'
+    backup: yes
+    backrefs: yes
+  when:
+    - ansible_os_family == 'Debian'
+    - security_disallow_blank_password_login | bool
+  tags:
+    - high
+    - RHEL-07-010260
+
+- name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
+  lineinfile:
+    dest: "{{ pam_auth_file }}"
+    state: present
+    regexp: "^({{ item }}.*sufficient.*)nullok(.*)$"
+    line: '\1\2'
+    backup: yes
+    backrefs: yes
+  with_items:
+    - auth
+    - password
+  when:
+    - ansible_os_family == 'RedHat'
+    - security_disallow_blank_password_login | bool
+  tags:
+    - high
+    - RHEL-07-010260

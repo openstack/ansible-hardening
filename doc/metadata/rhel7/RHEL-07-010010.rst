@@ -1,7 +1,21 @@
 ---
 id: RHEL-07-010010
-status: not implemented
-tag: misc
+status: implemented - red hat
+tag: file_perms
 ---
 
-This STIG requirement is not yet implemented.
+.. note::
+
+    Ubuntu's ``debsums`` command does not support verification of permissions
+    and ownership for files that were installed by packages. This STIG
+    requirement will be skipped on Ubuntu.
+
+The STIG requires that all files owned by an installed package must have their
+permissions, user ownership, and group ownership set back to the vendor
+defaults.
+
+Deployers may opt-out of the change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+   security_reset_perm_ownership: no

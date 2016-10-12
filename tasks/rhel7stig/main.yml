@@ -13,6 +13,43 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Not yet implemented
-  debug:
-    msg: "The RHEL 7 STIG is not yet implemented."
+- name: Create temporary directory to hold any temporary files
+  command: "mktemp -d"
+  register: mktemp_result
+  changed_when: False
+  when:
+    - not check_mode | bool
+
+- name: Set a fact for the temporary directory
+  set_fact:
+    temp_dir: "{{ mktemp_result.stdout }}"
+  changed_when: False
+  when:
+    - not check_mode | bool
+
+# Multiple tasks will need the output of RPM verification, so let's do the
+# lookup one time and then grep over the output in subsequent tasks.
+- name: Verify all installed RPM packages
+  shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt"
+  args:
+    warn: no
+  failed_when: False
+  changed_when: False
+  when:
+    - not check_mode | bool
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - always
+    - skip_ansible_lint
+
+- include: file_perms.yml
+  tags:
+    - file_perms
+
+- name: Remove the temporary directory
+  file:
+    path: "{{ temp_dir }}"
+    state: absent
+  changed_when: False
+  when:
+    - not check_mode | bool

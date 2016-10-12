@@ -42,9 +42,21 @@
     - always
     - skip_ansible_lint
 
+- include: apt.yml
+  when:
+    - ansible_os_family | lower == 'debian'
+  tags:
+    - apt
+
 - include: file_perms.yml
   tags:
     - file_perms
+
+- include: rpm.yml
+  when:
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - rpm
 
 - name: Remove the temporary directory
   file:

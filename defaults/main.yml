@@ -390,6 +390,12 @@ security_disallow_blank_password_login: yes                  # RHEL-07-010260
 # Reset file permissions and ownership for files installed via RPM packages.
 security_reset_perm_ownership: yes                           # RHEL-07-010010
 
+## Graphical interfaces (graphical)
+# Disable automatic gdm logins
+security_disable_gdm_automatic_login: yes                    # RHEL-07-010430
+# Disable timed gdm logins for guests
+security_disable_gdm_timed_login: yes                        # RHEL-07-010431
+
 ## ssh server (sshd)
 # Prevent users from logging in over ssh if they have an empty password.
 security_sshd_disallow_empty_password: yes                   # RHEL-07-010270

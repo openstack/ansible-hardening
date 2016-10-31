@@ -56,6 +56,10 @@
   tags:
     - file_perms
 
+- include: graphical.yml
+  tags:
+    - graphical
+
 - include: rpm.yml
   when:
     - ansible_os_family | lower == 'redhat'

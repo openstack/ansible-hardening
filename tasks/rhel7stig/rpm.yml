@@ -38,7 +38,7 @@
     - not check_mode | bool
     - ansible_os_family | lower == 'redhat'
     - rhel_07_010020_files is defined
-    - rhel_07_010020_files.stdout_lines | length > 0
+    - rhel_07_010020_files.stdout is defined
   tags:
     - high
     - RHEL-07-010020

@@ -41,7 +41,7 @@
     rhel_07_010020_violations: "{{ rhel_07_010020_files.stdout_lines | default([]) | join(', ') }}"
   when:
     - rhel_07_010020_files is defined
-    - rhel_07_010020_files.stdout_lines | length > 0
+    - rhel_07_010020_files.stdout is defined
   tags:
     - high
     - RHEL-07-010020
@@ -56,7 +56,7 @@
   when:
     - ansible_os_family | lower == 'debian'
     - rhel_07_010020_files is defined
-    - rhel_07_010020_files.stdout_lines | length > 0
+    - rhel_07_010020_files.stdout is defined
   tags:
     - high
     - RHEL-07-010020

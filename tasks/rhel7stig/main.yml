@@ -62,6 +62,10 @@
   tags:
     - rpm
 
+- include: sshd.yml
+  tags:
+    - sshd
+
 - name: Remove the temporary directory
   file:
     path: "{{ temp_dir }}"

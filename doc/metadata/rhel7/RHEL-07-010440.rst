@@ -1,7 +1,8 @@
 ---
 id: RHEL-07-010440
-status: not implemented
-tag: misc
+status: implemented
+tag: sshd
 ---
 
-This STIG requirement is not yet implemented.
+The tasks for :ref:`stig-RHEL-07-010270` disable logins for accounts with empty
+passwords. No other action is needed for this STIG requirement.

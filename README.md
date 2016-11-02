@@ -7,7 +7,7 @@ to systems running Ubuntu 14.04, Ubuntu 16.04, CentOS 7, and Red Hat
 Enterprise Linux 7.
 
 The role is part of the
-[OpenStack-Ansible project](https://github.com/openstack/openstack-ansible),
+[OpenStack-Ansible project](https://git.openstack.org/cgit/openstack/openstack-ansible),
 which deploys enterprise-grade OpenStack clouds using Ansible.  However, the
 role can easily be used outside of an OpenStack environment to secure hosts,
 virtual machines, and containers.

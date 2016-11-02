@@ -5,7 +5,7 @@ The openstack-ansible-security role can be used along with the
 `OpenStack-Ansible`_ project or as a standalone role that can be used along
 with other Ansible playbooks.
 
-.. _OpenStack-Ansible: https://github.com/openstack/openstack-ansible/
+.. _OpenStack-Ansible: https://git.openstack.org/cgit/openstack/openstack-ansible/
 
 .. contents::
    :local:
@@ -20,7 +20,7 @@ Start by installing ansible and then install the role itself using
 .. code-block:: console
 
    pip install ansible
-   ansible-galaxy install git+https://github.com/openstack/openstack-ansible-security
+   ansible-galaxy install git+https://git.openstack.org/openstack/openstack-ansible-security
 
 The role will be installed into
 ``/etc/ansible/roles/openstack-ansible-security``.

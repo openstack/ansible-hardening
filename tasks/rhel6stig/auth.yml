@@ -307,7 +307,7 @@
 # SHA512 is the minimum requirement and it happens to be Ubuntu 14.04's default
 # hashing algorithm as well.
 - name: Check password hashing algorithm used by PAM (for V-38574)
-  shell: "grep '^\\s*password.*pam_unix.*sha512' {{ pam_password_file }}"
+  command: "grep '^\\s*password.*pam_unix.*sha512' {{ pam_password_file }}"
   register: v38574_result
   changed_when: False
   failed_when: False
@@ -328,7 +328,7 @@
     - V-38574
 
 - name: Check password hashing algorithm used in login.defs (for V-38576)
-  shell: "grep '^ENCRYPT_METHOD.*SHA512' /etc/login.defs"
+  command: "grep '^ENCRYPT_METHOD.*SHA512' /etc/login.defs"
   register: v38576_result
   changed_when: v38576_result.rc != 0
   always_run: True
@@ -363,7 +363,7 @@
 
 # Only look at libuser.conf when we are sure that libuser is installed
 - name: If libuser is installed, verify hashing algorithm in use (for V-38577)
-  shell: "grep '^crypt_style = sha512' /etc/libuser.conf"
+  command: "grep '^crypt_style = sha512' /etc/libuser.conf"
   register: v38577_result
   when: v38577_libuser_check.rc == 0
   changed_when: v38577_result.rc != 0
@@ -433,11 +433,11 @@
     - cat3
     - V-38683
 
-# This should be updated to use the find module when Ansible 2.0 is available.
 - name: Search for sudoers files (for V-58901)
-  shell: find /etc/sudoers* -type f
+  find:
+    paths: "/etc/sudoers*"
+    file_type: file
   register: v58901_result
-  changed_when: False
   always_run: True
   tags:
     - auth
@@ -447,8 +447,9 @@
 # The lineinfile module can't be used here since we may need to comment out
 # multiple lines.
 - name: Comment out sudoers lines with NOPASSWD present (for V-58901)
-  shell: "sed -e '/NOPASSWD/ s/^#*/#/' -i {{ item }}"
-  with_items: "{{ v58901_result.stdout_lines | default([]) }}"
+  command: "sed -e '/NOPASSWD/ s/^#*/#/' -i {{ item.path }}"
+  changed_when: false
+  with_items: "{{ v58901_result.files | default([]) }}"
   when: security_sudoers_remove_nopasswd | bool
   tags:
     - auth
@@ -458,8 +459,9 @@
 # The lineinfile module can't be used here since we may need to comment out
 # multiple lines.
 - name: Comment out sudoers lines with !authenticate present (for V-58901)
-  shell: "sed -e '/!authenticate/ s/^#*/#/' -i {{ item }}"
-  with_items: "{{ v58901_result.stdout_lines | default([]) }}"
+  command: "sed -e '/!authenticate/ s/^#*/#/' -i {{ item.path }}"
+  changed_when: false
+  with_items: "{{ v58901_result.files | default([]) }}"
   when: security_sudoers_remove_authenticate | bool
   tags:
     - auth

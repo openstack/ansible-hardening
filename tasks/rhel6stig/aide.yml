@@ -63,7 +63,8 @@
     - always
 
 - name: V-38489 - Initialize AIDE (this will take a few minutes)
-  shell: "aideinit"
+  command: "aideinit"
+  changed_when: false
   register: aide_init
   when:
     - aide_conf.stat.exists | bool
@@ -78,7 +79,8 @@
 # copies the new AIDE database into place automatically with its AIDE wrapper
 # script.
 - name: V-38489 - Move AIDE database into place
-  shell: "mv /var/lib/aide/aide.db.new.gz {{ aide_database_file }}"
+  command: "mv /var/lib/aide/aide.db.new.gz {{ aide_database_file }}"
+  changed_when: false
   when:
     - aide_init | changed
     - ansible_os_family | lower == 'redhat'

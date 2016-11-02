@@ -109,7 +109,7 @@
 # returns 2 otherwise. We also will check to see if auditd has been installed
 # and fail if it's not installed.
 - name: Checking auditd package contents for alterations with debsums (for V-38637)
-  shell: debsums auditd -c
+  command: debsums auditd -c
   register: v38637_result
   changed_when: False
   failed_when: "'not installed' in v38637_result.stdout"
@@ -253,7 +253,7 @@
 # avoid using the shell module to get a list of logs. This task should be
 # adjusted to use the find module when Ansible 2.0 is fully released.
 - name: Get a list of audit logs in the auditd directory (for V-38498)
-  shell: ls /var/log/audit/
+  command: ls /var/log/audit/
   register: v38498_result
   changed_when: false
   when: auditd_log_dir.stat.exists | bool

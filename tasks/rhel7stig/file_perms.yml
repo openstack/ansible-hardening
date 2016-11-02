@@ -31,6 +31,7 @@
   shell: "rpm {{ item[0] }} `rpm -qf {{ item[1] }}`"
   args:
     warn: no
+  changed_when: false
   with_nested:
     - ['--setperms', '--setugids']
     - "{{ rhel_07_010010_packages.stdout_lines | default([]) }}"
@@ -42,3 +43,5 @@
   tags:
     - high
     - RHEL-07-010010
+    # don't trigger ANSIBLE0013
+    - skip_ansible_lint

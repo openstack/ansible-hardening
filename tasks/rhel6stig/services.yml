@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Generate list of services_installed
-  shell: "find /etc/init.d/ -printf '%f\n'"
+  command: "find /etc/init.d/ -printf '%f\n'"
   register: sysv_services_installed
   changed_when: false
   always_run: True

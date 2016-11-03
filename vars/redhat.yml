@@ -21,14 +21,6 @@ grub_conf_file: /boot/grub2/grub.cfg
 aide_cron_job_path: /etc/cron.d/aide
 aide_database_file: /var/lib/aide/aide.db.gz
 
-# Package names
-auditd_pkg: audit
-ldap_server_pkg: openldap-servers
-telnet_server_pkg: telnet-server
-tftp_pkg: tftp-server
-xserver_pkg: xorg-x11-server-Xorg
-ypserv_pkg: ypserv
-
 # Service names
 cron_service: crond
 ssh_service: sshd
@@ -36,3 +28,57 @@ chrony_service: chronyd
 
 # Commands
 grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"
+
+# Packages to add or remove
+stig_packages:
+  - packages:
+      - audit
+      - aide
+      - chrony
+      - logrotate
+      - postfix
+    state: "{{ security_package_state }}"
+    enabled: True
+  - packages:
+      - libselinux-python
+      - policycoreutils-python
+      - selinux-policy
+      - selinux-policy-targeted
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_enable_linux_security_module }}"
+  - packages:
+      - yum-cron
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_unattended_upgrades_enabled }}"
+  - packages:
+      - xinetd
+    state: absent
+    enabled: "{{ security_remove_xinetd }}"
+  - packages:
+      - ypserv
+    state: absent
+    enabled: "{{ security_remove_ypserv }}"
+  - packages:
+      - tftp-server
+    state: absent
+    enabled: "{{ security_remove_tftp_server }}"
+  - packages:
+      - openldap-servers
+    state: absent
+    enabled: "{{ security_remove_ldap_server }}"
+  - packages:
+      - sendmail
+    state: absent
+    enabled: "{{ security_remove_sendmail }}"
+  - packages:
+      - xorg-x11-server-Xorg
+    state: absent
+    enabled: "{{ security_remove_xorg }}"
+  - packages:
+      - rsh-server
+    state: absent
+    enabled: "{{ security_remove_rsh_server }}"
+  - packages:
+      - telnet-server
+    state: absent
+    enabled: "{{ security_remove_telnet_server }}"

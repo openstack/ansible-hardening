@@ -111,3 +111,34 @@
     - package
     - cat2
     - V-38481
+
+- name: Install required packages
+  apt:
+    name: |
+      {%- set pkg_list = [] %}
+      {%- for package_dict in item[1] %}
+      {%- if pkg_list.extend(package_dict.packages) %}{% endif %}
+      {%- endfor %}
+      {{ pkg_list }}
+    state: "{{ item[0] }}"
+  with_items:
+    - "{{ stig_packages | selectattr('enabled') | groupby('state') }}"
+  tags:
+    - cat1
+    - auth
+    - services
+    - V-38439 # install: aide, aide-common
+    - V-38620 # install: chrony
+    - V-38624 # install: logrotate
+    - V-38631 # install: auditd_pkg
+    - V-38632 # install: auditd_pkg
+    - V-38637 # install: debsums
+    - V-38669 # install: postfix
+    - V-51337 # install: apparmor
+    - V-38583 # remove: xinetd
+    - V-38587 # remove: telnet-server
+    - V-38591 # remove: rsh-server
+    - V-38603 # remove: ypserv
+    - V-38606 # remove: tftp-server
+    - V-38627 # remove: openldap-servers
+    - V-38671 # remove: sendmail

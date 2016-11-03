@@ -1,6 +1,6 @@
 ---
 id: RHEL-07-010010
-status: implemented - red hat
+status: implemented - red hat only
 tag: file_perms
 ---
 

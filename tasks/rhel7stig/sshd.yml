@@ -1,0 +1,62 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Adding additional sshd configuration options is usually easy, but if a
+# configuration file ends with certain configurations, like a "Match" stanza,
+# we need a blank line to separate those configurations from the ones that
+# are added by the security role. For that reason, we check for the existence
+# of a marker line here and add a marker line to the file if it doesn't exist.
+
+- name: Check for security role marker in sshd_config
+  command: "grep '^# openstack-ansible-security configurations' /etc/ssh/sshd_config"
+  register: sshd_marker_check
+  changed_when: False
+  always_run: True
+  failed_when: False
+
+# Check for "Match" stanzas in the sshd_config.
+- name: Check for Match stanzas in sshd_config
+  command: "grep '^Match' /etc/ssh/sshd_config"
+  register: sshd_match_check
+  changed_when: False
+  always_run: True
+  failed_when: False
+
+# If the marker is missing, and "Match" stanzas are present, we must carefully
+# add a marker line above any "Match" stanzas in the configuration file. This
+# is done by finding the first match with sed and then adding a marker
+# line above it.
+- name: Add security role marker with sed above Match stanza
+  shell: |
+    sed -i '0,/^Match/s/^Match/\n# openstack-ansible-security configurations\n\n&/' /etc/ssh/sshd_config
+  when:
+    - sshd_marker_check.rc != 0
+    - sshd_match_check.rc == 0
+
+- name: RHEL-07-010270 - The SSH daemon must not allow authentication using an empty password
+  lineinfile:
+    state: present
+    dest: /etc/ssh/sshd_config
+    regexp: '^(#)?PermitEmptyPasswords'
+    line: 'PermitEmptyPasswords no'
+    insertafter: "^# openstack-ansible-security configurations"
+    validate: '/usr/sbin/sshd -T -f %s'
+  when:
+    - security_sshd_disallow_empty_password | bool
+  notify:
+    - restart ssh
+  tags:
+    - high
+    - RHEL-07-010270

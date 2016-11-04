@@ -31,9 +31,11 @@
     - auth
     - packages
     - services
+    - RHEL-07-010072
     - RHEL-07-021910
     - RHEL-07-020000
     - RHEL-08-020010
+    - RHEL-07-040260
     - RHEL-07-040500
     - RHEL-07-040560
 
@@ -55,8 +57,10 @@
     - auth
     - packages
     - services
+    - RHEL-07-010072
     - RHEL-07-021910
     - RHEL-07-020000
     - RHEL-08-020010
+    - RHEL-07-040260
     - RHEL-07-040500
     - RHEL-07-040560

@@ -1,7 +1,11 @@
 ---
 id: RHEL-07-040260
-status: not implemented
-tag: misc
+status: implemented
+tag: packages
 ---
 
-This STIG requirement is not yet implemented.
+The STIG requires that every system has an ssh client and server installed. The
+role installs the following packages:
+
+* CentOS: ``openssh-clients``, ``openssh-server``
+* Ubuntu: ``openssh-client``, ``openssh-server``

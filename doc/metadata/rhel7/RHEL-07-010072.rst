@@ -1,7 +1,7 @@
 ---
 id: RHEL-07-010072
-status: not implemented
-tag: misc
+status: implemented
+tag: packages
 ---
 
-This STIG requirement is not yet implemented.
+The role will ensure that the ``screen`` package is installed.

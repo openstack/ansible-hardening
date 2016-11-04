@@ -87,6 +87,12 @@ stig_packages:
 # RHEL 7 STIG: Packages to add/remove
 stig_packages_rhel7:
   - packages:
+      - openssh-client
+      - openssh-server
+      - screen
+    state: "{{ security_package_state }}"
+    enabled: True
+  - packages:
       - rsh-server
     state: absent
     enabled: "{{ security_rhel7_remove_rsh_server }}"

@@ -13,29 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: V-38489 - Install AIDE (with apt)
-  apt:
-    name: "{{ item }}"
-    state: "{{ security_package_state }}"
-  with_items:
-    - aide
-    - aide-common
-  when: ansible_pkg_mgr == 'apt'
-  tags:
-    - aide
-    - cat2
-    - V-38489
-
-- name: V-38489 - Install AIDE (with yum)
-  yum:
-    name: aide
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'yum'
-  tags:
-    - aide
-    - cat2
-    - V-38489
-
 - name: Verify that AIDE configuration directory exists
   stat:
     path: /etc/aide/aide.conf.d

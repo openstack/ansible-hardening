@@ -40,74 +40,30 @@
     - cat2
     - V-38619
 
-- name: V-38620 - Synchronize system clock (installing chrony with apt)
-  apt:
-    name: chrony
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'apt'
-  tags:
-    - cat2
-    - V-38620
-
-- name: V-38620 - Synchronize system clock (installing chrony with yum)
-  yum:
-    name: chrony
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'yum'
-  tags:
-    - cat2
-    - V-38620
-
 - name: V-38620 - Synchronize system clock (enable chrony)
   service:
     name: "{{ chrony_service }}"
     state: started
     enabled: yes
-  when: not check_mode
+  when:
+    - not check_mode
+    - security_enable_chrony | bool
   tags:
     - cat2
-    - V-38620
-
-- name: Check for chrony.conf
-  stat:
-    path: /etc/chrony/chrony.conf
-  register: chrony_conf
-  tags:
-    - always
     - V-38620
 
 - name: V-38620 - Synchronize system clock (configuration file)
   template:
     src: chrony.conf.j2
     dest: /etc/chrony/chrony.conf
-  when: chrony_conf.stat.exists | bool
+  when:
+    - not check_mode
+    - security_enable_chrony | bool
   notify:
     - restart chrony
   tags:
     - cat2
     - V-38620
-
-# The STIG only requires that logrotate is installed and configured in cron.
-# The openstack-ansible project will configure logs to be rotated weekly and
-# compressed with each run. We won't change the interval here, but we will
-# ensure that logrotate is installed (to meet the STIG requirement).
-- name: V-38624 - System logs must be rotated daily (install logrotate with apt)
-  apt:
-    name: logrotate
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'apt'
-  tags:
-    - cat3
-    - V-38624
-
-- name: V-38624 - System logs must be rotated daily (install logrotate with yum)
-  yum:
-    name: logrotate
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'yum'
-  tags:
-    - cat3
-    - V-38624
 
 - name: Check for logrotate cron job (for V-38624)
   stat:

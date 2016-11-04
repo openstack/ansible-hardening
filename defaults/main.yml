@@ -152,9 +152,11 @@ security_action_mail_acct: root                   # V-38680
 # and should only be set to 'single' for deployers in extremely high security
 # environments. Ubuntu's default is SUSPEND, which will suspend logging.
 # **IMMENENT DANGER**
-security_admin_space_left_action: SUSPEND                  # V-54381
+security_admin_space_left_action: SUSPEND         # V-54381
 
 ## Chrony (NTP) configuration
+# Install and enable chrony to sync time with NTP servers.
+security_enable_chrony: yes                       # V-38620
 # Adjust the following NTP servers if necessary.
 security_ntp_servers:
   - 0.north-america.pool.ntp.org

@@ -13,28 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: V-38631/38632 - The operating system must produce audit records (install auditd with apt)
-  apt:
-    name: "{{ auditd_pkg }}"
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'apt'
-  tags:
-    - auditd
-    - cat2
-    - V-38632
-    - V-38631
-
-- name: V-38631/38632 - The operating system must produce audit records (install auditd with yum)
-  yum:
-    name: "{{ auditd_pkg }}"
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'yum'
-  tags:
-    - auditd
-    - cat2
-    - V-38632
-    - V-38631
-
 - name: V-38631/38632 - The operating system must produce audit records (start auditd)
   service:
     name: auditd
@@ -94,16 +72,6 @@
     - auditd
     - cat2
     - V-38636
-
-- name: Ensure debsums package is installed (for V-38637)
-  apt:
-    name: debsums
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'apt'
-  tags:
-    - auditd
-    - cat2
-    - V-38637
 
 # The debsums command returns 0 if the files haven't been altered but it
 # returns 2 otherwise. We also will check to see if auditd has been installed

@@ -1,7 +1,13 @@
 ---
 id: RHEL-07-020000
-status: not implemented
-tag: misc
+status: implemented
+tag: packages
 ---
 
-This STIG requirement is not yet implemented.
+The role will remove the ``rsh-server`` package from the system if it is
+installed. Deployers can opt-out of this change by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_remove_rsh_server: no

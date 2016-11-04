@@ -30,7 +30,7 @@ chrony_service: chronyd
 # Commands
 grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"
 
-# Packages to add or remove
+# RHEL 6 STIG: Packages to add/remove
 stig_packages:
   - packages:
       - audit
@@ -83,3 +83,26 @@ stig_packages:
       - telnet-server
     state: absent
     enabled: "{{ security_remove_telnet_server }}"
+
+# RHEL 7 STIG: Packages to add/remove
+stig_packages_rhel7:
+  - packages:
+      - rsh-server
+    state: absent
+    enabled: "{{ security_rhel7_remove_rsh_server }}"
+  - packages:
+      - telnet-server
+    state: absent
+    enabled: "{{ security_rhel7_remove_telnet_server }}"
+  - packages:
+      - tftp-server
+    state: absent
+    enabled: "{{ security_rhel7_remove_tftp_server }}"
+  - packages:
+      - xorg-x11-server-Xorg
+    state: absent
+    enabled: "{{ security_rhel7_remove_xorg }}"
+  - packages:
+      - ypserv
+    state: absent
+    enabled: "{{ security_rhel7_remove_ypserv }}"

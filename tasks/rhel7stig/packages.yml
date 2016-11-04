@@ -1,0 +1,62 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Add or remove packages based on STIG requirements (dpkg)
+  apt:
+    name: |
+      {%- set pkg_list = [] %}
+      {%- for package_dict in item[1] %}
+      {%- if pkg_list.extend(package_dict.packages) %}{% endif %}
+      {%- endfor %}
+      {{ pkg_list }}
+    state: "{{ item[0] }}"
+  when:
+    - ansible_os_family | lower == 'debian'
+  with_items:
+    - "{{ stig_packages | selectattr('enabled') | groupby('state') }}"
+  tags:
+    - cat1
+    - auth
+    - packages
+    - services
+    - RHEL-07-021910
+    - RHEL-07-020000
+    - RHEL-08-020010
+    - RHEL-07-040500
+    - RHEL-07-040560
+
+- name: Add or remove packages based on STIG requirements (rpm)
+  yum:
+    name: |
+      {%- set pkg_list = [] %}
+      {%- for package_dict in item[1] %}
+      {%- if pkg_list.extend(package_dict.packages) %}{% endif %}
+      {%- endfor %}
+      {{ pkg_list }}
+    state: "{{ item[0] }}"
+  when:
+    - ansible_os_family | lower == 'redhat'
+  with_items:
+    - "{{ stig_packages | selectattr('enabled') | groupby('state') }}"
+  tags:
+    - cat1
+    - auth
+    - packages
+    - services
+    - RHEL-07-021910
+    - RHEL-07-020000
+    - RHEL-08-020010
+    - RHEL-07-040500
+    - RHEL-07-040560

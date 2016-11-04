@@ -33,7 +33,7 @@ chrony_service: chrony
 # Commands
 grub_update_cmd: "update-grub"
 
-# Packages to add or remove
+# RHEL 6 STIG: Packages to add/remove
 stig_packages:
   - packages:
       - auditd
@@ -87,3 +87,26 @@ stig_packages:
       - telnetd
     state: absent
     enabled: "{{ security_remove_telnet_server }}"
+
+# RHEL 7 STIG: Packages to add/remove
+stig_packages_rhel7:
+  - packages:
+      - rsh-server
+    state: absent
+    enabled: "{{ security_rhel7_remove_rsh_server }}"
+  - packages:
+      - telnetd
+    state: absent
+    enabled: "{{ security_rhel7_remove_telnet_server }}"
+  - packages:
+      - tftpd
+    state: absent
+    enabled: "{{ security_rhel7_remove_tftp_server }}"
+  - packages:
+      - xorg-xserver
+    state: absent
+    enabled: "{{ security_rhel7_remove_xorg }}"
+  - packages:
+      - nis
+    state: absent
+    enabled: "{{ security_rhel7_remove_ypserv }}"

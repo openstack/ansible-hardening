@@ -398,6 +398,15 @@ security_disable_gdm_automatic_login: yes                    # RHEL-07-010430
 # Disable timed gdm logins for guests
 security_disable_gdm_timed_login: yes                        # RHEL-07-010431
 
+## Packages (packages)
+# Remove packages from the system as required by the STIG. Set any of these
+# to 'no' to skip their removal.
+security_rhel7_remove_rsh_server: yes                        # RHEL-07-020000
+security_rhel7_remove_telnet_server: yes                     # RHEL-07-021910
+security_rhel7_remove_tftp_server: yes                       # RHEL-07-040500
+security_rhel7_remove_xorg: yes                              # RHEL-07-040560
+security_rhel7_remove_ypserv: yes                            # RHEL-07-020010
+
 ## ssh server (sshd)
 # Prevent users from logging in over ssh if they have an empty password.
 security_sshd_disallow_empty_password: yes                   # RHEL-07-010270

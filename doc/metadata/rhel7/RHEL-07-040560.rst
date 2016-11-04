@@ -1,7 +1,17 @@
 ---
 id: RHEL-07-040560
-status: not implemented
-tag: misc
+status: implemented
+tag: packages
 ---
 
-This STIG requirement is not yet implemented.
+The role will remove the xorg server package package from the system if it is
+installed. The package name differs between Linux distributions:
+
+* CentOS: ``xorg-x11-server-Xorg``
+* Ubuntu: ``xorg-xserver``
+
+Deployers can opt-out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_remove_xorg: no

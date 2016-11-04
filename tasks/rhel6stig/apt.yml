@@ -102,7 +102,7 @@
     - cat2
     - V-38481
 
-- name: Install required packages
+- name: Add or remove packages based on STIG requirements
   apt:
     name: |
       {%- set pkg_list = [] %}

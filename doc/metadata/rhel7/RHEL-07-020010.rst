@@ -1,7 +1,17 @@
 ---
 id: RHEL-07-020010
-status: not implemented
-tag: misc
+status: implemented
+tag: packages
 ---
 
-This STIG requirement is not yet implemented.
+The role will remove the NIS server package package from the system if it is
+installed. The package name differs between Linux distributions:
+
+* CentOS: ``ypserv``
+* Ubuntu: ``nis``
+
+Deployers can opt-out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_remove_ypserv: no

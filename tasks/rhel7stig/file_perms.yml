@@ -24,6 +24,7 @@
     - ansible_os_family | lower == 'redhat'
     - security_reset_perm_ownership | bool
   tags:
+    - file_perms
     - high
     - RHEL-07-010010
 
@@ -41,6 +42,7 @@
     - rhel_07_010010_packages is defined
     - rhel_07_010010_packages.stdout_lines | length > 0
   tags:
+    - file_perms
     - high
     - RHEL-07-010010
     # don't trigger ANSIBLE0013

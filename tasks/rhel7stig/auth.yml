@@ -25,6 +25,7 @@
     - ansible_os_family == 'Debian'
     - security_disallow_blank_password_login | bool
   tags:
+    - auth
     - high
     - RHEL-07-010260
 
@@ -43,5 +44,6 @@
     - ansible_os_family == 'RedHat'
     - security_disallow_blank_password_login | bool
   tags:
+    - auth
     - high
     - RHEL-07-010260

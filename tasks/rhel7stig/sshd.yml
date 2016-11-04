@@ -58,5 +58,6 @@
   notify:
     - restart ssh
   tags:
+    - sshd
     - high
     - RHEL-07-010270

@@ -28,6 +28,7 @@
     - RHEL_07_010430_gdm_conf.stat.exists
     - security_disable_gdm_automatic_login | bool
   tags:
+    - graphical
     - high
     - RHEL-07-010430
 
@@ -40,5 +41,6 @@
     - RHEL_07_010430_gdm_conf.stat.exists
     - security_disable_gdm_timed_login | bool
   tags:
+    - graphical
     - high
     - RHEL-07-010431

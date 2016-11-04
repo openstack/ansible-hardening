@@ -13,6 +13,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Multiple tasks will need the output of RPM verification, so let's do the
+# lookup one time and then grep over the output in subsequent tasks.
+- name: Verify all installed RPM packages
+  shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt"
+  args:
+    warn: no
+  failed_when: False
+  changed_when: False
+  when:
+    - not check_mode | bool
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - always
+    - skip_ansible_lint
+
 - name: RHEL-07-010020 - Get files with invalid checksums (rpm)
   shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
   register: rhel_07_010020_files
@@ -21,6 +36,7 @@
     - not check_mode | bool
     - ansible_os_family | lower == 'redhat'
   tags:
+    - rpm
     - high
     - RHEL-07-010020
 
@@ -40,6 +56,7 @@
     - rhel_07_010020_files is defined
     - rhel_07_010020_files.stdout is defined
   tags:
+    - rpm
     - high
     - RHEL-07-010020
 
@@ -57,6 +74,7 @@
   when:
     - security_enable_gpgcheck | bool
   tags:
+    - rpm
     - high
     - RHEL-07-020150
     - RHEL-07-020151

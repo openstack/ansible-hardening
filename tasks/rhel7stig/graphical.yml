@@ -1,0 +1,44 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Check if gdm is installed and configured
+  stat:
+    path: /etc/gdm/custom.conf
+  register: RHEL_07_010430_gdm_conf
+  always_run: True
+
+- name: RHEL-07-010430 - The operating system must not allow an unattended or automatic logon to the system via a graphical user interface
+  lineinfile:
+    path: /etc/gdm/custom.conf
+    line: "^AutomaticLoginEnable=true"
+    state: absent
+  when:
+    - RHEL_07_010430_gdm_conf.stat.exists
+    - security_disable_gdm_automatic_login | bool
+  tags:
+    - high
+    - RHEL-07-010430
+
+- name: RHEL-07-010431 - The operating system must not allow guest logon to the system.
+  lineinfile:
+    path: /etc/gdm/custom.conf
+    line: "^TimedLoginEnable=true"
+    state: absent
+  when:
+    - RHEL_07_010430_gdm_conf.stat.exists
+    - security_disable_gdm_timed_login | bool
+  tags:
+    - high
+    - RHEL-07-010431

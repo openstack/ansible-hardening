@@ -42,3 +42,22 @@
   tags:
     - high
     - RHEL-07-010020
+
+# This covers RHEL-07-020150, RHEL-07-020151, and RHEL-07-020152.
+- name: RHEL-07-020150 - Require digital signatures for all packages
+  lineinfile:
+    dest: /etc/yum.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - { regexp: "^gpgcheck.*", line: "gpgcheck=1" }
+    - { regexp: "^localpkg_gpgcheck.*", line: "localpkg_gpgcheck=1" }
+    - { regexp: "^repo_gpgcheck.*", line: "repo_gpgcheck=1" }
+  when:
+    - security_enable_gpgcheck | bool
+  tags:
+    - high
+    - RHEL-07-020150
+    - RHEL-07-020151
+    - RHEL-07-020152

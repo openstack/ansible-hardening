@@ -60,3 +60,32 @@
   tags:
     - high
     - RHEL-07-010020
+
+# See the documentation for RHEL-07-020150 for more details on this check.
+- name: Search for AllowUnauthenticated in /etc/apt/apt.conf.d/
+  command: grep -r AllowUnauthenticated /etc/apt/apt.conf.d/
+  register: gpgcheck_result
+  changed_when: False
+  failed_when: False
+  always_run: True
+
+- name: RHEL-07-020150 - Package management tool must verify authenticity of packages
+  debug:
+    msg: "Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
+  when: "gpgcheck_result.rc == 0"
+  tags:
+    - high
+    - RHEL-07-020150
+    - RHEL-07-020152
+
+- name: RHEL-07-020151 - Package management tool must verify authenticity of locally-installed packages
+  lineinfile:
+    dest: /etc/dpkg/dpkg.cfg
+    regexp: "^(#)?no-debsig"
+    line: "#no-debsig"
+    state: present
+  when:
+    - security_enable_gpgcheck | bool
+  tags:
+    - high
+    - RHEL-07-020151

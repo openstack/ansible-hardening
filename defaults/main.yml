@@ -407,6 +407,11 @@ security_rhel7_remove_tftp_server: yes                       # RHEL-07-040500
 security_rhel7_remove_xorg: yes                              # RHEL-07-040560
 security_rhel7_remove_ypserv: yes                            # RHEL-07-020010
 
+## RPM (rpm)
+# Enable GPG checks for remotely and locally installed packages. This includes
+# RHEL-07-020150, RHEL-07-020151, and RHEL-07-020152.
+security_enable_gpgcheck: yes                                # RHEL-07-020150
+
 ## ssh server (sshd)
 # Prevent users from logging in over ssh if they have an empty password.
 security_sshd_disallow_empty_password: yes                   # RHEL-07-010270

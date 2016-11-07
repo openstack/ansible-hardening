@@ -54,7 +54,7 @@
   stat:
     path: /etc/postfix/main.cf
   register: postfix_main_cf
-  always_run: true
+  check_mode: no
   tags:
     - always
 

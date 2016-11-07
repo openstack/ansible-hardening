@@ -18,7 +18,7 @@
   register: v38476_result
   changed_when: v38476_result | failed
   failed_when: False
-  always_run: True
+  check_mode: no
   when:
     - ansible_distribution == 'CentOS'
   tags:
@@ -43,7 +43,7 @@
   register: v38476_result
   changed_when: v38476_result | failed
   failed_when: False
-  always_run: True
+  check_mode: no
   with_items:
     - gpg-pubkey-fd431d51-4ae0493b
     - gpg-pubkey-2fa658e0-45700c69
@@ -71,7 +71,7 @@
   register: v38462_result
   changed_when: False
   failed_when: False
-  always_run: True
+  check_mode: no
   tags:
     - package
     - cat1

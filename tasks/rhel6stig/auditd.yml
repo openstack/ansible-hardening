@@ -29,7 +29,7 @@
   stat:
     path: /etc/audit/auditd.conf
   register: auditd_conf
-  always_run: true
+  check_mode: no
   tags:
     - auditd
     - always
@@ -125,7 +125,7 @@
   stat:
     path: /var/log/audit/
   register: auditd_log_dir
-  always_run: True
+  check_mode: no
   tags:
     - auditd
     - always

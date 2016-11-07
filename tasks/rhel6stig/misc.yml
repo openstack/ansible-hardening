@@ -27,7 +27,7 @@
   shell: find /root /home -xdev -name .netrc | wc -l
   register: v38619_result
   changed_when: False
-  always_run: True
+  check_mode: no
   tags:
     - cat2
     - V-38619
@@ -110,7 +110,7 @@
   register: v38660_snmpd_apt
   changed_when: False
   failed_when: False
-  always_run: True
+  check_mode: no
   when: ansible_pkg_mgr == 'apt'
   tags:
     - cat2
@@ -121,7 +121,7 @@
   register: v38660_snmpd_rpm
   changed_when: False
   failed_when: False
-  always_run: True
+  check_mode: no
   when: ansible_pkg_mgr == 'yum'
   tags:
     - cat2
@@ -142,7 +142,7 @@
   register: v38660_result
   changed_when: False
   failed_when: False
-  always_run: True
+  check_mode: no
   when:
     - snmpd_installed is defined
     - snmpd_installed | bool
@@ -187,7 +187,7 @@
   register: v38599_vsftpd_apt
   changed_when: False
   failed_when: False
-  always_run: True
+  check_mode: no
   when: ansible_pkg_mgr == 'apt'
   tags:
     - cat2
@@ -200,7 +200,7 @@
   register: v38599_vsftpd_rpm
   changed_when: False
   failed_when: False
-  always_run: True
+  check_mode: no
   when: ansible_pkg_mgr == 'yum'
   tags:
     - cat2
@@ -312,7 +312,7 @@
   command: "find /dev -context '*unlabeled_t*'"
   register: v51379_unlabeled_devices
   changed_when: False
-  always_run: True
+  check_mode: no
   when:
     - ansible_os_family == 'RedHat'
   tags:

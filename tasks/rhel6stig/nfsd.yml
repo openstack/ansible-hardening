@@ -18,7 +18,7 @@
   stat:
     path: /etc/exports
   register: exports
-  always_run: yes
+  check_mode: no
   tags:
     - nfs
     - cat1

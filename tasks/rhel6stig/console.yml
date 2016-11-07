@@ -30,7 +30,7 @@
   command: systemctl status ctrl-alt-del.target
   register: cad_mask_check
   changed_when: False
-  always_run: True
+  check_mode: no
   failed_when: False
   when: systemd_running | bool
   tags:

@@ -24,14 +24,11 @@
     tags:
       - always
 
-  # NOTE(major): This task differs from other OSA roles because it has
-  # "always_run" set. This is required for check/audit mode to operate
-  # properly.
   - name: Check init system
     command: cat /proc/1/comm
     register: _pid1_name
     changed_when: False
-    always_run: True
+    check_mode: no
     tags:
       - always
 

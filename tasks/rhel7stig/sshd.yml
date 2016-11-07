@@ -23,7 +23,7 @@
   command: "grep '^# openstack-ansible-security configurations' /etc/ssh/sshd_config"
   register: sshd_marker_check
   changed_when: False
-  always_run: True
+  check_mode: no
   failed_when: False
 
 # Check for "Match" stanzas in the sshd_config.
@@ -31,7 +31,7 @@
   command: "grep '^Match' /etc/ssh/sshd_config"
   register: sshd_match_check
   changed_when: False
-  always_run: True
+  check_mode: no
   failed_when: False
 
 # If the marker is missing, and "Match" stanzas are present, we must carefully

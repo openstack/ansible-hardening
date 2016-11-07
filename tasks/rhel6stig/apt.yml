@@ -29,7 +29,7 @@
   command: apt-key list
   register: v38476_result
   changed_when: "v38476_result.rc != 0"
-  always_run: True
+  check_mode: no
 
 - name: V-38476 - Vendor-provided cryptographic certificates must be installed to verify the integrity of system software.
   fail:
@@ -53,7 +53,7 @@
   register: v38462_result
   changed_when: False
   failed_when: False
-  always_run: True
+  check_mode: no
   tags:
     - package
     - cat1

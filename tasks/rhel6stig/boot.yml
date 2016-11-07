@@ -17,7 +17,7 @@
   stat:
     path: "{{ grub_conf_file }}"
   register: grub_cfg
-  always_run: True
+  check_mode: no
 
 - name: V-38438 - Auditing must be enabled at boot by setting a kernel parameter
   lineinfile:

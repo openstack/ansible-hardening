@@ -17,7 +17,7 @@
   command: "find /etc/init.d/ -printf '%f\n'"
   register: sysv_services_installed
   changed_when: false
-  always_run: True
+  check_mode: no
   tags:
     - services
     - cat1
@@ -28,7 +28,7 @@
   shell: "systemctl list-units --type=service --no-legend | awk '{print $1}'"
   register: systemd_services_installed
   changed_when: false
-  always_run: True
+  check_mode: no
   tags:
     - services
     - cat1

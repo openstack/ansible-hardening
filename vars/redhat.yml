@@ -20,6 +20,7 @@ vsftpd_conf_file: /etc/vsftpd/vsftpd.conf
 grub_conf_file: /boot/grub2/grub.cfg
 aide_cron_job_path: /etc/cron.d/aide
 aide_database_file: /var/lib/aide/aide.db.gz
+chrony_conf_file: /etc/chrony.conf
 
 # Service names
 cron_service: crond

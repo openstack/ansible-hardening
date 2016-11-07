@@ -24,7 +24,7 @@
 
 - name: restart chrony
   service:
-    name: chrony
+    name: "{{ chrony_service }}"
     state: restarted
 
 - name: restart fail2ban

@@ -55,7 +55,7 @@
 - name: V-38620 - Synchronize system clock (configuration file)
   template:
     src: chrony.conf.j2
-    dest: /etc/chrony/chrony.conf
+    dest: "{{ chrony_conf_file }}"
   when:
     - not check_mode
     - security_enable_chrony | bool

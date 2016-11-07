@@ -19,6 +19,7 @@
     - name: Ensure apt cache is updated before testing
       apt:
         update_cache: yes
+        cache_valid_time: "{{ cache_timeout }}"
       when: ansible_pkg_mgr == 'apt'
     - name: Ensure OpenStack CI image has a logrotate cron job
       file:

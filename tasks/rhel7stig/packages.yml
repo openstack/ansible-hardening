@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Add or remove packages based on STIG requirements (dpkg)
-  apt:
+- name: Add or remove packages based on STIG requirements
+  package:
     name: |
       {%- set pkg_list = [] %}
       {%- for package_dict in item[1] %}
@@ -22,34 +22,6 @@
       {%- endfor %}
       {{ pkg_list }}
     state: "{{ item[0] }}"
-  when:
-    - ansible_os_family | lower == 'debian'
-  with_items:
-    - "{{ stig_packages | selectattr('enabled') | groupby('state') }}"
-  tags:
-    - cat1
-    - auth
-    - packages
-    - services
-    - RHEL-07-010072
-    - RHEL-07-021910
-    - RHEL-07-020000
-    - RHEL-08-020010
-    - RHEL-07-040260
-    - RHEL-07-040500
-    - RHEL-07-040560
-
-- name: Add or remove packages based on STIG requirements (rpm)
-  yum:
-    name: |
-      {%- set pkg_list = [] %}
-      {%- for package_dict in item[1] %}
-      {%- if pkg_list.extend(package_dict.packages) %}{% endif %}
-      {%- endfor %}
-      {{ pkg_list }}
-    state: "{{ item[0] }}"
-  when:
-    - ansible_os_family | lower == 'redhat'
   with_items:
     - "{{ stig_packages | selectattr('enabled') | groupby('state') }}"
   tags:

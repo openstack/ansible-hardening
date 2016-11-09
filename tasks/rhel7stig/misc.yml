@@ -1,0 +1,93 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Check if ClamAV is installed
+  stat:
+    path: /usr/bin/clamdscan
+  register: clamav_install_check
+  changed_when: False
+  tags:
+    - always
+
+- name: Remove 'Example' line from ClamAV configuration files
+  lineinfile:
+    dest: "{{ item }}"
+    regexp: "^Example"
+    state: absent
+  with_items:
+    - /etc/freshclam.conf
+    - /etc/clamd.d/scan.conf
+  when:
+    - clamav_install_check.stat.exists
+    - security_enable_virus_scanner | bool
+    - ansible_os_family | lower == 'redhat'
+  notify:
+    - restart clamav
+  tags:
+    - misc
+    - RHEL-07-030810
+
+- name: Set ClamAV server type as socket
+  lineinfile:
+    dest: /etc/clamd.d/scan.conf
+    regexp: "^(#)?LocalSocket (.*)$"
+    line: 'LocalSocket \2'
+    backrefs: yes
+  when:
+    - clamav_install_check.stat.exists
+    - security_enable_virus_scanner | bool
+    - ansible_os_family | lower == 'redhat'
+  notify:
+    - restart clamav
+  tags:
+    - misc
+    - RHEL-07-030810
+
+- name: Allow automatic freshclam updates
+  lineinfile:
+    dest: /etc/sysconfig/freshclam
+    regexp: "^FRESHCLAM_DELAY"
+    state: absent
+  when:
+    - clamav_install_check.stat.exists
+    - security_enable_virus_scanner | bool
+    - ansible_os_family | lower == 'redhat'
+  notify:
+    - restart clamav
+  tags:
+    - misc
+    - RHEL-07-030810
+
+- name: Update ClamAV database
+  command: freshclam
+  changed_when: False
+  when:
+    - clamav_install_check.stat.exists
+    - security_enable_virus_scanner | bool
+  tags:
+    - misc
+    - RHEL-07-030810
+
+- name: Ensure ClamAV is running
+  service:
+    name: "{{ clamav_service }}"
+    state: started
+    enabled: yes
+  when:
+    - clamav_install_check.stat.exists
+    - security_enable_virus_scanner | bool
+  tags:
+    - misc
+    - RHEL-07-030810

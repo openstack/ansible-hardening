@@ -73,3 +73,4 @@
     security_package_clean_on_remove: yes
     security_unattended_upgrades_enabled: true
     security_unattended_upgrades_notifications: true
+    security_enable_virus_scanner: yes

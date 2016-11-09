@@ -57,6 +57,11 @@
     name: vsftpd
     state: restarted
 
+- name: restart clamav
+  service:
+    name: "{{ clamav_service }}"
+    state: restarted
+
 # Miscellaneous ##############################################################
 - name: generate auditd rules
   command: augenrules --load

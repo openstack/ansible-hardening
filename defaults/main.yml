@@ -437,6 +437,10 @@ security_disable_gdm_automatic_login: yes                    # RHEL-07-010430
 # Disable timed gdm logins for guests
 security_disable_gdm_timed_login: yes                        # RHEL-07-010431
 
+## Miscellaneous (misc)
+# Enable virus scanning with clamav
+security_enable_virus_scanner: no                            # RHEL-07-030810
+
 ## Packages (packages)
 # Remove packages from the system as required by the STIG. Set any of these
 # to 'no' to skip their removal.

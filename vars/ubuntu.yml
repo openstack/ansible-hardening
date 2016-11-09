@@ -29,6 +29,7 @@ chrony_conf_file: /etc/chrony/chrony.conf
 cron_service: cron
 ssh_service: ssh
 chrony_service: chrony
+clamav_service: clamd
 
 # Commands
 grub_update_cmd: "update-grub"
@@ -97,6 +98,12 @@ stig_packages_rhel7:
       - screen
     state: "{{ security_package_state }}"
     enabled: True
+  - packages:
+      - clamav
+      - clamav-daemon
+      - clamav-freshclam
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_enable_virus_scanner }}"
   - packages:
       - rsh-server
     state: absent

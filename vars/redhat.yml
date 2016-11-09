@@ -26,6 +26,7 @@ chrony_conf_file: /etc/chrony.conf
 cron_service: crond
 ssh_service: sshd
 chrony_service: chronyd
+clamav_service: 'clamd@scan'
 
 # Commands
 grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"
@@ -52,6 +53,18 @@ stig_packages:
       - yum-cron
     state: "{{ security_package_state }}"
     enabled: "{{ security_unattended_upgrades_enabled }}"
+  - packages:
+      - clamav
+      - clamav-data
+      - clamav-devel
+      - clamav-filesystem
+      - clamav-lib
+      - clamav-scanner-systemd
+      - clamav-server-systemd
+      - clamav-server
+      - clamav-update
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_enable_virus_scanner }}"
   - packages:
       - xinetd
     state: absent

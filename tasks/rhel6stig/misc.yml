@@ -292,7 +292,7 @@
     line: "env DEFAULT_RUNLEVEL=2"
   when:
     - security_disable_x_windows | bool
-    - not systemd_running | bool
+    - ansible_service_mgr != 'systemd'
   tags:
     - cat2
     - V-38674
@@ -303,7 +303,7 @@
   changed_when: "'Created symlink' in systemctl_default_target.stdout"
   when:
     - security_disable_x_windows | bool
-    - systemd_running | bool
+    - ansible_service_mgr == 'systemd'
   tags:
     - cat2
     - V-38674

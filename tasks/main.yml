@@ -24,20 +24,6 @@
     tags:
       - always
 
-  - name: Check init system
-    command: cat /proc/1/comm
-    register: _pid1_name
-    changed_when: False
-    check_mode: no
-    tags:
-      - always
-
-  - name: Set the name of pid1
-    set_fact:
-      pid1_name: "{{ _pid1_name.stdout }}"
-    tags:
-      - always
-
   - name: Check for check/audit mode
     command: /bin/true
     register: noop_result
@@ -48,7 +34,6 @@
   - name: Set facts
     set_fact:
       check_mode: "{{ noop_result | skipped }}"
-      systemd_running: "{{ pid1_name == 'systemd' }}"
       linux_security_module: "{{ (ansible_os_family == 'Debian') | ternary('apparmor','selinux') }}"
     tags:
       - always

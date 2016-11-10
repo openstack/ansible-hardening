@@ -37,7 +37,7 @@
 
 - name: Register which services are installed depending on platform
   set_fact:
-    services_installed: "{{ (systemd_running | bool) | ternary (systemd_services_installed, sysv_services_installed)}}"
+    services_installed: "{{ (ansible_service_mgr == 'systemd') | ternary (systemd_services_installed, sysv_services_installed)}}"
 
 - name: V-38437 - Automated file system mounting tools must be disabled
   service:

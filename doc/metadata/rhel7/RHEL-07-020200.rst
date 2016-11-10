@@ -1,7 +1,17 @@
 ---
 id: RHEL-07-020200
-status: not implemented
-tag: misc
+status: opt-in
+tag: packages
 ---
 
-This STIG requirement is not yet implemented.
+Although the STIG requires that dependent packages are removed automatically
+when a package is removed, this can cause problems with certain packages,
+especially kernels. Deployers must opt in to meet the requirements of this STIG
+control.
+
+Deployers should set the following variable to enable automatic dependent
+package removal:
+
+.. code-block:: yaml
+
+    security_package_clean_on_remove: yes

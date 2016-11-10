@@ -389,6 +389,39 @@ security_unattended_upgrades_notifications: false
 #security_audisp_remote_server: '10.0.21.1'                  # RHEL-07-030330
 # Encrypt audit records when they are transmitted over the network.
 #security_audisp_enable_krb5: yes                            # RHEL-07-030331
+# Rules for auditd are enabled if 'yes', disabled if 'no'. See the
+# documentation for each STIG control before enabling or disabling any rules.
+security_rhel7_audit_account_access: yes                     # RHEL-07-030492
+security_rhel7_audit_passwd_command: yes                     # RHEL-07-030510
+security_rhel7_audit_unix_chkpwd: yes                        # RHEL-07-030511
+security_rhel7_audit_gpasswd: yes                            # RHEL-07-030512
+security_rhel7_audit_chage: yes                              # RHEL-07-030513
+security_rhel7_audit_userhelper: yes                         # RHEL-07-030514
+security_rhel7_audit_su: yes                                 # RHEL-07-030521
+security_rhel7_audit_sudo: yes                               # RHEL-07-030522
+security_rhel7_audit_sudo_config_changes: yes                # RHEL-07-030523
+security_rhel7_audit_newgrp: yes                             # RHEL-07-030524
+security_rhel7_audit_chsh: yes                               # RHEL-07-030525
+security_rhel7_audit_sudoedit: yes                           # RHEL-07-030526
+security_rhel7_audit_mount: yes                              # RHEL-07-030530
+security_rhel7_audit_umount: yes                             # RHEL-07-030531
+security_rhel7_audit_postdrop: yes                           # RHEL-07-030540
+security_rhel7_audit_postqueue: yes                          # RHEL-07-030541
+security_rhel7_audit_ssh_keysign: yes                        # RHEL-07-030550
+security_rhel7_audit_pt_chown: yes                           # RHEL-07-030560
+security_rhel7_audit_crontab: yes                            # RHEL-07-030561
+security_rhel7_audit_pam_timestamp_check: yes                # RHEL-07-030630
+security_rhel7_audit_init_module: yes                        # RHEL-07-030670
+security_rhel7_audit_delete_module: yes                      # RHEL-07-030671
+security_rhel7_audit_insmod: yes                             # RHEL-07-030672
+security_rhel7_audit_rmmod: yes                              # RHEL-07-030673
+security_rhel7_audit_modprobe: yes                           # RHEL-07-030674
+security_rhel7_audit_account_actions: yes                    # RHEL-07-030710
+security_rhel7_audit_rename: yes                             # RHEL-07-030750
+security_rhel7_audit_renameat: yes                           # RHEL-07-030751
+security_rhel7_audit_rmdir: yes                              # RHEL-07-030752
+security_rhel7_audit_unlink: yes                             # RHEL-07-030753
+security_rhel7_audit_unlinkat: yes                           # RHEL-07-030754
 
 ## Authentication (auth)
 # Disallow logins from accounts with blank/null passwords via PAM.

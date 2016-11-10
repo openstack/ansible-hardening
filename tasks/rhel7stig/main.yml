@@ -27,6 +27,10 @@
   when:
     - not check_mode | bool
 
+# Package installations and removals must come first so that configuration
+# changes can be made later.
+- include: packages.yml
+
 # Package managers are managed first since the changes in these tasks will
 # affect the remainder of the tasks in the role.
 - include: apt.yml
@@ -39,10 +43,10 @@
 # each file are tagged with the same name (for example, tasks in `auth.yml`
 # are tagged with `auth`). Also, the tag name matches up with the "STIG
 # Controls by Tag" section of the role documentation.
+- include: auditd.yml
 - include: auth.yml
 - include: file_perms.yml
 - include: graphical.yml
-- include: packages.yml
 - include: sshd.yml
 
 - name: Remove the temporary directory

@@ -1,7 +1,10 @@
 ---
 id: RHEL-07-040170
-status: not implemented
-tag: misc
+status: implemented
+tag: sshd
 ---
 
-This STIG requirement is not yet implemented.
+The ``Banner`` configuration is set to ``/etc/issue.net`` in
+``/etc/ssh/sshd_config`` and sshd is restarted. In addition, the
+``files/login_banner.txt`` file is copied from the openstack-ansible-security
+role directory to ``/etc/issue.net`` on each host.

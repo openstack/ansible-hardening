@@ -1,7 +1,14 @@
 ---
 id: RHEL-07-040670
-status: not implemented
-tag: misc
+status: implemented
+tag: sshd
 ---
 
-This STIG requirement is not yet implemented.
+The ``KerberosAuthentication`` configuration is set to ``no`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_disable_kerberos_auth: no

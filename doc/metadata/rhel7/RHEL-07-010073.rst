@@ -1,7 +1,15 @@
 ---
 id: RHEL-07-010073
-status: not implemented
-tag: misc
+status: implemented
+tag: graphical
 ---
 
-This STIG requirement is not yet implemented.
+The STIG requires that the screensaver appears when a session reaches a certain
+period of inactivity. The tasks will enable the screensaver for inactive
+sessions by default.
+
+Deployers can opt out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_lock_session_when_inactive: no

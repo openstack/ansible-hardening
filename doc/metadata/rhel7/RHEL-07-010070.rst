@@ -1,7 +1,15 @@
 ---
 id: RHEL-07-010070
-status: not implemented
-tag: misc
+status: implemented
+tag: graphical
 ---
 
-This STIG requirement is not yet implemented.
+The session inactivity timeout is set to 900 seconds to meet the STIG
+requirements.  After this time, users must re-enter their credentials to regain
+access to the system.
+
+Deployers can adjust this timeout by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_lock_session_inactive_delay: 900

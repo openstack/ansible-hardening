@@ -37,6 +37,7 @@ grub_update_cmd: "update-grub"
 stig_packages:
   - packages:
       - auditd
+      - audispd-plugins
       - aide
       - aide-common
       - chrony

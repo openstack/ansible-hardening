@@ -34,6 +34,7 @@ grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"
 stig_packages:
   - packages:
       - audit
+      - audispd-plugins
       - aide
       - chrony
       - logrotate

@@ -417,5 +417,40 @@ security_rhel7_remove_ypserv: yes                            # RHEL-07-020010
 security_enable_gpgcheck: yes                                # RHEL-07-020150
 
 ## ssh server (sshd)
-# Prevent users from logging in over ssh if they have an empty password.
-security_sshd_disallow_empty_password: yes                   # RHEL-07-010270
+# Disallow logins from users with empty/null passwords.
+security_sshd_disallow_empty_password: yes                   # RHEL-07-010270 / RHEL-07-010440
+# Disallow users from overriding the ssh environment variables.
+security_sshd_disallow_environment_override: yes             # RHEL-07-010441
+# Disallow host based authentication.
+security_sshd_disallow_host_based_auth: yes                  # RHEL-07-010442
+# Set a list of allowed ssh ciphers.
+security_sshd_cipher_list: 'aes128-ctr,aes192-ctr,aes256-ctr' # RHEL-07-040110
+# Specify a text file to be displayed as the banner/MOTD for all sessions.
+security_sshd_banner_file: /etc/issue.net                    # RHEL-07-040170
+# Set the interval for max session length and the number of intervals to allow.
+security_sshd_client_alive_interval: 600                     # RHEL-07-040190
+security_sshd_client_alive_count_max: 0                      # RHEL-07-040191
+# Print the last login for a user when they log in over ssh.
+security_sshd_print_last_log: yes                            # RHEL-07-040301
+# Permit direct root logins
+security_sshd_permit_root_login: no                          # RHEL-07-040310
+# Disallow authentication using known hosts authentication.
+security_sshd_disallow_known_hosts_auth: yes                 # RHEL-07-040332 / RHEL-07-040333
+# Disallow rhosts authentication.
+security_sshd_disallow_rhosts_auth: yes                      # RHEL-07-040334
+# Enable X11 forwarding.
+security_sshd_enable_x11_forwarding: yes                     # RHEL-07-040540
+# Set the allowed ssh protocols.
+security_sshd_protocol: 2                                    # RHEL-07-040590
+# Set the list of allowed Message Authentication Codes (MACs) for ssh.
+security_sshd_allowed_macs: 'hmac-sha2-256,hmac-sha2-512'    # RHEL-07-040620
+# Disallow Generic Security Service Application Program Interface (GSSAPI) auth.
+security_sshd_disallow_gssapi: yes                           # RHEL-07-040660
+# Disallow compression or delay after login.
+security_sshd_compression: 'delayed'                         # RHEL-07-040700
+# Require privilege separation at every opportunity.
+security_sshd_enable_privilege_separation: yes               # RHEL-07-040690
+# Require strict mode checking of home directory configuration files.
+security_sshd_enable_strict_modes: yes                       # RHEL-07-040680
+# Disallow Kerberos authentication.
+security_sshd_disable_kerberos_auth: yes                     # RHEL-07-040670

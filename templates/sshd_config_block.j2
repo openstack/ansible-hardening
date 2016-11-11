@@ -1,0 +1,58 @@
+{% if security_sshd_disallow_empty_password | bool %}
+# RHEL-07-010270 / RHEL-07-010440
+PermitEmptyPasswords no
+{% endif %}
+{% if security_sshd_disallow_environment_override | bool %}
+# RHEL-07-010441
+PermitUserEnvironment no
+{% endif %}
+{% if security_sshd_disallow_host_based_auth | bool %}
+# RHEL-07-010442
+HostbasedAuthentication no
+{% endif %}
+# RHEL-07-040110
+Ciphers {{ security_sshd_cipher_list }}
+# RHEL-07-040170
+Banner {{ security_sshd_banner_file }}
+# RHEL-07-040190
+ClientAliveInterval {{ security_sshd_client_alive_interval }}
+# RHEL-07-040191
+ClientAliveCountMax {{ security_sshd_client_alive_count_max }}
+{% if security_sshd_print_last_log | bool %}
+# RHEL-07-040301
+PrintLastLog yes
+{% endif %}
+{% if security_sshd_permit_root_login | bool %}
+# RHEL-07-040310
+PermitRootLogin no
+{% endif %}
+{% if security_sshd_disallow_known_hosts_auth | bool %}
+# RHEL-07-040332 / RHEL-07-040333
+IgnoreUserKnownHosts yes
+{% endif %}
+{% if security_sshd_disallow_rhosts_auth | bool %}
+# RHEL-07-040334
+IgnoreRhosts yes
+{% endif %}
+{% if security_sshd_enable_x11_forwarding | bool %}
+# RHEL-07-040540
+X11Forwarding yes
+{% endif %}
+# RHEL-07-040590
+Protocol {{ security_sshd_protocol }}
+# RHEL-07-040620
+MACs {{security_sshd_allowed_macs }}
+{% if security_sshd_enable_privilege_separation | bool %}
+# RHEL-07-040690
+UsePrivilegeSeparation sandbox
+{% endif %}
+# RHEL-07-040700
+Compression {{ security_sshd_compression }}
+{% if security_sshd_disable_kerberos_auth | bool %}
+# RHEL-07-040670
+KerberosAuthentication no
+{% endif %}
+{% if security_sshd_enable_strict_modes| bool %}
+# RHEL-07-040680
+StrictModes yes
+{% endif %}

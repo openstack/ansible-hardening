@@ -13,6 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Verify that auditd.conf exists
+  stat:
+    path: /etc/audit/auditd.conf
+  register: auditd_conf
+  check_mode: no
+  tags:
+    - always
+
 - name: RHEL-07-030330 - The operating system must off-load audit records onto a different system or media from the system being audited
   lineinfile:
     dest: /etc/audisp/audisp-remote.conf
@@ -20,6 +28,7 @@
     line: "remote_server = {{ security_audisp_remote_server }}"
   when:
     - security_audisp_remote_server is defined
+    - auditd_conf.stat.exists
   notify:
     - restart auditd
   tags:
@@ -34,9 +43,69 @@
     line: "enable_krb5 = yes"
   when:
     - security_audisp_enable_krb5 is defined
+    - auditd_conf.stat.exists
   notify:
     - restart auditd
   tags:
     - medium
     - auditd
     - RHEL-07-030331
+
+- name: Get valid system architectures for audit rules
+  set_fact:
+    auditd_architectures: "{{ (ansible_architecture == 'ppc64le') | ternary(['ppc64'], ['b32', 'b64']) }}"
+  check_mode: no
+  tags:
+    - always
+
+- name: Remove old RHEL 6 audit rules file
+  file:
+    path: /etc/audit/rules.d/osas-auditd.rules
+    state: absent
+  when:
+    - auditd_conf.stat.exists
+  notify:
+    - generate auditd rules
+  tags:
+    - always
+
+- name: Deploy rules for auditd based on STIG requirements
+  template:
+    src: osas-auditd-rhel7.j2
+    dest: /etc/audit/rules.d/osas-auditd-rhel7.rules
+  when:
+    - auditd_conf.stat.exists
+  notify:
+    - generate auditd rules
+  tags:
+    - auditd
+    - RHEL-07-030492
+    - RHEL-07-030510
+    - RHEL-07-030511
+    - RHEL-07-030512
+    - RHEL-07-030513
+    - RHEL-07-030514
+    - RHEL-07-030521
+    - RHEL-07-030522
+    - RHEL-07-030523
+    - RHEL-07-030524
+    - RHEL-07-030525
+    - RHEL-07-030526
+    - RHEL-07-030530
+    - RHEL-07-030531
+    - RHEL-07-030540
+    - RHEL-07-030541
+    - RHEL-07-030550
+    - RHEL-07-030560
+    - RHEL-07-030561
+    - RHEL-07-030630
+    - RHEL-07-030670
+    - RHEL-07-030671
+    - RHEL-07-030672
+    - RHEL-07-030673
+    - RHEL-07-030674
+    - RHEL-07-030750
+    - RHEL-07-030751
+    - RHEL-07-030752
+    - RHEL-07-030753
+    - RHEL-07-030754

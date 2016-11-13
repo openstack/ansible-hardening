@@ -1,7 +1,21 @@
 ---
 id: RHEL-07-040310
-status: not implemented
-tag: misc
+status: implemented
+tag: sshd
 ---
 
-This STIG requirement is not yet implemented.
+The ``PermitRootLogin`` configuration is set to ``no`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_permit_root_login: no
+
+.. warning::
+
+    Ensure that a regular user account exists with a pathway to root access
+    (preferably via ``sudo``) before applying the security role.  This
+    configuration change disallows any direct logins with the ``root``
+    user.

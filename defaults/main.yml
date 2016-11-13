@@ -445,6 +445,8 @@ security_rhel7_remove_telnet_server: yes                     # RHEL-07-021910
 security_rhel7_remove_tftp_server: yes                       # RHEL-07-040500
 security_rhel7_remove_xorg: yes                              # RHEL-07-040560
 security_rhel7_remove_ypserv: yes                            # RHEL-07-020010
+# Automatically remove dependencies when removing packages.
+security_package_clean_on_remove: no                         # RHEL-07-020200
 
 ## RPM (rpm)
 # Enable GPG checks for remotely and locally installed packages. This includes

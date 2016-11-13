@@ -70,5 +70,6 @@
   roles:
     - role: "openstack-ansible-security"
   vars:
+    security_package_clean_on_remove: yes
     security_unattended_upgrades_enabled: true
     security_unattended_upgrades_notifications: true

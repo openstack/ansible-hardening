@@ -36,3 +36,32 @@
     - RHEL-07-040260
     - RHEL-07-040500
     - RHEL-07-040560
+
+- name: RHEL-07-020200 - Clean requirements/dependencies when removing packages (rpm)
+  lineinfile:
+    dest: /etc/yum.conf
+    regexp: "^(#)?clean_requirements_on_remove"
+    line: "clean_requirements_on_remove=1"
+    state: present
+  when:
+    - security_package_clean_on_remove | bool
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - low
+    - packages
+    - RHEL-07-020200
+
+- name: RHEL-07-020200 - Clean requirements/dependencies when removing packages (dpkg)
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/security-autoremove
+    regexp: "^(#)?APT::Get::AutomaticRemove"
+    line: "APT{{ '::' }}Get{{ '::' }}AutomaticRemove \"0\";"
+    state: present
+    create: yes
+  when:
+    - security_package_clean_on_remove | bool
+    - ansible_os_family | lower == 'debian'
+  tags:
+    - low
+    - packages
+    - RHEL-07-020200

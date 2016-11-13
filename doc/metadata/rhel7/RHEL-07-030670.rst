@@ -1,7 +1,16 @@
 ---
 id: RHEL-07-030670
-status: not implemented
-tag: misc
+status: implemented
+tag: auditd
 ---
 
-This STIG requirement is not yet implemented.
+The tasks add a rule to auditd that logs each time the ``init_module`` command
+is used.
+
+Deployers can opt-out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_audit_init_module: no
+
+This rule is compatible with x86, x86_64, and ppc64 architectures.

@@ -28,7 +28,7 @@ cache_timeout: 600
 
 # Set the package install state for distribution packages
 # Options are 'present' and 'latest'
-security_package_state: "latest"
+security_package_state: present
 
 ###############################################################################
 #   ____  _   _ _____ _        __     ____ _____ ___ ____

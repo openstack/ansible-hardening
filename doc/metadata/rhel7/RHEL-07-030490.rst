@@ -4,4 +4,9 @@ status: not implemented
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+Rules are added to audit all successful and unsuccessful account access events.
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_audit_account_access: no

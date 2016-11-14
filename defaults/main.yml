@@ -436,6 +436,16 @@ security_reset_perm_ownership: yes                           # RHEL-07-010010
 security_disable_gdm_automatic_login: yes                    # RHEL-07-010430
 # Disable timed gdm logins for guests
 security_disable_gdm_timed_login: yes                        # RHEL-07-010431
+# Enable session locking for graphical logins.
+security_lock_session: no                                    # RHEL-07-010060
+# Set a timer (in seconds) when an inactive session is locked.
+security_lock_session_inactive_delay: 900                    # RHEL-07-010070
+# Prevent users from modifying session lock settings.
+security_lock_session_override_user: yes                     # RHEL-07-010071
+# Lock a session (start screensaver) when a session is inactive.
+security_lock_session_when_inactive: yes                     # RHEL-07-010073
+# Time after screensaver starts when user login is required.
+security_lock_session_screensaver_lock_delay: 5              # RHEL-07-010074
 
 ## Packages (packages)
 # Remove packages from the system as required by the STIG. Set any of these

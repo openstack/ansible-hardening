@@ -1,0 +1,8 @@
+{% if security_lock_session | bool and security_lock_session_override_user | bool %}
+/org/gnome/desktop/session/idle-delay
+/org/gnome/desktop/screensaver/lock-enabled
+/org/gnome/desktop/screensaver/lock-delay
+{% if security_lock_session_when_inactive | bool %}
+/org/gnome/desktop/screensaver/idle-activation-enabled
+{% endif %}
+{% endif %}

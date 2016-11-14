@@ -4,20 +4,18 @@ status: implemented
 tag: packages
 ---
 
-On Ubuntu systems, the tasks check for the ``AllowUnauthenticated`` string
-anywhere in the apt configuration files found within ``/etc/apt/apt.conf.d/``.
-If the string is found, a warning is printed on the console.
+The STIG requires that repository XML files are verified during ``yum`` runs.
 
-On CentOS 7 systems, the tasks set the ``repo_gpgcheck`` option to ``1`` in the
-``/etc/yum.conf`` file. This enables GPG checks for all repository metadata.
+.. warning::
 
-Deployers can opt-out of this change by setting the following Ansible variable:
+    This setting is disabled by default because it can cause issues with CentOS
+    systems and prevent them from retrieving repository information. Deployers
+    who choose to enable this setting should test it thoroughly on
+    non-production environments before applying it to production systems.
+
+Deployers can override this default and opt in for the change by setting the
+following Ansible variable:
 
 .. code-block:: yaml
 
-    security_enable_gpgcheck: no
-
-Note that setting this variable also affects two other STIG configurations:
-
-* :ref:`stig-RHEL-07-020150`
-* :ref:`stig-RHEL-07-020151`
+    security_enable_gpgcheck_repo: yes

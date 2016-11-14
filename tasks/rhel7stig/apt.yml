@@ -72,11 +72,12 @@
 - name: RHEL-07-020150 - Package management tool must verify authenticity of packages
   debug:
     msg: "Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
-  when: "gpgcheck_result.rc == 0"
+  when:
+    - security_enable_gpgcheck_packages | bool
+    - gpgcheck_result.rc == 0
   tags:
     - high
     - RHEL-07-020150
-    - RHEL-07-020152
 
 - name: RHEL-07-020151 - Package management tool must verify authenticity of locally-installed packages
   lineinfile:
@@ -85,7 +86,7 @@
     line: "#no-debsig"
     state: present
   when:
-    - security_enable_gpgcheck | bool
+    - security_enable_gpgcheck_packages_local | bool
   tags:
     - high
     - RHEL-07-020151

@@ -69,16 +69,19 @@
 
 - name: Create dconf directories
   file:
-    path: /etc/dconf/db/local.d/
+    path: "{{ item }}"
     state: directory
   with_items:
     - /etc/dconf/db/local.d/
     - /etc/dconf/db/local.d/locks
+    - /etc/dconf/db/gdm.d/
   when:
     - dconf_check.stat.exists
   tags:
     - graphical
     - medium
+    - RHEL-07-010030
+    - RHEL-07-010031
     - RHEL-07-010060
     - RHEL-07-010070
     - RHEL-07-010071
@@ -118,3 +121,34 @@
     - RHEL-07-010071
     - RHEL-07-010073
     - RHEL-07-010074
+
+- name: Create a GDM profile for displaying a login banner
+  copy:
+    src: dconf-profile-gdm
+    dest: /etc/dconf/profile/gdm
+  when:
+    - dconf_check.stat.exists
+  notify:
+    - dconf update
+  tags:
+    - graphical
+    - medium
+    - RHEL-07-010030
+    - RHEL-07-010031
+
+- name: Create a GDM keyfile for machine-wide settings
+  template:
+    src: dconf-gdm-banner-message.j2
+    dest: "{{ item }}"
+  with_items:
+    - /etc/dconf/db/gdm.d/01-banner-message
+    - /etc/dconf/db/local.d/01-banner-message
+  when:
+    - dconf_check.stat.exists
+  notify:
+    - dconf update
+  tags:
+    - graphical
+    - medium
+    - RHEL-07-010030
+    - RHEL-07-010031

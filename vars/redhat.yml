@@ -29,6 +29,7 @@ chrony_service: chronyd
 
 # Commands
 grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"
+ssh_keysign_path: /usr/libexec/openssh
 
 # RHEL 6 STIG: Packages to add/remove
 stig_packages:

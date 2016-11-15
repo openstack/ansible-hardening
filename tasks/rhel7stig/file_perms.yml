@@ -47,3 +47,30 @@
     - RHEL-07-010010
     # don't trigger ANSIBLE0013
     - skip_ansible_lint
+
+- name: Check if cn_map file is present
+  stat:
+    path: /etc/pam_pkcs11/cn_map
+  check_mode: no
+  register: cn_map_check
+  tags:
+    - medium
+    - file_perms
+    - RHEL-07-040060
+    - RHEL-07-040070
+    - RHEL-07-040080
+
+- name: Set file permissions on cn_map file
+  file:
+    path: /etc/pam_pkcs11/cn_map
+    mode: "u-x,g-wx,o-wx"
+    owner: root
+    group: root
+  when:
+    - cn_map_check.stat.exists
+  tags:
+    - medium
+    - file_perms
+    - RHEL-07-040060
+    - RHEL-07-040070
+    - RHEL-07-040080

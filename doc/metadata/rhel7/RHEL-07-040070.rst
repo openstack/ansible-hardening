@@ -1,7 +1,8 @@
 ---
 id: RHEL-07-040070
-status: not implemented
-tag: misc
+status: implemented
+tag: file_perms
 ---
 
-This STIG requirement is not yet implemented.
+The default owner for ``/etc/pam_pkcs11/cn_map`` is ``root``. The role ensures
+that this default is maintained if the file exists.

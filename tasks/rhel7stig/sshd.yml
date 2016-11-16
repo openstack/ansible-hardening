@@ -20,17 +20,9 @@
 # of a marker line here and add a marker line to the file if it doesn't exist.
 
 - name: Find first 'Match' line in sshd_config (if it exists)
-  command: grep '^Match' /etc/ssh/sshd_config
+  shell: "grep '^Match' /etc/ssh/sshd_config || echo 'EOF'"
   register: sshd_match_check
   changed_when: False
-  check_mode: no
-  tags:
-    - always
-    - sshd
-
-- name: Determine where we should insert new sshd configuration lines
-  set_fact:
-    sshd_match_line: "{{ (sshd_match_check.rc == 0) | ternary('^' + sshd_match_check.stdout_lines[0] + '.*$', 'EOF') }}"
   check_mode: no
   tags:
     - always
@@ -52,7 +44,7 @@
     dest: /etc/ssh/sshd_config
     state: present
     marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
-    insertbefore: "{{ sshd_match_line }}"
+    insertbefore: "{{ sshd_match_check.stdout_lines[0] }}"
     validate: '/usr/sbin/sshd -T -f %s'
     block: "{{ lookup('template', 'sshd_config_block.j2') }}"
   notify:

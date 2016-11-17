@@ -27,6 +27,12 @@
         state: touch
       when: ansible_os_family == 'RedHat'
       changed_when: False
+    - name: Install dconf package to test graphical session locks
+      package:
+        name: dconf
+        state: installed
+      when: ansible_os_family == 'RedHat'
+      changed_when: False
   post_tasks:
     - name: Stat 20auto-upgrades file
       stat:

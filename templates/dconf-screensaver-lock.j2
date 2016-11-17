@@ -1,0 +1,24 @@
+{% if security_lock_session | bool %}
+[org/gnome/desktop/session]
+# RHEL-07-010070 - The operating system must initiate a screensaver after a
+#                  15-minute period of inactivity for graphical user
+#                  interfaces.
+idle-delay={{ security_lock_session_inactive_delay }}
+
+[org/gnome/desktop/screensaver]
+# RHEL-07-010060 - The operating system must enable a user session lock until
+#                  that user re-establishes access using established
+#                  identification and authentication procedures.
+lock-enabled=true
+
+# RHEL-07-010074 - The operating system must initiate a session lock for
+#                  graphical user interfaces when the screensaver is activated.
+lock-delay={{ security_lock_session_screensaver_lock_delay }}
+
+{% if security_lock_session_when_inactive | bool %}
+# RHEL-07-010073 - The operating system must initiate a session lock for the
+#                  screensaver after a period of inactivity for graphical user
+#                  interfaces.
+idle-activation-enabled=true
+{% endif %}
+{% endif %}

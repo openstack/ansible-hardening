@@ -44,3 +44,77 @@
     - graphical
     - high
     - RHEL-07-010431
+
+- name: Check for dconf profiles
+  stat:
+    path: /etc/dconf/profile
+  register: dconf_check
+  tags:
+    - always
+
+- name: Create a user profile in dconf
+  copy:
+    src: dconf-user-profile
+    dest: /etc/dconf/profile/user
+  when:
+    - dconf_check.stat.exists
+  tags:
+    - graphical
+    - medium
+    - RHEL-07-010060
+    - RHEL-07-010070
+    - RHEL-07-010071
+    - RHEL-07-010073
+    - RHEL-07-010074
+
+- name: Create dconf directories
+  file:
+    path: /etc/dconf/db/local.d/
+    state: directory
+  with_items:
+    - /etc/dconf/db/local.d/
+    - /etc/dconf/db/local.d/locks
+  when:
+    - dconf_check.stat.exists
+  tags:
+    - graphical
+    - medium
+    - RHEL-07-010060
+    - RHEL-07-010070
+    - RHEL-07-010071
+    - RHEL-07-010073
+    - RHEL-07-010074
+
+- name: Configure graphical session locking
+  template:
+    src: dconf-screensaver-lock.j2
+    dest: /etc/dconf/db/local.d/00-screensaver
+  when:
+    - dconf_check.stat.exists
+  notify:
+    - dconf update
+  tags:
+    - graphical
+    - medium
+    - RHEL-07-010060
+    - RHEL-07-010070
+    - RHEL-07-010071
+    - RHEL-07-010073
+    - RHEL-07-010074
+
+- name: Prevent users from changing graphical session locking configurations
+  template:
+    src: dconf-session-user-config-lockout.j2
+    dest: /etc/dconf/db/local.d/locks/session
+  when:
+    - dconf_check.stat.exists
+  notify:
+    - dconf update
+  tags:
+    - graphical
+    - medium
+    - RHEL-07-010060
+    - RHEL-07-010070
+    - RHEL-07-010071
+    - RHEL-07-010073
+    - RHEL-07-010074

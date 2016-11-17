@@ -126,3 +126,11 @@ stig_packages_rhel7:
       - ypserv
     state: absent
     enabled: "{{ security_rhel7_remove_ypserv }}"
+
+rpm_gpgchecks:
+  - regexp: "^gpgcheck.*"
+    line: "gpgcheck={{ security_enable_gpgcheck_packages | bool | ternary('1', 0) }}"
+  - regexp: "^localpkg_gpgcheck.*"
+    line: "localpkg_gpgcheck={{ security_enable_gpgcheck_packages_local | bool | ternary('1', 0) }}"
+  - regexp: "^repo_gpgcheck.*"
+    line: "repo_gpgcheck={{ security_enable_gpgcheck_repo | bool | ternary('1', 0) }}"

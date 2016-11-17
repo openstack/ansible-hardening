@@ -463,9 +463,10 @@ security_rhel7_remove_ypserv: yes                            # RHEL-07-020010
 security_package_clean_on_remove: no                         # RHEL-07-020200
 
 ## RPM (rpm)
-# Enable GPG checks for remotely and locally installed packages. This includes
-# RHEL-07-020150, RHEL-07-020151, and RHEL-07-020152.
-security_enable_gpgcheck: yes                                # RHEL-07-020150
+# Enable GPG checks for packages and repository data.
+security_enable_gpgcheck_packages: yes                       # RHEL-07-020150
+security_enable_gpgcheck_packages_local: yes                 # RHEL-07-020151
+security_enable_gpgcheck_repo: no                            # RHEL-07-020152
 
 ## ssh server (sshd)
 # Disallow logins from users with empty/null passwords.

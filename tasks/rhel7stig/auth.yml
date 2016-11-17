@@ -47,3 +47,26 @@
     - auth
     - high
     - RHEL-07-010260
+
+- name: Get all accounts with UID 0
+  shell: "awk -F: '$3 == 0 {print $1}' /etc/passwd"
+  changed_when: False
+  check_mode: no
+  register: root_user_check
+  tags:
+    - auth
+    - high
+    - RHEL-07-020310
+    - skip_ansible_lint
+
+- name: RHEL-07-020310 - The root account must be the only account having unrestricted access to the system
+  fail:
+    msg: |
+      Only the 'root' user should have UID 0. Other users were found:
+      {{ root_user_check.stdout_lines | join(', ') }}"
+  when:
+    - root_user_check.stdout != 'root'
+  tags:
+    - auth
+    - high
+    - RHEL-07-020310

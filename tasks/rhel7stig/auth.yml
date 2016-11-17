@@ -13,6 +13,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Check if /etc/security/pwquality.conf exists
+  stat:
+    path: /etc/security/pwquality.conf
+  check_mode: no
+  register: pwquality_config_check
+  tags:
+    - always
+
+- name: Set password quality requirements
+  blockinfile:
+    dest: /etc/security/pwquality.conf
+    backup: yes
+    insertbefore: EOF
+    marker: "# {mark} Added by openstack-ansible-security role"
+    state: present
+    block: "{{ lookup('template', 'pwquality.conf.j2') }}"
+  when:
+    - pwquality_config_check.stat.exists
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010090
+    - RHEL-07-010100
+    - RHEL-07-010110
+    - RHEL-07-010120
+    - RHEL-07-010130
+    - RHEL-07-010140
+    - RHEL-07-010150
+    - RHEL-07-010160
+
 - name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"

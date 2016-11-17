@@ -196,6 +196,61 @@ audited_commands:
     stig_id: RHEL-07-030514
     arch_specific: no
 
+## Password quality settings
+# This variable is used in main/rhel7stig/auth.yml to set password quality
+# requirements.
+#
+# Each dictionary has this structure:
+#
+#   parameter: the pwquality parameter to set
+#   value: the value of the parameter
+#   stig_id: the STIG id number
+#   description: description of the control from the STIG
+#   enabled: whether the change should be applied
+#
+password_quality_rhel7:
+  - parameter: ucredit
+    value: -1
+    stig_id: RHEL-07-010090
+    description: "Password must contain at least one upper-case character"
+    enabled: "{{ security_pwquality_require_uppercase }}"
+  - parameter: lcredit
+    value: -1
+    stig_id: RHEL-07-010100
+    description: "Password must contain at least one lower-case character"
+    enabled: "{{ security_pwquality_require_lowercase }}"
+  - parameter: dcredit
+    value: -1
+    stig_id: RHEL-07-010110
+    description: "Password must contain at least one numeric character"
+    enabled: "{{ security_pwquality_require_numeric }}"
+  - parameter: ocredit
+    value: -1
+    stig_id: RHEL-07-010120
+    description: "Password must contain at least one special character"
+    enabled: "{{ security_pwquality_require_special }}"
+  - parameter: difok
+    value: 8
+    stig_id: RHEL-07-010130
+    description: "Password must have at least eight characters changed"
+    enabled: "{{ security_pwquality_require_characters_changed }}"
+  - parameter: minclass
+    value: 4
+    stig_id: RHEL-07-010140
+    description: "Password must have at least four character classes changed"
+    enabled: "{{ security_pwquality_require_character_classes_changed }}"
+  - parameter: maxrepeat
+    value: 4
+    stig_id: RHEL-07-010150
+    description: "Password must have at most four characters repeated consecutively"
+    enabled: "{{ security_pwquality_limit_repeated_characters }}"
+  - parameter: maxclassrepeat
+    value: 4
+    stig_id: RHEL-07-010160
+    description: "Password must have at most four characters in the same character class repeated consecutively"
+    enabled: "{{ security_pwquality_limit_repeated_character_classes }}"
+
+
 ## sysctl settings
 # This variable is used in main/rhel7stig/kernel.yml to set sysctl
 # configurations on hosts.

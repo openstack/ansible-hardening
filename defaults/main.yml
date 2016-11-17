@@ -449,6 +449,19 @@ security_rhel7_audit_account_actions: yes                    # RHEL-07-030710
 ## Authentication (auth)
 # Disallow logins from accounts with blank/null passwords via PAM.
 security_disallow_blank_password_login: yes                  # RHEL-07-010260
+# Apply password quality rules.
+# NOTE: The security_pwquality_apply_rules variable is a "master switch".
+# Set the 'security_pwquality_apply_rules' variable to 'yes' to apply all of
+# the password quality rules. Each rule can be disabled with a value of 'no'.
+security_pwquality_apply_rules: no
+security_pwquality_require_uppercase: yes                    # RHEL-07-010090
+security_pwquality_require_lowercase: yes                    # RHEL-07-010100
+security_pwquality_require_numeric: yes                      # RHEL-07-010110
+security_pwquality_require_special: yes                      # RHEL-07-010120
+security_pwquality_require_characters_changed: yes           # RHEL-07-010130
+security_pwquality_require_character_classes_changed: yes    # RHEL-07-010140
+security_pwquality_limit_repeated_characters: yes            # RHEL-07-010150
+security_pwquality_limit_repeated_character_classes: yes     # RHEL-07-010160
 
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.

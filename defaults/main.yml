@@ -462,6 +462,8 @@ security_pwquality_require_characters_changed: yes           # RHEL-07-010130
 security_pwquality_require_character_classes_changed: yes    # RHEL-07-010140
 security_pwquality_limit_repeated_characters: yes            # RHEL-07-010150
 security_pwquality_limit_repeated_character_classes: yes     # RHEL-07-010160
+# Ensure passwords are stored using SHA512.
+security_require_sha512_password_storage: yes                # RHEL-07-010180
 
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.

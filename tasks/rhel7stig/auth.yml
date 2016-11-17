@@ -43,6 +43,19 @@
     - RHEL-07-010150
     - RHEL-07-010160
 
+- name: RHEL-07-010180 - The shadow file must be configured to store only encrypted representations of passwords.
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^ENCRYPT_METHOD"
+    line: "ENCRYPT_METHOD SHA512"
+    state: present
+  when:
+    - security_require_sha512_password_storage | bool
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010180
+
 - name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"

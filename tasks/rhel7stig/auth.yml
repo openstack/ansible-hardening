@@ -56,6 +56,21 @@
     - medium
     - RHEL-07-010180
 
+- name: RHEL-07-010190 - User and group account administration utilities must be configured to store only encrypted representations of passwords.
+  ini_file:
+    dest: /etc/libuser.conf
+    section: defaults
+    option: crypt_style
+    value: sha512
+    backup: yes
+  when:
+    - security_libuser_crypt_style_sha512 | bool
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010190
+
 - name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"

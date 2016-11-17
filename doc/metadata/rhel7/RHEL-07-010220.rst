@@ -1,7 +1,16 @@
 ---
 id: RHEL-07-010220
-status: not implemented
-tag: misc
+status: opt-in
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+Setting a limit on the lifetime for passwords might be disruptive for some
+users without proper communication explaining the change. Therefore, this
+change is **disabled by default**.
+
+Deployers can opt in for this change and provide a maximum lifetime for user
+passwords (in days) by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_password_max_lifetime_days: 60

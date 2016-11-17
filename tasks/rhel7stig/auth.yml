@@ -71,6 +71,41 @@
     - medium
     - RHEL-07-010190
 
+- name: Get all user accounts with a password lifetime limit under 24 hours
+  shell: "awk -F: '$4 < 1 {print $1}' /etc/shadow"
+  check_mode: no
+  changed_when: False
+  register: password_lifetime_check
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010210
+    - skip_ansible_lint
+
+- name: RHEL-07-010210 - Passwords must be restricted to a 24 hours/1 day minimum lifetime.
+  debug:
+    msg: |
+      Accounts were found with a minimum password lifetime limit under 24 hours:
+      {{ password_lifetime_check.stdout_lines | join(', ') }}
+  when:
+    - password_lifetime_check.stdout_lines is defined
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010210
+
+- name: RHEL-07-010220 - Passwords for new users must be restricted to a 60-day maximum lifetime.
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^(#)?PASS_MAX_DAYS"
+    line: "PASS_MAX_DAYS {{ security_password_max_lifetime_days }}"
+  when:
+    - security_password_max_lifetime_days is defined
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010220
+
 - name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"

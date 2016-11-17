@@ -23,7 +23,7 @@
       {{ pkg_list }}
     state: "{{ item[0] }}"
   with_items:
-    - "{{ stig_packages | selectattr('enabled') | groupby('state') }}"
+    - "{{ stig_packages_rhel7 | selectattr('enabled') | groupby('state') }}"
   tags:
     - cat1
     - auth

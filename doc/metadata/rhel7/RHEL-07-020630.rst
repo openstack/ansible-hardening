@@ -1,7 +1,21 @@
 ---
 id: RHEL-07-020630
-status: not implemented
-tag: misc
+status: implemented
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+The ``CREATE_HOME`` variable is set to ``yes`` by the tasks in the security
+role. This ensures that home directories are created each time a new user
+account is created.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_create_home_directory_default: no
+
+.. note::
+
+    On CentOS 7 and Red Hat Enterprise Linux 7 systems, home directores are
+    always created with new users by default. Home directories are not created
+    by default on Ubuntu systems.

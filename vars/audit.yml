@@ -1,0 +1,162 @@
+---
+
+audited_commands:
+  - command: chsh
+    stig_id: RHEL-07-030525
+    arch_specific: no
+  - command: chage
+    stig_id: RHEL-07-030513
+    arch_specific: no
+  - command: chcon
+    stig_id: RHEL-07-030443
+    arch_specific: no
+  - command: chmod
+    stig_id: RHEL-07-030390
+    arch_specific: yes
+  - command: chown
+    stig_id: RHEL-07-030380
+    arch_specific: yes
+  - command: creat
+    stig_id: RHEL-07-030420
+    arch_specific: yes
+  - command: crontab
+    stig_id: RHEL-07-030561
+    arch_specific: no
+  - command: delete_module
+    stig_id: RHEL-07-030671
+    arch_specific: yes
+  - command: fchmod
+    stig_id: RHEL-07-030391
+    arch_specific: yes
+  - command: fchmodat
+    stig_id: RHEL-07-030392
+    arch_specific: yes
+  - command: fchown
+    stig_id: RHEL-07-030381
+    arch_specific: yes
+  - command: fchownat
+    stig_id: RHEL-07-030383
+    arch_specific: yes
+  - command: fremovexattr
+    stig_id: RHEL-07-030404
+    arch_specific: yes
+  - command: fsetxattr
+    stig_id: RHEL-07-030401
+    arch_specific: yes
+  - command: ftruncate
+    stig_id: RHEL-07-030425
+    arch_specific: yes
+  - command: init_module
+    stig_id: RHEL-07-030670
+    arch_specific: yes
+  - command: gpasswd
+    stig_id: RHEL-07-030512
+    arch_specific: no
+  - command: lchown
+    stig_id: RHEL-07-030382
+    arch_specific: yes
+  - command: lremovexattr
+    stig_id: RHEL-07-030405
+    arch_specific: yes
+  - command: lsetxattr
+    stig_id: RHEL-07-030402
+    arch_specific: yes
+  - command: mount
+    path: /bin
+    stig_id: RHEL-07-030530
+    arch_specific: no
+  - command: newgrp
+    stig_id: RHEL-07-030524
+    arch_specific: no
+  - command: open
+    stig_id: RHEL-07-030421
+    arch_specific: yes
+  - command: openat
+    stig_id: RHEL-07-030422
+    arch_specific: yes
+  - command: open_by_handle_at
+    stig_id: RHEL-07-030423
+    arch_specific: yes
+  - command: pam_timestamp_check
+    path: /sbin
+    stig_id: RHEL-07-030630
+    arch_specific: no
+  - command: passwd
+    stig_id: RHEL-07-030510
+    arch_specific: no
+  - command: postdrop
+    path: /usr/sbin
+    stig_id: RHEL-07-030540
+    arch_specific: no
+  - command: postqueue
+    path: /usr/sbin
+    stig_id: RHEL-07-030541
+    arch_specific: no
+  - command: pt_chown
+    path: /usr/libexec
+    stig_id: RHEL-07-030560
+    arch_specific: no
+    distro: redhat
+  - command: removexattr
+    stig_id: RHEL-07-030403
+    arch_specific: yes
+  - command: rename
+    stig_id: RHEL-07-030750
+    arch_specific: yes
+  - command: renameat
+    stig_id: RHEL-07-030751
+    arch_specific: yes
+  - command: restorecon
+    path: /usr/sbin
+    stig_id: RHEL-07-030444
+    arch_specific: no
+  - command: rmdir
+    stig_id: RHEL-07-030752
+    arch_specific: yes
+  - command: semanage
+    path: /usr/sbin
+    stig_id: RHEL-07-030441
+    arch_specific: no
+  - command: setsebool
+    path: /usr/sbin
+    stig_id: RHEL-07-030442
+    arch_specific: no
+  - command: setxattr
+    stig_id: RHEL-07-030400
+    arch_specific: yes
+  - command: ssh-keysign
+    path: "{{ ssh_keysign_path }}"
+    stig_id: RHEL-07-030550
+    arch_specific: no
+  - command: su
+    path: /bin
+    stig_id: RHEL-07-030521
+    arch_specific: no
+  - command: sudo
+    stig_id: RHEL-07-030522
+    arch_specific: no
+  - command: sudoedit
+    path: /bin
+    stig_id: RHEL-07-030526
+    arch_specific: no
+  - command: truncate
+    stig_id: RHEL-07-030424
+    arch_specific: yes
+  - command: umount
+    path: /bin
+    stig_id: RHEL-07-030531
+    arch_specific: no
+  - command: unix_chkpwd
+    path: /sbin
+    stig_id: RHEL-07-030511
+    arch_specific: no
+  - command: unlink
+    stig_id: RHEL-07-030753
+    arch_specific: yes
+  - command: unlinkat
+    stig_id: RHEL-07-030754
+    arch_specific: yes
+  - command: userhelper
+    path: /usr/sbin
+    stig_id: RHEL-07-030514
+    arch_specific: no

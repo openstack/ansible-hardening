@@ -21,6 +21,11 @@
   tags:
     - always
 
+- name: Load variables for audited commands
+  include_vars: audit.yml
+  tags:
+    - always
+
 - name: RHEL-07-030330 - The operating system must off-load audit records onto a different system or media from the system being audited
   lineinfile:
     dest: /etc/audisp/audisp-remote.conf
@@ -79,33 +84,57 @@
     - generate auditd rules
   tags:
     - auditd
-    - RHEL-07-030492
-    - RHEL-07-030510
-    - RHEL-07-030511
-    - RHEL-07-030512
-    - RHEL-07-030513
-    - RHEL-07-030514
-    - RHEL-07-030521
-    - RHEL-07-030522
-    - RHEL-07-030523
-    - RHEL-07-030524
     - RHEL-07-030525
-    - RHEL-07-030526
+    - RHEL-07-030513
+    - RHEL-07-030443
+    - RHEL-07-030390
+    - RHEL-07-030380
+    - RHEL-07-030420
+    - RHEL-07-030561
+    - RHEL-07-030671
+    - RHEL-07-030391
+    - RHEL-07-030392
+    - RHEL-07-030381
+    - RHEL-07-030383
+    - RHEL-07-030404
+    - RHEL-07-030401
+    - RHEL-07-030425
+    - RHEL-07-030670
+    - RHEL-07-030512
+    - RHEL-07-030382
+    - RHEL-07-030405
+    - RHEL-07-030402
     - RHEL-07-030530
-    - RHEL-07-030531
+    - RHEL-07-030524
+    - RHEL-07-030421
+    - RHEL-07-030422
+    - RHEL-07-030423
+    - RHEL-07-030630
+    - RHEL-07-030510
     - RHEL-07-030540
     - RHEL-07-030541
-    - RHEL-07-030550
     - RHEL-07-030560
-    - RHEL-07-030561
-    - RHEL-07-030630
-    - RHEL-07-030670
-    - RHEL-07-030671
+    - RHEL-07-030403
+    - RHEL-07-030750
+    - RHEL-07-030751
+    - RHEL-07-030444
+    - RHEL-07-030752
+    - RHEL-07-030441
+    - RHEL-07-030442
+    - RHEL-07-030400
+    - RHEL-07-030550
+    - RHEL-07-030521
+    - RHEL-07-030522
+    - RHEL-07-030526
+    - RHEL-07-030424
+    - RHEL-07-030531
+    - RHEL-07-030511
+    - RHEL-07-030753
+    - RHEL-07-030754
+    - RHEL-07-030514
+    - RHEL-07-030490
+    - RHEL-07-030523
     - RHEL-07-030672
     - RHEL-07-030673
     - RHEL-07-030674
-    - RHEL-07-030750
-    - RHEL-07-030751
-    - RHEL-07-030752
-    - RHEL-07-030753
-    - RHEL-07-030754
+    - RHEL-07-030710

@@ -33,6 +33,7 @@ clamav_service: clamd
 
 # Commands
 grub_update_cmd: "update-grub"
+ssh_keysign_path: /usr/lib/openssh
 
 # RHEL 6 STIG: Packages to add/remove
 stig_packages:

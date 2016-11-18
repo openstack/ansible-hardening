@@ -1,121 +1,64 @@
+## Rules for auditd deployed by openstack-ansible-security
+# Do not edit any of these rules directly. The contents of this file are
+# controlled by Ansible variables and each variable is explained in detail
+# within the role documentation:
+#
+#    http://docs.openstack.org/developer/openstack-ansible-security/
+#
+{#                                                                           #}
+{# The following loop takes a variable called audited_commands (a list of    #}
+{# dictionaries) and creates audit rules for each audited command or         #}
+{# syscall.                                                                  #}
+{#                                                                           #}
+# Audited commands and syscalls
+{% for audited_command in audited_commands %}
+{#                                                                           #}
+{# We replace any dashes in the command with underscores. The variables that #}
+{# control the deployment of each rule can only contain underscores.         #}
+{#                                                                           #}
+{% set command_sanitized = audited_command['command'] | replace('-', '_') %}
+{#                                                                           #}
+{# Verify that the variable controlling the rule is enabled and any distro-  #}
+{# specific requirements are met.                                            #}
+{#                                                                           #}
+{% if vars['security_rhel7_audit_' + command_sanitized ] | bool and (audited_command['distro'] | default(ansible_os_family | lower) == ansible_os_family | lower) %}
+# {{ audited_command['stig_id'] }} - All uses of the {{ audited_command['command'] }} command must be audited.
+{#                                                                           #}
+{# Some audit rules are specific to syscalls. Different rules are needed for #}
+{# x86 and ppc64 systems.                                                    #}
+{#                                                                           #}
+{% if audited_command['arch_specific'] %}
+{% for arch in auditd_architectures %}
+-a always,exit -F arch={{ arch }} -S {{ audited_command['command'] }}  -F perm=x -F auid>=1000 -F auid!=4294967295 -k {{ audited_command['stig_id'] }}
+{% endfor %}
+{% else %}
+-a always,exit -F path={{ audited_command['path'] | default('/usr/bin') }}/{{ audited_command['command'] }} -F perm=x -F auid>=1000 -F auid!=4294967295 -k {{ audited_command['stig_id'] }}
+{% endif %}
+{% endif %}
+
+{% endfor %}
+
+# Other audited events
+{#                                                                           #}
+{# These events are more specific and require static templating.             #}
+{#                                                                           #}
 {% if security_rhel7_audit_account_access | bool %}
+# RHEL-07-030490 - The operating system must generate audit records for all
+# successful/unsuccessful account access count events.
+-w /var/log/tallylog -p wa -k RHEL-07-030490
+# RHEL-07-030491 - The operating system must generate audit records for all
+# unsuccessful account access events.
+-w /var/run/faillock -p wa -k RHEL-07-030491
 # RHEL-07-030492 - The operating system must generate audit records for all
 # successful account access events.
 -w /var/log/lastlog -p wa -k RHEL-07-030492
 {% endif %}
 
-{% if security_rhel7_audit_passwd_command | bool %}
-# RHEL-07-030510 - All uses of the passwd command must be audited.
--a always,exit -F path=/usr/bin/passwd -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030510
-{% endif %}
-
-{% if security_rhel7_audit_unix_chkpwd | bool %}
-# RHEL-07-030511 - All uses of the unix_chkpwd command must be audited.
--a always,exit -F path=/sbin/unix_chkpwd -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030511
-{% endif %}
-
-{% if security_rhel7_audit_gpasswd | bool %}
-# RHEL-07-030512 - All uses of the gpasswd command must be audited.
--a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030512
-{% endif %}
-
-{% if security_rhel7_audit_chage | bool %}
-# RHEL-07-030513 - All uses of the chage command must be audited.
--a always,exit -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030513
-{% endif %}
-
-{% if security_rhel7_audit_userhelper | bool %}
-# RHEL-07-030514 - All uses of the userhelper command must be audited.
--a always,exit -F path=/usr/sbin/userhelper -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030514
-{% endif %}
-
-{% if security_rhel7_audit_su | bool %}
-# RHEL-07-030521 - All uses of the su command must be audited.
--a always,exit -F path=/bin/su -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030521
-{% endif %}
-
-{% if security_rhel7_audit_sudo | bool %}
-# RHEL-07-030522 - All uses of the sudo command must be audited.
--a always,exit -F path=/usr/bin/sudo -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030522
-{% endif %}
-
 {% if security_rhel7_audit_sudo_config_changes | bool %}
-# RHEL-07-030523 - The operating system must generate audit records containing the full-text recording of modifications to sudo configuration files.
+# RHEL-07-030523 - The operating system must generate audit records containing
+# the full-text recording of modifications to sudo configuration files.
 -w /etc/sudoers -p wa -k RHEL-07-030523
 -w /etc/sudoers.d/ -p wa -k RHEL-07-030523
-{% endif %}
-
-{% if security_rhel7_audit_newgrp | bool %}
-# RHEL-07-030524 - All uses of the newgrp command must be audited.
--a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030524
-{% endif %}
-
-{% if security_rhel7_audit_chsh | bool %}
-# RHEL-07-030525 - All uses of the chsh command must be audited.
--a always,exit -F path=/usr/bin/chsh -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030525
-{% endif %}
-
-{% if security_rhel7_audit_sudoedit | bool %}
-# RHEL-07-030526 - All uses of the sudoedit command must be audited.
--a always,exit -F path=/bin/sudoedit -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030526
-{% endif %}
-
-{% if security_rhel7_audit_mount | bool %}
-# RHEL-07-030530 - All uses of the mount command must be audited.
--a always,exit -F path=/bin/mount -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030530
-{% endif %}
-
-{% if security_rhel7_audit_umount | bool %}
-# RHEL-07-030531 - All uses of the umount command must be audited.
--a always,exit -F path=/bin/umount -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030531
-{% endif %}
-
-{% if security_rhel7_audit_postdrop | bool %}
-# RHEL-07-030540 - All uses of the postdrop command must be audited.
--a always,exit -F path=/usr/sbin/postdrop -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030540
-{% endif %}
-
-{% if security_rhel7_audit_postqueue | bool %}
-# RHEL-07-030541 - All uses of the postqueue command must be audited.
--a always,exit -F path=/usr/sbin/postqueue -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030541
-{% endif %}
-
-{% if security_rhel7_audit_ssh_keysign | bool %}
-# RHEL-07-030550 - All uses of the ssh-keysign command must be audited.
-{% if ansible_os_family | lower == 'debian' %}
--a always,exit -F path=/usr/lib/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030550
-{% else %}
--a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030550
-{% endif %}
-{% endif %}
-
-{% if security_rhel7_audit_pt_chown | bool and ansible_os_family | lower == 'redhat' %}
-# RHEL-07-030560 - All uses of the pt_chown command must be audited.
--a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030560
-{% endif %}
-
-{% if security_rhel7_audit_crontab | bool %}
-# RHEL-07-030561 - All uses of the crontab command must be audited.
--a always,exit -F path=/usr/bin/crontab -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030561
-{% endif %}
-
-{% if security_rhel7_audit_pam_timestamp_check | bool %}
-# RHEL-07-030630 - All uses of the pam_timestamp_check command must be audited.
--a always,exit -F path=/sbin/pam_timestamp_check -F perm=x -F auid>=1000 -F auid!=4294967295 -F auid!=4294967295 -k RHEL-07-030630
-{% endif %}
-
-{% if security_rhel7_audit_init_module | bool %}
-# RHEL-07-030670 - All uses of the init_module command must be audited.
-{% for arch in auditd_architectures %}
--a always,exit -F arch={{ arch }} -S init_module -k RHEL-07-030670
-{% endfor %}
-{% endif %}
-
-{% if security_rhel7_audit_delete_module | bool %}
-# RHEL-07-030671 - All uses of the delete_module command must be audited.
-{% for arch in auditd_architectures %}
--a always,exit -F arch={{ arch }} -S delete_module -k RHEL-07-030671
-{% endfor %}
 {% endif %}
 
 {% if security_rhel7_audit_insmod | bool %}
@@ -141,39 +84,4 @@
 -w /etc/gshadow -p wa -k RHEL-07-030710
 -w /etc/shadow -p wa -k RHEL-07-030710
 -w /etc/security/opasswd -p wa -k RHEL-07-030710
-{% endif %}
-
-{% if security_rhel7_audit_rename | bool %}
-# RHEL-07-030750 - All uses of the rename command must be audited.
-{% for arch in auditd_architectures %}
--a always,exit -F arch={{ arch }} -S rename -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030750
-{% endfor %}
-{% endif %}
-
-{% if security_rhel7_audit_renameat | bool %}
-# RHEL-07-030751 - All uses of the renameat command must be audited.
-{% for arch in auditd_architectures %}
--a always,exit -F arch={{ arch }} -S renameat  -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030751
-{% endfor %}
-{% endif %}
-
-{% if security_rhel7_audit_rmdir | bool %}
-# RHEL-07-030752 - All uses of the rmdir command must be audited.
-{% for arch in auditd_architectures %}
--a always,exit -F arch={{ arch }} -S rmdir  -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030752
-{% endfor %}
-{% endif %}
-
-{% if security_rhel7_audit_unlink | bool %}
-# RHEL-07-030753 - All uses of the unlink command must be audited.
-{% for arch in auditd_architectures %}
--a always,exit -F arch={{ arch }} -S unlink  -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030753
-{% endfor %}
-{% endif %}
-
-{% if security_rhel7_audit_unlinkat | bool %}
-# RHEL-07-030754 - All uses of the unlinkat command must be audited.
-{% for arch in auditd_architectures %}
--a always,exit -F arch={{ arch }} -S unlinkat  -F perm=x -F auid>=1000 -F auid!=4294967295 -k RHEL-07-030754
-{% endfor %}
 {% endif %}

@@ -13,6 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Get a list of users on the system to use throughout the auth tasks
+  action: get_users
+  register: user_list
+  check_mode: no
+  tags:
+    - always
+
 - name: Check if /etc/security/pwquality.conf exists
   stat:
     path: /etc/security/pwquality.conf
@@ -163,3 +170,16 @@
     - auth
     - high
     - RHEL-07-020310
+
+- name: RHEL-07-020620 - All local interactive users must have a home directory assigned in the /etc/passwd file.
+  debug:
+    msg: |
+      The following users do not have a home directory assigned:
+      {{ user_list.users | selectattr('dir', 'equalto', '') | map(attribute='name') | join(', ') }}
+  when:
+    - user_list is defined
+    - user_list.users | selectattr('dir', 'equalto', '') | map(attribute='name') | list | length > 0
+  tags:
+    - auth
+    - medium
+    - RHEL-07-020620

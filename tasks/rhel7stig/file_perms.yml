@@ -48,6 +48,54 @@
     # don't trigger ANSIBLE0013
     - skip_ansible_lint
 
+- name: Search for files/directories with an invalid owner
+  command: find / -xdev -nouser -fstype local
+  args:
+    warn: no
+  register: invalid_owner_files
+  changed_when: false
+  when:
+    - security_search_for_invalid_owner | bool
+  tags:
+    - always
+
+- name: RHEL-07-020360 - All files and directories must have a valid owner.
+  debug:
+    msg: |
+      Files and directories were found that are owned by an invalid user:
+      {{ invalid_owner_files.stdout_lines | join('\n') }}
+  when:
+    - invalid_owner_files is defined
+    - invalid_owner_files.stdout_lines is defined
+  tags:
+    - file_perms
+    - medium
+    - RHEL-07-020360
+
+- name: Search for files/directories with an invalid group owner
+  command: find / -xdev -nogroup -fstype local
+  args:
+    warn: no
+  register: invalid_group_owner_files
+  changed_when: false
+  when:
+    - security_search_for_invalid_group_owner | bool
+  tags:
+    - always
+
+- name: RHEL-07-020370 - All files and directories must have a valid group owner.
+  debug:
+    msg: |
+      Files and directories were found that are owned by an invalid group:
+      {{ invalid_group_owner_files.stdout_lines | join('\n') }}
+  when:
+    - invalid_group_owner_files is defined
+    - invalid_group_owner_files.stdout_lines is defined
+  tags:
+    - file_perms
+    - medium
+    - RHEL-07-020370
+
 - name: Check if cn_map file is present
   stat:
     path: /etc/pam_pkcs11/cn_map

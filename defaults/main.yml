@@ -474,6 +474,9 @@ security_create_home_directory_default: yes                  # RHEL-07-020630
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.
 security_reset_perm_ownership: yes                           # RHEL-07-010010
+# Search for files/directories owned by invalid users or groups.
+security_search_for_invalid_owner: no                        # RHEL-07-020360
+security_search_for_invalid_group_owner: no                  # RHEL-07-020370
 
 ## Graphical interfaces (graphical)
 # Disable automatic gdm logins

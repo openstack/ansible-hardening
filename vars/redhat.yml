@@ -54,18 +54,6 @@ stig_packages:
     state: "{{ security_package_state }}"
     enabled: "{{ security_unattended_upgrades_enabled }}"
   - packages:
-      - clamav
-      - clamav-data
-      - clamav-devel
-      - clamav-filesystem
-      - clamav-lib
-      - clamav-scanner-systemd
-      - clamav-server-systemd
-      - clamav-server
-      - clamav-update
-    state: "{{ security_package_state }}"
-    enabled: "{{ security_enable_virus_scanner }}"
-  - packages:
       - xinetd
     state: absent
     enabled: "{{ security_remove_xinetd }}"
@@ -106,6 +94,18 @@ stig_packages_rhel7:
       - screen
     state: "{{ security_package_state }}"
     enabled: True
+  - packages:
+      - clamav
+      - clamav-data
+      - clamav-devel
+      - clamav-filesystem
+      - clamav-lib
+      - clamav-scanner-systemd
+      - clamav-server-systemd
+      - clamav-server
+      - clamav-update
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_enable_virus_scanner }}"
   - packages:
       - rsh-server
     state: absent

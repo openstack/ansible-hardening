@@ -21,7 +21,7 @@
 
 - name: RHEL-07-010430 - The operating system must not allow an unattended or automatic logon to the system via a graphical user interface
   lineinfile:
-    path: /etc/gdm/custom.conf
+    dest: /etc/gdm/custom.conf
     line: "^AutomaticLoginEnable=true"
     state: absent
   when:
@@ -34,7 +34,7 @@
 
 - name: RHEL-07-010431 - The operating system must not allow guest logon to the system.
   lineinfile:
-    path: /etc/gdm/custom.conf
+    dest: /etc/gdm/custom.conf
     line: "^TimedLoginEnable=true"
     state: absent
   when:

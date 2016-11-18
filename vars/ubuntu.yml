@@ -39,3 +39,59 @@ chrony_service: chrony
 
 # Commands
 grub_update_cmd: "update-grub"
+
+# RHEL 6 STIG: Packages to add/remove
+stig_packages:
+  - packages:
+      - auditd
+      - audispd-plugins
+      - aide
+      - aide-common
+      - chrony
+      - debsums
+      - logrotate
+      - postfix
+    state: "{{ security_package_state }}"
+    enabled: True
+  - packages:
+      - apparmor
+      - apparmor-profiles
+      - apparmor-utils
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_enable_linux_security_module }}"
+  - packages:
+      - fail2ban
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_install_fail2ban }}"
+  - packages:
+      - xinetd
+    state: absent
+    enabled: "{{ security_remove_xinetd }}"
+  - packages:
+      - nis
+    state: absent
+    enabled: "{{ security_remove_ypserv }}"
+  - packages:
+      - tftpd
+    state: absent
+    enabled: "{{ security_remove_tftp_server }}"
+  - packages:
+      - slapd
+    state: absent
+    enabled: "{{ security_remove_ldap_server }}"
+  - packages:
+      - sendmail
+    state: absent
+    enabled: "{{ security_remove_sendmail }}"
+  - packages:
+      - xorg-xserver
+    state: absent
+    enabled: "{{ security_remove_xorg }}"
+  - packages:
+      - rsh-server
+    state: absent
+    enabled: "{{ security_remove_rsh_server }}"
+  - packages:
+      - telnetd
+    state: absent
+    enabled: "{{ security_remove_telnet_server }}"

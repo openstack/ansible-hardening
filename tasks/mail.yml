@@ -13,26 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: V-38669 - The postfix service must be enabled for mail delivery (install postfix with apt)
-  apt:
-    name: postfix
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'apt'
-  tags:
-    - mail
-    - cat3
-    - V-38669
-
-- name: V-38669 - The postfix service must be enabled for mail delivery (install postfix with yum)
-  yum:
-    name: postfix
-    state: "{{ security_package_state }}"
-  when: ansible_pkg_mgr == 'yum'
-  tags:
-    - mail
-    - cat3
-    - V-38669
-
 - name: V-38669 - The postfix service must be enabled for mail delivery (enable postfix)
   service:
     name: postfix

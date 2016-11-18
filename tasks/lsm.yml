@@ -13,21 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Install packages for AppArmor support (for V-51337)
-  apt:
-    name: "{{ item }}"
-    state: "{{ security_package_state }}"
-  with_items:
-    - apparmor
-    - apparmor-profiles
-    - apparmor-utils
-  when:
-    - ansible_os_family == "Debian"
-    - security_enable_linux_security_module | bool
-  tags:
-    - cat2
-    - V-51337
-
 - name: Ensure AppArmor is running (for V-51337)
   service:
     name: apparmor
@@ -37,22 +22,6 @@
     - ansible_os_family == "Debian"
     - security_enable_linux_security_module | bool
     - not check_mode
-  tags:
-    - cat2
-    - V-51337
-
-- name: Install packages for SELinux support (for V-51337)
-  yum:
-    name: "{{ item }}"
-    state: "{{ security_package_state }}"
-  with_items:
-    - libselinux-python
-    - policycoreutils-python
-    - selinux-policy
-    - selinux-policy-targeted
-  when:
-    - ansible_os_family == "RedHat"
-    - security_enable_linux_security_module | bool
   tags:
     - cat2
     - V-51337

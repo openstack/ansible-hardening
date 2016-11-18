@@ -9,6 +9,13 @@ and to serve as an NTP server for NTP clients.  Chrony was chosen over ntpd
 because it's actively maintained and has some enhancements for virtualized
 environments.
 
+Deployers can opt out of the ``chrony`` installation by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+    security_enable_chrony: no
+
 There are two configurations available for users to adjust chrony's default
 configuration:
 

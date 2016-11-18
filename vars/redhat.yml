@@ -13,6 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+## Variables for CentOS 7 and Red Hat Enterprise Linux 7
+# The following variables apply only to CentOS 7 and Red Hat Enterprise Linux 7
+# and deployers should not override them.
+#
+# For more details, see 'vars/main.yml'.
+
 # Configuration file paths
 pam_auth_file: /etc/pam.d/system-auth
 pam_password_file: /etc/pam.d/password-auth

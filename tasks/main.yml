@@ -24,8 +24,8 @@
     tags:
       - always
 
-  - name: Gather additional variables about sysctl settings
-    include_vars: sysctl.yml
+  - name: Gather variables that apply to all operating systems
+    include_vars: common.yml
     tags:
       - always
 

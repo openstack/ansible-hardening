@@ -1,2 +1,30 @@
 ---
-# vars file for openstack-ansible-security
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+## Variables
+# The variable files in the 'vars' directory are intended to hold variables
+# that deployers should not override. These variables are used internally by
+# the role to create templates, execute commands, or adjust configurations.
+#
+# There are three main variable files:
+#
+#   common.yml: variables that apply to all distributions
+#   redhat.yml: variables that apply only to CentOS 7 and Red Hat Enterprise
+#               Linux 7
+#   ubuntu.yml: variables that apply only to Ubuntu 14.04 (trusty) and
+#               Ubuntu 16.04 (xenial)
+#
+# All variables that enable or disable functionality, or variables that a
+# deployer might want to override should be placed in 'defaults/main.yml'.

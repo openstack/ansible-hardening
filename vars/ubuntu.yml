@@ -13,6 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+## Variables for Ubuntu 14.04 (trusty) and Ubuntu 16.04 (xenial)
+# The following variables apply only to Ubuntu 14.04 (trusty) and Ubuntu 16.04
+# (xenial) and deployers should not override them.
+#
+# For more details, see 'vars/main.yml'.
+
 # Maximum age of the apt cache before a refresh is required
 cache_timeout: 600
 

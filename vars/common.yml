@@ -1,5 +1,40 @@
 ---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
+## Common variables for all distributions
+# This file contains variables that apply to all distributions that the
+# security role supports. Distribution-specific variables should be placed in:
+#
+#   - vars/redhat.yml
+#   - vars/ubuntu.yml
+
+## auditd rules
+# This variable is used in tasks/rhel7stig/auditd.yml to deploy auditd rules
+# for various commands and syscalls.
+#
+# Each dictionary has this structure:
+#
+#   command: the command/syscall to audit (required)
+#   stig_id: the number/ID from the STIG (required)
+#   arch_specific: 'yes' if the rule depends on the architecture type,
+#                  otherwise 'no' (required)
+#   path: the path to the command (optional, default is '/usr/bin')
+#   distro: restrict deployment to a single Linux distribution (optional,
+#           should be equal to 'ansible_os_family | lower', such as 'redhat'
+#           or 'ubuntu')
+#
 audited_commands:
   - command: chsh
     stig_id: RHEL-07-030525
@@ -160,3 +195,36 @@ audited_commands:
     path: /usr/sbin
     stig_id: RHEL-07-030514
     arch_specific: no
+
+## sysctl settings
+# This variable is used in main/rhel7stig/kernel.yml to set sysctl
+# configurations on hosts.
+#
+# Each dictionary has this structure:
+#
+#   name: the sysctl configuration name
+#   value: the value to set for the sysctl configuration
+#   enabled: whether the variable should be set or not
+#
+sysctl_settings_rhel7:
+  - name: net.ipv4.conf.all.accept_source_route
+    value: 0
+    enabled: "{{ security_disallow_source_routed_packet_forward_ipv4 | bool }}"
+  - name: net.ipv4.conf.default.accept_source_route
+    value: 0
+    enabled: "{{ security_disallow_source_routed_packet_forward_ipv4 | bool}}"
+  - name: net.ipv4.icmp_echo_ignore_broadcasts
+    value: 1
+    enabled: "{{ security_disallow_echoes_broadcast_address | bool }}"
+  - name: net.ipv4.conf.all.send_redirects
+    value: 0
+    enabled: "{{ security_disallow_icmp_redirects | bool }}"
+  - name: net.ipv4.conf.default.send_redirects
+    value: 0
+    enabled: "{{ security_disallow_icmp_redirects | bool }}"
+  - name: net.ipv4.ip_forward
+    value: 0
+    enabled: "{{ security_disallow_ip_forwarding | bool }}"
+  - name: net.ipv6.conf.all.accept_source_route
+    value: 0
+    enabled: "{{ security_disallow_source_routed_packet_forward_ipv6 | bool }}"

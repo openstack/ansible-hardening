@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-010031
-status: not implemented
-tag: misc
+status: implemented
+tag: graphical
 ---
 
-This STIG requirement is not yet implemented.
+This STIG control is implemented by:
+
+* :ref:`stig-RHEL-07-010030`

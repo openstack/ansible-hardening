@@ -4,10 +4,9 @@ status: implemented
 tag: auditd
 ---
 
-The tasks add a rule to auditd that logs each time the ``renameat`` command is
-used.
+Rules are added to audit all ``renameat`` syscalls on the system.
 
-Deployers can opt-out of this change by setting an Ansible variable:
+Deployers can opt out of this change by setting an Ansible variable:
 
 .. code-block:: yaml
 

@@ -1,0 +1,3 @@
+[org/gnome/login-screen]
+banner-message-enable={{ security_enable_graphical_login_message | bool | ternary('true', 'false') }}
+banner-message-text='{{ security_enable_graphical_login_message_text | trim }}'

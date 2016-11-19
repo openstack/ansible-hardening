@@ -469,6 +469,12 @@ security_lock_session_override_user: yes                     # RHEL-07-010071
 security_lock_session_when_inactive: yes                     # RHEL-07-010073
 # Time after screensaver starts when user login is required.
 security_lock_session_screensaver_lock_delay: 5              # RHEL-07-010074
+# Enable a login banner and set the text for the banner.
+security_enable_graphical_login_message: yes                 # RHEL-07-010030
+security_enable_graphical_login_message_text: >
+    You are accessing a secured system and your actions will be logged along
+    with identifying information. Disconnect immediately if you are not an
+    authorized user of this system.
 
 ## Miscellaneous (misc)
 # Enable virus scanning with clamav

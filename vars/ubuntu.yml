@@ -107,6 +107,12 @@ stig_packages_rhel7:
     state: "{{ security_package_state }}"
     enabled: True
   - packages:
+      - apparmor
+      - apparmor-profiles
+      - apparmor-utils
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_linux_security_module }}"
+  - packages:
       - clamav
       - clamav-daemon
       - clamav-freshclam

@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-010500
-status: not implemented
-tag: misc
+status: exception - manual intervention
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+Deploying multi-factor authentication methods, including smart cards, is a
+complicated process that requires preparation and communication. This work is
+left to deployers to complete manually.

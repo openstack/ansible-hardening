@@ -1,7 +1,14 @@
 ---
 id: RHEL-07-020160
-status: not implemented
-tag: misc
+status: opt-in
+tag: kernel
 ---
 
-This STIG requirement is not yet implemented.
+The tasks in the security role disable the ``usb-storage`` module and the
+change is applied the next time the server is rebooted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_disable_usb_storage: no

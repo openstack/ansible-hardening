@@ -13,6 +13,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Check autofs service
+  command: systemctl status autofs
+  register: autofs_check
+  failed_when: autofs_check.rc not in [0,3]
+  changed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-020161 - File system automounter must be disabled unless required.
+  service:
+    name: autofs
+    state: stopped
+    enabled: no
+  when:
+    - "'not-found' not in autofs_check.stdout"
+    - security_rhel7_disable_autofs | bool
+  tags:
+    - medium
+    - misc
+    - RHEL-07-020161
+
 - name: Check if ClamAV is installed
   stat:
     path: /usr/bin/clamdscan

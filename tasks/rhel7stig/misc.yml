@@ -170,3 +170,28 @@
     - medium
     - misc
     - RHEL-07-040250
+
+# Linting checks need to be skipped because this command doesn't create any
+# files.
+- name: Count nameserver entries in /etc/resolv.conf
+  command: grep nameserver /etc/resolv.conf
+  register: nameserver_check
+  check_mode: no
+  changed_when: False
+  failed_when: False
+  tags:
+    - always
+    - skip_ansible_lint
+
+- name: RHEL-07-040320 - For systems using DNS resolution, at least two name servers must be configured.
+  debug:
+    msg: |
+      Two or more nameservers must be configured in /etc/resolv.conf.
+      Nameservers found: {{ nameserver_check.stdout_lines | length }}
+  when:
+    - nameserver_check is defined
+    - nameserver_check.stdout_lines | length < 2
+  tags:
+    - low
+    - misc
+    - RHEL-07-040320

@@ -1,7 +1,8 @@
 ---
 id: RHEL-07-040320
-status: not implemented
+status: implemented
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+If a server has fewer than two nameservers configured in ``/etc/resolv.conf``,
+a warning is printed in the Ansible output.

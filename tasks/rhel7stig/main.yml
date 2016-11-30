@@ -48,6 +48,7 @@
 - include: file_perms.yml
 - include: graphical.yml
 - include: kernel.yml
+- include: lsm.yml
 - include: misc.yml
 - include: sshd.yml
 

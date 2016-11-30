@@ -500,6 +500,10 @@ security_enable_graphical_login_message_text: >
     with identifying information. Disconnect immediately if you are not an
     authorized user of this system.
 
+## Linux Security Module (lsm)
+# Enable SELinux on Red Hat/CentOS and AppArmor on Ubuntu.
+security_rhel7_enable_linux_security_module: yes             # RHEL-07-020210 / RHEL-07-020211
+
 ## Miscellaneous (misc)
 # Enable virus scanning with clamav
 security_enable_virus_scanner: no                            # RHEL-07-030810

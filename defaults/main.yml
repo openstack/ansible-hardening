@@ -519,6 +519,10 @@ security_enable_virus_scanner: no                            # RHEL-07-030810
 security_rhel7_disable_ctrl_alt_delete: yes                  # RHEL-07-020220
 # Install and enable firewalld for iptables management.
 security_enable_firewalld: no                                # RHEL-07-040290
+# Rate limit TCP connections to 25/min and burstable to 100.
+security_enable_firewalld_rate_limit: no                     # RHEL-07-040250
+security_enable_firewalld_rate_limit_per_minute: 25
+security_enable_firewalld_rate_limit_burst: 100
 
 ## Packages (packages)
 # Remove packages from the system as required by the STIG. Set any of these

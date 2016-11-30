@@ -135,3 +135,26 @@
   tags:
     - misc
     - RHEL-07-030810
+
+# Returns 0 if installed, 3 if not installed
+- name: Check firewalld status
+  command: systemctl status firewalld
+  register: firewalld_status_check
+  failed_when: firewalld_status_check.rc not in [0,3]
+  changed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: Ensure firewalld is running and enabled
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+  when:
+    - firewalld_status_check.rc != 3
+    - security_enable_firewalld | bool
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040290

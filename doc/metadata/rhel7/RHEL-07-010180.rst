@@ -1,7 +1,15 @@
 ---
 id: RHEL-07-010180
-status: not implemented
-tag: misc
+status: implemented
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+The default password storage mechanism for Ubuntu 16.04, CentOS 7, and Red Hat
+Enterprise Linux 7 is ``SHA512`` and the tasks in the security role ensure that
+the default is maintained.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_require_sha512_password_storage: no

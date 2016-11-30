@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-020170
-status: not implemented
+status: exception - manual intervention
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+Deployers should consider the best encryption strategy for their needs and add
+that to the initial provisioning process. The tasks in the security role do not
+apply encryption to disks or individual files.

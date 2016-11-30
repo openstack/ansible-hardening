@@ -183,3 +183,16 @@
     - auth
     - medium
     - RHEL-07-020620
+
+- name: RHEL-07-020630 - All local interactive user accounts, upon creation, must be assigned a home directory.
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^(#)?CREATE_HOME"
+    line: "CREATE_HOME yes"
+    state: present
+  when:
+    - security_create_home_directory_default | bool
+  tags:
+    - auth
+    - medium
+    - RHEL-07-020630

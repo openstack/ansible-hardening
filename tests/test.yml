@@ -81,3 +81,5 @@
     security_unattended_upgrades_enabled: true
     security_unattended_upgrades_notifications: true
     security_enable_virus_scanner: yes
+    security_search_for_invalid_owner: yes
+    security_search_for_invalid_group_owner: yes

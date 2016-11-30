@@ -464,6 +464,8 @@ security_pwquality_limit_repeated_characters: yes            # RHEL-07-010150
 security_pwquality_limit_repeated_character_classes: yes     # RHEL-07-010160
 # Ensure passwords are stored using SHA512.
 security_require_sha512_password_storage: yes                # RHEL-07-010180
+# Ensure user/group admin utilities only store encrypted passwords.
+security_libuser_crypt_style_sha512: yes                     # RHEL-07-010190
 
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.

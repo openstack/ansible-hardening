@@ -14,7 +14,8 @@
 # limitations under the License.
 
 - name: Get a list of users on the system to use throughout the auth tasks
-  action: get_users
+  get_users:
+    min_uid: 1000
   register: user_list
   check_mode: no
   tags:
@@ -196,3 +197,31 @@
     - auth
     - medium
     - RHEL-07-020630
+
+- name: Check each user to see if its home directory exists on the filesystem
+  stat:
+    path: "{{ item['dir'] }}"
+  when:
+    - item['dir'] != ''
+  with_items: "{{ user_list.users }}"
+  register: home_directory_checks
+  tags:
+    - auth
+    - medium
+    - RHEL-07-020640
+
+- name: RHEL-07-020640 - All local interactive user home directories defined in the /etc/passwd file must exist.
+  debug:
+    msg: |
+      These users have a home directory assigned, but the directory does not exist:
+      {% for check in home_directory_checks.results %}
+      {% if not check.stat.exists %}
+      {{ check.item.name }} ({{ check.item.dir }} does not exist)
+      {% endif %}
+      {% endfor %}
+  when:
+    - home_directory_checks.results | selectattr('stat.exists', 'sameas', false) | list | length > 0
+  tags:
+    - auth
+    - medium
+    - RHEL-07-020640

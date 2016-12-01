@@ -1,7 +1,12 @@
 ---
 id: RHEL-07-010380
-status: not implemented
-tag: misc
+status: exception - manual intervention
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+The STIG requires all users to authenticate when using ``sudo``, but this
+change can be highly disruptive for automated scripts or applications that
+cannot perform interactive authentication. Automated edits from Ansible tasks
+might cause authentication disruptions on some hosts, and deployers are urged
+to carefully review each use of the ``NOPASSWD`` directive in their ``sudo``
+configuration files.

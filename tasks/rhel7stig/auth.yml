@@ -149,6 +149,54 @@
     - high
     - RHEL-07-010260
 
+- name: Check for 'nopasswd' in sudoers files
+  shell: grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ || echo 'not found'
+  register: sudoers_nopasswd_check
+  changed_when: False
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010380
+
+- name: RHEL-07-010380 - Users must provide a password for privilege escalation.
+  debug:
+    msg: >
+      The 'NOPASSWD' directive was found in the sudoers configuration files.
+      Remove the directive to ensure that all users must provide a password to
+      run commands as the root user.
+  when:
+    - not sudoers_nopasswd_check | skipped
+    - sudoers_nopasswd_check.stdout != 'not found'
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010380
+    - skip_ansible_lint
+
+- name: Check for '!authenticate' in sudoers files
+  shell: grep -ir '\!authenticate' /etc/sudoers /etc/sudoers.d/ || echo 'not found'
+  register: sudoers_authenticate_check
+  changed_when: False
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010381
+
+- name: RHEL-07-010381 - Users must re-authenticate for privilege escalation.
+  debug:
+    msg: >
+      The '!authenticate' directive was found in the sudoers configuration
+      files. Remove the directive to ensure that all users must provide a
+      password to run commands as the root user each time they use sudo.
+  when:
+    - not sudoers_authenticate_check | skipped
+    - sudoers_authenticate_check.stdout != 'not found'
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010381
+    - skip_ansible_lint
+
 - name: Get all accounts with UID 0
   shell: "awk -F: '$3 == 0 {print $1}' /etc/passwd"
   changed_when: False

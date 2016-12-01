@@ -197,6 +197,45 @@
     - RHEL-07-010381
     - skip_ansible_lint
 
+- name: Check if sssd.conf exists
+  stat:
+    path: /etc/sssd/sssd.conf
+  register: sssd_conf_check
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-010400 - The operating system must prohibit the use of cached nss authenticators after one day.
+  ini_file:
+    dest: /etc/sssd/sssd.conf
+    section: nss
+    option: memcache_timeout
+    value: "{{ security_nss_cached_authenticator_timeout }}"
+    backup: yes
+  when:
+    - sssd_conf_check.stat.exists
+    - security_nss_cached_authenticator_timeout is defined
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010400
+
+- name: RHEL-07-010401 - The operating system must prohibit the use of cached PAM authenticators after one day.
+  ini_file:
+    dest: /etc/sssd/sssd.conf
+    section: pam
+    option: offline_credentials_expiration
+    value: "{{ security_pam_offline_credentials_expiration_days }}"
+    backup: yes
+  when:
+    - sssd_conf_check.stat.exists
+    - security_pam_offline_credentials_expiration_days is defined
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010401
+    - RHEL-07-010402
+
 - name: Get all accounts with UID 0
   shell: "awk -F: '$3 == 0 {print $1}' /etc/passwd"
   changed_when: False

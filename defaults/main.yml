@@ -470,6 +470,10 @@ security_require_sha512_password_storage: yes                # RHEL-07-010180
 security_libuser_crypt_style_sha512: yes                     # RHEL-07-010190
 # Set a maximum lifetime limit for user passwords.
 #security_password_max_lifetime_days: 60                     # RHEL-07-010220
+# Set a timeout (in seconds) to cache NSS authenticators with sssd.
+security_nss_cached_authenticator_timeout: 86400             # RHEL-07-010400
+# Set a timeout (in days) to cache PAM/ssh authenticators with sssd.
+security_pam_offline_credentials_expiration_days: 1          # RHEL-07-010401 / RHEL-07-010402
 # Create home directories for new users by default.
 security_create_home_directory_default: yes                  # RHEL-07-020630
 

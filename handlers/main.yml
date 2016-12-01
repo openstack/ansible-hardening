@@ -86,3 +86,7 @@
 
 - name: dconf update
   command: dconf update
+
+- name: reload systemd
+  systemd:
+    daemon-reload: yes

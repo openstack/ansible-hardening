@@ -35,6 +35,28 @@
     - misc
     - RHEL-07-020161
 
+# This returns an exit code of 0 if it's running, 3 if it's masked.
+- name: Check if ctrl-alt-del.target is already masked
+  command: systemctl status ctrl-alt-del.target
+  register: cad_mask_check
+  check_mode: no
+  changed_when: False
+  failed_when: cad_mask_check.rc not in [0,3]
+  tags:
+    - always
+
+- name: RHEL-07-020220 - The x86 Ctrl-Alt-Delete key sequence must be disabled
+  command: systemctl mask ctrl-alt-del.target
+  when:
+    - security_rhel7_disable_ctrl_alt_delete | bool
+    - cad_mask_check.rc != 3
+  notify:
+    - reload systemd
+  tags:
+    - high
+    - misc
+    - RHEL-07-020220
+
 - name: Check if ClamAV is installed
   stat:
     path: /usr/bin/clamdscan

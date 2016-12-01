@@ -515,6 +515,8 @@ security_rhel7_enable_linux_security_module: yes             # RHEL-07-020210 / 
 security_rhel7_disable_autofs: yes                           # RHEL-07-020161
 # Enable virus scanning with clamav
 security_enable_virus_scanner: no                            # RHEL-07-030810
+# Disable ctrl-alt-delete key sequence on the console.
+security_rhel7_disable_ctrl_alt_delete: yes                  # RHEL-07-020220
 
 ## Packages (packages)
 # Remove packages from the system as required by the STIG. Set any of these

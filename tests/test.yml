@@ -83,3 +83,4 @@
     security_enable_virus_scanner: yes
     security_search_for_invalid_owner: yes
     security_search_for_invalid_group_owner: yes
+    security_enable_firewalld: yes

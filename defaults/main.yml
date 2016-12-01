@@ -484,6 +484,12 @@ security_shadow_utils_umask: 077                             # RHEL-07-020230
 security_shadow_utils_create_home: yes                       # RHEL-07-020630
 # How many old user password to remember to prevent password re-use.
 #security_password_remember_password: 5                       # RHEL-07-010240
+# Lock user accounts with excessive login failures. See documentation.
+security_pam_faillock_enable: no                             # RHEL-07-010371 / RHEL-07-010372 / RHEL-07-010373
+security_pam_faillock_interval: 900
+security_pam_faillock_attempts: 3
+security_pam_faillock_deny_root: yes                         # RHEL-07-010373
+security_pam_faillock_unlock_time: 604800                    # RHEL-07-010372
 
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.

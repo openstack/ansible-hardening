@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-010373
-status: not implemented
-tag: misc
+status: opt-in - Red Hat Only
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+This STIG control is implemented by:
+
+* :ref:`stig-RHEL-07-010371`

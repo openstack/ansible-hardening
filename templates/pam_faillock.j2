@@ -1,0 +1,3 @@
+# RHEL-07-010371 - If three unsuccessful logon attempts within 15 minutes occur the associated account must be locked.
+auth required pam_faillock.so preauth silent audit deny="{{ security_pam_faillock_attempts }}" "{{ security_pam_faillock_deny_root | bool | ternary('even_deny_root','') }}" fail_interval="{{ security_pam_faillock_interval }}" unlock_time="{{ security_pam_faillock_unlock_time }}"
+auth [default=die] pam_faillock.so authfail audit deny="{{ security_pam_faillock_attempts }}" "{{ security_pam_faillock_deny_root | bool | ternary('even_deny_root','') }}" fail_interval="{{ security_pam_faillock_interval }}" unlock_time="{{ security_pam_faillock_unlock_time }}"

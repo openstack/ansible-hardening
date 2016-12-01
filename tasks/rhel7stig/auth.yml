@@ -178,6 +178,23 @@
     - high
     - RHEL-07-010260
 
+- name: RHEL-07-010371 - If three unsuccessful logon attempts within 15 minutes occur the associated account must be locked.
+  blockinfile:
+    dest: pam_password_file
+    state: present
+    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    insertbefore: EOF
+    block: "{{ lookup('template', 'pam_faillock.j2') }}"
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - security_pam_faillock_enable | bool
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010371
+    - RHEL-07-010372
+    - RHEL-07-010373
+
 - name: Check for 'nopasswd' in sudoers files
   shell: grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ || echo 'not found'
   register: sudoers_nopasswd_check

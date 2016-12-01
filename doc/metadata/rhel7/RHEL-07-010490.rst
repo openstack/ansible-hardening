@@ -1,7 +1,10 @@
 ---
 id: RHEL-07-010490
-status: not implemented
-tag: misc
+status: exception - manual intervention
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+Deployers are strongly urged to review the list of user accounts on each server
+regularly. Evaluation of user accounts must be done on a case-by-case basis and
+the tasks in the security role are unable to determine which user accounts are
+valid.  Deployers must complete this work manually.

@@ -464,6 +464,7 @@ security_pwquality_require_characters_changed: yes           # RHEL-07-010130
 security_pwquality_require_character_classes_changed: yes    # RHEL-07-010140
 security_pwquality_limit_repeated_characters: yes            # RHEL-07-010150
 security_pwquality_limit_repeated_character_classes: yes     # RHEL-07-010160
+security_pwquality_require_minimum_password_length: no       # RHEL-07-010250
 # Ensure passwords are stored using SHA512.
 security_password_encrypt_method: SHA512                     # RHEL-07-010180
 # Ensure user/group admin utilities only store encrypted passwords.

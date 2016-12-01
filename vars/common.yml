@@ -249,6 +249,11 @@ password_quality_rhel7:
     stig_id: RHEL-07-010160
     description: "Password must have at most four characters in the same character class repeated consecutively"
     enabled: "{{ security_pwquality_limit_repeated_character_classes }}"
+  - parameter: minlen
+    value: 15
+    stig_id: RHEL-07-010250
+    description: "Passwords must be a minimum of 15 characters in length"
+    enabled: "{{ security_pwquality_require_minimum_password_length }}"
 
 ## shadow-utils settings
 # This variable is used in main/rhel7stig/auth.yml to set shadow file-related

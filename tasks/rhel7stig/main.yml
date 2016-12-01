@@ -47,6 +47,7 @@
 # each file are tagged with the same name (for example, tasks in `auth.yml`
 # are tagged with `auth`). Also, the tag name matches up with the "STIG
 # Controls by Tag" section of the role documentation.
+- include: aide.yml
 - include: auditd.yml
 - include: auth.yml
 - include: file_perms.yml

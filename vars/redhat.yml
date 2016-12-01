@@ -98,6 +98,7 @@ stig_packages_rhel7:
   - packages:
       - audispd-plugins
       - audit
+      - aide
       - openssh-clients
       - openssh-server
       - screen

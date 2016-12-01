@@ -51,6 +51,26 @@
     - RHEL-07-010150
     - RHEL-07-010160
 
+- name: Check for SHA512 password storage in PAM
+  command: "grep pam_unix.so {{ pam_password_file }}"
+  register: password_sha512_check
+  changed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-010170 - The PAM system service must be configured to store only encrypted representations of passwords.
+  debug:
+    msg: >
+      PAM is not using SHA512 for password storage. This is a security issue.
+  when:
+    - password_sha512_check is defined
+    - "'sha512' not in password_sha512_check.stdout"
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010170
+
 - name: RHEL-07-010180 - The shadow file must be configured to store only encrypted representations of passwords.
   lineinfile:
     dest: /etc/login.defs

@@ -1,7 +1,10 @@
 ---
 id: RHEL-07-010470
-status: not implemented
+status: opt-in
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+The tasks in the security role for RHEL-07-010460 will also apply changes to
+systems that use UEFI. For more details, refer to the following documentation:
+
+* :ref:`stig-RHEL-07-010460`

@@ -24,6 +24,8 @@ pam_auth_file: /etc/pam.d/system-auth
 pam_password_file: /etc/pam.d/password-auth
 vsftpd_conf_file: /etc/vsftpd/vsftpd.conf
 grub_conf_file: /boot/grub2/grub.cfg
+grub_conf_file_efi: "/boot/efi/EFI/{{ ansible_distribution | lower | replace(' ', '') }}/grub.cfg"
+grub_defaults_file: /etc/sysconfig/grub
 aide_cron_job_path: /etc/cron.d/aide
 aide_database_file: /var/lib/aide/aide.db.gz
 chrony_conf_file: /etc/chrony.conf
@@ -35,7 +37,7 @@ chrony_service: chronyd
 clamav_service: 'clamd@scan'
 
 # Commands
-grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"
+grub_update_cmd: "grub2-mkconfig -o {{ grub_config_file_boot }}"
 ssh_keysign_path: /usr/libexec/openssh
 
 # RHEL 6 STIG: Packages to add/remove

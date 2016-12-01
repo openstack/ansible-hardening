@@ -81,7 +81,7 @@
 # change, which breaks V-38583.
 - name: set bootloader file permissions after updating grub config
   file:
-    path: "{{ grub_conf_file }}"
+    path: "{{ grub_config_file_boot }}"
     mode: 0644
 
 - name: dconf update

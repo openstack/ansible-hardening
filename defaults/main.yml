@@ -481,6 +481,8 @@ security_shadow_utils_fail_delay: 4                          # RHEL-07-010420
 security_shadow_utils_umask: 077                             # RHEL-07-020230
 # Create home directories for new users by default.
 security_shadow_utils_create_home: yes                       # RHEL-07-020630
+# How many old user password to remember to prevent password re-use.
+#security_password_remember_password: 5                       # RHEL-07-010240
 
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.

@@ -530,6 +530,8 @@ security_enable_gpgcheck_packages_local: yes                 # RHEL-07-020151
 security_enable_gpgcheck_repo: no                            # RHEL-07-020152
 
 ## ssh server (sshd)
+# Ensure sshd is running and enabled at boot time.
+security_enable_sshd: yes                                    # RHEL-07-040261
 # Disallow logins from users with empty/null passwords.
 security_sshd_disallow_empty_password: yes                   # RHEL-07-010270 / RHEL-07-010440
 # Disallow users from overriding the ssh environment variables.

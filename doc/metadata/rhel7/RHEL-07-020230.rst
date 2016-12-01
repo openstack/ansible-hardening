@@ -1,7 +1,16 @@
 ---
 id: RHEL-07-020230
-status: not implemented
-tag: misc
+status: implemented
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+The umask for authenticated users is set to ``077`` by the tasks in the
+security role. This is the default for Ubuntu, CentOS, and Red Hat Enterprise
+Linux already.
+
+Deployers can choose a different umask value by setting the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    security_shadow_utils_umask: 077

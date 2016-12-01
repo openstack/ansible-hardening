@@ -71,18 +71,24 @@
     - medium
     - RHEL-07-010170
 
-- name: RHEL-07-010180 - The shadow file must be configured to store only encrypted representations of passwords.
+- name: Configure shadow-utils configuration
   lineinfile:
     dest: /etc/login.defs
-    regexp: "^ENCRYPT_METHOD"
-    line: "ENCRYPT_METHOD SHA512"
+    regexp: "^{{ item.parameter }}"
+    line: "{{ item.parameter }} {{ item.value }}"
     state: present
   when:
-    - security_require_sha512_password_storage | bool
+    - item.value != ''
+  with_items: "{{ shadow_utils_rhel7 }}"
   tags:
     - auth
     - medium
     - RHEL-07-010180
+    - RHEL-07-010200
+    - RHEL-07-010220
+    - RHEL-07-010420
+    - RHEL-07-020230
+    - RHEL-07-020630
 
 - name: RHEL-07-010190 - User and group account administration utilities must be configured to store only encrypted representations of passwords.
   ini_file:
@@ -121,18 +127,6 @@
     - auth
     - medium
     - RHEL-07-010210
-
-- name: RHEL-07-010220 - Passwords for new users must be restricted to a 60-day maximum lifetime.
-  lineinfile:
-    dest: /etc/login.defs
-    regexp: "^(#)?PASS_MAX_DAYS"
-    line: "PASS_MAX_DAYS {{ security_password_max_lifetime_days }}"
-  when:
-    - security_password_max_lifetime_days is defined
-  tags:
-    - auth
-    - medium
-    - RHEL-07-010220
 
 - name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
   lineinfile:
@@ -291,19 +285,6 @@
     - auth
     - medium
     - RHEL-07-020620
-
-- name: RHEL-07-020630 - All local interactive user accounts, upon creation, must be assigned a home directory.
-  lineinfile:
-    dest: /etc/login.defs
-    regexp: "^(#)?CREATE_HOME"
-    line: "CREATE_HOME yes"
-    state: present
-  when:
-    - security_create_home_directory_default | bool
-  tags:
-    - auth
-    - medium
-    - RHEL-07-020630
 
 - name: Check each user to see if its home directory exists on the filesystem
   stat:

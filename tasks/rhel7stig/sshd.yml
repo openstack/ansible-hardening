@@ -28,7 +28,7 @@
     - always
     - sshd
 
-- name: RHEL-07-040170 - Copy login warning banner
+- name: Copy login warning banner
   copy:
     src: login_banner.txt
     dest: "{{ security_sshd_banner_file }}"
@@ -37,6 +37,7 @@
   tags:
     - high
     - sshd
+    - RHEL-07-010040
     - RHEL-07-040170
 
 - name: Adjust ssh server configuration based on STIG requirements

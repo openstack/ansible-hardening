@@ -549,7 +549,7 @@ security_sshd_disallow_host_based_auth: yes                  # RHEL-07-010442
 # Set a list of allowed ssh ciphers.
 security_sshd_cipher_list: 'aes128-ctr,aes192-ctr,aes256-ctr' # RHEL-07-040110
 # Specify a text file to be displayed as the banner/MOTD for all sessions.
-security_sshd_banner_file: /etc/issue.net                    # RHEL-07-040170
+security_sshd_banner_file: /etc/motd                         # RHEL-07-010040 / RHEL-07-040170
 # Set the interval for max session length and the number of intervals to allow.
 security_sshd_client_alive_interval: 600                     # RHEL-07-040190
 security_sshd_client_alive_count_max: 0                      # RHEL-07-040191

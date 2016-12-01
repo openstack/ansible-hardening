@@ -4,7 +4,16 @@ status: implemented
 tag: sshd
 ---
 
-The ``Banner`` configuration is set to ``/etc/issue.net`` in
-``/etc/ssh/sshd_config`` and sshd is restarted. In addition, the
-``files/login_banner.txt`` file is copied from the openstack-ansible-security
-role directory to ``/etc/issue.net`` on each host.
+The tasks in the security role deploy a standard notice and consent banner into
+``/etc/motd`` on each server.  Ubuntu, CentOS and Red Hat Enterprise Linux
+display this banner after each successful login via ssh or the console.
+
+Deployers can choose a different destination for the banner by setting the
+following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_banner_file: /etc/motd
+
+The text of the banner file is configurable by editing
+``files/login_banner.txt`` in the security role.

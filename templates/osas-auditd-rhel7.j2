@@ -85,3 +85,6 @@
 -w /etc/shadow -p wa -k RHEL-07-030710
 -w /etc/security/opasswd -p wa -k RHEL-07-030710
 {% endif %}
+
+# Set the auditd failure flag
+-f {{ security_rhel7_audit_failure_flag }}

@@ -250,6 +250,35 @@ password_quality_rhel7:
     description: "Password must have at most four characters in the same character class repeated consecutively"
     enabled: "{{ security_pwquality_limit_repeated_character_classes }}"
 
+## shadow-utils settings
+# This variable is used in main/rhel7stig/auth.yml to set shadow file-related
+# configurations in /etc/login.defs.
+#
+# Each dictionary has this structure:
+#
+#   parameter: the parameter to set
+#   value: the value for the parameter
+#   stig_id: the STIG ID number for the requirement
+#
+shadow_utils_rhel7:
+  - parameter: ENCRYPT_METHOD
+    value: "{{ security_password_encrypt_method | default('') }}"
+    stig_id: RHEL-07-010180
+  - parameter: PASS_MIN_DAYS
+    value: "{{ security_password_min_lifetime_days | default('') }}"
+    stig_id: RHEL-07-010200
+  - parameter: PASS_MAX_DAYS
+    value: "{{ security_password_max_lifetime_days | default('') }}"
+    stig_id: RHEL-07-010220
+  - parameter: FAIL_DELAY
+    value: "{{ security_shadow_utils_fail_delay | default('') }}"
+    stig_id: RHEL-07-010420
+  - parameter: UMASK
+    value: "{{ security_shadow_utils_umask | default('') }}"
+    stig_id: RHEL-07-020230
+  - parameter: CREATE_HOME
+    value: "{{ security_shadow_utils_create_home | default('') }}"
+    stig_id: RHEL-07-020630
 
 ## sysctl settings
 # This variable is used in main/rhel7stig/kernel.yml to set sysctl

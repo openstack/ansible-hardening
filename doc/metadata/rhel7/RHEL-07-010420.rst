@@ -1,7 +1,13 @@
 ---
 id: RHEL-07-010420
-status: not implemented
-tag: misc
+status: implemented
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+The tasks in the Ansible role set a four second delay between failed login
+attempts. Deployers can configure a different delay (in seconds) by setting the
+following Ansible variable:
+
+.. code-block:: yaml
+
+    security_shadow_utils_fail_delay: 4

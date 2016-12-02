@@ -16,6 +16,7 @@
 
 import grp
 import pwd
+import spwd
 from ansible.module_utils.basic import AnsibleModule
 
 
@@ -53,7 +54,8 @@ def make_user_dict(user_record):
         'gecos': user_record.pw_gecos,
         'dir': user_record.pw_dir,
         'shell': user_record.pw_shell,
-        'group': make_group_dict(user_record.pw_gid)
+        'group': make_group_dict(user_record.pw_gid),
+        'shadow': make_shadow_dict(user_record.pw_name)
     }
     return user_dict
 
@@ -71,6 +73,24 @@ def make_group_dict(gid):
         'gid': group_record.gr_gid,
     }
     return group_dict
+
+
+def make_shadow_dict(username):
+    """Create a dictionary of user shadow password database attributes."""
+    try:
+        shadow_record = spwd.getspnam(username)
+    except KeyError:
+        return False
+
+    shadow_dict = {
+        'last_changed': shadow_record.sp_lstchg,
+        'min_days': shadow_record.sp_min,
+        'max_days': shadow_record.sp_max,
+        'warn_days': shadow_record.sp_warn,
+        'inact_days': shadow_record.sp_inact,
+        'expire_days': shadow_record.sp_expire,
+    }
+    return shadow_dict
 
 
 def main():

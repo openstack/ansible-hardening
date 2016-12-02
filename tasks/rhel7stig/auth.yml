@@ -142,6 +142,21 @@
     - medium
     - RHEL-07-010240
 
+- name: RHEL-07-010230 - Existing passwords must be restricted to a 60-day maximum lifetime.
+  debug:
+    msg: |
+      The following user accounts have an existing password with a lifetime of
+      greater than 60 days:
+      {%- for user in user_list.users %}
+      {% if user['shadow']['max_days'] > 60 %}
+          {{ user['name'] }} has an expiration of {{ user['shadow']['max_days'] }} days
+      {% endif %}
+      {% endfor %}
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010230
+
 - name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"

@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-010230
-status: not implemented
-tag: misc
+status: implemented
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+If any users have a maximum password age on their current password set to a
+length of over 60 days, a list of those users is provided in the Ansible
+output.

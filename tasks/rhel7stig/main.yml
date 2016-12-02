@@ -19,6 +19,8 @@
   changed_when: False
   when:
     - not check_mode | bool
+  tags:
+    - always
 
 - name: Set a fact for the temporary directory
   set_fact:
@@ -26,6 +28,8 @@
   changed_when: False
   when:
     - not check_mode | bool
+  tags:
+    - always
 
 # Package installations and removals must come first so that configuration
 # changes can be made later.
@@ -59,3 +63,5 @@
   changed_when: False
   when:
     - not check_mode | bool
+  tags:
+    - always

@@ -483,7 +483,9 @@ security_shadow_utils_umask: 077                             # RHEL-07-020230
 # Create home directories for new users by default.
 security_shadow_utils_create_home: yes                       # RHEL-07-020630
 # How many old user password to remember to prevent password re-use.
-#security_password_remember_password: 5                       # RHEL-07-010240
+#security_password_remember_password: 5                      # RHEL-07-010240
+# Disable user accounts if the password expires.
+security_disable_account_if_password_expires: no             # RHEL-07-010280
 # Lock user accounts with excessive login failures. See documentation.
 security_pam_faillock_enable: no                             # RHEL-07-010371 / RHEL-07-010372 / RHEL-07-010373
 security_pam_faillock_interval: 900

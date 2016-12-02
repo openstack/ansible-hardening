@@ -66,3 +66,29 @@
     - low
     - packages
     - RHEL-07-020200
+
+- name: RHEL-07-020250 - System security patches and updates must be installed and up to date. (yum)
+  lineinfile:
+    dest: /etc/yum/yum-cron.conf
+    regexp: "^apply_updates"
+    line: "apply_updates = yes"
+    state: present
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - medium
+    - RHEL-07-020250
+
+- name: RHEL-07-020250 - System security patches and updates must be installed and up to date. (apt)
+  copy:
+    src: 20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+  when:
+    - ansible_os_family | lower == 'ubuntu'
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - cat2
+    - RHEL-07-020250

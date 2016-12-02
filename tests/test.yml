@@ -87,3 +87,4 @@
     security_password_remember_password: 5
     security_disable_account_if_password_expires: yes
     security_rhel7_initialize_aide: yes
+    security_rhel7_automatic_package_updates: yes

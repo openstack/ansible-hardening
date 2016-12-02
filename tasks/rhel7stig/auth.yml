@@ -14,8 +14,7 @@
 # limitations under the License.
 
 - name: Get a list of users on the system to use throughout the auth tasks
-  get_users:
-    min_uid: 1000
+  action: get_users
   register: user_list
   check_mode: no
   tags:
@@ -304,6 +303,19 @@
     - high
     - RHEL-07-020310
     - skip_ansible_lint
+
+- name: Check for groups in /etc/passwd that are not in /etc/group
+  debug:
+    msg: >
+      The following users have GIDs in /etc/passwd that do not exist in /etc/group:
+      {{ user_list.users | selectattr('group', 'equalto', False) | map(attribute='name') | join(', ') }}
+  when:
+    - user_list is defined
+    - user_list.users | selectattr('group', 'equalto', False) | list | length > 0
+  tags:
+    - auth
+    - low
+    - RHEL-07-020300
 
 - name: RHEL-07-020310 - The root account must be the only account having unrestricted access to the system
   fail:

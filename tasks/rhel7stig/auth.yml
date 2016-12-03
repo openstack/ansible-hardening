@@ -128,6 +128,20 @@
     - medium
     - RHEL-07-010210
 
+- name: RHEL-07-010240 - Passwords must be prohibited from reuse for a minimum of five generations.
+  lineinfile:
+    dest: "{{ pam_password_file }}"
+    regexp: '^(password\s+[a-z0-9\=\[\] ]+\s+pam_unix\.so.+?)\s+(?:remember=\d+)?$'
+    line: '\1 remember={{ security_password_remember_password }}'
+    backrefs: yes
+    state: present
+  when:
+    - security_password_remember_password is defined
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010240
+
 - name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"

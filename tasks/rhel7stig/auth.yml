@@ -50,6 +50,7 @@
     - RHEL-07-010140
     - RHEL-07-010150
     - RHEL-07-010160
+    - RHEL-07-010250
 
 - name: Check for SHA512 password storage in PAM
   command: "grep pam_unix.so {{ pam_password_file }}"

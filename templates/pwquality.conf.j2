@@ -1,6 +1,6 @@
 {% if security_pwquality_apply_rules | bool %}
 {% for rule in password_quality_rhel7 %}
-{% if rule.enabled | bool %}
+{% if rule.value is defined and rule.enabled | bool %}
 # {{ rule.stig_id }} - {{ rule.description }}
 {{ rule.parameter}} = {{ rule.value }}
 {% endif %}

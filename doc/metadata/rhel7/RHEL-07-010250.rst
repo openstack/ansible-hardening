@@ -1,7 +1,16 @@
 ---
 id: RHEL-07-010250
-status: not implemented
-tag: misc
+status: opt-in
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+Although the STIG requires that passwords have a minimum length of 15
+characters, this change might be disruptive to users on a production system
+without communicating the change first. Therefore, this change is not applied
+by default.
+
+Deployers can opt in for the change by setting the following Ansible variable:
+
+.. code-block::
+
+    security_pwquality_require_minimum_password_length: yes

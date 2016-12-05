@@ -6,7 +6,7 @@ tag: auth
 
 The STIG requires that accounts with excessive failed login attempts are
 locked. It sets a limit of three failed attempts in a 15 minute interval and
-these restrictions are applied to all users (including root).  Accounts cannot
+these restrictions are applied to all users (including root). Accounts cannot
 be automatically unlocked for seven days.
 
 This change might cause disruptions in production environments without proper

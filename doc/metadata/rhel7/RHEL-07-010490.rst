@@ -7,4 +7,4 @@ tag: auth
 Deployers are strongly urged to review the list of user accounts on each server
 regularly. Evaluation of user accounts must be done on a case-by-case basis and
 the tasks in the security role are unable to determine which user accounts are
-valid.  Deployers must complete this work manually.
+valid. Deployers must complete this work manually.

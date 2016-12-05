@@ -6,7 +6,7 @@ tag: auditd
 
 The ``audispd`` daemon transmits audit logs without encryption by default. The
 STIG requires that these logs are encrypted while they are transferred across
-the network.  The encryption is controlled by the ``enable_krb5`` option in
+the network. The encryption is controlled by the ``enable_krb5`` option in
 ``/etc/audisp/audisp-remote.conf``.
 
 Deployers can opt-in for encrypted audit log transmission by setting the

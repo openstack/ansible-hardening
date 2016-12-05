@@ -6,7 +6,7 @@ Abstract
 ~~~~~~~~
 
 The openstack-ansible-security role provides security hardening for
-`OpenStack`_ environments deployed with `openstack-ansible`_.  The role has
+`OpenStack`_ environments deployed with `openstack-ansible`_. The role has
 multiple goals:
 
 * Provide additional security in a highly configurable, integrated way without
@@ -64,7 +64,7 @@ Mitaka
 ~~~~~~
 
 The Mitaka release of the openstack-ansible-security role was first released
-with the 13.0.0 tag on April 1st, 2016.  Refer to the `Mitaka release notes
+with the 13.0.0 tag on April 1st, 2016. Refer to the `Mitaka release notes
 <http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html>`_
 for more details on the improvements and fixes.
 
@@ -79,7 +79,7 @@ Liberty
 
 Refer to the `Liberty release notes
 <http://docs.openstack.org/releasenotes/openstack-ansible-security/liberty.html>`_
-for more details on the improvements and fixes. The Libery release will reach
+for more details on the improvements and fixes. The Liberty release will reach
 EOL on November 17th, 2016.
 
 Ubuntu 14.04 is supported in the Liberty release.

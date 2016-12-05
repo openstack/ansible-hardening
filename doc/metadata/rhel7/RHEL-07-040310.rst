@@ -16,6 +16,6 @@ Deployers can opt out of this change by setting the following Ansible variable:
 .. warning::
 
     Ensure that a regular user account exists with a pathway to root access
-    (preferably via ``sudo``) before applying the security role.  This
+    (preferably via ``sudo``) before applying the security role. This
     configuration change disallows any direct logins with the ``root``
     user.

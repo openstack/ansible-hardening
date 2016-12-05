@@ -5,7 +5,7 @@ tag: packages
 ---
 
 On Ubuntu systems, the tasks comment out the ``no-debsig`` configuration line
-in ``/etc/dpkg/dpkg.cfg``.  This causes ``dpkg`` to verify GPG signatures for
+in ``/etc/dpkg/dpkg.cfg``. This causes ``dpkg`` to verify GPG signatures for
 all packages that are installed locally.
 
 On CentOS 7 systems, the tasks set the ``localpkg_gpgcheck`` option to ``1`` in

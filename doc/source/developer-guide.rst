@@ -34,7 +34,7 @@ exists as `YAML frontmatter <https://jekyllrb.com/docs/frontmatter/>`_ for each
 STIG configuration. The frontmatter is followed by the text of the deployer
 note itself.
 
-All of the notes are found within ``doc/metadata/rhel6``.  Here is an example
+All of the notes are found within ``doc/metadata/rhel6``. Here is an example
 of V-38497:
 
 .. literalinclude:: ../metadata/rhel6/V-38497.rst
@@ -49,7 +49,7 @@ must include:
 * ``tag``: The Ansible tag associated with the task(s) that make changes based
   on the STIG requirement, such as ``auditd``, ``kernel``, or ``lsm``.
 
-The next block is the deployer note.  The note should be brief, but it must
+The next block is the deployer note. The note should be brief, but it must
 answer a few critical questions:
 
 * What does the change do to a system?

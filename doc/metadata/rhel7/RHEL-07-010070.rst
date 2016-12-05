@@ -5,7 +5,7 @@ tag: graphical
 ---
 
 The session inactivity timeout is set to 900 seconds to meet the STIG
-requirements.  After this time, users must re-enter their credentials to regain
+requirements. After this time, users must re-enter their credentials to regain
 access to the system.
 
 Deployers can adjust this timeout by setting an Ansible variable:

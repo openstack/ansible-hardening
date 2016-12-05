@@ -20,7 +20,7 @@ Deployers can disable TCP SYN cookies by setting an Ansible variable:
     security_sysctl_enable_tcp_syncookies: no
 
 Most operating systems, such as Ubuntu 14.04, Ubuntu 16.04, and CentOS 7 have
-TCP syncookies enabled by default upon installation.  For more information on
+TCP syncookies enabled by default upon installation. For more information on
 TCP SYN cookies and TCP SYN floods, refer to these links:
 
 * `Wikipedia: SYN flood <https://en.wikipedia.org/wiki/SYN_flood>`_

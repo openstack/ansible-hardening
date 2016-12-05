@@ -93,7 +93,7 @@ Rules for auditd
 
 Handling audit emergencies
   There are several configurations for auditd which are critical for deployers
-  to review in detail.  The options beneath the ``## Auditd configuration``
+  to review in detail. The options beneath the ``## Auditd configuration``
   comment will change how auditd handles log files and what it should do in
   case of emergencies.
 
@@ -101,7 +101,7 @@ Handling audit emergencies
 
     Some of these configuration options can cause serious issues on
     production systems, ranging from a reduction in security to servers going
-    offline unexpectedly.  There is extensive documentation in the developer notes
+    offline unexpectedly. There is extensive documentation in the developer notes
     for each STIG requirement.
 
 Authentication
@@ -109,16 +109,16 @@ Authentication
 
 The STIG sets requirements for various authentication-related security
 controls, including password complexity, password aging/locking, and
-simultaneous logins.  All of these can cause issues on production systems.
+simultaneous logins. All of these can cause issues on production systems.
 
 Handling multiple failed login attempts
   The fail2ban service is installed to meet some requirements around failed
-  login attempts.  The STIG requires ``pam_faillock``, but that module isn't
+  login attempts. The STIG requires ``pam_faillock``, but that module isn't
   available in the Linux distributions supported by this role.
 
   To opt-in for the fail2ban service to be installed, set
   ``security_install_fail2ban`` to ``yes`` and set an appropriate time for bans
-  with ``security_fail2ban_bantime``.  See the notes for
+  with ``security_fail2ban_bantime``. See the notes for
   :ref:`V-38501 <stig-V-38501>` for more details.
 
   Note that fail2ban will not take action on failed logins via physical
@@ -143,10 +143,10 @@ variables matching the pattern ``security_disable_module_MODULENAME``. Refer to
 A setting of ``yes`` means that the module will be disabled on the next boot
 and a setting of ``no`` means that the state of the module will not be changed.
 
-All of the defaults are set in accordance with the STIG's requitements with
-the exception of the ``usb_storage`` kernel module.  This module is used
+All of the defaults are set in accordance with the STIG's requirements with
+the exception of the ``usb_storage`` kernel module. This module is used
 frequently with external hard drives, USB sticks, and with some IPMI
-implementations.  Deployers who wish to follow the STIG guidelines will need
+implementations. Deployers who wish to follow the STIG guidelines will need
 to set ``usb_storage`` to ``yes`` so that the ``usb_storage`` module is
 disabled on the next boot.
 
@@ -164,7 +164,7 @@ Mail
 ----
 
 Deployers are strongly urged to configure an address to receive the ``root``
-user's email on various hosts.  This is done with the
+user's email on various hosts. This is done with the
 ``security_root_forward_email`` variable.
 
 The STIG requires that a valid user receives the email in case of errors or a
@@ -174,7 +174,7 @@ Removing and disabling services
 -------------------------------
 
 The STIG has recommendations for which services shouldn't be running and which
-packages shouldn't be installed.  These removals can be configured to meet
+packages shouldn't be installed. These removals can be configured to meet
 the requirements of the deployer.
 
 Disabling services
@@ -186,8 +186,8 @@ Disabling services
   A setting of ``yes`` for a service will cause the service to be disabled in
   accordance to the STIG's requirements.
 
-  A setting of ``no`` causes the role to ignore the service entirely.  If the
-  service is running, it will remain running.  If the service is stopped,
+  A setting of ``no`` causes the role to ignore the service entirely. If the
+  service is running, it will remain running. If the service is stopped,
   it will remain stopped.
 
 Removing services
@@ -198,24 +198,24 @@ Removing services
   ``defaults/main.yml`` for more details.
 
   A setting of ``yes`` for a service will cause the package that contains the
-  service to be removed from the system.  If the service happens to be running
+  service to be removed from the system. If the service happens to be running
   at the time, it will be stopped by ``apt``.
 
   A setting of ``no`` for a service will cause the role to ignore the package
-  that contains the service.  If the package is installed, it will be left
+  that contains the service. If the package is installed, it will be left
   installed.
 
 SSH server
 ----------
 
 The STIG has some requirements for ssh server configuration and these
-requirements are applied by default by the role.  To opt-out or change these
+requirements are applied by default by the role. To opt-out or change these
 requirements, see the section under the ``## SSH configuration`` comment in
 ``defaults/main.yml``.
 
 Deviation for PermitRootLogin
   There is one deviation from the STIG for the ``PermitRootLogin``
-  configuration option.  The STIG requires that direct root logins are
+  configuration option. The STIG requires that direct root logins are
   disabled, and this is the recommended setting for secure production
   environments.
 
@@ -226,12 +226,12 @@ sysctl settings
 ---------------
 
 The STIG requires that TCP SYN cookies enabled by default to protect against
-certain types of attacks, like SYN floods.  This can cause issues in some
-environments with busy load balancers.  Deployers should review the notes for
+certain types of attacks, like SYN floods. This can cause issues in some
+environments with busy load balancers. Deployers should review the notes for
 :ref:`V-38539 <stig-V-38539>` for more details.
 
 Also, the STIG requires IPv6 support to be fully disabled, and this could cause
-issues for production systems.  The role will not disable IPv6 by default, but
+issues for production systems. The role will not disable IPv6 by default, but
 deployers can adjust this by changing ``security_disable_ipv6`` to ``yes``.
 
 Core dumps are also disabled by default in the openstack-ansible-security role.
@@ -260,7 +260,7 @@ umask adjustments
 -----------------
 
 Certain umask adjustments are required by the STIG, but these can cause
-problems with production systems.  The requirements are commented out within
+problems with production systems. The requirements are commented out within
 ``defaults/main.yml`` and can be applied by uncommenting the variables that
-start with ``security_umask_*``.  There is extensive documentation available
+start with ``security_umask_*``. There is extensive documentation available
 within the developer notes for each STIG requirement.

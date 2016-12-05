@@ -6,7 +6,7 @@ tag: packages
 
 Ansible tasks will check the ``rpm -Va`` output (on CentOS and RHEL) or the
 output of ``debsums`` (on Ubuntu) to see if any files installed from packages
-have been altered.  The tasks will print a list of files that have changed
+have been altered. The tasks will print a list of files that have changed
 since their package was installed.
 
 Deployers should be most concerned with any checksum failures for binaries and

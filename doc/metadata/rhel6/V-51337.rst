@@ -7,7 +7,7 @@ tag: lsm
 The tasks in the security role will enable the Linux Security
 Module (LSM) that is appropriate for the Linux distribution in use.
 
-For Ubuntu, the default LSM is AppArmor.  Refer to Ubuntu's `AppArmor
+For Ubuntu, the default LSM is AppArmor. Refer to Ubuntu's `AppArmor
 documentation`_ for more details on how AppArmor works. The tasks will enable
 AppArmor and start it immediately on the system.
 

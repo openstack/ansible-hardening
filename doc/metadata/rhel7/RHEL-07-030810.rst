@@ -6,7 +6,7 @@ tag: misc
 
 The STIG requires that a virus scanner is installed and running, but the value
 of a virus scanner within an OpenStack control plane or on a hypervisor is
-negligible in many cases.  In addition, the disk I/O impact of a virus scanner
+negligible in many cases. In addition, the disk I/O impact of a virus scanner
 can impact a production environment negatively.
 
 The security role has tasks to deploy ClamAV with automatic updates, but the

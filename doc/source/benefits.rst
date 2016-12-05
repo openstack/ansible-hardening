@@ -8,14 +8,14 @@ Why should this role be applied to a system?
 --------------------------------------------
 
 First and foremost, this role should be applied to production systems in
-environments where security is a priority.  If an OpenStack environment is
+environments where security is a priority. If an OpenStack environment is
 exposed to the internet or to large internal corporate networks, applying
 this role will reduce the risk of compromised OpenStack infrastructure. The
 changes made by the role should also reduce the impact of potential
 compromises as well.
 
 Some deployers may be subject to industry compliance programs, such as
-PCI-DSS, ISO 27001/27002, or NIST 800-53.  Many of these programs require
+PCI-DSS, ISO 27001/27002, or NIST 800-53. Many of these programs require
 hardening standards to be applied to critical systems, such as OpenStack
 infrastructure components.
 

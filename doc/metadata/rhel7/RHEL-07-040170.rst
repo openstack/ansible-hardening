@@ -5,7 +5,7 @@ tag: sshd
 ---
 
 The tasks in the security role deploy a standard notice and consent banner into
-``/etc/motd`` on each server.  Ubuntu, CentOS and Red Hat Enterprise Linux
+``/etc/motd`` on each server. Ubuntu, CentOS and Red Hat Enterprise Linux
 display this banner after each successful login via ssh or the console.
 
 Deployers can choose a different destination for the banner by setting the

@@ -4,7 +4,7 @@ status: opt-in
 tag: auditd
 ---
 
-The ``audispd`` service transmits audit logs to other servers.  Deployers
+The ``audispd`` service transmits audit logs to other servers. Deployers
 should specify the address of another server that can receive audit logs by
 setting the following Ansible variable:
 

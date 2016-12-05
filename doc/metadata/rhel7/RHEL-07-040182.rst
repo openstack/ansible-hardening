@@ -8,7 +8,7 @@ Deployers are strongly urged to utilize ``sssd`` for systems that authenticate
 against LDAP or Active Directory (AD) servers.
 
 To meet this control, deployers must ensure that ``ldap_tls_cacert`` or
-``ldap_tls_cacertdir`` are set in the ``/etc/sssd/sssd.conf`` file.  The
+``ldap_tls_cacertdir`` are set in the ``/etc/sssd/sssd.conf`` file. The
 ``ldap_tls_cacert`` directive specifies a single certificate while
 ``ldap_tls_cacertdir`` specifies a directory where ``sssd`` can find CA
 certificates.

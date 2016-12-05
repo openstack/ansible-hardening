@@ -29,7 +29,7 @@ Initial configuration
 ---------------------
 
 Some of the security configurations need initial configuration or they may
-require you to opt-in for a change to be applied.  Start by reviewing the list
+require you to opt-in for a change to be applied. Start by reviewing the list
 of STIG controls that
 :ref:`require initial configuration <implementation-status-configuration-required>`
 or :ref:`require opt-in <implementation-status-opt-in>`.

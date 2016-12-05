@@ -51,3 +51,33 @@
     - high
     - RHEL-07-020210
     - RHEL-07-020211
+
+# NOTE(mhayden): Ansible's find module doesn't support searching for files
+# based on SELinux contexts yet.
+- name: Check for unlabeled device files
+  command: "find /dev -context '*unlabeled_t*'"
+  register: unlabeled_devices
+  changed_when: False
+  check_mode: no
+  when:
+    - ansible_os_family == 'RedHat'
+  tags:
+    - lsm
+    - medium
+    - RHEL-07-020940
+
+- name: RHEL-07-020940 - All system device files must be correctly labeled to prevent unauthorized modification.
+  debug:
+    msg: |
+      Devices were found without SELinux labels:
+      {% for device in unlabeled_devices.stdout_lines %}
+      {{ device }}
+      {% endfor %}
+  when:
+    - ansible_os_family == 'RedHat'
+    - unlabeled_devices.stdout is defined
+    - unlabeled_devices.stdout | length > 0
+  tags:
+    - lsm
+    - medium
+    - RHEL-07-020940

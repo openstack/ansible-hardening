@@ -113,6 +113,27 @@
     - RHEL-07-020660
     - RHEL-07-020670
 
+- name: Find all world-writable directories
+  shell: "find / -perm -002 -type d -exec ls -lLd {} \\; | tr -s ' ' | cut -d' ' -f 4,9 | grep -v ^root"
+  register: world_writable_dirs
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-021050 - All world-writable directories must be group-owned by root, sys, bin, or an application group.
+  debug:
+    msg: |
+      The group owners on the following world-writable directories should be examined:
+      {{ world_writable_dirs.stdout }}
+  when:
+    - world_writable_dirs is defined
+  tags:
+    - medium
+    - file_perms
+    - RHEL-07-021050
+
 - name: Check if cn_map file is present
   stat:
     path: /etc/pam_pkcs11/cn_map

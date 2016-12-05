@@ -1,7 +1,8 @@
 ---
 id: RHEL-07-021011
-status: not implemented
+status: exception - manual intervention
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+Deployers should examine any filesystem mounts of removable media to ensure
+that the ``nosetuid`` option is set.

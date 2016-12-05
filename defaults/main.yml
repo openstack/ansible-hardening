@@ -610,3 +610,5 @@ security_disallow_icmp_redirects: yes                        # RHEL-07-040410 / 
 security_disallow_ip_forwarding: no                          # RHEL-07-040730
 # Disable USB storage support.
 security_rhel7_disable_usb_storage: yes                      # RHEL-07-020160
+# Disable kdump.
+security_disable_kdump: yes                                  # RHEL-07-021230

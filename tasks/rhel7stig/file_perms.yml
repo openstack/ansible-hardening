@@ -134,6 +134,27 @@
     - file_perms
     - RHEL-07-021050
 
+- name: Check if /etc/cron.allow exists
+  stat:
+    path: /etc/cron.allow
+  register: cron_allow_check
+  tags:
+    - always
+
+- name: Set owner/group owner on /etc/cron.allow
+  file:
+    path: /etc/cron.allow
+    owner: root
+    group: root
+  when:
+    - cron_allow_check is defined
+    - cron_allow_check.stat.exists
+  tags:
+    - medium
+    - file_perms
+    - RHEL-07-021190
+    - RHEL-07-021200
+
 - name: Check if cn_map file is present
   stat:
     path: /etc/pam_pkcs11/cn_map

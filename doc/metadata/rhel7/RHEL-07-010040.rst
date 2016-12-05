@@ -1,7 +1,7 @@
 ---
 id: RHEL-07-010040
-status: not implemented
-tag: misc
+status: implemented
+tag: sshd
 ---
 
 This control is implemented by the tasks for another control:

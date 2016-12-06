@@ -564,6 +564,8 @@ security_grub_password_hash: grub.pbkdf2.sha512.10000.7B21785BEAFEE3AC71459D8210
 security_rhel7_session_timeout: 600                          # RHEL-07-040160
 # Enable chrony for NTP time synchronization.
 security_rhel7_enable_chrony: yes                            # RHEL-07-040210
+# Restrict mail relaying.
+security_rhel7_restrict_mail_relaying: yes                   # RHEL-07-040480
 
 ## Packages (packages)
 # Remove packages from the system as required by the STIG. Set any of these

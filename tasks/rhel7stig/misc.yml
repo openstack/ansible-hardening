@@ -265,3 +265,23 @@
     - medium
     - misc
     - RHEL-07-040470
+
+- name: Check for postfix configuration file
+  stat:
+    path: /etc/postfix/main.cf
+  register: postfix_conf_check
+  tags:
+    - always
+
+- name: RHEL-07-040480 - Prevent unrestricted mail relaying
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: '^smtpd_client_restrictions'
+    line: 'smtpd_client_restrictions = permit_mynetworks, reject'
+  when:
+    - postfix_conf_check.stat.exists
+    - security_rhel7_restrict_mail_relaying | bool
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040480

@@ -105,6 +105,26 @@
     - misc
     - RHEL-07-021270
 
+- name: Check if syslog output is being sent to another server
+  command: 'grep "^[^#].*@" /etc/rsyslog.conf'
+  register: rsyslog_transmit_check
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-030770 - The system must send rsyslog output to a log aggregation server.
+  debug:
+    msg: Output from syslog must be sent to another server.
+  when:
+    - rsyslog_transmit_check is defined
+    - rsyslog_transmit_check.rc != 0
+  tags:
+    - medium
+    - misc
+    - RHEL-07-030770
+
 - name: Check if ClamAV is installed
   stat:
     path: /usr/bin/clamdscan

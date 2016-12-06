@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-021760
-status: not implemented
+status: exception - initial provisioning
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+When a server is initially provisioned, deployers should avoid storing
+the boot loader on removable media. It is not possible to change this via
+automated tasks.

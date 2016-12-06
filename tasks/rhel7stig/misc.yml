@@ -195,3 +195,24 @@
     - low
     - misc
     - RHEL-07-040320
+
+- name: Check for interfaces in promiscuous mode
+  shell: "ip link | grep -i promisc"
+  register: promiscuous_interface_check
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-040470 - Network interfaces must not be in promiscuous mode.
+  debug:
+    msg: >
+      One or more network interfaces were found to be in promiscuous mode.
+      Review all interfaces and disable promiscuous mode.
+  when:
+    - promiscuous_interface_check.rc == 0
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040470

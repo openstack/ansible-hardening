@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-040470
-status: not implemented
+status: verification only
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+All interfaces are examined to ensure they are not in promiscuous mode. A
+warning message is printed in the Ansible output if any promiscuous interfaces
+are found.

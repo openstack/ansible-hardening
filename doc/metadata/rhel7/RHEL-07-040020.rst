@@ -1,7 +1,10 @@
 ---
 id: RHEL-07-040020
-status: not implemented
+status: exception - manual intervention
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+Deployers should review their logging configuration to ensure it meets the
+requirements of the STIG. All operating systems supported by the role already
+log the ``auth``, ``authpriv``, and ``daemon`` facilities at the correct levels
+by default.

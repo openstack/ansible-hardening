@@ -465,3 +465,30 @@
     - low
     - auth
     - RHEL-07-040300
+
+- name: Check for .shosts or shosts.equiv files
+  find:
+    paths: /
+    recurse: yes
+    hidden: yes
+    patterns: '.shosts,shosts.equiv'
+  register: shosts_find
+  when:
+    - security_rhel7_remove_shosts_files | bool
+  tags:
+    - always
+
+- name: Remove .shosts or shosts.equiv files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ shosts_find.files }}"
+  when:
+    - security_rhel7_remove_shosts_files | bool
+    - shosts_find is defined
+    - shosts_find.files is defined
+  tags:
+    - high
+    - auth
+    - RHEL-07-040330
+    - RHEL-07-040331

@@ -136,6 +136,21 @@
     - misc
     - RHEL-07-030810
 
+- name: RHEL-07-040160 - Set 10 minute timeout on communication sessions
+  blockinfile:
+    dest: /etc/profile
+    insertbefore: EOF
+    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    block: |
+      # Set a {{ security_rhel7_session_timeout }} second timeout for sessions
+      TMOUT={{ security_rhel7_session_timeout }}
+      readonly TMOUT
+      export TMOUT
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040160
+
 # Returns 0 if installed, 3 if not installed
 - name: Check firewalld status
   command: systemctl status firewalld

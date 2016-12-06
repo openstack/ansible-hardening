@@ -82,3 +82,21 @@
     - medium
     - aide
     - RHEL-07-020140
+
+# NOTE(mhayden): CentOS/RHEL already provide a very strict AIDE configuration
+# that meets the requirements of RHEL-07-021600 and RHEL-07-021610. That config
+# is borrowed for Ubuntu 16.04 here.
+- name: Configure AIDE to verify additional properties
+  blockinfile:
+    dest: "{{ aide_conf }}"
+    insertbefore: EOF
+    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    block: "{{ lookup('file', 'aide_extra.conf') }}"
+  when:
+    - ansible_os_family | lower == 'ubuntu'
+  tags:
+    - low
+    - aide
+    - RHEL-07-021600
+    - RHEL-07-021610
+    - RHEL-07-021620

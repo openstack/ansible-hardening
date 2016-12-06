@@ -444,3 +444,24 @@
     - medium
     - auth
     - RHEL-07-040040
+
+- name: Check for pam_lastlog in PAM configuration
+  command: "grep pam_lastlog {{ pam_postlogin_file }}"
+  register: pam_lastlog_check
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-040300 - Display date/time of last logon after logon
+  debug:
+    msg: >
+      The 'pam_lastlog' directive is missing in {{ pam_postlogin_file }}.
+      This is required by RHEL-07-040300.
+  when:
+    - pam_lastlog_check.rc != 0
+  tags:
+    - low
+    - auth
+    - RHEL-07-040300

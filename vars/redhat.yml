@@ -22,6 +22,7 @@
 # Configuration file paths
 pam_auth_file: /etc/pam.d/system-auth
 pam_password_file: /etc/pam.d/password-auth
+pam_postlogin_file: /etc/pam.d/postlogin
 vsftpd_conf_file: /etc/vsftpd/vsftpd.conf
 grub_conf_file: /boot/grub2/grub.cfg
 grub_conf_file_efi: "/boot/efi/EFI/{{ ansible_distribution | lower | replace(' ', '') }}/grub.cfg"

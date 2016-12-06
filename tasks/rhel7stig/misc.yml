@@ -151,6 +151,40 @@
     - misc
     - RHEL-07-040160
 
+- name: Start and enable chrony
+  service:
+    name: "{{ chrony_service }}"
+    state: started
+    enabled: yes
+  when:
+    - not check_mode
+    - security_rhel7_enable_chrony | bool
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040210
+
+- name: Check if chrony configuration file exists
+  stat:
+    path: "{{ chrony_conf_file }}"
+  register: chrony_conf_check
+  tags:
+    - always
+
+- name: V-38620 - Synchronize system clock (configuration file)
+  template:
+    src: chrony.conf.j2
+    dest: "{{ chrony_conf_file }}"
+  when:
+    - chrony_conf_check.stat.exists
+    - security_rhel7_enable_chrony | bool
+  notify:
+    - restart chrony
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040210
+
 # Returns 0 if installed, 3 if not installed
 - name: Check firewalld status
   command: systemctl status firewalld

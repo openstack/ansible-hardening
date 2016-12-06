@@ -315,3 +315,24 @@
     - medium
     - misc
     - RHEL-07-040520
+
+- name: Check to see if snmpd config contains public/private
+  shell: 'egrep "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
+  register: snmp_public_private_check
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: RHEL-07-040580 - Change SNMP community strings from default.
+  debug:
+    msg: >
+      Change the SNMP community strings from the defaults of 'public' and
+      'private' to meet the requirements of RHEL-07-040580.
+  when:
+    - snmp_public_private_check.rc == 0
+  tags:
+    - high
+    - misc
+    - RHEL-07-040580

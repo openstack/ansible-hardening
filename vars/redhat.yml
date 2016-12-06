@@ -96,6 +96,8 @@ stig_packages:
 # RHEL 7 STIG: Packages to add/remove
 stig_packages_rhel7:
   - packages:
+      - audispd-plugins
+      - audit
       - openssh-clients
       - openssh-server
       - screen

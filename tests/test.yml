@@ -85,3 +85,4 @@
     security_search_for_invalid_group_owner: yes
     security_enable_firewalld: yes
     security_password_remember_password: 5
+    security_disable_account_if_password_expires: yes

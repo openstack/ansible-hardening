@@ -178,6 +178,18 @@
     - high
     - RHEL-07-010260
 
+- name: RHEL-07-010280 - The operating system must disable account identifiers if the password expires.
+  lineinfile:
+    dest: /etc/default/useradd
+    regexp: '^[#\s]*INACTIVE'
+    line: 'INACTIVE=0'
+  when:
+    - security_disable_account_if_password_expires | bool
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010280
+
 - name: RHEL-07-010371 - If three unsuccessful logon attempts within 15 minutes occur the associated account must be locked.
   blockinfile:
     dest: pam_password_file

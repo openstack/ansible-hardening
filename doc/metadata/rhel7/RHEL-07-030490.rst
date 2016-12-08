@@ -1,7 +1,7 @@
 ---
 id: RHEL-07-030490
-status: not implemented
-tag: misc
+status: implemented
+tag: auditd
 ---
 
 Rules are added to audit all successful and unsuccessful account access events.

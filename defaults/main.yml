@@ -391,6 +391,9 @@ security_unattended_upgrades_notifications: false
 #security_audisp_enable_krb5: yes                            # RHEL-07-030331
 # Set the auditd failure flag. WARNING: READ DOCUMENTATION BEFORE CHANGING!
 security_rhel7_audit_failure_flag: 1                         # RHEL-07-030090
+# Set the action to take when the disk is full or network events cannot be sent.
+security_rhel7_auditd_disk_full_action: syslog               # RHEL-07-030340
+security_rhel7_auditd_network_failure_action: syslog         # RHEL-07-030340
 # Add audit rules for commands/syscalls.
 security_rhel7_audit_chsh: yes                               # RHEL-07-030525
 security_rhel7_audit_chage: yes                              # RHEL-07-030513

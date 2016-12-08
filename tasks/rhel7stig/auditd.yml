@@ -21,6 +21,15 @@
   tags:
     - always
 
+- name: Verify that audisp-remote.conf exists
+  stat:
+    path: /etc/audisp/audisp-remote.conf
+  register: audisp_remote_conf
+  check_mode: no
+  tags:
+    - always
+
+
 - name: RHEL-07-030330 - The operating system must off-load audit records onto a different system or media from the system being audited
   lineinfile:
     dest: /etc/audisp/audisp-remote.conf
@@ -134,6 +143,22 @@
     - RHEL-07-030674
     - RHEL-07-030710
     - RHEL-07-030090
+
+- name: Adjust auditd/audispd configurations
+  lineinfile:
+    dest: "{{ item.config }}"
+    regexp: '^#?{{ item.parameter }}\s*='
+    line: "{{ item.parameter }} = {{ item.value }}"
+  with_items: "{{ auditd_config }}"
+  when:
+    - auditd_conf.stat.exists
+    - audisp_remote_conf.stat.exists
+  notify:
+    - restart auditd
+  tags:
+    - high
+    - auditd
+    - RHEL-07-030340
 
 - name: Ensure auditd is running and enabled at boot time
   service:

@@ -20,6 +20,15 @@
 #   - vars/redhat.yml
 #   - vars/ubuntu.yml
 
+## auditd configuration
+auditd_config:
+  - parameter: disk_full_action
+    value: "{{ security_rhel7_auditd_disk_full_action }}"
+    config: /etc/audisp/audisp-remote.conf
+  - parameter: network_failure_action
+    value: "{{ security_rhel7_auditd_network_failure_action }}"
+    config: /etc/audisp/audisp-remote.conf
+
 ## auditd rules
 # This variable is used in tasks/rhel7stig/auditd.yml to deploy auditd rules
 # for various commands and syscalls.

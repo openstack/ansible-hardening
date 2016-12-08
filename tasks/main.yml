@@ -36,10 +36,15 @@
     tags:
       - always
 
+  - name: Check to see if we're booting with EFI/UEFI
+    set_fact:
+      booted_with_efi: "{{ ansible_mounts | selectattr('mount', 'equalto', '/boot/efi') | list | length > 0 }}"
+
   - name: Set facts
     set_fact:
       check_mode: "{{ noop_result | skipped }}"
       linux_security_module: "{{ (ansible_os_family == 'Debian') | ternary('apparmor','selinux') }}"
+      grub_config_file_boot: "{{ booted_with_efi | ternary(grub_conf_file_efi, grub_conf_file) }}"
     tags:
       - always
 

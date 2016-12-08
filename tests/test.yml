@@ -88,3 +88,4 @@
     security_disable_account_if_password_expires: yes
     security_rhel7_initialize_aide: yes
     security_rhel7_automatic_package_updates: yes
+    security_require_grub_authentication: yes

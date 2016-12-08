@@ -294,6 +294,22 @@
     - RHEL-07-010401
     - RHEL-07-010402
 
+- name: Set a GRUB 2 password for single-user/maintenance modes
+  lineinfile:
+    dest: "{{ grub_defaults_file }}"
+    regexp: '^(#)?GRUB_PASSWORD'
+    line: 'GRUB_PASSWORD="{{ security_grub_password_hash }}"'
+    state: present
+  when:
+    - security_require_grub_authentication | bool
+  notify:
+    - update grub config
+  tags:
+    - auth
+    - high
+    - RHEL-07-010460
+    - RHEL-07-010470
+
 - name: Get all accounts with UID 0
   shell: "awk -F: '$3 == 0 {print $1}' /etc/passwd"
   changed_when: False

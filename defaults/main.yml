@@ -492,6 +492,8 @@ security_pam_faillock_interval: 900
 security_pam_faillock_attempts: 3
 security_pam_faillock_deny_root: yes                         # RHEL-07-010373
 security_pam_faillock_unlock_time: 604800                    # RHEL-07-010372
+# Limit the number of concurrent connections per account.
+#security_rhel7_concurrent_session_limit: 10                 # RHEL-07-040010
 
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.

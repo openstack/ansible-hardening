@@ -357,3 +357,18 @@
     - auth
     - medium
     - RHEL-07-020640
+
+- name: RHEL-07-040010 - The operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types.
+  blockinfile:
+    dest: /etc/security/limits.d/openstack-ansible-security-maxlogins.conf
+    create: yes
+    block: |
+      # Deployed by the openstack-ansible-security role
+      # RHEL-07-040010 - Limit concurrent sessions for all accounts/types
+      * hard maxlogins {{ security_rhel7_concurrent_session_limit }}
+  when:
+    - security_rhel7_concurrent_session_limit is defined
+  tags:
+    - auth
+    - low
+    - RHEL-07-040010

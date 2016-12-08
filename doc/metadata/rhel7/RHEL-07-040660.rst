@@ -1,7 +1,14 @@
 ---
 id: RHEL-07-040660
-status: not implemented
-tag: misc
+status: implemented
+tag: sshd
 ---
 
-This STIG requirement is not yet implemented.
+The ``GSSAPIAuthentication`` setting is set to ``no`` to meet the requirements
+of the STIG.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_disallow_gssapi: no

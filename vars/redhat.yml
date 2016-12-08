@@ -128,6 +128,10 @@ stig_packages_rhel7:
     state: "{{ security_package_state }}"
     enabled: "{{ security_enable_firewalld }}"
   - packages:
+      - yum-cron
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_automatic_package_updates }}"
+  - packages:
       - rsh-server
     state: absent
     enabled: "{{ security_rhel7_remove_rsh_server }}"

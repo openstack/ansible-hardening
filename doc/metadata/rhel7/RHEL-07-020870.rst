@@ -1,7 +1,8 @@
 ---
 id: RHEL-07-020870
-status: not implemented
+status: exception - manual intervention
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+Deployers should manually inspect initialization files in each user's home
+directory and verify that all ``PATH`` lines use absolute paths.

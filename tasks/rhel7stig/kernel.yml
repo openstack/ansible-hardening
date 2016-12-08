@@ -43,3 +43,27 @@
     - RHEL-07-040421
     - RHEL-07-040730
     - RHEL-07-040860
+
+- name: Check kdump service
+  command: systemctl status kdump
+  register: kdump_service_check
+  failed_when: kdump_service_check.rc not in [0,3]
+  changed_when: False
+  check_mode: no
+  tags:
+    - kernel
+    - medium
+    - RHEL-07-021230
+
+- name: RHEL-07-021230 - Kernel core dumps must be disabled unless needed.
+  service:
+    name: kdump
+    state: stopped
+    enabled: no
+  when:
+    - kdump_service_check.rc != 3
+    - security_disable_kdump
+  tags:
+    - kernel
+    - medium
+    - RHEL-07-021230

@@ -398,6 +398,8 @@ security_rhel7_audit_failure_flag: 1                         # RHEL-07-030090
 # Set the action to take when the disk is full or network events cannot be sent.
 security_rhel7_auditd_disk_full_action: syslog               # RHEL-07-030340
 security_rhel7_auditd_network_failure_action: syslog         # RHEL-07-030340
+# Size of remaining disk space (in MB) that triggers alerts.
+security_rhel7_auditd_space_left: "{{ (ansible_mounts | selectattr('mount', 'equalto', '/') | map(attribute='size_total') | first * 0.25 / 1024 / 1024) | int }}" # RHEL-07-030350
 # Add audit rules for commands/syscalls.
 security_rhel7_audit_chsh: yes                               # RHEL-07-030525
 security_rhel7_audit_chage: yes                              # RHEL-07-030513

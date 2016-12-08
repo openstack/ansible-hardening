@@ -400,6 +400,10 @@ security_rhel7_auditd_disk_full_action: syslog               # RHEL-07-030340
 security_rhel7_auditd_network_failure_action: syslog         # RHEL-07-030340
 # Size of remaining disk space (in MB) that triggers alerts.
 security_rhel7_auditd_space_left: "{{ (ansible_mounts | selectattr('mount', 'equalto', '/') | map(attribute='size_total') | first * 0.25 / 1024 / 1024) | int }}" # RHEL-07-030350
+# Action to take when the space_left threshold is reached.
+security_rhel7_auditd_space_left_action: email               # RHEL-07-030351
+# Send auditd email alerts to this user.
+security_rhel7_auditd_action_mail_acct: root                 # RHEL-07-030352
 # Add audit rules for commands/syscalls.
 security_rhel7_audit_chsh: yes                               # RHEL-07-030525
 security_rhel7_audit_chage: yes                              # RHEL-07-030513

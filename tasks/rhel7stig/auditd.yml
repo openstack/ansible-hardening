@@ -134,3 +134,15 @@
     - RHEL-07-030674
     - RHEL-07-030710
     - RHEL-07-030090
+
+- name: Ensure auditd is running and enabled at boot time
+  service:
+    name: auditd
+    state: started
+    enabled: yes
+  when:
+    - auditd_conf.stat.exists
+  tags:
+    - high
+    - auditd
+    - RHEL-07-030010

@@ -34,6 +34,9 @@ auditd_config:
   - parameter: space_left_action
     value: "{{ security_rhel7_auditd_space_left_action }}"
     config: /etc/audit/auditd.conf
+  - parameter: action_mail_acct
+    value: "{{ security_rhel7_auditd_action_mail_acct }}"
+    config: /etc/audit/auditd.conf
 
 ## auditd rules
 # This variable is used in tasks/rhel7stig/auditd.yml to deploy auditd rules

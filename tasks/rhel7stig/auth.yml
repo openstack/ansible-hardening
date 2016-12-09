@@ -388,3 +388,35 @@
     - auth
     - low
     - RHEL-07-040010
+
+- name: Check for PAM PKCS 11 authentication configuration
+  stat:
+    path: /etc/pam_pkcs11/pam_pkcs11.conf
+  register: pkcs11_conf_check
+  check_mode: no
+  tags:
+    - always
+
+- name: Check for ocsp_on in PAM PKCS 11 auth configuration
+  shell: 'grep cert_policy /etc/pam_pkcs11/pam_pkcs11.conf | grep -c ocsp_on'
+  register: oscp_on_check
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  when:
+    - pkcs11_conf_check.stat.exists
+  tags:
+    - always
+
+- name: RHEL-07-040030 - Must Validate PKI-based auth attempts with OCSP
+  debug:
+    msg: >
+      PKI-based authentication attempts must use OCSP for certificate
+      validation. Review the documentation for RHEL-07-040030.
+  when:
+    - pkcs11_conf_check.stat.exists
+    - oscp_on_check.stdout != 3
+  tags:
+    - medium
+    - auth
+    - RHEL-07-040030

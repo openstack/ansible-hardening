@@ -1,7 +1,14 @@
 ---
 id: RHEL-07-040330
-status: not implemented
-tag: misc
+status: implemented
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+The tasks in the security role examine the filesystem for any ``.shosts`` or
+``shosts.equiv`` files. If they are found, they are deleted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_remove_shosts_files: no

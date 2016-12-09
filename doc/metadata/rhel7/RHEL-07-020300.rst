@@ -1,7 +1,9 @@
 ---
 id: RHEL-07-020300
-status: not implemented
-tag: misc
+status: implemented
+tag: auth
 ---
 
-This STIG requirement is not yet implemented.
+If any users are found with invalid GIDs, those users are printed in the
+Ansible output. Deployers should review the list and ensure all users are
+assigned to a valid group that is defined in ``/etc/group``.

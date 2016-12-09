@@ -14,6 +14,7 @@
 # limitations under the License.
 """Get user facts."""
 
+import grp
 import pwd
 from ansible.module_utils.basic import AnsibleModule
 
@@ -43,6 +44,35 @@ users:
 '''
 
 
+def make_user_dict(user_record):
+    """Create a dictionary of user attributes."""
+    user_dict = {
+        'name': user_record.pw_name,
+        'uid': user_record.pw_uid,
+        'gid': user_record.pw_gid,
+        'gecos': user_record.pw_gecos,
+        'dir': user_record.pw_dir,
+        'shell': user_record.pw_shell,
+        'group': make_group_dict(user_record.pw_gid)
+    }
+    return user_dict
+
+
+def make_group_dict(gid):
+    """Create dictionary from group record."""
+    try:
+        group_record = grp.getgrgid(gid)
+    except KeyError:
+        return False
+
+    group_dict = {
+        'name': group_record.gr_name,
+        'passwd': group_record.gr_passwd,
+        'gid': group_record.gr_gid,
+    }
+    return group_dict
+
+
 def main():
     """Ansible calls this function."""
     module = AnsibleModule(
@@ -53,31 +83,19 @@ def main():
         supports_check_mode=True,
     )
 
-    users = []
+    # Get all of the users on the system into a list of dicts. The 'pwd' module
+    # returns them in a struct.
+    all_users = [make_user_dict(x) for x in pwd.getpwall()]
 
-    # Loop through the users that exist on the system.
-    for user_record in pwd.getpwall():
-
-        # Ensure that the user matches the parameters provided.
-        if (user_record.pw_uid >= module.params['min_uid'] and
-           user_record.pw_uid <= module.params['max_uid']):
-
-            # Assemble a dictionary of the user information and append it to
-            # our list.
-            user_dict = {
-                'name': user_record.pw_name,
-                'uid': user_record.pw_uid,
-                'gid': user_record.pw_gid,
-                'gecos': user_record.pw_gecos,
-                'dir': user_record.pw_dir,
-                'shell': user_record.pw_shell
-            }
-            users.append(user_dict)
+    # Get the users that match our criteria.
+    user_list = [x for x in all_users
+                 if (x['uid'] >= module.params['min_uid'] and
+                     x['uid'] <= module.params['max_uid'])]
 
     # Return the user data to the Ansible task.
     module.exit_json(
         changed=False,
-        users=users
+        users=user_list
     )
 
 if __name__ == '__main__':

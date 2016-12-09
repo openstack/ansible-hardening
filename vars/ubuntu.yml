@@ -25,6 +25,7 @@ cache_timeout: 600
 # Configuration file paths
 pam_auth_file: /etc/pam.d/common-auth
 pam_password_file: /etc/pam.d/common-password
+pam_postlogin_file: /etc/pam.d/login
 vsftpd_conf_file: /etc/vsftpd.conf
 grub_conf_file: /boot/grub/grub.cfg
 grub_conf_file_efi: /boot/efi/EFI/ubuntu/grub.cfg

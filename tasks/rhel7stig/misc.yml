@@ -285,3 +285,33 @@
     - medium
     - misc
     - RHEL-07-040480
+
+- name: Check for TFTP server configuration file
+  stat:
+    path: /etc/xinetd.d/tftp
+  register: tftp_config_check
+  check_mode: no
+  tags:
+    - always
+
+- name: Check TFTP configuration mode
+  command: 'grep server_args /etc/xinetd.d/tftp'
+  register: tftp_secure_check
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  when:
+    - tftp_config_check.stat.exists
+  tags:
+    - always
+
+- name: RHEL-07-040520 - TFTP must be configured to operate in secure mode
+  debug:
+    msg: TFTP must be configured to run in secure mode with the '-s' flag.
+  when:
+    - tftp_config_check.stat.exists
+    - "'-s' not in tftp_secure_check.stdout"
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040520

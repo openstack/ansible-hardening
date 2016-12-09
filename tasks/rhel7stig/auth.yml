@@ -420,3 +420,27 @@
     - medium
     - auth
     - RHEL-07-040030
+
+- name: Check for cackey or coolkey in the PAM PKCS11 auth configuration
+  shell: 'egrep "use_pkcs11_module = (cackey|coolkey)" /etc/pam_pkcs11/pam_pkcs11.conf'
+  register: pkcs11_key_check
+  changed_when: False
+  failed_when: False
+  check_mode: no
+  when:
+    - pkcs11_conf_check.stat.exists
+  tags:
+    - always
+
+- name: RHEL-07-040040 - Must use cackey/cookey for PKCS 11 auth
+  debug:
+    msg: >
+      PKI-based authentication attempts must use cackey or coolkey.
+      Review the documentation for RHEL-07-040040.
+  when:
+    - pkcs11_conf_check.stat.exists
+    - pkcs11_key_check.stdout.rc != 0
+  tags:
+    - medium
+    - auth
+    - RHEL-07-040040

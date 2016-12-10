@@ -85,3 +85,25 @@
     - medium
     - sshd
     - RHEL-07-040261
+
+- name: Public host key files must have mode 0644 or less
+  file:
+    path: "{{ item }}"
+    mode: "u-xX,g-wxs,o-wxt"
+  with_fileglob:
+    - /etc/ssh/*.pub
+  tags:
+    - medium
+    - sshd
+    - RHEL-07-040640
+
+- name: Private host key files must have mode 0600 or less
+  file:
+    path: "{{ item }}"
+    mode: "u-xX,g-rwxs,o-rwxt"
+  with_fileglob:
+    - /etc/ssh/*_key
+  tags:
+    - medium
+    - sshd
+    - RHEL-07-040650

@@ -16,7 +16,7 @@
 - name: Check autofs service
   command: systemctl status autofs
   register: autofs_check
-  failed_when: autofs_check.rc not in [0,3]
+  failed_when: autofs_check.rc not in [0,3,4]
   changed_when: False
   check_mode: no
   tags:
@@ -28,7 +28,7 @@
     state: stopped
     enabled: no
   when:
-    - "'not-found' not in autofs_check.stdout"
+    - autofs_check.rc not in [3,4]
     - security_rhel7_disable_autofs | bool
   tags:
     - medium
@@ -237,7 +237,7 @@
 - name: Check firewalld status
   command: systemctl status firewalld
   register: firewalld_status_check
-  failed_when: firewalld_status_check.rc not in [0,3]
+  failed_when: firewalld_status_check.rc not in [0,3,4]
   changed_when: False
   check_mode: no
   tags:
@@ -249,7 +249,7 @@
     state: started
     enabled: yes
   when:
-    - firewalld_status_check.rc != 3
+    - firewalld_status_check.rc not in [3,4]
     - security_enable_firewalld | bool
   tags:
     - medium

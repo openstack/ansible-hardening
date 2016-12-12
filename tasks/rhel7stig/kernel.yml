@@ -47,7 +47,7 @@
 - name: Check kdump service
   command: systemctl status kdump
   register: kdump_service_check
-  failed_when: kdump_service_check.rc not in [0,3]
+  failed_when: kdump_service_check.rc not in [0,3,4]
   changed_when: False
   check_mode: no
   tags:
@@ -61,7 +61,7 @@
     state: stopped
     enabled: no
   when:
-    - kdump_service_check.rc != 3
+    - kdump_service_check.rc not in [3,4]
     - security_disable_kdump
   tags:
     - kernel

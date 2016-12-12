@@ -67,11 +67,15 @@
     - cat2
     - V-38461
 
+# NOTE(mhayden): The log directory permissions change each time auditd is
+# restarted. This causes the idempotent checks to fail and that's why there is
+# a 'changed_when: False' on this task.
 - name: V-38493 - Audit log directories must have mode 0755 or less
   file:
     dest: /var/log/audit/
     state: directory
     mode: 0750
+  changed_when: False
   tags:
     - file_perms
     - cat2

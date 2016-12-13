@@ -67,3 +67,27 @@
     - kernel
     - medium
     - RHEL-07-021230
+
+- name: Check if FIPS is enabled
+  command: cat /proc/sys/crypto/fips_enabled
+  register: fips_check
+  changed_when: False
+  check_mode: no
+  when:
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - always
+
+- name: Print a warning if FIPS isn't enabled
+  debug:
+    msg: >
+      FIPS is not enabled at boot time on this server.
+      The STIG requires FIPS to be enabled at boot time.
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - fips_check is defined
+    - fips_check.stdout == '0'
+  tags:
+    - high
+    - misc
+    - RHEL-07-021280

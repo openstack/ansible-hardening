@@ -102,6 +102,8 @@ stig_packages_rhel7:
       - audispd-plugins
       - audit
       - aide
+      - dracut-fips
+      - dracut-fips-aesni
       - openssh-clients
       - openssh-server
       - screen

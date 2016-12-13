@@ -64,5 +64,9 @@
   roles:
     - role: "openstack-ansible-security"
   vars:
-    security_unattended_upgrades_enabled: true
-    security_unattended_upgrades_notifications: true
+    # NOTE(mhayden): yum-cron has a bug upon update due to a RPM conflict in
+    # the yum-cron.conf file. This test should be re-enabled when the
+    # OpenStack CI images are updated.
+    # See https://bugzilla.redhat.com/show_bug.cgi?id=1293513
+    security_unattended_upgrades_enabled: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
+    security_unattended_upgrades_notifications: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"

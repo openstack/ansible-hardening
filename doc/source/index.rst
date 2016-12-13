@@ -45,6 +45,15 @@ Ocata release.
    controls.rst
    developer-guide.rst
 
+Development is underway for adding the Red Hat Enterprise Linux 7 STIG content
+to the openstack-ansible-security role. The documentation for this work is
+available in this section:
+
+.. toctree::
+   :maxdepth: 2
+
+   controls-rhel7.rst
+
 Newton: Latest stable release
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

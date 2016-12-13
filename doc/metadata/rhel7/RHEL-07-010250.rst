@@ -11,6 +11,6 @@ by default.
 
 Deployers can opt in for the change by setting the following Ansible variable:
 
-.. code-block::
+.. code-block:: yaml
 
     security_pwquality_require_minimum_password_length: yes

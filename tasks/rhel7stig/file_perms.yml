@@ -96,6 +96,23 @@
     - medium
     - RHEL-07-020370
 
+- name: Set proper owner, group owner, and permissions on home directories
+  file:
+    dest: "{{ item.dir }}"
+    owner: "{{ item.name }}"
+    group: "{{ item.group.name }}"
+    mode: "u-X,g-ws,o-rwxt"
+  when:
+    - item.uid >= 1000
+    - security_set_home_directory_permissions_and_owners | bool
+  with_items: "{{ user_list.users | selectattr('uid', 'greater_than', 999) | list }}"
+  tags:
+    - medium
+    - file_perms
+    - RHEL-07-020650
+    - RHEL-07-020660
+    - RHEL-07-020670
+
 - name: Check if cn_map file is present
   stat:
     path: /etc/pam_pkcs11/cn_map

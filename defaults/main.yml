@@ -516,6 +516,8 @@ security_reset_perm_ownership: yes                           # RHEL-07-010010
 # Search for files/directories owned by invalid users or groups.
 security_search_for_invalid_owner: no                        # RHEL-07-020360
 security_search_for_invalid_group_owner: no                  # RHEL-07-020370
+# Set user/group owners on each home directory and set mode to 0750.
+security_set_home_directory_permissions_and_owners: no       # RHEL-07-020650 / RHEL-07-020660 / RHEL-07-020670
 
 ## Graphical interfaces (graphical)
 # Disable automatic gdm logins

@@ -26,11 +26,16 @@
     - high
     - RHEL-07-020210
 
+# NOTE(mhayden): The "changed_when" is required here because this task will
+# always show as changed when SELinux is completely disabled. It's not possible
+# to switch to permissive/enforcing in an online way when SELinux is completely
+# disabled at boot time.
 - name: Ensure SELinux is in enforcing mode on the next reboot
   selinux:
     state: enforcing
     policy: targeted
   register: selinux_status_change
+  changed_when: selinux_status_change | changed and ansible_selinux.status != 'disabled'
   when:
     - ansible_os_family == "RedHat"
     - security_rhel7_enable_linux_security_module | bool
@@ -61,6 +66,7 @@
   check_mode: no
   when:
     - ansible_os_family == 'RedHat'
+    - ansible_selinux.status != 'disabled'
   tags:
     - lsm
     - medium

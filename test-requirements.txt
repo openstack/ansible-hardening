@@ -15,4 +15,4 @@ openstackdocstheme>=1.5.0 # Apache-2.0
 doc8 # Apache-2.0
 reno>=1.8.0 # Apache-2.0
 Jinja2>=2.8 # BSD License (3 clause)
-lxml>=2.3 # BSD
+lxml!=3.7.0,>=2.3 # BSD

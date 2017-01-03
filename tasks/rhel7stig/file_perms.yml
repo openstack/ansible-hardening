@@ -67,6 +67,7 @@
   when:
     - invalid_owner_files is defined
     - invalid_owner_files.stdout_lines is defined
+    - invalid_owner_files.stdout_lines | length > 0
   tags:
     - file_perms
     - medium
@@ -91,6 +92,7 @@
   when:
     - invalid_group_owner_files is defined
     - invalid_group_owner_files.stdout_lines is defined
+    - invalid_group_owner_files.stdout_lines | length > 0
   tags:
     - file_perms
     - medium

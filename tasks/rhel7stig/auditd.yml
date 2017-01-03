@@ -29,7 +29,6 @@
   tags:
     - always
 
-
 - name: RHEL-07-030330 - The operating system must off-load audit records onto a different system or media from the system being audited
   lineinfile:
     dest: /etc/audisp/audisp-remote.conf
@@ -64,6 +63,17 @@
   set_fact:
     auditd_architectures: "{{ (ansible_architecture == 'ppc64le') | ternary(['ppc64'], ['b32', 'b64']) }}"
   check_mode: no
+  tags:
+    - always
+
+- name: Remove system default audit.rules file
+  file:
+    path: /etc/audit/rules.d/audit.rules
+    state: absent
+  when:
+    - auditd_conf.stat.exists
+  notify:
+    - generate auditd rules
   tags:
     - always
 

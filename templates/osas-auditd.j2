@@ -1,5 +1,11 @@
 # {{ ansible_managed }}
 
+# Delete all existing auditd rules prior to loading this ruleset.
+-D
+
+# Increase the buffers to survive stress events.
+-b 320
+
 {% if security_audit_clock_settimeofday | bool %}
 # RHEL 6 STIG V-38522
 # Audits changes to system time via settimeofday

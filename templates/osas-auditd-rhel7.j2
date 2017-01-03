@@ -5,6 +5,16 @@
 #
 #    http://docs.openstack.org/developer/openstack-ansible-security/
 #
+
+# Delete all existing auditd rules prior to loading this ruleset.
+-D
+
+# Increase the buffers to survive stress events.
+-b 320
+
+# Set the auditd failure flag.
+-f {{ security_rhel7_audit_failure_flag }}
+
 {#                                                                           #}
 {# The following loop takes a variable called audited_commands (a list of    #}
 {# dictionaries) and creates audit rules for each audited command or         #}
@@ -85,6 +95,3 @@
 -w /etc/shadow -p wa -k RHEL-07-030710
 -w /etc/security/opasswd -p wa -k RHEL-07-030710
 {% endif %}
-
-# Set the auditd failure flag
--f {{ security_rhel7_audit_failure_flag }}

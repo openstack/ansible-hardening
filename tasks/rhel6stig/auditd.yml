@@ -243,6 +243,15 @@
     - cat2
     - V-38498
 
+- name: Remove system default audit.rules file
+  file:
+    path: /etc/audit/rules.d/audit.rules
+    state: absent
+  notify:
+    - generate auditd rules
+  tags:
+    - always
+
 - name: Auditd rules (includes several STIGs)
   template:
     src: osas-auditd.j2

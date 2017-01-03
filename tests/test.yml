@@ -21,6 +21,7 @@
         update_cache: yes
         cache_valid_time: "{{ cache_timeout }}"
       when: ansible_pkg_mgr == 'apt'
+      changed_when: False
     - name: Ensure OpenStack CI image has a logrotate cron job
       file:
         path: /etc/cron.daily/logrotate

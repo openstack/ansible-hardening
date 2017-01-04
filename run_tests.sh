@@ -13,43 +13,53 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -euov
+set -xeuo pipefail
 
 FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-true}
 
-# Install pip
-if [ ! "$(which pip)" ]; then
+# Install pip.
+if which pip; then
   curl --silent --show-error --retry 5 \
     https://bootstrap.pypa.io/get-pip.py | sudo python2.7
 fi
 
-# Install bindep and tox
+# Install bindep and tox with pip.
 sudo pip install bindep tox
 
 # CentOS 7 requires two additional packages:
 #   redhat-lsb-core - for bindep profile support
 #   epel-release    - required to install python-ndg_httpsclient/python2-pyasn1
-if [ "$(which yum)" ]; then
+if which yum; then
     sudo yum -y install redhat-lsb-core epel-release
 fi
 
-# Install OS packages using bindep
-if apt-get -v >/dev/null 2>&1 ; then
+# Get a list of packages to install with bindep. If packages need to be
+# installed, bindep exits with an exit code of 1.
+BINDEP_PKGS=$(bindep -b -f bindep.txt test || true)
+echo "Packages to install: ${BINDEP_PKGS}"
+
+# Install a list of OS packages provided by bindep.
+if which apt-get; then
     sudo apt-get update
     DEBIAN_FRONTEND=noninteractive \
       sudo apt-get -q --option "Dpkg::Options::=--force-confold" \
-      --assume-yes install `bindep -b -f bindep.txt test`
-else
-    sudo yum install -y `bindep -b -f bindep.txt test`
+      --assume-yes install $BINDEP_PKGS
+elif which yum; then
+    # Don't run yum with an empty list of packages.
+    # It will fail and cause the script to exit with an error.
+    if [[ ${#BINDEP_PKGS} > 0 ]]; then
+      sudo yum install -y $BINDEP_PKGS
+    fi
 fi
 
-# run through each tox env and execute the test
-for tox_env in $(awk -F= '/envlist/ {print $2}' tox.ini | sed 's/,/ /g'); do
-  if [ "${tox_env}" != "ansible-functional" ]; then
-    tox -e ${tox_env}
-  elif [ "${tox_env}" == "ansible-functional" ]; then
+# Loop through each tox environment and run tests.
+for tox_env in $(awk -F= '/envlist/ { gsub(",", " "); print $2 }' tox.ini); do
+  echo "Executing tox environment: ${tox_env}"
+  if [[ ${tox_env} == ansible-functional ]]; then
     if ${FUNCTIONAL_TEST}; then
       tox -e ${tox_env}
     fi
+  else
+    tox -e ${tox_env}
   fi
 done

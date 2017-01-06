@@ -18,7 +18,7 @@ set -xeuo pipefail
 FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-true}
 
 # Install pip.
-if which pip; then
+if ! which pip; then
   curl --silent --show-error --retry 5 \
     https://bootstrap.pypa.io/get-pip.py | sudo python2.7
 fi

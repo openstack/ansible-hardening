@@ -59,16 +59,6 @@ CentOS 7 systems. In addition, almost all of the controls are easily translated
 for Ubuntu 16.04. Any deviations during translation are noted within the
 documentation below.
 
-.. note::
-
-    The RHEL 7 STIG content is still under development and is disabled by
-    default. Deployers can test the tasks on non-production systems by setting
-    the ``stig_version`` variable on the Ansible command line:
-
-    .. code-block:: console
-
-        ansible-playbook -i hosts playbook.yml -e stig_version=rhel7
-
 .. toctree::
    :maxdepth: 2
 

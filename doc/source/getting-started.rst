@@ -28,21 +28,9 @@ The role will be installed into
 Initial configuration
 ---------------------
 
-Some of the security configurations need initial configuration or they may
-require you to opt-in for a change to be applied. Start by reviewing the list
-of STIG controls that
-:ref:`require initial configuration <implementation-status-configuration-required>`
-or :ref:`require opt-in <implementation-status-opt-in>`.
-
-An example of a STIG requiring initial configuration is
-:ref:`V-38446 <stig-V-38446>`, which requires an email address for a person
-who can receive email sent to ``root``.
-
-Many of the STIG configurations are in an *opt-in* status because they can be
-helpful for some systems and harmful to others. A good example of this is
-:ref`V-38481 <stig-V-38481>`, which requires that automatic package updates are
-configured on a host. In some environments, this isn't a problem, but this
-could cause disruptions in environments with low tolerance for changes.
+The role's default configuration is suitable for most Linux hosts. Deployers
+should review the :ref:`special_notes` section to learn more about how to
+provide custom configuration for the Ansible tasks in the role.
 
 Using as a standalone role
 --------------------------
@@ -67,8 +55,8 @@ Using with OpenStack-Ansible
 ----------------------------
 
 The openstack-ansible-security role is automatically enabled and applied in the
-Newton release of OpenStack-Ansible. In the Liberty and Mitaka releases, the
-role is easily enabled by adjusting the following Ansible variable:
+Newton release of OpenStack-Ansible. Set the following Ansible variable to
+enable the role in the Mitaka release of OpenStack-Ansible:
 
 .. code-block:: yaml
 

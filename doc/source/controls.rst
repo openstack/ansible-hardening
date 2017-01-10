@@ -1,5 +1,5 @@
-Security hardening controls in detail
-=====================================
+Security hardening controls in detail (RHEL 6 STIG)
+===================================================
 
 The Security Technical Implementation Guide (STIG) for Red Hat Enterprise Linux
 6 contains over 200 security controls. The links below will allow you to review
@@ -26,6 +26,16 @@ Controls are divided into groups based on certain properties:
 
 You can also review the STIG controls in one very large page. This can be
 helpful when you need to search using your web browser.
+
+.. note::
+
+    The RHEL 6 STIG content is deprecated in the Ocata release and will be
+    removed in a future release. Deployers can choose to deploy the RHEL 6
+    STIG content by setting the ``stig_version`` Ansible variable:
+
+    .. code-block:: console
+
+        ansible-playbook -i hosts playbook.yml -e stig_version=rhel7
 
 .. toctree::
    :maxdepth: 2

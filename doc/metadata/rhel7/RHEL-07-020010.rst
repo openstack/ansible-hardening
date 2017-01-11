@@ -4,7 +4,7 @@ status: implemented
 tag: packages
 ---
 
-The role will remove the NIS server package package from the system if it is
+The role will remove the NIS server package from the system if it is
 installed. The package name differs between Linux distributions:
 
 * CentOS: ``ypserv``

@@ -104,15 +104,10 @@
 
 - name: Add or remove packages based on STIG requirements
   apt:
-    name: |
-      {%- set pkg_list = [] %}
-      {%- for package_dict in item[1] %}
-      {%- if pkg_list.extend(package_dict.packages) %}{% endif %}
-      {%- endfor %}
-      {{ pkg_list }}
-    state: "{{ item[0] }}"
+    name: "{{ stig_packages | selectattr('enabled') | selectattr('state', 'equalto', item) | sum(attribute='packages', start=[]) }}"
+    state: "{{ item }}"
   with_items:
-    - "{{ stig_packages | selectattr('enabled') | groupby('state') }}"
+    - "{{ stig_packages | selectattr('enabled') | map(attribute='state') | unique | list }}"
   tags:
     - cat1
     - auth

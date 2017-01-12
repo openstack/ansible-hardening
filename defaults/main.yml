@@ -492,7 +492,7 @@ security_pam_offline_credentials_expiration_days: 1          # RHEL-07-010401 / 
 # Set a delay (in seconds) between failed login attempts.
 security_shadow_utils_fail_delay: 4                          # RHEL-07-010420
 # Set a umask for all authenticated users.
-security_shadow_utils_umask: 077                             # RHEL-07-020230
+# security_shadow_utils_umask: '077'                         # RHEL-07-020230
 # Create home directories for new users by default.
 security_shadow_utils_create_home: yes                       # RHEL-07-020630
 # How many old user password to remember to prevent password re-use.

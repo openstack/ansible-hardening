@@ -239,7 +239,7 @@
   tags:
     - always
 
-- name: V-38620 - Synchronize system clock (configuration file)
+- name: RHEL-07-040210 - Synchronize system clock (configuration file)
   template:
     src: chrony.conf.j2
     dest: "{{ chrony_conf_file }}"

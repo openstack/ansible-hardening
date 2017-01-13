@@ -77,4 +77,4 @@ role is easily enabled by adjusting the following Ansible variable:
 For more information, refer to the OpenStack-Ansible documentation on
 `configuring security hardening`_.
 
-.. _configuring security hardening: http://docs.openstack.org/developer/openstack-ansible/install-guide/app-advanced-config-security.html#security-hardening
+.. _configuring security hardening: http://docs.openstack.org/project-deploy-guide/openstack-ansible/draft/app-advanced-config-security.html#security-hardening

@@ -34,10 +34,10 @@ exists as `YAML frontmatter <https://jekyllrb.com/docs/frontmatter/>`_ for each
 STIG configuration. The frontmatter is followed by the text of the deployer
 note itself.
 
-All of the notes are found within ``doc/metadata/rhel6``. Here is an example
-of V-38497:
+All of the notes are found within ``doc/metadata/rhel7``. Here is an example
+of RHEL-07-020210:
 
-.. literalinclude:: ../metadata/rhel6/V-38497.rst
+.. literalinclude:: ../metadata/rhel7/RHEL-07-020210.rst
    :language: yaml
 
 The block after the first three dashes (``---``) is the metadata. The metadata

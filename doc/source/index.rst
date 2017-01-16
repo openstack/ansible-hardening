@@ -1,99 +1,115 @@
-==========================================
-OpenStack-Ansible: Host security hardening
-==========================================
+============================================
+Automated security hardening for Linux hosts
+============================================
 
-Abstract
-~~~~~~~~
+The openstack-ansible-security Ansible role uses industry-standard security
+hardening guides to secure Linux hosts. Although the role is designed to work
+well in OpenStack environments that are deployed with OpenStack-Ansible, it can
+be used with almost any Linux system.
 
-The openstack-ansible-security role provides security hardening for
-`OpenStack`_ environments deployed with `openstack-ansible`_. The role has
-multiple goals:
+What does the role do?
+----------------------
 
-* Provide additional security in a highly configurable, integrated way without
-  disrupting a production OpenStack environment.
-* Make it easier for organizations to meet the requirements of compliance
-  programs, such as `Payment Card Industry Data Security Standard (PCI-DSS)`_.
-* Document all changes to allow deployers to make educated decisions on which
-  security configuration changes to apply.
+It all starts with the `Security Technical Implementation Guide (STIG)`_ from
+the `Defense Information Systems Agency (DISA)`_, part of the United States
+Department of Defense. The guide is released with a public domain license and
+it is commonly used to secure systems at public and private organizations
+around the world.
 
-At this time, the role follows the requirements of the US Government's
-`Security Technical Implementation Guide (STIG)`_ for Red Hat Enterprise Linux
-6.
+Each configuration from the STIG is analyzed to determine what impact it could
+have on a live production environment and how to implement it in Ansible. Tasks
+are added to the role that configure a host to meet the configuration
+requirement. Each task is documented to explain what was changed, why it was
+changed, and what deployers need to understand about the change.
 
-The easiest method for reviewing the STIG configurations and the relevant
-metadata is through the `STIG Viewer`_ service provided by `UCF`_.
+Deployers have the option to pick and choose which configurations are applied
+using Ansible variables and tags. Some tasks allow deployers to provide custom
+configurations to tighten down or relax certain requirements.
 
-.. _OpenStack: http://www.openstack.org/
-.. _openstack-ansible: http://docs.openstack.org/developer/openstack-ansible/
-.. _Payment Card Industry Data Security Standard (PCI-DSS): https://en.wikipedia.org/wiki/Payment_Card_Industry_Data_Security_Standard
-.. _Security Technical Implementation Guide (STIG): https://en.wikipedia.org/wiki/Security_Technical_Implementation_Guide
-.. _STIG Viewer: https://www.stigviewer.com/stig/red_hat_enterprise_linux_6/
-.. _UCF: http://www.unifiedcompliance.com/
+For more details, review the *Documentation* section below.
 
-Ocata: Development
-~~~~~~~~~~~~~~~~~~
+.. _Security Technical Implementation Guide (STIG): http://iase.disa.mil/stigs/Pages/index.aspx
+.. _Defense Information Systems Agency (DISA): http://www.disa.mil/
 
-The openstack-ansible-security role is currently under development for the
-Ocata release.
+Documentation
+-------------
+
+The following documentation applies to the Ocata release. Documentation from
+previous releases are available in the *Releases* section below.
 
 .. toctree::
    :maxdepth: 2
 
-   benefits.rst
+   faq.rst
    getting-started.rst
    special-notes.rst
-   controls.rst
+   controls-rhel7.rst
    developer-guide.rst
 
-Development is underway for adding the Red Hat Enterprise Linux 7 STIG content
-to the openstack-ansible-security role. The documentation for this work is
-available in this section:
+The RHEL 7 STIG content was first added in the Ocata release. The original RHEL
+6 STIG content is deprecated in the Ocata release and will be removed in the
+next OpenStack release (Pike). The documentation for the RHEL 6 STIG content is
+still available:
 
 .. toctree::
    :maxdepth: 2
 
-   controls-rhel7.rst
+   controls.rst
 
-Newton: Latest stable release
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Releases
+--------
 
-The openstack-ansible-security role was first released with the 14.0.0 tag
-on October 20th, 2016. Refer to the `Newton release notes
-<http://docs.openstack.org/releasenotes/openstack-ansible-security/newton.html>`_
-for more details on the improvements and fixes.
+Deployers should use the latest stable release for all production deployments.
 
-The Newton release supports Ubuntu 14.04, Ubuntu 16.04, CentOS 7, and Red Hat
-Enterprise Linux 7 `(partial automated test coverage)`.
+Ocata
+~~~~~
 
-* `openstack-ansible-security Newton Documentation`_
+* **Status:** Development *(anticipated release: February 2017)*
+
+* **Supported Operating Systems:**
+
+  * Ubuntu 14.04 Trusty *(Deprecated)*
+  * Ubuntu 16.04 Xenial
+  * CentOS 7
+  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
+
+* **Documentation:**
+
+  * `openstack-ansible-security Ocata Release Notes`_
+
+.. _openstack-ansible-security Ocata Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/unreleased.html
+
+Newton
+~~~~~~
+
+* **Status:** Latest stable release *(released 2016-10-20)*
+
+* **Supported Operating Systems:**
+
+  * Ubuntu 14.04 Trusty
+  * Ubuntu 16.04 Xenial
+  * CentOS 7
+  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
+
+* **Documentation:**
+
+  * `openstack-ansible-security Newton Documentation`_
+  * `openstack-ansible-security Newton Release Notes`_
 
 .. _openstack-ansible-security Newton Documentation: http://docs.openstack.org/developer/openstack-ansible-security/newton/
+.. _openstack-ansible-security Newton Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/newton.html
 
 Mitaka
 ~~~~~~
 
-The Mitaka release of the openstack-ansible-security role was first released
-with the 13.0.0 tag on April 1st, 2016. Refer to the `Mitaka release notes
-<http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html>`_
-for more details on the improvements and fixes.
+* **Status:** Stable release *(released 2016-04-01)*
 
-Ubuntu 14.04 is supported in the Mitaka release.
+* **Supported Operating Systems:** Ubuntu 14.04 Trusty
 
-* `openstack-ansible-security Mitaka Documentation`_
+* **Documentation:**
+
+  * `openstack-ansible-security Mitaka Documentation`_
+  * `openstack-ansible-security Mitaka Release Notes`_
 
 .. _openstack-ansible-security Mitaka Documentation: http://docs.openstack.org/developer/openstack-ansible-security/mitaka/
-
-Liberty
-~~~~~~~
-
-Refer to the `Liberty release notes
-<http://docs.openstack.org/releasenotes/openstack-ansible-security/liberty.html>`_
-for more details on the improvements and fixes. The Liberty release will reach
-EOL on November 17th, 2016.
-
-Ubuntu 14.04 is supported in the Liberty release.
-
-* `openstack-ansible-security Liberty Documentation`_
-
-.. _openstack-ansible-security Liberty Documentation: http://docs.openstack.org/developer/openstack-ansible-security/liberty/
-
+.. _openstack-ansible-security Mitaka Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html

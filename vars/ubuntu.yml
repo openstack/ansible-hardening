@@ -38,7 +38,7 @@ chrony_conf_file: /etc/chrony/chrony.conf
 cron_service: cron
 ssh_service: ssh
 chrony_service: chrony
-clamav_service: clamd
+clamav_service: clamav-daemon
 
 # Commands
 grub_update_cmd: "update-grub"

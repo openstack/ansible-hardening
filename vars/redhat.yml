@@ -117,6 +117,10 @@ stig_packages_rhel7:
     state: "{{ security_package_state }}"
     enabled: "{{ security_rhel7_enable_linux_security_module }}"
   - packages:
+      - chrony
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_chrony }}"
+  - packages:
       - clamav
       - clamav-data
       - clamav-devel

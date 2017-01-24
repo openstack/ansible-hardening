@@ -72,6 +72,7 @@
   command: cat /proc/sys/crypto/fips_enabled
   register: fips_check
   changed_when: False
+  failed_when: False
   check_mode: no
   when:
     - ansible_os_family | lower == 'redhat'
@@ -86,7 +87,7 @@
   when:
     - ansible_os_family | lower == 'redhat'
     - fips_check is defined
-    - fips_check.stdout == '0'
+    - fips_check.stdout != '1'
   tags:
     - high
     - misc

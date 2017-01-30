@@ -39,6 +39,8 @@
   - name: Check to see if we're booting with EFI/UEFI
     set_fact:
       booted_with_efi: "{{ ansible_mounts | selectattr('mount', 'equalto', '/boot/efi') | list | length > 0 }}"
+    tags:
+      - always
 
   - name: Set facts
     set_fact:

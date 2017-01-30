@@ -287,21 +287,27 @@ shadow_utils_rhel7:
   - parameter: ENCRYPT_METHOD
     value: "{{ security_password_encrypt_method | default('') }}"
     stig_id: RHEL-07-010180
+    ansible_os_family: all
   - parameter: PASS_MIN_DAYS
     value: "{{ security_password_min_lifetime_days | default('') }}"
     stig_id: RHEL-07-010200
+    ansible_os_family: all
   - parameter: PASS_MAX_DAYS
     value: "{{ security_password_max_lifetime_days | default('') }}"
     stig_id: RHEL-07-010220
+    ansible_os_family: all
   - parameter: FAIL_DELAY
     value: "{{ security_shadow_utils_fail_delay | default('') }}"
     stig_id: RHEL-07-010420
+    ansible_os_family: RedHat
   - parameter: UMASK
     value: "{{ security_shadow_utils_umask | default('') }}"
     stig_id: RHEL-07-020230
+    ansible_os_family: all
   - parameter: CREATE_HOME
     value: "{{ security_shadow_utils_create_home | default('') }}"
     stig_id: RHEL-07-020630
+    ansible_os_family: all
 
 ## sysctl settings
 # This variable is used in main/rhel7stig/kernel.yml to set sysctl

@@ -107,7 +107,7 @@
   when:
     - item.uid >= 1000
     - security_set_home_directory_permissions_and_owners | bool
-  with_items: "{{ user_list.users | selectattr('uid', 'greater_than', 999) | list }}"
+  with_items: "{{ user_list.users | selectattr('uid', 'greaterthan', 999) | list }}"
   tags:
     - medium
     - file_perms

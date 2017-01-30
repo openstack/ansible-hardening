@@ -79,6 +79,7 @@
     state: present
   when:
     - item.value != ''
+    - item.ansible_os_family == 'all' or item.ansible_os_family == ansible_os_family
   with_items: "{{ shadow_utils_rhel7 }}"
   tags:
     - auth
@@ -89,6 +90,23 @@
     - RHEL-07-010420
     - RHEL-07-020230
     - RHEL-07-020630
+
+# NOTE(mhayden): pam_faildelay expects the `delay` parameter to be in
+# microseconds.
+- name: Set pam_faildelay configuration on Ubuntu
+  lineinfile:
+    dest: /etc/pam.d/login
+    regexp: '^(auth[\s]+optional[\s]+pam_faildelay.so).*$'
+    line: '\1 delay={{ security_shadow_utils_fail_delay * 10**6 }}'
+    state: present
+    backrefs: yes
+  when:
+    - security_shadow_utils_fail_delay is defined
+    - ansible_os_family | lower == 'debian'
+  tags:
+    - auth
+    - medium
+    - RHEL-07-010420
 
 - name: RHEL-07-010190 - User and group account administration utilities must be configured to store only encrypted representations of passwords.
   ini_file:

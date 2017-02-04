@@ -143,7 +143,7 @@ def get_deployer_notes(stig_id):
     _, metadata, text = yaml_boundary.split(rst_file, 2)
 
     # Assemble the metadata and the text from the deployer note.
-    post = yaml.load(metadata)
+    post = yaml.safe_load(metadata)
     post['content'] = text
 
     return post

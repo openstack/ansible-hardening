@@ -31,6 +31,24 @@
   tags:
     - always
 
+# Multiple tasks will need the output of RPM verification, so let's do the
+# lookup one time and then grep over the output in subsequent tasks.
+- name: Verify all installed RPM packages
+  shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt"
+  args:
+    warn: no
+  failed_when: False
+  changed_when: False
+  register: rpmverify_task
+  async: 300
+  poll: 0
+  when:
+    - not check_mode | bool
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - always
+    - skip_ansible_lint
+
 # Package installations and removals must come first so that configuration
 # changes can be made later.
 - include: packages.yml

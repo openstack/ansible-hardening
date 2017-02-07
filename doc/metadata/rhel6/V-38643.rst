@@ -5,7 +5,7 @@ tag: file_perms
 ---
 
 Searching for world-writable files on a host deployed with openstack-ansible
-can be very time consuming and it can create unneccessary I/O load on hosts.
+can be very time consuming and it can create unnecessary I/O load on hosts.
 Deployers are urged to check for world-writable files on a regular basis in
 directories where those files might be a concern (especially web accessible
 directories).

@@ -41,6 +41,8 @@
     - ansible_os_family | lower == 'redhat'
     - rhel_07_010010_packages is defined
     - rhel_07_010010_packages.stdout_lines | length > 0
+  async: 300
+  poll: 0
   tags:
     - file_perms
     - high

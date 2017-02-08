@@ -323,6 +323,7 @@
   always_run: True
   when:
     - ansible_os_family == 'RedHat'
+    - ansible_selinux.status != 'disabled'
   tags:
     - cat1
     - V-51379

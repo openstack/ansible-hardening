@@ -19,7 +19,7 @@ Requirements
 ------------
 
 This role can be used with or without the OpenStack-Ansible role. It requires
-Ansible 1.9.1 or later.
+Ansible 2.2 or later.
 
 Role Variables
 --------------

@@ -63,7 +63,7 @@
 
 # See the documentation for RHEL-07-020150 for more details on this check.
 - name: Search for AllowUnauthenticated in /etc/apt/apt.conf.d/
-  command: grep -r AllowUnauthenticated /etc/apt/apt.conf.d/
+  command: grep -r '^[^#].*AllowUnauthenticated \"true\"' /etc/apt/apt.conf.d/
   register: gpgcheck_result
   changed_when: False
   failed_when: False

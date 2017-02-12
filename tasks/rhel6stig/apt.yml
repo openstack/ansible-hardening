@@ -49,7 +49,7 @@
 # and remediation.
 #
 - name: Search for AllowUnauthenticated in /etc/apt/apt.conf.d/ (for V-38462)
-  command: grep -r AllowUnauthenticated /etc/apt/apt.conf.d/
+  command: grep -r '^[^#].*AllowUnauthenticated \"true\"' /etc/apt/apt.conf.d/
   register: v38462_result
   changed_when: False
   failed_when: False

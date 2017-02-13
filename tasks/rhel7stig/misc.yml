@@ -188,6 +188,8 @@
   when:
     - clamav_install_check.stat.exists
     - security_enable_virus_scanner | bool
+  async: 300
+  poll: 5
   tags:
     - misc
     - RHEL-07-030810

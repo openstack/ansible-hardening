@@ -13,20 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Multiple tasks will need the output of RPM verification, so let's do the
-# lookup one time and then grep over the output in subsequent tasks.
-- name: Verify all installed RPM packages
-  shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt"
-  args:
-    warn: no
+- name: Ensure RPM verification task has finished
+  async_status:
+    jid: "{{ rpmverify_task.ansible_job_id }}"
   failed_when: False
   changed_when: False
+  register: job_result
+  until: job_result.finished
+  retries: 30
   when:
-    - not check_mode | bool
-    - ansible_os_family | lower == 'redhat'
-  tags:
-    - always
-    - skip_ansible_lint
+    - not rpmverify_task | skipped
 
 - name: RHEL-07-010020 - Get files with invalid checksums (rpm)
   shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"

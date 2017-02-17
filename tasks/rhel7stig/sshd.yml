@@ -74,10 +74,9 @@
     - RHEL-07-040670
     - RHEL-07-040680
 
-- name: Ensure sshd is running and enabled
+- name: Ensure sshd is enabled at boot time
   service:
     name: "{{ ssh_service }}"
-    state: started
     enabled: yes
   when:
     - security_enable_sshd | bool

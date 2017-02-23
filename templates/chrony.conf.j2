@@ -96,8 +96,9 @@ rtconutc
 
 {% if security_ntp_bind_local_interfaces_only | bool %}
 # Listen for NTP requests only on local interfaces.
-bindaddress 127.0.0.1
+port 0
+bindcmdaddress 127.0.0.1
 {% if not security_disable_ipv6 | bool %}
-bindaddress ::1
+bindcmdaddress ::1
 {% endif %}
 {% endif %}

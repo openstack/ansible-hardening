@@ -1,6 +1,6 @@
 ---
 id: RHEL-07-010010
-status: implemented - red hat only
+status: opt-in
 tag: file_perms
 ---
 
@@ -14,8 +14,13 @@ The STIG requires that all files owned by an installed package must have their
 permissions, user ownership, and group ownership set back to the vendor
 defaults.
 
-Deployers may opt-out of the change by setting the following Ansible variable:
+Although this is a good practice, it can cause issues if permissions or
+ownership were intentionally set after the packages were installed. It also
+causes significant delays in deployments. Therefore, this STIG is not applied
+by default.
+
+Deployers may opt in for the change by setting the following Ansible variable:
 
 .. code-block:: yaml
 
-   security_reset_perm_ownership: no
+   security_reset_perm_ownership: yes

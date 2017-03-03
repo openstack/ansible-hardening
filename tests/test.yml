@@ -95,3 +95,4 @@
     security_rhel7_initialize_aide: yes
     security_require_grub_authentication: yes
     security_set_home_directory_permissions_and_owners_recursively: no
+    security_reset_perm_ownership: yes

@@ -134,6 +134,9 @@
   when: |
     (v38660_snmpd_apt.rc is defined and v38660_snmpd_apt.rc == 0) or
     (v38660_snmpd_rpm.rc is defined and v38660_snmpd_rpm.rc == 0)
+  tags:
+    - cat2
+    - V-38660
 
 # We shouldn't get any output from this grep since it looks for configuration
 # lines for the SNMP v1 and v2c protocols.
@@ -215,6 +218,11 @@
   when: |
     (v38599_vsftpd_apt.rc is defined and v38599_vsftpd_apt.rc == 0) or
     (v38599_vsftpd_rpm.rc is defined and v38599_vsftpd_rpm.rc == 0)
+  tags:
+    - cat2
+    - cat3
+    - V-38599
+    - V-38702
 
 - name: Copy login banner (for V-38599)
   copy:

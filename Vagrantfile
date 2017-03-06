@@ -15,6 +15,9 @@ Vagrant.configure("2") do |config|
       ansible.skip_tags = ['V-38496']
       # we need to run as sudo for a lot of the checks ansible-security runs
       ansible.raw_arguments = ['-s']
+      ansible.groups = {
+        "ubuntu" => ["ubuntu1404"]
+      }
     end
   end
 
@@ -30,6 +33,9 @@ Vagrant.configure("2") do |config|
       ansible.skip_tags = ['V-38496']
       # we need to run as sudo for a lot of the checks ansible-security runs
       ansible.raw_arguments = ['-s']
+      ansible.groups = {
+        "ubuntu" => ["ubuntu1604"]
+      }
     end
   end
 
@@ -45,6 +51,9 @@ Vagrant.configure("2") do |config|
       ansible.skip_tags = ['V-38496']
       # we need to run as sudo for a lot of the checks ansible-security runs
       ansible.raw_arguments = ['-s']
+      ansible.groups = {
+        "centos" => ["centos7"]
+      }
     end
   end
 end

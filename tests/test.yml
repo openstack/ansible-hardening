@@ -96,3 +96,4 @@
     security_require_grub_authentication: yes
     security_set_home_directory_permissions_and_owners_recursively: no
     security_reset_perm_ownership: yes
+    security_rhel7_remove_shosts_files: yes

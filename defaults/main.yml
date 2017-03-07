@@ -506,7 +506,7 @@ security_pam_faillock_unlock_time: 604800                    # RHEL-07-010372
 # Limit the number of concurrent connections per account.
 #security_rhel7_concurrent_session_limit: 10                 # RHEL-07-040010
 # Remove .shosts and shosts.equiv files.
-security_rhel7_remove_shosts_files: yes                      # RHEL-07-040330
+security_rhel7_remove_shosts_files: no                       # RHEL-07-040330
 
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.

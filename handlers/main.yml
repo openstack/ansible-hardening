@@ -14,10 +14,13 @@
 # limitations under the License.
 
 # Restarting services ########################################################
+#
+# NOTE(mhayden): It's not possible to use systemd to restart auditd on CentOS
+# since it's a special service. Using the old service scripts is required.
 - name: restart auditd
-  service:
-    name: auditd
-    state: restarted
+  command: service auditd restart
+  args:
+    warn: no
 
 - name: restart chrony
   service:

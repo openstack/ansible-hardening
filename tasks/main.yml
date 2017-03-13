@@ -24,11 +24,6 @@
     tags:
       - always
 
-  - name: Gather variables that apply to all operating systems
-    include_vars: common.yml
-    tags:
-      - always
-
   - name: Check for check/audit mode
     command: /bin/true
     register: noop_result

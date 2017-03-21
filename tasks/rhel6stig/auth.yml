@@ -49,8 +49,8 @@
 - name: V-38480 - Warn users prior to password expiration
   lineinfile:
     dest: /etc/login.defs
-    regexp: "^(#)?PASS_WARN_DAYS"
-    line: "PASS_WARN_DAYS {{ security_password_warn_age }}"
+    regexp: "^(#)?PASS_WARN_AGE"
+    line: "PASS_WARN_AGE {{ security_password_warn_age }}"
   when: security_password_warn_age is defined
   tags:
     - auth

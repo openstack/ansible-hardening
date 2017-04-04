@@ -2303,7 +2303,7 @@ banner-message-enable=true</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a graphical user logon.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check to see if the operating system displays a banner at the logon screen with the following command:
 
@@ -2382,7 +2382,7 @@ By using this IS (which includes any device attached to this IS), you consent to
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system displays the approved Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a graphical user logon.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check that the operating system displays the exact approved Standard Mandatory DoD Notice and Consent Banner text with the command:
 
@@ -2645,7 +2645,7 @@ The session lock is implemented at the point where session activity can be deter
       <ident system="http://iase.disa.mil/cci">CCI-000057</ident>
       <fixtext fixref="F-78247r2_fix">Configure the operating system to prevent a user from overriding a session lock after a 15-minute period of inactivity for graphical user interfaces.
 
-Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command: 
+Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
 
 Note: The example below is using the database "local" for the system, so if the system is using another database in /etc/dconf/profile/user, the file should be created under the appropriate subdirectory.
 
@@ -2701,7 +2701,7 @@ Install the screen program (if it is not on the system) with the following comma
 
 # yum install screen
 
-The console can now be locked with the following key combination: 
+The console can now be locked with the following key combination:
 
 ctrl+A x</fixtext>
       <fix id="F-78249r1_fix"/>
@@ -2737,7 +2737,7 @@ The session lock is implemented at the point where session activity can be deter
       <ident system="http://iase.disa.mil/cci">CCI-000057</ident>
       <fixtext fixref="F-78251r1_fix">Configure the operating system to initiate a session lock after a 15-minute period of inactivity for graphical user interfaces.
 
-Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command: 
+Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
 
 # touch /etc/dconf/db/local.d/00-screensaver
 
@@ -2779,7 +2779,7 @@ The session lock is implemented at the point where session activity can be deter
       <ident system="http://iase.disa.mil/cci">CCI-000057</ident>
       <fixtext fixref="F-78253r1_fix">Configure the operating system to initiate a session lock for graphical user interfaces when a screensaver is activated.
 
-Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command: 
+Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
 
 # touch /etc/dconf/db/local.d/00-screensaver
 
@@ -2834,7 +2834,7 @@ ucredit = -1</fixtext>
 
 Check the value for "ucredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep ucredit /etc/security/pwquality.conf 
+# grep ucredit /etc/security/pwquality.conf
 ucredit = -1
 
 If the value of "ucredit" is not set to a negative value, this is a finding.</check-content>
@@ -2876,8 +2876,8 @@ and run the "authconfig" command.</fixtext>
 
 Check the value for "lcredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep lcredit /etc/security/pwquality.conf 
-lcredit = -1 
+# grep lcredit /etc/security/pwquality.conf
+lcredit = -1
 
 If the value of "lcredit" is not set to a negative value, this is a finding.</check-content>
       </check>
@@ -2912,8 +2912,8 @@ dcredit = -1</fixtext>
 
 Check the value for "dcredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep dcredit /etc/security/pwquality.conf 
-dcredit = -1 
+# grep dcredit /etc/security/pwquality.conf
+dcredit = -1
 
 If the value of "dcredit" is not set to a negative value, this is a finding.</check-content>
       </check>
@@ -2950,7 +2950,7 @@ Note: The value to require a number of special characters to be set is expressed
 
 Check the value for "ocredit" in "/etc/security/pwquality.conf" with the following command:
 
-# grep ocredit /etc/security/pwquality.conf 
+# grep ocredit /etc/security/pwquality.conf
 ocredit=-1
 
 If the value of "ocredit" is not set to a negative value, this is a finding.</check-content>
@@ -2986,7 +2986,7 @@ difok = 8</fixtext>
 
 Check for the value of the "difok" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep difok /etc/security/pwquality.conf 
+# grep difok /etc/security/pwquality.conf
 difok = 8
 
 If the value of "difok" is set to less than "8", this is a finding.</check-content>
@@ -3022,7 +3022,7 @@ minclass = 4</fixtext>
 
 Check for the value of the "minclass" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep minclass /etc/security/pwquality.conf 
+# grep minclass /etc/security/pwquality.conf
 minclass = 4
 
 If the value of "minclass" is set to less than "4", this is a finding.</check-content>
@@ -3058,7 +3058,7 @@ maxrepeat = 2</fixtext>
 
 Check for the value of the "maxrepeat" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep maxrepeat /etc/security/pwquality.conf 
+# grep maxrepeat /etc/security/pwquality.conf
 maxrepeat = 2
 
 If the value of "maxrepeat" is set to more than "2", this is a finding.</check-content>
@@ -3094,7 +3094,7 @@ maxclassrepeat = 4</fixtext>
 
 Check for the value of the "maxclassrepeat" option in "/etc/security/pwquality.conf" with the following command:
 
-# grep maxclassrepeat /etc/security/pwquality.conf 
+# grep maxclassrepeat /etc/security/pwquality.conf
 maxclassrepeat = 4
 
 If the value of "maxclassrepeat" is set to more than "4", this is a finding.</check-content>
@@ -3188,7 +3188,7 @@ If the "/etc/login.defs" configuration file does not exist or allows for passwor
       <ident system="http://iase.disa.mil/cci">CCI-000196</ident>
       <fixtext fixref="F-78275r1_fix">Configure the operating system to store only SHA512 encrypted representations of passwords.
 
-Add or update the following line in "/etc/libuser.conf" in the [defaults] section: 
+Add or update the following line in "/etc/libuser.conf" in the [defaults] section:
 
 crypt_style = sha512</fixtext>
       <fix id="F-78275r1_fix"/>
@@ -3231,7 +3231,7 @@ PASS_MIN_DAYS     1</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system enforces 24 hours/1 day as the minimum password lifetime for new user accounts.
 
-Check for the value of "PASS_MIN_DAYS" in "/etc/login.defs" with the following command: 
+Check for the value of "PASS_MIN_DAYS" in "/etc/login.defs" with the following command:
 
 # grep -i pass_min_days /etc/login.defs
 PASS_MIN_DAYS     1
@@ -3425,7 +3425,7 @@ Remove any instances of the "nullok" option in "/etc/pam.d/system-auth-ac" to pr
       <fix id="F-78289r1_fix"/>
       <check system="C-72169r1_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>To verify that null passwords cannot be used, run the following command: 
+        <check-content>To verify that null passwords cannot be used, run the following command:
 
 # grep nullok /etc/pam.d/system-auth-ac
 
@@ -3589,7 +3589,7 @@ If the "even_deny_root" setting is not defined on both lines with the "pam_faill
     <Rule id="SV-86571r1_rule" severity="medium" weight="10.0">
       <version>RHEL-07-010340</version>
       <title>Users must provide a password for privilege escalation.</title>
-      <description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+      <description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization.
 
 When operating systems provide the capability to escalate a functional capability, it is critical the user re-authenticate.
 
@@ -3628,7 +3628,7 @@ If any uncommented line is found with a "NOPASSWD" tag, this is a finding.</chec
     <Rule id="SV-86573r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-010350</version>
       <title>Users must re-authenticate for privilege escalation.</title>
-      <description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+      <description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization.
 
 When operating systems provide the capability to escalate a functional capability, it is critical the user reauthenticate.
 
@@ -3723,7 +3723,7 @@ AutomaticLoginEnable=false</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system does not allow an unattended or automatic logon to the system via a graphical user interface.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check for the value of the "AutomaticLoginEnable" in the "/etc/gdm/custom.conf" file with the following command:
 
@@ -3762,7 +3762,7 @@ TimedLoginEnable=false</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system does not allow an unrestricted logon to the system via a graphical user interface.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Check for the value of the "TimedLoginEnable" parameter in "/etc/gdm/custom.conf" file with the following command:
 
@@ -3952,7 +3952,7 @@ If the root password entry does not begin with "password_pbkdf2", this is a find
 
 Organizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and processes acting on behalf of users) must be uniquely identified and authenticated to all accesses, except for the following:
 
-1) Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication; 
+1) Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication;
 
 and
 
@@ -4080,7 +4080,7 @@ Privileged functions include, for example, establishing accounts, performing sys
       <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
       <fixtext fixref="F-78323r1_fix">Configure the operating system to prevent non-privileged users from executing privileged functions to include disabling, circumventing, or altering implemented security safeguards/countermeasures.
 
-Use the following command to map a new user to the "sysdam_u" role: 
+Use the following command to map a new user to the "sysdam_u" role:
 
 #semanage login -a -s sysadm_u &lt;username&gt;
 
@@ -4146,7 +4146,7 @@ Detecting such changes and providing an automated response can help avoid uninte
       <ident system="http://iase.disa.mil/cci">CCI-001744</ident>
       <fixtext fixref="F-78325r1_fix">Configure the file integrity tool to automatically run on the system at least weekly. The following example output is generic. It will set cron to run AIDE daily, but other file integrity tools may be used:
 
-# cat /etc/cron.daily/aide 
+# cat /etc/cron.daily/aide
 0 0 * * * /usr/sbin/aide --check | /bin/mail -s "aide integrity check run for &lt;system name&gt;" root@sysname.mil</fixtext>
       <fix id="F-78325r1_fix"/>
       <check system="C-72205r1_chk">
@@ -4189,9 +4189,9 @@ Detecting such changes and providing an automated response can help avoid uninte
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-001744</ident>
-      <fixtext fixref="F-78327r1_fix">Configure the operating system to notify designated personnel if baseline configurations are changed in an unauthorized manner. The AIDE tool can be configured to email designated personnel through the use of the cron system.  
+      <fixtext fixref="F-78327r1_fix">Configure the operating system to notify designated personnel if baseline configurations are changed in an unauthorized manner. The AIDE tool can be configured to email designated personnel through the use of the cron system.
 
-The following example output is generic. It will set cron to run AIDE daily and to send email at the completion of the analysis. 
+The following example output is generic. It will set cron to run AIDE daily and to send email at the completion of the analysis.
 
 # more /etc/cron.daily/aide
 0 0 * * * /usr/sbin/aide --check | /bin/mail -s "$HOSTNAME - Daily aide integrity check run" root@sysname.mil</fixtext>
@@ -4206,7 +4206,7 @@ Check to see if AIDE is installed on the system with the following command:
 
 # yum list installed aide
 
-If AIDE is not installed, ask the SA how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the SA how file integrity checks are performed on the system.
 
 Check for the presence of a cron job running routinely on the system that executes AIDE to scan for changes to the system baseline. The commands used in the example will use a daily occurrence.
 
@@ -4256,7 +4256,7 @@ Check that yum verifies the signature of packages from a repository prior to ins
 # grep gpgcheck /etc/yum.conf
 gpgcheck=1
 
-If "gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified. 
+If "gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the certificates for patches and other operating system components are verified.
 
 If there is no process to validate certificates that is approved by the organization, this is a finding.</check-content>
       </check>
@@ -4294,7 +4294,7 @@ Check that yum verifies the signature of local packages prior to install with th
 # grep localpkg_gpgcheck /etc/yum.conf
 localpkg_gpgcheck=1
 
-If "localpkg_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the signatures of local packages and other operating system components are verified. 
+If "localpkg_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the signatures of local packages and other operating system components are verified.
 
 If there is no process to validate the signatures of local packages that is approved by the organization, this is a finding.</check-content>
       </check>
@@ -4332,7 +4332,7 @@ Check that yum verifies the package metadata prior to install with the following
 # grep repo_gpgcheck /etc/yum.conf
 repo_gpgcheck=1
 
-If "repo_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the metadata of local packages and other operating system components are verified. 
+If "repo_gpgcheck" is not set to "1", or if options are missing or commented out, ask the System Administrator how the metadata of local packages and other operating system components are verified.
 
 If there is no process to validate the metadata of packages that is approved by the organization, this is a finding.</check-content>
       </check>
@@ -4561,9 +4561,9 @@ If the "Policy from config file" is not set to "targeted", or the "Loaded policy
 
 # systemctl mask ctrl-alt-del.target
 
-If GNOME is active on the system, create a database to contain the system-wide setting (if it does not already exist) with the following command: 
+If GNOME is active on the system, create a database to contain the system-wide setting (if it does not already exist) with the following command:
 
-# cat /etc/dconf/db/local.d/00-disable-CAD 
+# cat /etc/dconf/db/local.d/00-disable-CAD
 
 Add the setting to disable the Ctrl-Alt_Delete sequence for GNOME:
 
@@ -4676,7 +4676,7 @@ If the release is not supported by the vendor, this is a finding.</check-content
       <fix id="F-78351r1_fix"/>
       <check system="C-72231r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system security patches and updates are installed and up to date. Updates are required to be applied with a frequency determined by the site or Program Management Office (PMO). 
+        <check-content>Verify the operating system security patches and updates are installed and up to date. Updates are required to be applied with a frequency determined by the site or Program Management Office (PMO).
 
 Obtain the list of available package security updates from Red Hat. The URL for updates is https://rhn.redhat.com/errata/. It is important to note that updates provided by Red Hat may not be present on the system if the underlying packages are not installed.
 
@@ -4686,13 +4686,13 @@ Check that the available package security updates have been installed on the sys
 Loaded plugins: langpacks, product-id, subscription-manager
 ID     | Command line             | Date and time    | Action(s)      | Altered
 -------------------------------------------------------------------------------
-    70 | install aide             | 2016-05-05 10:58 | Install       |     1   
+    70 | install aide             | 2016-05-05 10:58 | Install       |     1
     69 | update -y                | 2016-05-04 14:34 | Update     |   18 EE
-    68 | install vlc                | 2016-04-21 17:12 | Install        |   21   
+    68 | install vlc                | 2016-04-21 17:12 | Install        |   21
     67 | update -y                | 2016-04-21 17:04 | Update     |     7 EE
     66 | update -y                | 2016-04-15 16:47 | E, I, U         |   84 EE
 
-If package updates have not been performed on the system within the timeframe that the site/program documentation requires, this is a finding. 
+If package updates have not been performed on the system within the timeframe that the site/program documentation requires, this is a finding.
 
 Typical update frequency may be overridden by Information Assurance Vulnerability Alert (IAVA) notifications from CYBERCOM.
 
@@ -4715,9 +4715,9 @@ If the operating system is in non-compliance with the Information Assurance Vuln
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78353r1_fix">Configure the system so all accounts on the system are assigned to an active system, application, or user account. 
+      <fixtext fixref="F-78353r1_fix">Configure the system so all accounts on the system are assigned to an active system, application, or user account.
 
-Remove accounts that do not support approved system activities or that allow for a normal user to perform administrative-level actions. 
+Remove accounts that do not support approved system activities or that allow for a normal user to perform administrative-level actions.
 
 Document all authorized accounts on the system.</fixtext>
       <fix id="F-78353r1_fix"/>
@@ -4739,7 +4739,7 @@ halt:x:7:0:halt:/sbin:/sbin/halt
 games:x:12:100:games:/usr/games:/sbin/nologin
 gopher:x:13:30:gopher:/var/gopher:/sbin/nologin
 
-Accounts such as "games" and "gopher" are not authorized accounts as they do not support authorized system functions. 
+Accounts such as "games" and "gopher" are not authorized accounts as they do not support authorized system functions.
 
 If the accounts on the system do not match the provided documentation, or accounts that do not support an authorized system function are present, this is a finding.</check-content>
       </check>
@@ -4789,7 +4789,7 @@ If GIDs referenced in "/etc/passwd" file are returned as not defined in "/etc/gr
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78357r1_fix">Change the UID of any account on the system, other than root, that has a UID of "0". 
+      <fixtext fixref="F-78357r1_fix">Change the UID of any account on the system, other than root, that has a UID of "0".
 
 If the account is associated with system commands or applications, the UID should be changed to one greater than "0" but less than "1000". Otherwise, assign a UID of greater than "1000" that has not already been assigned.</fixtext>
       <fix id="F-78357r1_fix"/>
@@ -4957,7 +4957,7 @@ If the value for "CREATE_HOME" parameter is not set to "yes", the line is missin
 
 Note: The example will be for the user smithj, who has a home directory of "/home/smithj", a UID of "smithj", and a Group Identifier (GID) of "users assigned" in "/etc/passwd".
 
-# mkdir /home/smithj 
+# mkdir /home/smithj
 # chown smithj /home/smithj
 # chgrp users /home/smithj
 # chmod 0750 /home/smithj</fixtext>
@@ -5170,7 +5170,7 @@ Note: The example will be for the user "smithj", who has a home directory of "/h
 If any files are found with an owner different than the group home directory user, check to see if the user is a member of that group with the following command:
 
 # grep smithj /etc/group
-sa:x:100:juan,shelley,bob,smithj 
+sa:x:100:juan,shelley,bob,smithj
 smithj:x:521:smithj
 
 If the user is not a member of a group that group owns file(s) in a local interactive user’s home directory, this is a finding.</check-content>
@@ -5288,7 +5288,7 @@ Note: The example will be for the smithj user, who has a home directory of "/hom
 smithj:1000:/home/smithj
 
 # grep 1000 /etc/group
-users:x:1000:smithj,jonesj,jacksons 
+users:x:1000:smithj,jonesj,jacksons
 
 Note: This may miss interactive users that have been assigned a privileged User Identifier (UID). Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
@@ -5494,7 +5494,7 @@ Check the file systems that are mounted at boot time with the following command:
 # more /etc/fstab
 
 UUID=a411dc99-f2a1-4c87-9e05-184977be8539 /home   ext4   rw,relatime,discard,data=ordered,nosuid 0 2
-                                                            
+
 If a file system found in "/etc/fstab" refers to the user home directory file system and it does not have the "nosuid" option set, this is a finding.</check-content>
       </check>
     </Rule>
@@ -5618,7 +5618,7 @@ If any world-writable directories are not owned by root, sys, bin, or an applica
       <ident system="http://iase.disa.mil/cci">CCI-001812</ident>
       <ident system="http://iase.disa.mil/cci">CCI-001813</ident>
       <ident system="http://iase.disa.mil/cci">CCI-001814</ident>
-      <fixtext fixref="F-78401r1_fix">Remove the umask statement from all local interactive users’ initialization files. 
+      <fixtext fixref="F-78401r1_fix">Remove the umask statement from all local interactive users’ initialization files.
 
 If the account is for an application, the requirement for a umask less restrictive than "077" can be documented with the Information System Security Officer, but the user agreement for access to the account must specify that the local interactive user must log on to their account first and then switch the user to the application account with the correct option to gain the account’s environment variables.</fixtext>
       <fix id="F-78401r1_fix"/>
@@ -5667,7 +5667,7 @@ Note: The line must be added before the following entry if it exists in "/etc/rs
 
 Check the configuration of "/etc/rsyslog.conf" for the cron facility with the following command:
 
-Note: If another logging package is used, substitute the utility configuration file for "/etc/rsyslog.conf". 
+Note: If another logging package is used, substitute the utility configuration file for "/etc/rsyslog.conf".
 
 # grep cron /etc/rsyslog.conf
 cron.* /var/log/cron.log
@@ -5680,7 +5680,7 @@ Look for the following entry:
 
 *.* /var/log/messages
 
-If "rsyslog" is not logging messages for the cron facility or all facilities, this is a finding.  
+If "rsyslog" is not logging messages for the cron facility or all facilities, this is a finding.
 
 If the entry is in the "/etc/rsyslog.conf" file but is after the entry "*.*", this is a finding.</check-content>
       </check>
@@ -5889,11 +5889,11 @@ Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on 
 
 # yum list installed aide
 
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
 
 If there is no application installed to perform file integrity checks, this is a finding.
 
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
 
 Use the following command to determine if the file is in another location:
 
@@ -5904,8 +5904,8 @@ Check the "aide.conf" file to determine if the "sha512" rule has been added to t
 An example rule that includes the "sha512" rule follows:
 
 All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All            # apply the custom rule to the files in bin 
-/sbin All          # apply the same custom rule to the files in sbin 
+/bin All            # apply the custom rule to the files in bin
+/sbin All          # apply the same custom rule to the files in sbin
 
 If the "sha512" rule is not being used on all selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2 approved cryptographic hashes for validating file contents and directories, this is a finding.</check-content>
       </check>
@@ -5967,7 +5967,7 @@ Satisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000185-GPOS-00079, SRG-OS-000396-GPO
 
 To enable strict FIPS compliance, the fips=1 kernel option needs to be added to the kernel command line during system installation so key generation is done with FIPS-approved algorithms and continuous monitoring tests in place.
 
-Configure the operating system to implement DoD-approved encryption by following the steps below: 
+Configure the operating system to implement DoD-approved encryption by following the steps below:
 
 The fips=1 kernel option needs to be added to the kernel command line during system installation so that key generation is done with FIPS-approved algorithms and continuous monitoring tests in place. Users should also ensure that the system has plenty of entropy during the installation process by moving the mouse around, or if no mouse is available, ensuring that many keystrokes are typed. The recommended amount of keystrokes is 256 and more. Less than 256 keystrokes may generate a non-unique key.
 
@@ -6033,7 +6033,7 @@ Note: GRUB 2 reads its configuration from the "/boot/grub2/grub.cfg" file on tra
 
 If the kernel command line is configured to use FIPS mode, check to see if the system is in FIPS mode with the following command:
 
-# cat /proc/sys/crypto/fips_enabled 
+# cat /proc/sys/crypto/fips_enabled
 1
 
 If a "dracut-fips" package is not installed, the kernel command line does not have a fips entry, or the system has a value of "0" for "fips_enabled" in "/proc/sys/crypto", this is a finding.</check-content>
@@ -6055,7 +6055,7 @@ If a "dracut-fips" package is not installed, the kernel command line does not ha
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78421r1_fix">Configure the file integrity tool to check file and directory ACLs. 
+      <fixtext fixref="F-78421r1_fix">Configure the file integrity tool to check file and directory ACLs.
 
 If AIDE is installed, ensure the "acl" rule is present on all file and directory selection lists.</fixtext>
       <fix id="F-78421r1_fix"/>
@@ -6067,11 +6067,11 @@ Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on 
 
 # yum list installed aide
 
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
 
 If there is no application installed to perform file integrity checks, this is a finding.
 
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
 
 Use the following command to determine if the file is in another location:
 
@@ -6082,8 +6082,8 @@ Check the "aide.conf" file to determine if the "acl" rule has been added to the 
 An example rule that includes the "acl" rule is below:
 
 All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All            # apply the custom rule to the files in bin 
-/sbin All          # apply the same custom rule to the files in sbin 
+/bin All            # apply the custom rule to the files in bin
+/sbin All          # apply the same custom rule to the files in sbin
 
 If the "acl" rule is not being used on all selection lines in the "/etc/aide.conf" file, or ACLs are not being checked by another file integrity tool, this is a finding.</check-content>
       </check>
@@ -6104,7 +6104,7 @@ If the "acl" rule is not being used on all selection lines in the "/etc/aide.con
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78423r1_fix">Configure the file integrity tool to check file and directory extended attributes. 
+      <fixtext fixref="F-78423r1_fix">Configure the file integrity tool to check file and directory extended attributes.
 
 If AIDE is installed, ensure the "xattrs" rule is present on all file and directory selection lists.</fixtext>
       <fix id="F-78423r1_fix"/>
@@ -6120,7 +6120,7 @@ If AIDE is not installed, ask the System Administrator how file integrity checks
 
 If there is no application installed to perform file integrity checks, this is a finding.
 
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.  
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
 
 Use the following command to determine if the file is in another location:
 
@@ -6131,8 +6131,8 @@ Check the "aide.conf" file to determine if the "xattrs" rule has been added to t
 An example rule that includes the "xattrs" rule follows:
 
 All= p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All            # apply the custom rule to the files in bin 
-/sbin All          # apply the same custom rule to the files in sbin 
+/bin All            # apply the custom rule to the files in bin
+/sbin All          # apply the same custom rule to the files in sbin
 
 If the "xattrs" rule is not being used on all selection lines in the "/etc/aide.conf" file, or extended attributes are not being checked by another file integrity tool, this is a finding.</check-content>
       </check>
@@ -6153,7 +6153,7 @@ If the "xattrs" rule is not being used on all selection lines in the "/etc/aide.
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78425r1_fix">Configure the file integrity tool to use FIPS 140-2 cryptographic hashes for validating file and directory contents. 
+      <fixtext fixref="F-78425r1_fix">Configure the file integrity tool to use FIPS 140-2 cryptographic hashes for validating file and directory contents.
 
 If AIDE is installed, ensure the "sha512" rule is present on all file and directory selection lists.</fixtext>
       <fix id="F-78425r1_fix"/>
@@ -6167,11 +6167,11 @@ Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on 
 
 # yum list installed aide
 
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
 
 If there is no application installed to perform file integrity checks, this is a finding.
 
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory. 
+Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
 
 Use the following command to determine if the file is in another location:
 
@@ -6182,8 +6182,8 @@ Check the "aide.conf" file to determine if the "sha512" rule has been added to t
 An example rule that includes the "sha512" rule follows:
 
 All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All            # apply the custom rule to the files in bin 
-/sbin All          # apply the same custom rule to the files in sbin 
+/bin All            # apply the custom rule to the files in bin
+/sbin All          # apply the same custom rule to the files in sbin
 
 If the "sha512" rule is not being used on all selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2 approved cryptographic hashes for validating file contents and directories, this is a finding.</check-content>
       </check>
@@ -6221,7 +6221,7 @@ Check for the existence of alternate boot loader configuration files with the fo
 # find / -name grub.cfg
 /boot/grub2/grub.cfg
 
-If a "grub.cfg" is found in any subdirectories other than "/boot/grub2" and "/boot/efi/EFI/redhat", ask the System Administrator if there is documentation signed by the ISSO to approve the use of removable media as a boot loader. 
+If a "grub.cfg" is found in any subdirectories other than "/boot/grub2" and "/boot/efi/EFI/redhat", ask the System Administrator if there is documentation signed by the ISSO to approve the use of removable media as a boot loader.
 
 Check that the grub configuration file has the set root command in each menu entry with the following commands:
 
@@ -6263,7 +6263,7 @@ Examples of non-essential capabilities include, but are not limited to, games, s
 
 The telnet service provides an unencrypted remote access service that does not provide for the confidentiality and integrity of user passwords or the remote session.
 
-If a privileged user were to log on using this service, the privileged user password could be compromised. 
+If a privileged user were to log on using this service, the privileged user password could be compromised.
 
 Check to see if the telnet-server package is installed with the following command:
 
@@ -6355,7 +6355,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Confirm the audit configuration regarding how auditing processing failures are handled.
 
-Check to see what level "auditctl" is set to with following command: 
+Check to see what level "auditctl" is set to with following command:
 
 # auditctl -l | grep /-f
  -f 2
@@ -6404,7 +6404,7 @@ To determine the remote server that the records are being sent to, use the follo
 # grep -i remote_server /etc/audisp/audisp-remote.conf
 remote_server = 10.0.21.1
 
-If a remote server is not configured, or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media. 
+If a remote server is not configured, or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media.
 
 If there is no evidence that the audit logs are being off-loaded to another system or media, this is a finding.</check-content>
       </check>
@@ -6444,7 +6444,7 @@ To determine if the transfer is encrypted, use the following command:
 # grep -i enable_krb5 /etc/audisp/audisp-remote.conf
 enable_krb5 = yes
 
-If the value of the "enable_krb5" option is not set to "yes" or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media. 
+If the value of the "enable_krb5" option is not set to "yes" or the line is commented out, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media.
 
 If there is no evidence that the transfer of the audit logs being off-loaded to another system or media is encrypted, this is a finding.</check-content>
       </check>
@@ -6510,7 +6510,7 @@ If the value of the "disk_full_action" option is not "syslog", "single", or "hal
       <ident system="http://iase.disa.mil/cci">CCI-001855</ident>
       <fixtext fixref="F-78441r1_fix">Configure the operating system to immediately notify the SA and ISSO (at a minimum) when allocated audit record storage volume reaches 75 percent of the repository maximum audit record storage capacity.
 
-Check the system configuration to determine the partition the audit records are being written to: 
+Check the system configuration to determine the partition the audit records are being written to:
 
 # grep log_file /etc/audit/auditd.conf
 
@@ -6542,7 +6542,7 @@ If the audit records are not being written to a partition specifically created f
 Determine what the threshold is for the system to take action when 75 percent of the repository maximum audit record storage capacity is reached:
 
 # grep -i space_left /etc/audit/auditd.conf
-space_left = 225 
+space_left = 225
 
 If the value of the "space_left" keyword is not set to 25 percent of the total partition size, this is a finding.</check-content>
       </check>
@@ -6565,8 +6565,8 @@ If the value of the "space_left" keyword is not set to 25 percent of the total p
       <ident system="http://iase.disa.mil/cci">CCI-001855</ident>
       <fixtext fixref="F-78443r1_fix">Configure the operating system to immediately notify the SA and ISSO (at a minimum) when the threshold for the repository maximum audit record storage capacity is reached.
 
-Uncomment or edit the "space_left_action" keyword in "/etc/audit/auditd.conf" and set it to "email". 
- 
+Uncomment or edit the "space_left_action" keyword in "/etc/audit/auditd.conf" and set it to "email".
+
 space_left_action = email</fixtext>
       <fix id="F-78443r1_fix"/>
       <check system="C-72323r1_chk">
@@ -6599,8 +6599,8 @@ If the value of the "space_left_action" keyword is not set to "email", this is a
       <ident system="http://iase.disa.mil/cci">CCI-001855</ident>
       <fixtext fixref="F-78445r3_fix">Configure the operating system to immediately notify the SA and ISSO (at a minimum) when the threshold for the repository maximum audit record storage capacity is reached.
 
-Uncomment or edit the "action_mail_acct" keyword in "/etc/audit/auditd.conf" and set it to root and any other accounts associated with security personnel. 
- 
+Uncomment or edit the "action_mail_acct" keyword in "/etc/audit/auditd.conf" and set it to root and any other accounts associated with security personnel.
+
 action_mail_acct = root</fixtext>
       <fix id="F-78445r3_fix"/>
       <check system="C-72325r4_chk">
@@ -7745,7 +7745,7 @@ Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000470-GPOS-00214, SRG-OS-000473-GPO
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78495r4_fix">Configure the operating system to generate audit records when successful/unsuccessful account access count events occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -w /var/log/tallylog -p wa -k logins
 
@@ -7753,9 +7753,9 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78495r4_fix"/>
       <check system="C-72375r5_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful account access count events occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful account access count events occur.
 
-Check the file system rule in "/etc/audit/audit.rules" with the following commands: 
+Check the file system rule in "/etc/audit/audit.rules" with the following commands:
 
 # grep -i /var/log/tallylog /etc/audit/audit.rules
 
@@ -7786,9 +7786,9 @@ Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000470-GPOS-00214, SRG-OS-000473-GPO
       <ident system="http://iase.disa.mil/cci">CCI-000126</ident>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
-      <fixtext fixref="F-78497r3_fix">Configure the operating system to generate audit records when unsuccessful account access events occur. 
+      <fixtext fixref="F-78497r3_fix">Configure the operating system to generate audit records when unsuccessful account access events occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -w /var/run/faillock/ -p wa -k logins
 
@@ -7796,9 +7796,9 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78497r3_fix"/>
       <check system="C-72377r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when unsuccessful account access events occur. 
+        <check-content>Verify the operating system generates audit records when unsuccessful account access events occur.
 
-Check the file system rule in "/etc/audit/audit.rules" with the following commands: 
+Check the file system rule in "/etc/audit/audit.rules" with the following commands:
 
 # grep -i /var/run/faillock /etc/audit/audit.rules
 
@@ -7829,9 +7829,9 @@ Satisfies: SRG-OS-000392-GPOS-00172, SRG-OS-000470-GPOS-00214, SRG-OS-000473-GPO
       <ident system="http://iase.disa.mil/cci">CCI-000126</ident>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
-      <fixtext fixref="F-78499r3_fix">Configure the operating system to generate audit records when successful account access events occur. 
+      <fixtext fixref="F-78499r3_fix">Configure the operating system to generate audit records when successful account access events occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -w /var/log/lastlog -p wa -k logins
 
@@ -7839,13 +7839,13 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78499r3_fix"/>
       <check system="C-72379r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful account access events occur. 
+        <check-content>Verify the operating system generates audit records when successful account access events occur.
 
-Check the file system rules in "/etc/audit/audit.rules" with the following commands: 
+Check the file system rules in "/etc/audit/audit.rules" with the following commands:
 
 # grep -i /var/log/lastlog /etc/audit/audit.rules
 
--w /var/log/lastlog -p wa -k logins 
+-w /var/log/lastlog -p wa -k logins
 
 If the command does not return any output, this is a finding.</check-content>
       </check>
@@ -8090,9 +8090,9 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78511r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "su" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
--a always,exit -F path=/bin/su -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change 
+-a always,exit -F path=/bin/su -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change
 
 The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78511r4_fix"/>
@@ -8100,7 +8100,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "su" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /bin/su /etc/audit/audit.rules
 
@@ -8134,9 +8134,9 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78513r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "sudo" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
--a always,exit -F path=/usr/bin/sudo -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change 
+-a always,exit -F path=/usr/bin/sudo -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change
 
 The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78513r4_fix"/>
@@ -8144,7 +8144,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "sudo" command occur.
 
-Check for the following system calls being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system calls being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/bin/sudo /etc/audit/audit.rules
 
@@ -8190,7 +8190,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "sudoer" command occur.
 
-Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules": 
+Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules":
 
 # grep /etc/sudoers /etc/audit/audit.rules
 
@@ -8228,7 +8228,7 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78519r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "newgrp" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change
 
@@ -8238,7 +8238,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "newgrp" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/bin/newgrp /etc/audit/audit.rules
 
@@ -8272,7 +8272,7 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78521r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "chsh" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/usr/bin/chsh -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change
 
@@ -8282,7 +8282,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "chsh" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/bin/chsh /etc/audit/audit.rules
 
@@ -8316,7 +8316,7 @@ Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPO
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78523r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "sudoedit" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/bin/sudoedit -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change
 
@@ -8326,7 +8326,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "sudoedit" command occur.
 
-Check for the following system calls being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system calls being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/bin/sudoedit /etc/audit/audit.rules
 
@@ -8370,7 +8370,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "mount" command occur.
 
-Check for the following system calls being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system calls being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /bin/mount /etc/audit/audit.rules
 
@@ -8404,7 +8404,7 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78527r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "umount" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-mount
 
@@ -8414,11 +8414,11 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "umount" command occur.
 
-Check for the following system calls being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system calls being audited by performing the following series of commands to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /bin/umount /etc/audit/audit.rules
 
--a always,exit -F path=/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-mount  
+-a always,exit -F path=/bin/umount -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-mount
 
 If the command does not return any output, this is a finding.</check-content>
       </check>
@@ -8446,7 +8446,7 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
       <fixtext fixref="F-78529r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "postdrop" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/usr/sbin/postdrop -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-postfix
 
@@ -8456,7 +8456,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postdrop" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/sbin/postdrop /etc/audit/audit.rules
 
@@ -8486,9 +8486,9 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172&lt;/VulnDiscussion
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000135</ident>
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
-      <fixtext fixref="F-78531r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "postqueue" command occur. 
+      <fixtext fixref="F-78531r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "postqueue" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/usr/sbin/postqueue -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-postfix
 
@@ -8496,9 +8496,9 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78531r4_fix"/>
       <check system="C-72411r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postqueue" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "postqueue" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/sbin/postqueue /etc/audit/audit.rules
 
@@ -8529,9 +8529,9 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPO
       <ident system="http://iase.disa.mil/cci">CCI-000135</ident>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
-      <fixtext fixref="F-78533r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur. 
+      <fixtext fixref="F-78533r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/usr/libexec/openssh/ssh-keysign -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-ssh
 
@@ -8539,9 +8539,9 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78533r3_fix"/>
       <check system="C-72413r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "ssh-keysign" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/libexec/openssh/ssh-keysign /etc/audit/audit.rules
 
@@ -8572,9 +8572,9 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPO
       <ident system="http://iase.disa.mil/cci">CCI-000135</ident>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
-      <fixtext fixref="F-78535r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "pt_chown" command occur. 
+      <fixtext fixref="F-78535r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "pt_chown" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged_terminal
 
@@ -8582,9 +8582,9 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78535r3_fix"/>
       <check system="C-72415r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pt_chown" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pt_chown" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/libexec/pt_chown /etc/audit/audit.rules
 
@@ -8615,9 +8615,9 @@ Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPO
       <ident system="http://iase.disa.mil/cci">CCI-000135</ident>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
       <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
-      <fixtext fixref="F-78537r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "crontab" command occur. 
+      <fixtext fixref="F-78537r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "crontab" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/usr/bin/crontab -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-cron
 
@@ -8625,9 +8625,9 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78537r3_fix"/>
       <check system="C-72417r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "crontab" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "crontab" command occur.
 
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules": 
+Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
 
 # grep -i /usr/bin/crontab /etc/audit/audit.rules
 
@@ -8652,9 +8652,9 @@ If the command does not return any output, this is a finding.</check-content>
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
-      <fixtext fixref="F-78539r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur. 
+      <fixtext fixref="F-78539r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules": 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules":
 
 -a always,exit -F path=/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged-pam
 
@@ -8662,13 +8662,13 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78539r3_fix"/>
       <check system="C-72419r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pam_timestamp_check" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
 # grep -i /sbin/pam_timestamp_check /etc/audit/audit.rules
 
--a always,exit -F path=/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=4294967295  -k privileged-pam  
+-a always,exit -F path=/sbin/pam_timestamp_check -F perm=x -F auid&gt;=1000 -F auid!=4294967295  -k privileged-pam
 
 If the command does not return any output, this is a finding.</check-content>
       </check>
@@ -8680,7 +8680,7 @@ If the command does not return any output, this is a finding.</check-content>
     <Rule id="SV-86811r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-030820</version>
       <title>All uses of the init_module command must be audited.</title>
-      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -8693,9 +8693,9 @@ Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
-      <fixtext fixref="F-78541r4_fix">Configure the operating system generates audit records when successful/unsuccessful attempts to use the "init_module" command occur. 
+      <fixtext fixref="F-78541r4_fix">Configure the operating system generates audit records when successful/unsuccessful attempts to use the "init_module" command occur.
 
-Add or update the following rules in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture): 
+Add or update the following rules in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture):
 
 -a always,exit -F arch=b32 -S init_module -k module-change
 
@@ -8705,7 +8705,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78541r4_fix"/>
       <check system="C-72421r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "init_module" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "init_module" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
@@ -8713,7 +8713,7 @@ Note: The output lines of the command are duplicated to cover both 32-bit and 64
 
 # grep -i init_module /etc/audit/audit.rules
 
-If the command does not return the following output (appropriate to the architecture), this is a finding. 
+If the command does not return the following output (appropriate to the architecture), this is a finding.
 
 -a always,exit -F arch=b32 -S init_module -k module-change
 
@@ -8729,7 +8729,7 @@ If the command does not return any output, this is a finding.</check-content>
     <Rule id="SV-86813r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-030830</version>
       <title>All uses of the delete_module command must be audited.</title>
-      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -8742,9 +8742,9 @@ Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
-      <fixtext fixref="F-78543r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "delete_module" command occur. 
+      <fixtext fixref="F-78543r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "delete_module" command occur.
 
-Add or update the following rules in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture): 
+Add or update the following rules in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture):
 
 -a always,exit -F arch=b32 -S delete_module -k module-change
 
@@ -8754,7 +8754,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78543r4_fix"/>
       <check system="C-72423r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "delete_module" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "delete_module" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
@@ -8762,7 +8762,7 @@ Note: The output lines of the command are duplicated to cover both 32-bit and 64
 
 # grep -i delete_module /etc/audit/audit.rules
 
-If the command does not return the following output (appropriate to the architecture), this is a finding. 
+If the command does not return the following output (appropriate to the architecture), this is a finding.
 
 -a always,exit -F arch=b32 -S delete_module -k module-change
 
@@ -8778,7 +8778,7 @@ If the command does not return any output, this is a finding.</check-content>
     <Rule id="SV-86815r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-030840</version>
       <title>All uses of the insmod command must be audited.</title>
-      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -8791,9 +8791,9 @@ Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
-      <fixtext fixref="F-78545r5_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "insmod" command occur. 
+      <fixtext fixref="F-78545r5_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "insmod" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture): 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture):
 
 -w /sbin/insmod -p x -F auid!=4294967295 -k module-change
 
@@ -8801,13 +8801,13 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78545r5_fix"/>
       <check system="C-72425r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "insmod" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "insmod" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
 # grep -i insmod /etc/audit/audit.rules
 
-If the command does not return the following output (appropriate to the architecture), this is a finding. 
+If the command does not return the following output (appropriate to the architecture), this is a finding.
 
 -w /sbin/insmod -p x -F auid!=4294967295 -k module-change
 
@@ -8821,7 +8821,7 @@ If the command does not return any output, this is a finding.</check-content>
     <Rule id="SV-86817r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-030850</version>
       <title>All uses of the rmmod command must be audited.</title>
-      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -8834,9 +8834,9 @@ Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
-      <fixtext fixref="F-78547r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "rmmod" command occur. 
+      <fixtext fixref="F-78547r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "rmmod" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture): 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture):
 
 -w /sbin/rmmod-p x -F auid!=4294967295 -k module-change
 
@@ -8844,13 +8844,13 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78547r4_fix"/>
       <check system="C-72427r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "rmmod" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "rmmod" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
 # grep -i rmmod /etc/audit/audit.rules
 
-If the command does not return the following output (appropriate to the architecture), this is a finding. 
+If the command does not return the following output (appropriate to the architecture), this is a finding.
 
 -w /sbin/rmmod -p x -F auid!=4294967295 -k module-change
 
@@ -8864,7 +8864,7 @@ If the command does not return any output, this is a finding.</check-content>
     <Rule id="SV-86819r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-030860</version>
       <title>All uses of the modprobe command must be audited.</title>
-      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).
 
@@ -8877,9 +8877,9 @@ Satisfies: SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
-      <fixtext fixref="F-78549r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "modprobe" command occur. 
+      <fixtext fixref="F-78549r4_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "modprobe" command occur.
 
-Add or update the following rule in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture): 
+Add or update the following rule in "/etc/audit/rules.d/audit.rules" (removing those that do not match the CPU architecture):
 
 -w /sbin/modprobe -p x -F auid!=4294967295 -k module-change
 
@@ -8887,7 +8887,7 @@ The audit daemon must be restarted for the changes to take effect.</fixtext>
       <fix id="F-78549r4_fix"/>
       <check system="C-72429r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "modprobe" command occur. 
+        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "modprobe" command occur.
 
 Check the auditing rules in "/etc/audit/audit.rules" with the following command:
 
@@ -8895,7 +8895,7 @@ Note: The output lines of the command are duplicated to cover both 32-bit and 64
 
 # grep -i modprobe /etc/audit/audit.rules
 
-If the command does not return the following output (appropriate to the architecture), this is a finding. 
+If the command does not return the following output (appropriate to the architecture), this is a finding.
 
 -w /sbin/modprobe -p x -F auid!=4294967295 -k module-change
 
@@ -9192,7 +9192,7 @@ Note: If another logging package is used, substitute the utility configuration f
 # grep @ /etc/rsyslog.conf
 *.* @@logagg.site.mil
 
-If there are no lines in the "/etc/rsyslog.conf" file that contain the "@" or "@@" symbol(s), and the lines with the correct symbol(s) to send output to another system do not cover all "rsyslog" output, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media. 
+If there are no lines in the "/etc/rsyslog.conf" file that contain the "@" or "@@" symbol(s), and the lines with the correct symbol(s) to send output to another system do not cover all "rsyslog" output, ask the System Administrator to indicate how the audit logs are off-loaded to a different system or media.
 
 If there is no evidence that the audit logs are being sent to another system, this is a finding.</check-content>
       </check>
@@ -9241,7 +9241,7 @@ If the documentation does not exist, or does not specify the server as a log agg
     <Rule id="SV-86837r1_rule" severity="high" weight="10.0">
       <version>RHEL-07-032000</version>
       <title>The system must use a DoD-approved virus scan program.</title>
-      <description>&lt;VulnDiscussion&gt;Virus scanning software can be used to protect a system from penetration from computer viruses and to limit their spread through intermediate systems.  
+      <description>&lt;VulnDiscussion&gt;Virus scanning software can be used to protect a system from penetration from computer viruses and to limit their spread through intermediate systems.
 
 The virus scanning software should be configured to perform scans dynamically on accessed files. If this capability is not available, the system must be configured to scan, at a minimum, all altered files on the system on a daily basis.
 
@@ -9263,7 +9263,7 @@ If the system processes inbound SMTP mail, the virus scanner must be configured 
 Check for the presence of "McAfee VirusScan Enterprise for Linux" with the following command:
 
 # systemctl status nails
-nails - service for McAfee VirusScan Enterprise for Linux 
+nails - service for McAfee VirusScan Enterprise for Linux
 &gt;  Loaded: loaded /opt/NAI/package/McAfeeVSEForLinux/McAfeeVSEForLinux-2.0.2.&lt;build_number&gt;; enabled)
 &gt;  Active: active (running) since Mon 2015-09-27 04:11:22 UTC;21 min ago
 
@@ -9275,7 +9275,7 @@ If the "nails" service is not active, check for the presence of "clamav" on the 
      Loaded: loaded (/lib/systemd/system/clamav-daemon.socket; enabled)
      Active: active (running) since Mon 2015-01-12 09:32:59 UTC; 7min ago
 
-If neither of these applications are loaded and active, ask the System Administrator if there is an antivirus package installed and active on the system. 
+If neither of these applications are loaded and active, ask the System Administrator if there is an antivirus package installed and active on the system.
 
 If no antivirus scan program is active on the system, this is a finding.</check-content>
       </check>
@@ -9287,7 +9287,7 @@ If no antivirus scan program is active on the system, this is a finding.</check-
     <Rule id="SV-86839r1_rule" severity="medium" weight="10.0">
       <version>RHEL-07-032010</version>
       <title>The system must update the DoD-approved virus scan program every seven days or more frequently.</title>
-      <description>&lt;VulnDiscussion&gt;Virus scanning software can be used to protect a system from penetration from computer viruses and to limit their spread through intermediate systems.  
+      <description>&lt;VulnDiscussion&gt;Virus scanning software can be used to protect a system from penetration from computer viruses and to limit their spread through intermediate systems.
 
 The virus scanning software should be configured to check for software and virus definition updates with a frequency no longer than seven days. If a manual process is required to update the virus scan software or definitions, it must be documented with the Information System Security Officer (ISSO).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
       <reference>
@@ -9307,7 +9307,7 @@ The virus scanning software should be configured to check for software and virus
 Check for the presence of "McAfee VirusScan Enterprise for Linux" with the following command:
 
 # systemctl status nails
-nails - service for McAfee VirusScan Enterprise for Linux 
+nails - service for McAfee VirusScan Enterprise for Linux
 &gt;  Loaded: loaded /opt/NAI/package/McAfeeVSEForLinux/McAfeeVSEForLinux-2.0.2.&lt;build_number&gt;; enabled)
 &gt;  Active: active (running) since Mon 2015-09-27 04:11:22 UTC;21 min ago
 
@@ -9407,15 +9407,15 @@ Check which services are currently active with the following command:
 # firewall-cmd --list-all
 public (default, active)
   interfaces: enp0s3
-  sources: 
+  sources:
   services: dhcpv6-client dns http https ldaps rpc-bind ssh
-  ports: 
+  ports:
   masquerade: no
-  forward-ports: 
-  icmp-blocks: 
-  rich rules: 
+  forward-ports:
+  icmp-blocks:
+  rich rules:
 
-Ask the System Administrator for the site or program PPSM CLSA. Verify the services allowed by the firewall match the PPSM CLSA. 
+Ask the System Administrator for the site or program PPSM CLSA. Verify the services allowed by the firewall match the PPSM CLSA.
 
 If there are additional ports, protocols, or services that are not in the PPSM CLSA, or there are ports, protocols, or services that are prohibited by the PPSM Category Assurance List (CAL), this is a finding.</check-content>
       </check>
@@ -9475,7 +9475,7 @@ If any ciphers other than "aes128-ctr", "aes192-ctr", or "aes256-ctr" are listed
     <Rule id="SV-86847r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-040160</version>
       <title>All network connections associated with a communication session must be terminated at the end of the session or after 10 minutes of inactivity from the user at a command prompt, except to fulfill documented and validated mission requirements.</title>
-      <description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
+      <description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
 
 Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
       <reference>
@@ -9501,7 +9501,7 @@ The SSH service must be restarted for changes to take effect.</fixtext>
 
 Check the value of the system inactivity timeout with the following command:
 
-# grep -i tmout /etc/bashrc 
+# grep -i tmout /etc/bashrc
 TMOUT=600
 
 If "TMOUT" is not set to "600" or less in "/etc/bashrc", this is a finding.</check-content>
@@ -9560,7 +9560,7 @@ Either create the file containing the banner or replace the text in the file wit
 "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
 -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
- 
+
 -At any time, the USG may inspect and seize data stored on this IS.
 
 -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
@@ -9678,7 +9678,7 @@ To determine if LDAP is being used for authentication, use the following command
 # grep -i useldapauth /etc/sysconfig/authconfig
 USELDAPAUTH=yes
 
-If USELDAPAUTH=yes, then LDAP is being used. 
+If USELDAPAUTH=yes, then LDAP is being used.
 
 Check for the directory containing X.509 certificates for peer authentication with the following command:
 
@@ -9740,9 +9740,9 @@ If this file does not exist, or the option is commented out or missing, this is 
     <Rule id="SV-86857r1_rule" severity="medium" weight="10.0">
       <version>RHEL-07-040300</version>
       <title>All networked systems must have SSH installed.</title>
-      <description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. 
+      <description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered.
 
-This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification.
 
 Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, logical means (cryptography) do not have to be employed, and vice versa.
 
@@ -9787,9 +9787,9 @@ If the "SSH client" package is not installed, this is a finding.</check-content>
     <Rule id="SV-86859r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-040310</version>
       <title>All networked systems must use SSH for confidentiality and integrity of transmitted and received information as well as information during preparation for transmission.</title>
-      <description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. 
+      <description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered.
 
-This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification.
 
 Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa.
 
@@ -10182,7 +10182,7 @@ If any ciphers other than "hmac-sha2-256" or "hmac-sha2-512" are listed or the r
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78609r1_fix">Note: SSH public key files may be found in other directories on the system depending on the installation. 
+      <fixtext fixref="F-78609r1_fix">Note: SSH public key files may be found in other directories on the system depending on the installation.
 
 Change the mode of public host key files under "/etc/ssh" to "0644" with the following command:
 
@@ -10263,7 +10263,7 @@ If any file has a mode more permissive than "0600", this is a finding.</check-co
       <ident system="http://iase.disa.mil/cci">CCI-001812</ident>
       <ident system="http://iase.disa.mil/cci">CCI-001813</ident>
       <ident system="http://iase.disa.mil/cci">CCI-001814</ident>
-      <fixtext fixref="F-78613r2_fix">Uncomment the "GSSAPIAuthentication" keyword in "/etc/ssh/sshd_config" (this file may be named differently or be in a different location if using a version of SSH that is provided by a third-party vendor) and set the value to "no": 
+      <fixtext fixref="F-78613r2_fix">Uncomment the "GSSAPIAuthentication" keyword in "/etc/ssh/sshd_config" (this file may be named differently or be in a different location if using a version of SSH that is provided by a third-party vendor) and set the value to "no":
 
 GSSAPIAuthentication no
 
@@ -10565,9 +10565,9 @@ Check to see if "firewalld" is installed with the following command:
 # yum list installed firewalld
 firewalld-0.3.9-11.el7.noarch.rpm
 
-If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed. 
+If the "firewalld" package is not installed, ask the System Administrator if another firewall application (such as iptables) is installed.
 
-If an application firewall is not installed, this is a finding. 
+If an application firewall is not installed, this is a finding.
 
 Check to see if the firewall is loaded and active with the following command:
 
@@ -10577,11 +10577,11 @@ firewalld.service - firewalld - dynamic firewall daemon
    Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled)
    Active: active (running) since Tue 2014-06-17 11:14:49 CEST; 5 days ago
 
-If "firewalld" does not show a status of "loaded" and "active", this is a finding. 
+If "firewalld" does not show a status of "loaded" and "active", this is a finding.
 
 Check the state of the firewall:
 
-# firewall-cmd --state 
+# firewall-cmd --state
 running
 
 If "firewalld" does not show a state of "running", this is a finding.</check-content>
@@ -10603,7 +10603,7 @@ If "firewalld" does not show a state of "running", this is a finding.</check-con
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78629r1_fix">Configure the operating system to provide users with feedback on when account accesses last occurred by setting the required configuration options in "/etc/pam.d/postlogin-ac". 
+      <fixtext fixref="F-78629r1_fix">Configure the operating system to provide users with feedback on when account accesses last occurred by setting the required configuration options in "/etc/pam.d/postlogin-ac".
 
 Add the following line to the top of "/etc/pam.d/postlogin-ac":
 
@@ -10883,7 +10883,7 @@ If the returned line does not have a value of "0", or a line is not returned, th
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78645r2_fix">Configure the system to not allow interfaces to perform IPv4 ICMP redirects by default. 
+      <fixtext fixref="F-78645r2_fix">Configure the system to not allow interfaces to perform IPv4 ICMP redirects by default.
 
 Set the system to the required kernel parameter by adding the following line to "/etc/sysctl.conf" (or modify the line to have the required value):
 
@@ -10917,7 +10917,7 @@ If the returned line does not have a value of "0", or a line is not returned, th
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78647r2_fix">Configure the system to not allow interfaces to perform IPv4 ICMP redirects. 
+      <fixtext fixref="F-78647r2_fix">Configure the system to not allow interfaces to perform IPv4 ICMP redirects.
 
 Set the system to the required kernel parameter by adding the following line to "/etc/sysctl.conf" (or modify the line to have the required value):
 
@@ -10998,7 +10998,7 @@ If network interfaces are found on the system in promiscuous mode and their use 
 Determine if "postfix" is installed with the following commands:
 
 # yum list installed postfix
-postfix-2.6.6-6.el7.x86_64.rpm 
+postfix-2.6.6-6.el7.x86_64.rpm
 
 If postfix is not installed, this is Not Applicable.
 
@@ -11145,7 +11145,7 @@ tftp-0.49-9.el7.x86_64.rpm
 
 If a TFTP server is not installed, this is Not Applicable.
 
-If a TFTP server is installed, check for the server arguments with the following command: 
+If a TFTP server is installed, check for the server arguments with the following command:
 
 # grep server_arge /etc/xinetd.d/tftp
 server_args = -s /var/lib/tftpboot
@@ -11236,7 +11236,7 @@ If IP forwarding value is "1" and the system is hosting any application, databas
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78665r2_fix">Update the "/etc/fstab" file so the option "sec" is defined for each NFS mounted file system and the "sec" option does not have the "sys" setting. 
+      <fixtext fixref="F-78665r2_fix">Update the "/etc/fstab" file so the option "sec" is defined for each NFS mounted file system and the "sec" option does not have the "sys" setting.
 
 Ensure the "sec" option is defined as "krb5:krb5i:krb5p".</fixtext>
       <fix id="F-78665r2_fix"/>
@@ -11305,13 +11305,13 @@ If either of these commands returns any output, this is a finding.</check-conten
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78669r1_fix">If "firewalld" is installed and active on the system, configure rules for allowing specific services and hosts. 
+      <fixtext fixref="F-78669r1_fix">If "firewalld" is installed and active on the system, configure rules for allowing specific services and hosts.
 
 If "tcpwrappers" is installed, configure the "/etc/hosts.allow" and "/etc/hosts.deny" to allow or deny access to specific hosts.</fixtext>
       <fix id="F-78669r1_fix"/>
       <check system="C-72549r1_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>If the "firewalld" package is not installed, ask the System Administrator (SA) if another firewall application (such as iptables) is installed. If an application firewall is not installed, this is a finding. 
+        <check-content>If the "firewalld" package is not installed, ask the System Administrator (SA) if another firewall application (such as iptables) is installed. If an application firewall is not installed, this is a finding.
 
 Verify the system's access control program is configured to grant or deny system access to specific hosts.
 
@@ -11344,7 +11344,7 @@ If "firewalld" is not active, determine whether "tcpwrappers" is being used by c
 
 # ls -al /etc/hosts.allow
 rw-r----- 1 root root 9 Aug  2 23:13 /etc/hosts.allow
- 
+
 # ls -al /etc/hosts.deny
 -rw-r----- 1 root root  9 Apr  9  2007 /etc/hosts.deny
 
@@ -11654,7 +11654,7 @@ The session lock is implemented at the point where session activity can be deter
       <ident system="http://iase.disa.mil/cci">CCI-000057</ident>
       <fixtext fixref="F-79601r2_fix">Configure the operating system to prevent a user from overriding a screensaver lock after a 15-minute period of inactivity for graphical user interfaces.
 
-Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command: 
+Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
 
 Note: The example below is using the database "local" for the system, so if the system is using another database in "/etc/dconf/profile/user", the file should be created under the appropriate subdirectory.
 
@@ -11666,7 +11666,7 @@ Add the setting to lock the screensaver lock delay:
       <fix id="F-79601r2_fix"/>
       <check system="C-73279r4_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system prevents a user from overriding a screensaver lock after a 15-minute period of inactivity for graphical user interfaces. 
+        <check-content>Verify the operating system prevents a user from overriding a screensaver lock after a 15-minute period of inactivity for graphical user interfaces.
 
 Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
 
@@ -11706,7 +11706,7 @@ The session lock is implemented at the point where session activity can be deter
       <ident system="http://iase.disa.mil/cci">CCI-000057</ident>
       <fixtext fixref="F-79603r1_fix">Configure the operating system to prevent a user from overriding a session lock after a 15-minute period of inactivity for graphical user interfaces.
 
-Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command: 
+Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
 
 Note: The example below is using the database "local" for the system, so if the system is using another database in /etc/dconf/profile/user, the file should be created under the appropriate subdirectory.
 
@@ -11720,7 +11720,7 @@ Add the setting to lock the session idle delay:
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system prevents a user from overriding session idle delay after a 15-minute period of inactivity for graphical user interfaces. The screen program must be installed to lock sessions on the console.
 
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. 
+Note: If the system does not have GNOME installed, this requirement is Not Applicable.
 
 Determine which profile the system database is using with the following command:
 # grep system-db /etc/dconf/profile/user
@@ -11762,7 +11762,7 @@ password    required    pam_pwquality.so retry=3</fixtext>
       <fix id="F-79605r1_fix"/>
       <check system="C-73283r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system uses "pwquality" to enforce the password complexity rules. 
+        <check-content>Verify the operating system uses "pwquality" to enforce the password complexity rules.
 
 Check for the use of "pwquality" with the following command:
 

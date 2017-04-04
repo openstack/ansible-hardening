@@ -33,6 +33,7 @@ grub_defaults_file: /etc/default/grub
 aide_cron_job_path: /etc/cron.daily/aide
 aide_database_file: /var/lib/aide/aide.db
 chrony_conf_file: /etc/chrony/chrony.conf
+daemon_init_params_file: /etc/init.d/rc
 
 # Service name
 cron_service: cron

@@ -125,10 +125,10 @@
 # Please read the documentation and the comments in defaults/main.yml prior
 # to making any umask-related changes.
 
-# Ubuntu 14.04's default umask in /etc/init.d/rc is 022 already.
+# Ubuntu 14.04 and CentOS 7 both have a default umask set to 022 already.
 - name: V-38642 - System default umask for daemons must be 027 or 022
   lineinfile:
-    dest: /etc/init.d/rc
+    dest: "{{ daemon_init_params_file }}"
     regexp: "^umask "
     line: "umask {{ security_umask_daemons_init }}"
   when: security_umask_daemons_init is defined

@@ -30,6 +30,7 @@ grub_defaults_file: /etc/sysconfig/grub
 aide_cron_job_path: /etc/cron.d/aide
 aide_database_file: /var/lib/aide/aide.db.gz
 chrony_conf_file: /etc/chrony.conf
+daemon_init_params_file: /etc/init.d/functions
 
 # Service names
 cron_service: crond

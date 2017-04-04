@@ -1,0 +1,16 @@
+---
+id: V-71997
+status: exception - manual intervention
+tag: packages
+---
+
+The STIG requires that the current release of the operating system is still
+supported and is actively receiving security updates. Deployers are urged to
+stay current with the latest releases from Ubuntu, CentOS and Red Hat.
+
+The following links provide more details on end of life (EOL) dates for the
+distributions supported by this role:
+
+* `Ubuntu releases <https://wiki.ubuntu.com/Releases>`_
+* `CentOS EOL dates <https://wiki.centos.org/FAQ/General#head-fe8a0be91ee3e7dea812e8694491e1dde5b75e6d>`_
+* `Red Hat Enterprise Linux Life Cycle <https://access.redhat.com/support/policy/updates/errata>`_

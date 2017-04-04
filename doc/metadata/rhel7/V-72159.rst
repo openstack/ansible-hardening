@@ -1,0 +1,13 @@
+---
+id: V-72159
+status: implemented
+tag: auditd
+---
+
+The tasks add a rule to auditd that logs each time the ``su`` command is used.
+
+Deployers can opt-out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_audit_su: no

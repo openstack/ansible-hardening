@@ -1,0 +1,15 @@
+---
+id: V-71955
+status: implemented
+tag: graphical
+---
+
+If ``TimedLoginEnable=true`` exists in the gdm configuration file,
+``/etc/gdm/custom.conf``, the configuration will removed. This disallows timed
+logins for guest users in gdm.
+
+Deployers can opt-out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_disable_gdm_timed_login: no

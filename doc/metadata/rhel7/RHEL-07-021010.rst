@@ -1,8 +1,0 @@
----
-id: RHEL-07-021010
-status: exception - manual intervention
-tag: misc
----
-
-Deployers should examine any filesystem mounts that contain home directories to
-ensure that the ``nosetuid`` option is set.

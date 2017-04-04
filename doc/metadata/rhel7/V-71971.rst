@@ -1,0 +1,15 @@
+---
+id: V-71971
+status: exception - manual intervention
+tag: auth
+---
+
+The tasks in the security role cannot determine the access levels of individual
+users.
+
+Deployers are strongly encouraged to configure SELinux user confinement on
+compatible systems using ``semanage login``. Refer to the
+`Confining Existing Linux Users`_ documentation from Red Hat for detailed
+information and command line examples.
+
+.. _Confining Existing Linux Users: https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SELinux_Users_and_Administrators_Guide/sect-Security-Enhanced_Linux-Confining_Users-Confining_Existing_Linux_Users_semanage_login.html

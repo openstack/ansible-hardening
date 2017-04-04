@@ -1,0 +1,16 @@
+---
+id: V-71891
+status: implemented
+tag: graphical
+---
+
+The STIG requires that graphical sessions are locked when the screensaver
+starts and that users must re-enter credentials to restore access to the
+system. The screensaver lock is enabled by default if ``dconf`` is present on
+the system.
+
+Deployers can opt out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_lock_session: no

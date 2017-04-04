@@ -1,0 +1,14 @@
+---
+id: V-72069
+status: implemented
+tag: aide
+---
+
+CentOS 7 and Red Hat Enterprise Linux 7 already deploy a very secure AIDE
+configuration that checks access control lists (ACLs) and extended attributes
+by default. No configuration changes are applied on these systems.
+
+However, Ubuntu lacks the rules that include ACL and extended attribute checks.
+The tasks in the security role will add a small configuration block at the end
+of the AIDE configuration file to meet the requirements of this STIG, as well
+as V-72071.

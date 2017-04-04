@@ -41,15 +41,27 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010090
-    - RHEL-07-010100
-    - RHEL-07-010110
-    - RHEL-07-010120
-    - RHEL-07-010130
-    - RHEL-07-010140
-    - RHEL-07-010150
-    - RHEL-07-010160
-    - RHEL-07-010250
+    - V-71903
+    - V-71905
+    - V-71907
+    - V-71909
+    - V-71911
+    - V-71913
+    - V-71915
+    - V-71917
+    - V-71935
+
+- name: Use pwquality when passwords are changed or created
+  lineinfile:
+    dest: /etc/pam.d/passwd
+    line: "password required pam_pwquality.so retry=3"
+    state: present
+  when:
+    - security_enable_pwquality_password_set | bool
+  tags:
+    - auth
+    - medium
+    - V-73159
 
 - name: Check for SHA512 password storage in PAM
   command: "grep pam_unix.so {{ pam_password_file }}"
@@ -59,7 +71,7 @@
   tags:
     - always
 
-- name: RHEL-07-010170 - The PAM system service must be configured to store only encrypted representations of passwords.
+- name: V-71919 - The PAM system service must be configured to store only encrypted representations of passwords.
   debug:
     msg: >
       PAM is not using SHA512 for password storage. This is a security issue.
@@ -69,7 +81,7 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010170
+    - V-71919
 
 - name: Configure shadow-utils configuration
   lineinfile:
@@ -84,12 +96,12 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010180
-    - RHEL-07-010200
-    - RHEL-07-010220
-    - RHEL-07-010420
-    - RHEL-07-020230
-    - RHEL-07-020630
+    - V-71921
+    - V-71925
+    - V-71929
+    - V-71951
+    - V-71995
+    - V-72013
 
 # NOTE(mhayden): pam_faildelay expects the `delay` parameter to be in
 # microseconds.
@@ -106,9 +118,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010420
+    - V-71951
 
-- name: RHEL-07-010190 - User and group account administration utilities must be configured to store only encrypted representations of passwords.
+- name: V-71923 - User and group account administration utilities must be configured to store only encrypted representations of passwords.
   ini_file:
     dest: /etc/libuser.conf
     section: defaults
@@ -121,7 +133,7 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010190
+    - V-71923
 
 - name: Get all user accounts with a password lifetime limit under 24 hours
   shell: "awk -F: '$4 < 1 {print $1}' /etc/shadow"
@@ -131,10 +143,10 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010210
+    - V-71927
     - skip_ansible_lint
 
-- name: RHEL-07-010210 - Passwords must be restricted to a 24 hours/1 day minimum lifetime.
+- name: V-71927 - Passwords must be restricted to a 24 hours/1 day minimum lifetime.
   debug:
     msg: |
       Accounts were found with a minimum password lifetime limit under 24 hours:
@@ -144,9 +156,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010210
+    - V-71927
 
-- name: RHEL-07-010240 - Passwords must be prohibited from reuse for a minimum of five generations.
+- name: V-71933 - Passwords must be prohibited from reuse for a minimum of five generations.
   lineinfile:
     dest: "{{ pam_password_file }}"
     regexp: '^(password\s+[a-z0-9\=\[\] ]+\s+pam_unix\.so.+?)\s+(?:remember=\d+)?$'
@@ -158,9 +170,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010240
+    - V-71933
 
-- name: RHEL-07-010230 - Existing passwords must be restricted to a 60-day maximum lifetime.
+- name: V-71931 - Existing passwords must be restricted to a 60-day maximum lifetime.
   debug:
     msg: |
       The following user accounts have an existing password with a lifetime of
@@ -173,9 +185,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010230
+    - V-71931
 
-- name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
+- name: V-71937 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"
     state: present
@@ -189,9 +201,9 @@
   tags:
     - auth
     - high
-    - RHEL-07-010260
+    - V-71937
 
-- name: RHEL-07-010260 - The system must not have accounts configured with blank or null passwords
+- name: V-71937 - The system must not have accounts configured with blank or null passwords
   lineinfile:
     dest: "{{ pam_auth_file }}"
     state: present
@@ -208,9 +220,9 @@
   tags:
     - auth
     - high
-    - RHEL-07-010260
+    - V-71937
 
-- name: RHEL-07-010280 - The operating system must disable account identifiers if the password expires.
+- name: V-71941 - The operating system must disable account identifiers if the password expires.
   lineinfile:
     dest: /etc/default/useradd
     regexp: '^[#\s]*INACTIVE'
@@ -220,9 +232,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010280
+    - V-71941
 
-- name: RHEL-07-010371 - If three unsuccessful logon attempts within 15 minutes occur the associated account must be locked.
+- name: V-71945 - If three unsuccessful logon attempts within 15 minutes occur the associated account must be locked.
   blockinfile:
     dest: pam_password_file
     state: present
@@ -235,9 +247,8 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010371
-    - RHEL-07-010372
-    - RHEL-07-010373
+    - V-71943
+    - V-71945
 
 - name: Check for 'nopasswd' in sudoers files
   shell: grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ || echo 'not found'
@@ -246,9 +257,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010380
+    - V-71947
 
-- name: RHEL-07-010380 - Users must provide a password for privilege escalation.
+- name: V-71947 - Users must provide a password for privilege escalation.
   debug:
     msg: >
       The 'NOPASSWD' directive was found in the sudoers configuration files.
@@ -260,7 +271,7 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010380
+    - V-71947
     - skip_ansible_lint
 
 - name: Check for '!authenticate' in sudoers files
@@ -270,9 +281,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010381
+    - V-71949
 
-- name: RHEL-07-010381 - Users must re-authenticate for privilege escalation.
+- name: V-71949 - Users must re-authenticate for privilege escalation.
   debug:
     msg: >
       The '!authenticate' directive was found in the sudoers configuration
@@ -284,7 +295,7 @@
   tags:
     - auth
     - medium
-    - RHEL-07-010381
+    - V-71949
     - skip_ansible_lint
 
 - name: Check if sssd.conf exists
@@ -294,37 +305,6 @@
   check_mode: no
   tags:
     - always
-
-- name: RHEL-07-010400 - The operating system must prohibit the use of cached nss authenticators after one day.
-  ini_file:
-    dest: /etc/sssd/sssd.conf
-    section: nss
-    option: memcache_timeout
-    value: "{{ security_nss_cached_authenticator_timeout }}"
-    backup: yes
-  when:
-    - sssd_conf_check.stat.exists
-    - security_nss_cached_authenticator_timeout is defined
-  tags:
-    - auth
-    - medium
-    - RHEL-07-010400
-
-- name: RHEL-07-010401 - The operating system must prohibit the use of cached PAM authenticators after one day.
-  ini_file:
-    dest: /etc/sssd/sssd.conf
-    section: pam
-    option: offline_credentials_expiration
-    value: "{{ security_pam_offline_credentials_expiration_days }}"
-    backup: yes
-  when:
-    - sssd_conf_check.stat.exists
-    - security_pam_offline_credentials_expiration_days is defined
-  tags:
-    - auth
-    - medium
-    - RHEL-07-010401
-    - RHEL-07-010402
 
 - name: Set a GRUB 2 password for single-user/maintenance modes
   lineinfile:
@@ -339,8 +319,8 @@
   tags:
     - auth
     - high
-    - RHEL-07-010460
-    - RHEL-07-010470
+    - V-71961
+    - V-71963
 
 - name: Get all accounts with UID 0
   shell: "awk -F: '$3 == 0 {print $1}' /etc/passwd"
@@ -350,7 +330,7 @@
   tags:
     - auth
     - high
-    - RHEL-07-020310
+    - V-72005
     - skip_ansible_lint
 
 - name: Check for groups in /etc/passwd that are not in /etc/group
@@ -364,9 +344,9 @@
   tags:
     - auth
     - low
-    - RHEL-07-020300
+    - V-72003
 
-- name: RHEL-07-020310 - The root account must be the only account having unrestricted access to the system
+- name: V-72005 - The root account must be the only account having unrestricted access to the system
   fail:
     msg: |
       Only the 'root' user should have UID 0. Other users were found:
@@ -376,9 +356,9 @@
   tags:
     - auth
     - high
-    - RHEL-07-020310
+    - V-72005
 
-- name: RHEL-07-020620 - All local interactive users must have a home directory assigned in the /etc/passwd file.
+- name: V-72011 - All local interactive users must have a home directory assigned in the /etc/passwd file.
   debug:
     msg: |
       The following users do not have a home directory assigned:
@@ -389,7 +369,7 @@
   tags:
     - auth
     - medium
-    - RHEL-07-020620
+    - V-72011
 
 - name: Check each user to see if its home directory exists on the filesystem
   stat:
@@ -401,9 +381,9 @@
   tags:
     - auth
     - medium
-    - RHEL-07-020640
+    - V-72015
 
-- name: RHEL-07-020640 - All local interactive user home directories defined in the /etc/passwd file must exist.
+- name: V-72015 - All local interactive user home directories defined in the /etc/passwd file must exist.
   debug:
     msg: |
       These users have a home directory assigned, but the directory does not exist:
@@ -417,78 +397,22 @@
   tags:
     - auth
     - medium
-    - RHEL-07-020640
+    - V-72015
 
-- name: RHEL-07-040010 - The operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types.
+- name: V-72217 - The operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types.
   blockinfile:
     dest: /etc/security/limits.d/openstack-ansible-security-maxlogins.conf
     create: yes
     block: |
       # Deployed by the openstack-ansible-security role
-      # RHEL-07-040010 - Limit concurrent sessions for all accounts/types
+      # V-72217 - Limit concurrent sessions for all accounts/types
       * hard maxlogins {{ security_rhel7_concurrent_session_limit }}
   when:
     - security_rhel7_concurrent_session_limit is defined
   tags:
     - auth
     - low
-    - RHEL-07-040010
-
-- name: Check for PAM PKCS 11 authentication configuration
-  stat:
-    path: /etc/pam_pkcs11/pam_pkcs11.conf
-  register: pkcs11_conf_check
-  check_mode: no
-  tags:
-    - always
-
-- name: Check for ocsp_on in PAM PKCS 11 auth configuration
-  shell: 'grep cert_policy /etc/pam_pkcs11/pam_pkcs11.conf | grep -c ocsp_on'
-  register: oscp_on_check
-  changed_when: False
-  failed_when: False
-  check_mode: no
-  when:
-    - pkcs11_conf_check.stat.exists
-  tags:
-    - always
-
-- name: RHEL-07-040030 - Must Validate PKI-based auth attempts with OCSP
-  debug:
-    msg: >
-      PKI-based authentication attempts must use OCSP for certificate
-      validation. Review the documentation for RHEL-07-040030.
-  when:
-    - pkcs11_conf_check.stat.exists
-    - oscp_on_check.stdout != 3
-  tags:
-    - medium
-    - auth
-    - RHEL-07-040030
-
-- name: Check for cackey or coolkey in the PAM PKCS11 auth configuration
-  shell: 'egrep "use_pkcs11_module = (cackey|coolkey)" /etc/pam_pkcs11/pam_pkcs11.conf'
-  register: pkcs11_key_check
-  changed_when: False
-  failed_when: False
-  check_mode: no
-  when:
-    - pkcs11_conf_check.stat.exists
-  tags:
-    - always
-
-- name: RHEL-07-040040 - Must use cackey/cookey for PKCS 11 auth
-  debug:
-    msg: >
-      PKI-based authentication attempts must use cackey or coolkey.
-      Review the documentation for RHEL-07-040040.
-  when:
-    - pkcs11_conf_check.stat.exists
-    - pkcs11_key_check.stdout.rc != 0
-  tags:
-    - medium
-    - auth
-    - RHEL-07-040040
+    - V-72217
 
 - name: Check for pam_lastlog in PAM configuration
   command: "grep pam_lastlog {{ pam_postlogin_file }}"
@@ -499,17 +423,17 @@
   tags:
     - always
 
-- name: RHEL-07-040300 - Display date/time of last logon after logon
+- name: V-72275 - Display date/time of last logon after logon
   debug:
     msg: >
       The 'pam_lastlog' directive is missing in {{ pam_postlogin_file }}.
-      This is required by RHEL-07-040300.
+      This is required by V-72275.
   when:
     - pam_lastlog_check.rc != 0
   tags:
     - low
     - auth
-    - RHEL-07-040300
+    - V-72275
 
 - name: Check for .shosts or shosts.equiv files
   find:
@@ -535,5 +459,5 @@
   tags:
     - high
     - auth
-    - RHEL-07-040330
-    - RHEL-07-040331
+    - V-72277
+    - V-72279

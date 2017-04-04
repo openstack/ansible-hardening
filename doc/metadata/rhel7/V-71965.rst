@@ -1,0 +1,9 @@
+---
+id: V-71965
+status: exception - manual intervention
+tag: auth
+---
+
+Deploying multi-factor authentication methods, including smart cards, is a
+complicated process that requires preparation and communication. This work is
+left to deployers to complete manually.

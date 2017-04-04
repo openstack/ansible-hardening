@@ -1,0 +1,19 @@
+---
+id: V-72039
+status: implemented - red hat only
+tag: lsm
+---
+
+The tasks in the security role examine the SELinux contexts on each device file
+found on the system. Any devices without appropriate labels are printed in
+the Ansible output.
+
+Deployers should investigate the unlabeled devices and ensure that the correct
+labels are applied for the class of device.
+
+.. note::
+
+    This change applies only to CentOS or Red Hat Enterprise Linux systems
+    since they rely on SELinux as their default Linux Security Module (LSM).
+    Ubuntu systems use AppArmor, which uses policy files rather than labels
+    applied to individual files.

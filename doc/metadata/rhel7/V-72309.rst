@@ -1,0 +1,22 @@
+---
+id: V-72309
+status: opt-in
+tag: kernel
+---
+
+Disabling IP forwarding on a system that routes packets or host virtual
+machines might cause network interruptions. The tasks in this role do not
+adjust the ``net.ipv4.ip_forward`` configuration by default.
+
+Deployers can opt in for this change and disable IP forwarding by setting the
+following Ansible variable:
+
+.. code-block:: yaml
+
+    security_disallow_ip_forwarding: yes
+
+.. warning::
+
+    IP forwarding is required in some environments. Always test in a
+    non-production environment before changing this setting on a production
+    system.

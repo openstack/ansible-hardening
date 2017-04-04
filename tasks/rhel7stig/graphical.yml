@@ -16,34 +16,34 @@
 - name: Check if gdm is installed and configured
   stat:
     path: /etc/gdm/custom.conf
-  register: RHEL_07_010430_gdm_conf
+  register: gdm_conf_check
   check_mode: no
 
-- name: RHEL-07-010430 - The operating system must not allow an unattended or automatic logon to the system via a graphical user interface
+- name: V-71953 - The operating system must not allow an unattended or automatic logon to the system via a graphical user interface
   lineinfile:
     dest: /etc/gdm/custom.conf
     line: "^AutomaticLoginEnable=true"
     state: absent
   when:
-    - RHEL_07_010430_gdm_conf.stat.exists
+    - gdm_conf_check.stat.exists
     - security_disable_gdm_automatic_login | bool
   tags:
     - graphical
     - high
-    - RHEL-07-010430
+    - V-71953
 
-- name: RHEL-07-010431 - The operating system must not allow guest logon to the system.
+- name: V-71955 - The operating system must not allow guest logon to the system.
   lineinfile:
     dest: /etc/gdm/custom.conf
     line: "^TimedLoginEnable=true"
     state: absent
   when:
-    - RHEL_07_010430_gdm_conf.stat.exists
+    - gdm_conf_check.stat.exists
     - security_disable_gdm_timed_login | bool
   tags:
     - graphical
     - high
-    - RHEL-07-010431
+    - V-71955
 
 - name: Check for dconf profiles
   stat:
@@ -61,11 +61,9 @@
   tags:
     - graphical
     - medium
-    - RHEL-07-010060
-    - RHEL-07-010070
-    - RHEL-07-010071
-    - RHEL-07-010073
-    - RHEL-07-010074
+    - V-71891
+    - V-71893
+    - V-71901
 
 - name: Create dconf directories
   file:
@@ -80,13 +78,10 @@
   tags:
     - graphical
     - medium
-    - RHEL-07-010030
-    - RHEL-07-010031
-    - RHEL-07-010060
-    - RHEL-07-010070
-    - RHEL-07-010071
-    - RHEL-07-010073
-    - RHEL-07-010074
+    - V-71859
+    - V-71891
+    - V-71893
+    - V-71901
 
 - name: Configure graphical session locking
   template:
@@ -99,11 +94,9 @@
   tags:
     - graphical
     - medium
-    - RHEL-07-010060
-    - RHEL-07-010070
-    - RHEL-07-010071
-    - RHEL-07-010073
-    - RHEL-07-010074
+    - V-71891
+    - V-71893
+    - V-71901
 
 - name: Prevent users from changing graphical session locking configurations
   template:
@@ -116,11 +109,9 @@
   tags:
     - graphical
     - medium
-    - RHEL-07-010060
-    - RHEL-07-010070
-    - RHEL-07-010071
-    - RHEL-07-010073
-    - RHEL-07-010074
+    - V-71891
+    - V-71893
+    - V-71901
 
 - name: Create a GDM profile for displaying a login banner
   copy:
@@ -133,8 +124,7 @@
   tags:
     - graphical
     - medium
-    - RHEL-07-010030
-    - RHEL-07-010031
+    - V-71859
 
 - name: Create a GDM keyfile for machine-wide settings
   template:
@@ -150,5 +140,4 @@
   tags:
     - graphical
     - medium
-    - RHEL-07-010030
-    - RHEL-07-010031
+    - V-71859

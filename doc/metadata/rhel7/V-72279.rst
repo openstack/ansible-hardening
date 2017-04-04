@@ -1,0 +1,9 @@
+---
+id: V-72279
+status: implemented
+tag: auth
+---
+
+This control is implemented by the tasks for another control:
+
+* :ref:`stig-V-72277`

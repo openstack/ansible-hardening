@@ -1,9 +1,0 @@
----
-id: RHEL-07-010040
-status: implemented
-tag: sshd
----
-
-This control is implemented by the tasks for another control:
-
-* :ref:`stig-RHEL-07-040170`

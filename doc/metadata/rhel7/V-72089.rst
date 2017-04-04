@@ -1,0 +1,16 @@
+---
+id: V-72089
+status: implemented
+tag: auditd
+---
+
+The ``space_left`` configuration is set to 25% of the size of the disk mounted
+on ``/``.  This calculation is done automatically.
+
+Deployers can set a custom threshold for the ``space_left`` configuration (in
+megabytes) by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    # Example: A setting of 1GB (1024MB)
+    security_rhel7_auditd_space_left: 1024

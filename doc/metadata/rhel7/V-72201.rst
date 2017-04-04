@@ -1,0 +1,15 @@
+---
+id: V-72201
+status: implemented
+tag: auditd
+---
+
+Rules are added to audit all ``renameat`` syscalls on the system.
+
+Deployers can opt out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_audit_renameat: no
+
+This rule is compatible with x86, x86_64, and ppc64 architectures.

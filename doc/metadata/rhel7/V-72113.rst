@@ -1,0 +1,24 @@
+---
+id: V-72113
+status: opt-in
+tag: auditd
+---
+
+The STIG requires that all ``fsetxattr`` syscalls are audited, but this
+change creates a significant increase in logging on most systems. This increase
+can cause some systems to run out of disk space for logs.
+
+.. warning::
+
+    This rule is disabled by default to avoid high CPU usage and disk space
+    exhaustion. Deployers should only enable this rule if they have tested it
+    thoroughly in a non-production environment with system health monitoring
+    enabled.
+
+Deployers can opt in for this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_audit_fsetxattr: yes
+
+This rule is compatible with x86, x86_64, and ppc64 architectures.

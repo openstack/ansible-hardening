@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: RHEL-07-020160 - USB mass storage must be disabled.
+- name: V-71983 - USB mass storage must be disabled.
   lineinfile:
     dest: /etc/modprobe.d/openstack-ansible-security-disable-usb-storage.conf
     line: install usb-storage /bin/true
@@ -23,7 +23,7 @@
   tags:
     - kernel
     - medium
-    - RHEL-07-020160
+    - V-71983
 
 - name: Set sysctl configurations
   sysctl:
@@ -35,14 +35,15 @@
   tags:
     - medium
     - kernel
-    - RHEL-07-040350
-    - RHEL-07-040351
-    - RHEL-07-040380
-    - RHEL-07-040410
-    - RHEL-07-040420
-    - RHEL-07-040421
-    - RHEL-07-040730
-    - RHEL-07-040860
+    - V-72283
+    - V-72285
+    - V-72287
+    - V-72289
+    - V-73175
+    - V-72291
+    - V-72293
+    - V-72309
+    - V-72319
 
 - name: Check kdump service
   command: systemctl status kdump
@@ -53,9 +54,9 @@
   tags:
     - kernel
     - medium
-    - RHEL-07-021230
+    - V-72057
 
-- name: RHEL-07-021230 - Kernel core dumps must be disabled unless needed.
+- name: V-72057 - Kernel core dumps must be disabled unless needed.
   service:
     name: kdump
     state: stopped
@@ -66,7 +67,7 @@
   tags:
     - kernel
     - medium
-    - RHEL-07-021230
+    - V-72057
 
 - name: Check if FIPS is enabled
   command: cat /proc/sys/crypto/fips_enabled
@@ -91,4 +92,4 @@
   tags:
     - high
     - misc
-    - RHEL-07-021280
+    - V-72067

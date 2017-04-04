@@ -1,0 +1,20 @@
+---
+id: V-72265
+status: implemented
+tag: sshd
+---
+
+The ``UsePrivilegeSeparation`` configuration is set to ``sandbox`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_enable_privilege_separation: no
+
+.. note::
+
+    Although the STIG requires this setting to be ``yes``, the ``sandbox``
+    setting actually provides more security because it enables privilege
+    separation during the early authentication process.

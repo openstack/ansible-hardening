@@ -1,0 +1,23 @@
+---
+id: V-72235
+status: implemented
+tag: sshd
+---
+
+The STIG has a requirement that the ``sshd`` daemon is running and enabled at
+boot time. The tasks in the security role ensure that these requirements are
+met.
+
+Some deployers may not have ``sshd`` enabled on highly specialized systems and
+those deployers should opt out of this change by setting the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    security_enable_sshd: no
+
+.. note::
+
+    Setting ``security_enable_sshd`` to ``no`` causes the tasks to ignore the
+    state of the service entirely. A setting of ``no`` does not stop or alter
+    the ``sshd`` service.

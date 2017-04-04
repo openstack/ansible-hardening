@@ -1,0 +1,20 @@
+---
+id: V-71901
+status: implemented
+tag: graphical
+---
+
+The STIG requires that a graphical session is locked when the screensaver
+starts. This requires a user to re-enter their credentials to regain access to
+the system.
+
+The tasks will set a timeout of 5 seconds after the screensaver has started
+before the session is locked. This gives a user a few seconds to press a key or
+wiggle their mouse after the screensaver appears without needing to re-enter
+their credentials.
+
+Deployers can adjust this timeout by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_lock_session_screensaver_lock_delay: 5

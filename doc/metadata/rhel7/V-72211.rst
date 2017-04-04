@@ -1,0 +1,14 @@
+---
+id: V-72211
+status: exception - manual intervention
+tag: misc
+---
+
+Deployers must take manual steps to add or remove syslog reception
+configuration lines depending on a server's role:
+
+* If the server is a log aggregation server, deployers must configure the
+  server to receive syslog output from the other servers via TCP connections.
+
+* If the server is not a log aggregation server, deployers must configure the
+  server so that it does not accept syslog output from other servers.

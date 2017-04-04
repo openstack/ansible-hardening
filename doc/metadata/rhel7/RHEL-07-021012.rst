@@ -1,8 +1,0 @@
----
-id: RHEL-07-021012
-status: exception - manual intervention
-tag: misc
----
-
-Deployers should examine any filesystem mounts of NFS imports to ensure that
-the ``nosetuid`` option is set.

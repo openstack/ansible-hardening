@@ -24,9 +24,9 @@
   when:
     - not rpmverify_task | skipped
 
-- name: RHEL-07-010020 - Get files with invalid checksums (rpm)
+- name: V-71855 - Get files with invalid checksums (rpm)
   shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
-  register: rhel_07_010020_files
+  register: invalid_checksum_files
   changed_when: False
   when:
     - not check_mode | bool
@@ -34,29 +34,29 @@
   tags:
     - rpm
     - high
-    - RHEL-07-010020
+    - V-71855
 
-- name: RHEL-07-010020 - The cryptographic hash of system files and commands must match vendor values (rpm)
+- name: V-71855 - The cryptographic hash of system files and commands must match vendor values (rpm)
   debug:
     msg: |
       The following files have checksums that differ from the checksum provided
       with their package. Each of these should be verified manually to ensure
       they have not been modified by an unauthorized user.
 
-      {% for filename in rhel_07_010020_files.stdout_lines %}
+      {% for filename in invalid_checksum_files.stdout_lines %}
         {{ filename }}
       {% endfor %}
   when:
     - not check_mode | bool
     - ansible_os_family | lower == 'redhat'
-    - rhel_07_010020_files is defined
-    - rhel_07_010020_files.stdout is defined
+    - invalid_checksum_files is defined
+    - invalid_checksum_files.stdout is defined
   tags:
     - rpm
     - high
-    - RHEL-07-010020
+    - V-71855
 
-- name: RHEL-07-020150 - Require digital signatures for all packages
+- name: V-71977 - Require digital signatures for all packages
   lineinfile:
     dest: /etc/yum.conf
     regexp: "{{ item.regexp }}"
@@ -66,6 +66,6 @@
   tags:
     - rpm
     - high
-    - RHEL-07-020150
-    - RHEL-07-020151
-    - RHEL-07-020152
+    - V-71977
+    - V-71979
+    - V-71981

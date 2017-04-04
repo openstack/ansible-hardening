@@ -1,9 +1,0 @@
----
-id: RHEL-07-010031
-status: implemented
-tag: graphical
----
-
-This STIG control is implemented by:
-
-* :ref:`stig-RHEL-07-010030`

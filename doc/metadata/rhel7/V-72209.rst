@@ -1,0 +1,10 @@
+---
+id: V-72209
+status: verification only
+tag: misc
+---
+
+The tasks in the security role check for uncommented lines in the rsyslog
+configuration that contain ``@`` or ``@@``, which signifies that a remote
+logging configuration is in place. If these lines are not found, a warning
+message is printed in the Ansible output.

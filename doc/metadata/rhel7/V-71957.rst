@@ -1,0 +1,14 @@
+---
+id: V-71957
+status: implemented
+tag: sshd
+---
+
+The ``PermitUserEnvironment`` configuration is set to ``no`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_disallow_environment_override: no

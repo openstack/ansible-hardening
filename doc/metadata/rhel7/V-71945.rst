@@ -1,0 +1,44 @@
+---
+id: V-71945
+status: opt-in - Red Hat Only
+tag: auth
+---
+
+The STIG requires that accounts with excessive failed login attempts are
+locked. It sets a limit of three failed attempts in a 15 minute interval and
+these restrictions are applied to all users (including root). Accounts cannot
+be automatically unlocked for seven days.
+
+This change might cause disruptions in production environments without proper
+communication to users. Therefore, this change is not applied by default.
+
+Deployers can opt in for the change by setting the following variable:
+
+.. code-block:: yaml
+
+    security_pam_faillock_enable: yes
+
+There are also three configuration options that can be adjusted by setting
+Ansible variables:
+
+* ``security_pam_faillock_attempts``: This many failed login attempts within
+  the specified time interval with trigger the account to lock.
+  (STIG requirement: ``3`` attempts)
+
+* ``security_pam_faillock_interval``: This is the time interval (in seconds)
+  to use when measuring excessive failed login attempts.
+  (STIG requirement: ``900`` seconds)
+
+* ``security_pam_faillock_deny_root``: Set to ``yes`` to apply the restriction
+  to the root user or set to ``no`` to exempt the root user from the account
+  locking restrictions.
+  (STIG requirement: ``yes``)
+
+* ``security_pam_faillock_unlock_time``: This sets the time delay (in seconds)
+  before a locked account is automatically unlocked.
+  (STIG requirement: ``604800`` seconds)
+
+.. note::
+
+    Ubuntu does not provide ``pam_faillock``. This change is only applied to
+    CentOS 7 or Red Hat Enterprise Linux 7 systems.

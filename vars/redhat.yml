@@ -53,6 +53,12 @@ stig_packages:
     state: "{{ security_package_state }}"
     enabled: True
   - packages:
+      - esc
+      - pam_pkcs11
+      - authconfig
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_install_multifactor_auth_packages }}"
+  - packages:
       - libselinux-python
       - policycoreutils-python
       - selinux-policy

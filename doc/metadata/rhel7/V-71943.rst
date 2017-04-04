@@ -1,0 +1,9 @@
+---
+id: V-71943
+status: opt-in - Red Hat Only
+tag: auth
+---
+
+This STIG control is implemented by:
+
+* :ref:`stig-V-71945`

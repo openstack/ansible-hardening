@@ -1,0 +1,20 @@
+---
+id: V-71999
+status: opt-in
+tag: packages
+---
+
+Although the STIG requires that security patches and updates are applied when
+they are made available, this might be disruptive to some systems. Therefore,
+the tasks in the security role will not configure automatic updates by default.
+
+Deployers can opt in for automatic package updates by setting the following
+Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_automatic_package_updates: yes
+
+When enabled, the tasks install and configure ``yum-cron`` on CentOS and Red
+Hat Enterprise Linux.  On Ubuntu systems, the ``unattended-upgrades`` package
+is installed and configured.

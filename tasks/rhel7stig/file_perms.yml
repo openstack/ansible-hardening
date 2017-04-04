@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: RHEL-07-010010 - Get packages with incorrect file permissions or ownership
+- name: V-71849 - Get packages with incorrect file permissions or ownership
   shell: "grep '^.M' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
   args:
     warn: no
-  register: rhel_07_010010_packages
+  register: rpmverify_package_list
   changed_when: False
   when:
     - not check_mode | bool
@@ -26,27 +26,27 @@
   tags:
     - file_perms
     - high
-    - RHEL-07-010010
+    - V-71849
 
-- name: RHEL-07-010010 - Reset file permissions/ownership to vendor values
+- name: V-71849 - Reset file permissions/ownership to vendor values
   shell: "rpm {{ item[0] }} `rpm -qf {{ item[1] }}`"
   args:
     warn: no
   changed_when: false
   with_nested:
     - ['--setperms', '--setugids']
-    - "{{ rhel_07_010010_packages.stdout_lines | default([]) }}"
+    - "{{ rpmverify_package_list.stdout_lines | default([]) }}"
   when:
     - not check_mode | bool
     - ansible_os_family | lower == 'redhat'
-    - rhel_07_010010_packages is defined
-    - rhel_07_010010_packages.stdout_lines | length > 0
+    - rpmverify_package_list is defined
+    - rpmverify_package_list.stdout_lines | length > 0
   async: 300
   poll: 0
   tags:
     - file_perms
     - high
-    - RHEL-07-010010
+    - V-71849
     # don't trigger ANSIBLE0013
     - skip_ansible_lint
 
@@ -61,7 +61,7 @@
   tags:
     - always
 
-- name: RHEL-07-020360 - All files and directories must have a valid owner.
+- name: V-72007 - All files and directories must have a valid owner.
   debug:
     msg: |
       Files and directories were found that are owned by an invalid user:
@@ -73,7 +73,7 @@
   tags:
     - file_perms
     - medium
-    - RHEL-07-020360
+    - V-72007
 
 - name: Search for files/directories with an invalid group owner
   command: find / -xdev -nogroup -fstype local
@@ -86,7 +86,7 @@
   tags:
     - always
 
-- name: RHEL-07-020370 - All files and directories must have a valid group owner.
+- name: V-72009 - All files and directories must have a valid group owner.
   debug:
     msg: |
       Files and directories were found that are owned by an invalid group:
@@ -98,7 +98,7 @@
   tags:
     - file_perms
     - medium
-    - RHEL-07-020370
+    - V-72009
 
 - name: Set proper owner, group owner, and permissions on home directories
   file:
@@ -113,9 +113,9 @@
   tags:
     - medium
     - file_perms
-    - RHEL-07-020650
-    - RHEL-07-020660
-    - RHEL-07-020670
+    - V-72017
+    - V-72019
+    - V-72021
 
 - name: Find all world-writable directories
   shell: "find / -perm -002 -type d -exec ls -lLd {} \\; | tr -s ' ' | cut -d' ' -f 4,9 | grep -v ^root"
@@ -126,7 +126,7 @@
   tags:
     - always
 
-- name: RHEL-07-021050 - All world-writable directories must be group-owned by root, sys, bin, or an application group.
+- name: V-72047 - All world-writable directories must be group-owned by root, sys, bin, or an application group.
   debug:
     msg: |
       The group owners on the following world-writable directories should be examined:
@@ -136,7 +136,7 @@
   tags:
     - medium
     - file_perms
-    - RHEL-07-021050
+    - V-72047
 
 - name: Check if /etc/cron.allow exists
   stat:
@@ -156,32 +156,5 @@
   tags:
     - medium
     - file_perms
-    - RHEL-07-021190
-    - RHEL-07-021200
-
-- name: Check if cn_map file is present
-  stat:
-    path: /etc/pam_pkcs11/cn_map
-  check_mode: no
-  register: cn_map_check
-  tags:
-    - medium
-    - file_perms
-    - RHEL-07-040060
-    - RHEL-07-040070
-    - RHEL-07-040080
-
-- name: Set file permissions on cn_map file
-  file:
-    path: /etc/pam_pkcs11/cn_map
-    mode: "u-x,g-wx,o-wx"
-    owner: root
-    group: root
-  when:
-    - cn_map_check.stat.exists
-  tags:
-    - medium
-    - file_perms
-    - RHEL-07-040060
-    - RHEL-07-040070
-    - RHEL-07-040080
+    - V-72053
+    - V-72055

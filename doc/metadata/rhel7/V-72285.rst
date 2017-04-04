@@ -1,0 +1,9 @@
+---
+id: V-72285
+status: implemented
+tag: kernel
+---
+
+This control is implemented by the tasks for another control:
+
+* :ref:`stig-V-72283`

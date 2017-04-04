@@ -1,0 +1,28 @@
+---
+id: V-71961
+status: opt-in
+tag: misc
+---
+
+Although the STIG requires that GRUB 2 asks for a password whenever a user
+attempts to enter single-user or maintenance mode, this change might be
+disruptive in an emergency situation. Therefore, this change is not applied by
+default.
+
+Deployers that wish to opt in for this change should set two Ansible variables:
+
+.. code-block:: yaml
+
+    security_require_grub_authentication: yes
+    security_grub_password_hash: grub.pbkdf2.sha512.10000.7B21785BEAFEE3AC...
+
+The default password set in the security role is 'secrete', but deployers
+should set a much more secure password for production environments. Use the
+``grub2-mkpasswd-pbkdf2`` command to create a password hash string and use it
+as the value for the Ansible variable ``security_grub_password_hash``.
+
+.. warning::
+
+    This change must be tested in a non-production environment first. Requiring
+    authentication in GRUB 2 without proper communication to users could cause
+    extensive delays in emergency situations.

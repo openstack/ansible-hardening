@@ -25,43 +25,43 @@
   when:
     - not check_mode | bool
 
-- name: RHEL-07-010020 - Get files with invalid checksums (apt)
+- name: V-71855 - Get files with invalid checksums (apt)
   shell: "grep -v OK$ {{ temp_dir }}/debsums.txt | awk '{ print $1 }'"
-  register: rhel_07_010020_files
+  register: invalid_checksum_files
   changed_when: False
   when:
     - not check_mode | bool
     - ansible_os_family | lower == 'debian'
   tags:
     - high
-    - RHEL-07-010020
+    - V-71855
 
-- name: RHEL-07-010020 - Create comma-separated list
+- name: V-71855 - Create comma-separated list
   set_fact:
-    rhel_07_010020_violations: "{{ rhel_07_010020_files.stdout_lines | default([]) | join(', ') }}"
+    invalid_checksum_files_violations: "{{ invalid_checksum_files.stdout_lines | default([]) | join(', ') }}"
   when:
-    - rhel_07_010020_files is defined
-    - rhel_07_010020_files.stdout is defined
+    - invalid_checksum_files is defined
+    - invalid_checksum_files.stdout is defined
   tags:
     - high
-    - RHEL-07-010020
+    - V-71855
 
-- name: RHEL-07-010020 - The cryptographic hash of system files and commands must match vendor values (apt)
+- name: V-71855 - The cryptographic hash of system files and commands must match vendor values (apt)
   debug:
     msg: >
       The following files have checksums that differ from the checksum provided
       with their package. Each of these should be verified manually to ensure
       they have not been modified by an unauthorized user:
-      {{ rhel_07_010020_violations }}
+      {{ invalid_checksum_files_violations }}
   when:
     - ansible_os_family | lower == 'debian'
-    - rhel_07_010020_files is defined
-    - rhel_07_010020_files.stdout is defined
+    - invalid_checksum_files is defined
+    - invalid_checksum_files.stdout is defined
   tags:
     - high
-    - RHEL-07-010020
+    - V-71855
 
-# See the documentation for RHEL-07-020150 for more details on this check.
+# See the documentation for V-71977 for more details on this check.
 - name: Search for AllowUnauthenticated in /etc/apt/apt.conf.d/
   command: grep -r '^[^#].*AllowUnauthenticated \"true\"' /etc/apt/apt.conf.d/
   register: gpgcheck_result
@@ -69,7 +69,7 @@
   failed_when: False
   check_mode: no
 
-- name: RHEL-07-020150 - Package management tool must verify authenticity of packages
+- name: V-71977 - Package management tool must verify authenticity of packages
   debug:
     msg: "Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
   when:
@@ -77,9 +77,9 @@
     - gpgcheck_result.rc == 0
   tags:
     - high
-    - RHEL-07-020150
+    - V-71977
 
-- name: RHEL-07-020151 - Package management tool must verify authenticity of locally-installed packages
+- name: V-71979 - Package management tool must verify authenticity of locally-installed packages
   lineinfile:
     dest: /etc/dpkg/dpkg.cfg
     regexp: "^(#)?no-debsig"
@@ -89,4 +89,4 @@
     - security_enable_gpgcheck_packages_local | bool
   tags:
     - high
-    - RHEL-07-020151
+    - V-71979

@@ -1,0 +1,17 @@
+---
+id: V-71979
+status: implemented
+tag: packages
+---
+
+On Ubuntu systems, the tasks comment out the ``no-debsig`` configuration line
+in ``/etc/dpkg/dpkg.cfg``. This causes ``dpkg`` to verify GPG signatures for
+all packages that are installed locally.
+
+On CentOS 7 systems, the tasks set the ``localpkg_gpgcheck`` option to ``1`` in
+the ``/etc/yum.conf`` file. This enables GPG checks for all packages installed
+locally with ``yum``.
+
+Setting ``security_enable_gpgcheck_packages_local`` to ``no`` will skip the
+``no-debsig`` adjustment on Ubuntu and it will set ``local_gpgcheck=0`` in
+``/etc/yum.conf`` on CentOS systems.

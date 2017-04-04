@@ -1,0 +1,23 @@
+---
+id: V-72229
+status: exception - manual intervention
+tag: auth
+---
+
+Deployers are strongly urged to utilize ``sssd`` for systems that authenticate
+against LDAP or Active Directory (AD) servers.
+
+To meet this control, deployers must ensure that ``ldap_tls_cacert`` or
+``ldap_tls_cacertdir`` are set in the ``/etc/sssd/sssd.conf`` file. The
+``ldap_tls_cacert`` directive specifies a single certificate while
+``ldap_tls_cacertdir`` specifies a directory where ``sssd`` can find CA
+certificates.
+
+.. warning::
+
+    Use caution when adjusting these settings. If the correct CA certificates
+    are not already deployed to the servers that perform LDAP authentication,
+    their attempts to authenticate users might fail.
+
+    Consult with administrators of the LDAP system and test all changes on
+    a non-production system first.

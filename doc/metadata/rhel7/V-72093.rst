@@ -1,0 +1,14 @@
+---
+id: V-72093
+status: implemented
+tag: auditd
+---
+
+The ``action_mail_acct`` configuration in the audit daemon configuration file
+is set to ``root`` to meet the requirements of the STIG. Deployers can
+customize the recipient of the emails that come from auditd by setting the
+following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_auditd_action_mail_acct: root

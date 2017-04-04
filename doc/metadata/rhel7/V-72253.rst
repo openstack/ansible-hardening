@@ -1,0 +1,15 @@
+---
+id: V-72253
+status: implemented
+tag: sshd
+---
+
+The ``MACs`` configuration is set to ``hmac-sha2-256,hmac-sha2-512`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can adjust the allowed Message Authentication Codes (MACs) by setting
+the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_allowed_macs: 'hmac-sha2-256,hmac-sha2-512'

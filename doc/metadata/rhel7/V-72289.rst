@@ -1,0 +1,9 @@
+---
+id: V-72289
+status: implemented
+tag: sshd
+---
+
+This control is implemented by the tasks for another control:
+
+* :ref:`stig-V-73175`

@@ -1,0 +1,14 @@
+---
+id: V-72315
+status: exception - manual intervention
+tag: misc
+---
+
+The ``firewalld`` service is optionally enabled and configured in the tasks for
+another STIG control:
+
+* :ref:`stig-V-72273`
+
+Deployers should review their ``firewalld`` ruleset regularly to ensure that
+each firewall rule is specific as possible. Each rule should allow the smallest
+number of hosts to access the smallest number of services.

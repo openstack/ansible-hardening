@@ -1,9 +1,0 @@
----
-id: RHEL-07-021760
-status: exception - initial provisioning
-tag: misc
----
-
-When a server is initially provisioned, deployers should avoid storing
-the boot loader on removable media. It is not possible to change this via
-automated tasks.

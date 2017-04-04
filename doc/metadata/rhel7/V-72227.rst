@@ -1,0 +1,13 @@
+---
+id: V-72227
+status: exception - manual intervention
+tag: auth
+---
+
+Deployers are strongly urged to utilize ``sssd`` for systems that authenticate
+against LDAP or Active Directory (AD) servers.
+
+The ldap connector for ``sssd`` connects only to LDAP servers over
+encrypted connections. Review the man page for
+`sssd-ldap <https://linux.die.net/man/5/sssd-ldap>`_ for more details on this
+requirement.

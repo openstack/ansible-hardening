@@ -1,0 +1,14 @@
+---
+id: V-72249
+status: implemented
+tag: sshd
+---
+
+The ``IgnoreUserKnownHosts`` configuration is set to ``yes`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_disallow_known_hosts_auth: no

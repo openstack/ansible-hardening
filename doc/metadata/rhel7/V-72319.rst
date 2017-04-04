@@ -1,0 +1,18 @@
+---
+id: V-72319
+status: implemented
+tag: kernel
+---
+
+The tasks in this role set ``net.ipv6.conf.all.accept_source_route`` to ``0``
+by default. This prevents the system from forwarding source-routed IPv6
+packets.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_disallow_source_routed_packet_forward_ipv6: no
+
+Refer to `"IPv6 source routing: history repeats itself" <https://lwn.net/Articles/232781/>`_
+for more details on IPv6 source routed packets.

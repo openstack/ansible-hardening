@@ -1,0 +1,7 @@
+---
+id: V-72239
+status: implemented
+tag: sshd
+---
+
+This STIG is already applied by the changes for :ref:`stig-V-72249`.

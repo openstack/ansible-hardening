@@ -1,0 +1,9 @@
+---
+id: V-71863
+status: implemented
+tag: misc
+---
+
+The STIG requires a standardized login banner for all command line user logins.
+The security role deploys a default banner from ``files/login_banner.txt`` to
+``/etc/issue`` on the system.

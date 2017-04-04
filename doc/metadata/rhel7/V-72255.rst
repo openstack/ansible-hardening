@@ -1,0 +1,9 @@
+---
+id: V-72255
+status: implemented
+tag: sshd
+---
+
+The permissions on ssh public host keys is set to ``0644``. If the existing
+permissions are more restrictive than ``0644``, the tasks do not make changes
+to the files.

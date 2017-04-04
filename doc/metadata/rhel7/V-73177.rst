@@ -1,0 +1,9 @@
+---
+id: V-73177
+status: exception - manual intervention
+tag: misc
+---
+
+Deployers should review the configuration of any wireless networking device
+connected to the system to ensure it must be enabled. The STIG requires that
+all wireless network devices are enabled unless required.

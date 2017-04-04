@@ -1,0 +1,18 @@
+---
+id: V-72301
+status: implemented
+tag: packages
+---
+
+The role will remove the TFTP server package from the system if it is
+installed. The package name differs between Linux distributions:
+
+* CentOS: ``tftp-server``
+* Ubuntu: ``tftpd``
+
+Deployers can opt-out of this change by setting the following Ansible variable:
+
+
+.. code-block:: yaml
+
+    security_rhel7_remove_tftp_server: no

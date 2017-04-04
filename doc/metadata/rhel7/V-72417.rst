@@ -1,0 +1,19 @@
+---
+id: V-72417
+status: implemented
+tag: packages
+---
+
+The STIG requires that the following multifactor authentication packages are
+installed:
+
+* authconfig
+* authconfig-gtk
+* esc
+* pam_pkcs11
+
+These packages are benign if they are not needed on a system, but
+``authconfig-gtk`` may cause some graphical dependencies to be installed
+which may not be needed on some systems.  The security role installs these
+packages, but it skips the installation of ``authconfig-gtk``. Deployers can
+install the graphical package manually if needed.

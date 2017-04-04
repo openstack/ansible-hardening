@@ -1,0 +1,10 @@
+---
+id: V-72427
+status: exception - manual intervention
+tag: auth
+---
+
+Although the STIG requires that the ``sssd.conf`` contains both ``nss`` and
+``pam`` authentication modules, this change can be disruptive in environments
+that are already using LDAP or Active Directory for authentication. Deployers
+should make these changes only if their environment is compatible.

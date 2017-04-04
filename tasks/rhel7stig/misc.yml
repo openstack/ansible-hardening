@@ -22,7 +22,7 @@
   tags:
     - always
 
-- name: RHEL-07-020161 - File system automounter must be disabled unless required.
+- name: V-71985 - File system automounter must be disabled unless required.
   service:
     name: autofs
     state: stopped
@@ -33,7 +33,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-020161
+    - V-71985
 
 # This returns an exit code of 0 if it's running, 3 if it's masked.
 - name: Check if ctrl-alt-del.target is already masked
@@ -45,7 +45,7 @@
   tags:
     - always
 
-- name: RHEL-07-020220 - The x86 Ctrl-Alt-Delete key sequence must be disabled
+- name: V-71993 - The x86 Ctrl-Alt-Delete key sequence must be disabled
   command: systemctl mask ctrl-alt-del.target
   when:
     - security_rhel7_disable_ctrl_alt_delete | bool
@@ -55,7 +55,7 @@
   tags:
     - high
     - misc
-    - RHEL-07-020220
+    - V-71993
 
 - name: Check for /home on mounted filesystem
   debug:
@@ -67,7 +67,7 @@
   tags:
     - low
     - misc
-    - RHEL-07-021240
+    - V-72059
 
 - name: Check for /var on mounted filesystem
   debug:
@@ -79,7 +79,7 @@
   tags:
     - low
     - misc
-    - RHEL-07-021250
+    - V-72067
 
 - name: Check for /var/log/audit on mounted filesystem
   debug:
@@ -91,7 +91,7 @@
   tags:
     - low
     - misc
-    - RHEL-07-021260
+    - V-72063
 
 - name: Check for /tmp on mounted filesystem
   debug:
@@ -103,7 +103,7 @@
   tags:
     - low
     - misc
-    - RHEL-07-021270
+    - V-72065
 
 - name: Check if syslog output is being sent to another server
   command: 'grep "^[^#].*@" /etc/rsyslog.conf'
@@ -114,7 +114,7 @@
   tags:
     - always
 
-- name: RHEL-07-030770 - The system must send rsyslog output to a log aggregation server.
+- name: V-72209 - The system must send rsyslog output to a log aggregation server.
   debug:
     msg: Output from syslog must be sent to another server.
   when:
@@ -123,7 +123,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-030770
+    - V-72209
 
 - name: Check if ClamAV is installed
   stat:
@@ -149,7 +149,7 @@
     - restart clamav
   tags:
     - misc
-    - RHEL-07-030810
+    - V-72213
 
 - name: Set ClamAV server type as socket
   lineinfile:
@@ -165,7 +165,7 @@
     - restart clamav
   tags:
     - misc
-    - RHEL-07-030810
+    - V-72213
 
 - name: Allow automatic freshclam updates
   lineinfile:
@@ -180,7 +180,7 @@
     - restart clamav
   tags:
     - misc
-    - RHEL-07-030810
+    - V-72213
 
 - name: Update ClamAV database
   command: freshclam
@@ -192,7 +192,7 @@
   poll: 5
   tags:
     - misc
-    - RHEL-07-030810
+    - V-72213
 
 - name: Ensure ClamAV is running
   service:
@@ -204,9 +204,9 @@
     - security_enable_virus_scanner | bool
   tags:
     - misc
-    - RHEL-07-030810
+    - V-72213
 
-- name: RHEL-07-040160 - Set 10 minute timeout on communication sessions
+- name: V-72223 - Set 10 minute timeout on communication sessions
   blockinfile:
     dest: /etc/profile
     insertbefore: EOF
@@ -219,7 +219,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040160
+    - V-72223
 
 - name: Start and enable chrony
   service:
@@ -232,7 +232,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040210
+    - V-72269
 
 - name: Check if chrony configuration file exists
   stat:
@@ -241,7 +241,7 @@
   tags:
     - always
 
-- name: RHEL-07-040210 - Synchronize system clock (configuration file)
+- name: V-72269 - Synchronize system clock (configuration file)
   template:
     src: chrony.conf.j2
     dest: "{{ chrony_conf_file }}"
@@ -253,7 +253,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040210
+    - V-72269
 
 # Returns 0 if installed, 3 if not installed
 - name: Check firewalld status
@@ -276,7 +276,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040290
+    - V-72273
 
 - name: Limit new TCP connections to 25/minute and allow bursting to 100
   command: "firewall-cmd --direct --add-rule ipv4 filter IN_public_allow 0 -m tcp -p tcp -m limit --limit {{ security_enable_firewalld_rate_limit_per_minute }}/minute --limit-burst {{ security_enable_firewalld_rate_limit_burst }} -j ACCEPT"
@@ -288,7 +288,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040250
+    - V-72271
 
 # Linting checks need to be skipped because this command doesn't create any
 # files.
@@ -302,7 +302,7 @@
     - always
     - skip_ansible_lint
 
-- name: RHEL-07-040320 - For systems using DNS resolution, at least two name servers must be configured.
+- name: V-72281 - For systems using DNS resolution, at least two name servers must be configured.
   debug:
     msg: |
       Two or more nameservers must be configured in /etc/resolv.conf.
@@ -313,7 +313,7 @@
   tags:
     - low
     - misc
-    - RHEL-07-040320
+    - V-72281
 
 - name: Check for interfaces in promiscuous mode
   shell: "ip link | grep -i promisc"
@@ -324,7 +324,7 @@
   tags:
     - always
 
-- name: RHEL-07-040470 - Network interfaces must not be in promiscuous mode.
+- name: V-72295 - Network interfaces must not be in promiscuous mode.
   debug:
     msg: >
       One or more network interfaces were found to be in promiscuous mode.
@@ -334,7 +334,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040470
+    - V-72295
 
 - name: Check for postfix configuration file
   stat:
@@ -343,7 +343,7 @@
   tags:
     - always
 
-- name: RHEL-07-040480 - Prevent unrestricted mail relaying
+- name: V-72297 - Prevent unrestricted mail relaying
   lineinfile:
     dest: /etc/postfix/main.cf
     regexp: '^smtpd_client_restrictions'
@@ -354,7 +354,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040480
+    - V-72297
 
 - name: Check for TFTP server configuration file
   stat:
@@ -375,7 +375,7 @@
   tags:
     - always
 
-- name: RHEL-07-040520 - TFTP must be configured to operate in secure mode
+- name: V-72305 - TFTP must be configured to operate in secure mode
   debug:
     msg: TFTP must be configured to run in secure mode with the '-s' flag.
   when:
@@ -384,7 +384,7 @@
   tags:
     - medium
     - misc
-    - RHEL-07-040520
+    - V-72305
 
 - name: Check to see if snmpd config contains public/private
   shell: 'egrep "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
@@ -395,14 +395,23 @@
   tags:
     - always
 
-- name: RHEL-07-040580 - Change SNMP community strings from default.
+- name: V-72313 - Change SNMP community strings from default.
   debug:
     msg: >
       Change the SNMP community strings from the defaults of 'public' and
-      'private' to meet the requirements of RHEL-07-040580.
+      'private' to meet the requirements of V-72313.
   when:
     - snmp_public_private_check.rc == 0
   tags:
     - high
     - misc
-    - RHEL-07-040580
+    - V-72313
+
+- name: V-71863 - Display a login banner for console prompts
+  copy:
+    src: login_banner.txt
+    dest: /etc/issue.net
+  tags:
+    - medium
+    - misc
+    - V-71863

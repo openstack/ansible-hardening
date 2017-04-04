@@ -1,9 +1,0 @@
----
-id: RHEL-07-040650
-status: implemented
-tag: sshd
----
-
-The permissions on ssh private host keys is set to ``0600``. If the existing
-permissions are more restrictive than ``0600``, the tasks do not make changes
-to the files.

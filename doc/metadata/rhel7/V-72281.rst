@@ -1,0 +1,8 @@
+---
+id: V-72281
+status: implemented
+tag: misc
+---
+
+If a server has fewer than two nameservers configured in ``/etc/resolv.conf``,
+a warning is printed in the Ansible output.

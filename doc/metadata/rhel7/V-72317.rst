@@ -1,0 +1,9 @@
+---
+id: V-72317
+status: exception - manual intervention
+tag: misc
+---
+
+Deployers should review all tunneled connections on a regular basis to ensure
+each is valid and properly secured. This requires careful verification that
+cannot be done with automated Ansible tasks.

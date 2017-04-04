@@ -29,7 +29,7 @@
   tags:
     - medium
     - aide
-    - RHEL-07-020130
+    - V-71973
 
 - name: Check to see if AIDE database is already in place
   stat:
@@ -50,7 +50,7 @@
   tags:
     - medium
     - aide
-    - RHEL-07-020130
+    - V-71973
 
 # NOTE(mhayden): This is only needed for CentOS 7 and RHEL 7 since Ubuntu
 # copies the new AIDE database into place automatically with its AIDE wrapper
@@ -64,7 +64,7 @@
   tags:
     - medium
     - aide
-    - RHEL-07-020130
+    - V-71973
 
 # NOTE(mhayden): This is only needed for CentOS 7 and RHEL 7 since the AIDE
 # package doesn't come with a cron job file. Ubuntu packages a cron job for
@@ -81,10 +81,10 @@
   tags:
     - medium
     - aide
-    - RHEL-07-020140
+    - V-71975
 
 # NOTE(mhayden): CentOS/RHEL already provide a very strict AIDE configuration
-# that meets the requirements of RHEL-07-021600 and RHEL-07-021610. That config
+# that meets the requirements of V-72069 and V-72071. That config
 # is borrowed for Ubuntu 16.04 here.
 - name: Configure AIDE to verify additional properties
   blockinfile:
@@ -97,6 +97,6 @@
   tags:
     - low
     - aide
-    - RHEL-07-021600
-    - RHEL-07-021610
-    - RHEL-07-021620
+    - V-72069
+    - V-72071
+    - V-72073

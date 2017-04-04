@@ -1,9 +1,0 @@
----
-id: RHEL-07-040410
-status: implemented
-tag: kernel
----
-
-This control is implemented by the tasks for another control:
-
-* :ref:`stig-RHEL-07-040421`

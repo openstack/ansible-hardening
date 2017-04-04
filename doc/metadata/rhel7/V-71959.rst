@@ -1,0 +1,14 @@
+---
+id: V-71959
+status: implemented
+tag: sshd
+---
+
+The ``HostbasedAuthentication`` configuration is set to ``no`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_disallow_host_based_auth: no

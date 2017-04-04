@@ -1,9 +1,0 @@
----
-id: RHEL-07-020300
-status: implemented
-tag: auth
----
-
-If any users are found with invalid GIDs, those users are printed in the
-Ansible output. Deployers should review the list and ensure all users are
-assigned to a valid group that is defined in ``/etc/group``.

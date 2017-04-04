@@ -1,0 +1,15 @@
+---
+id: V-72037
+status: exception - manual intervention
+tag: file_perms
+---
+
+Deployers should manually search their system for world-writable programs and
+change the permissions on those programs. They are easily found with this
+command:
+
+.. code-block:: console
+
+    find / -perm -002 -type f
+
+World-writable executables should not be needed under almost all circumstances.

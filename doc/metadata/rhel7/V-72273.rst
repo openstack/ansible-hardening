@@ -1,0 +1,23 @@
+---
+id: V-72273
+status: opt-in
+tag: misc
+---
+
+The STIG requires that a firewall is configured on each server. This might be
+disruptive to some environments since the default firewall policy for
+``firewalld`` is very restrictive. Therefore, the tasks in the security role
+do not install or enable the ``firewalld`` daemon by default.
+
+Deployers can opt in for this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_enable_firewalld: yes
+
+.. warning::
+
+    Deployers must pre-configure ``firewalld`` or copy over a working XML file
+    in ``/etc/firewalld/zones/`` from another server. The default firewalld
+    restrictions on Ubuntu, CentOS and Red Hat Enterprise Linux are highly
+    restrictive.

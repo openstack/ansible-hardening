@@ -1,0 +1,16 @@
+---
+id: V-72291
+status: implemented
+tag: kernel
+---
+
+The tasks in this role set ``net.ipv4.conf.default.send_redirects`` and
+``net.ipv4.conf.all.send_redirects`` to ``0`` by default. This prevents a
+system from sending IPv4 ICMP redirect packets on all new and existing
+interfaces.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_disallow_icmp_redirects: no

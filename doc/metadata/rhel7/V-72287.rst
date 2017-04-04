@@ -1,0 +1,15 @@
+---
+id: V-72287
+status: implemented
+tag: kernel
+---
+
+The tasks in this role set ``net.ipv4.icmp_echo_ignore_broadcasts`` to ``1``
+by default. This prevents the system from responding to IPv4 ICMP echoes sent
+to the broadcast address.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_disallow_echoes_broadcast_address: no

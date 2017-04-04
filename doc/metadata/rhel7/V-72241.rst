@@ -1,0 +1,30 @@
+---
+id: V-72241
+status: implemented
+tag: sshd
+---
+
+The ``ClientAliveCountMax`` configuration is set to ``0`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can adjust the maximum amount of client alive intervals by changing
+the following Ansible variable.
+
+.. code-block:: yaml
+
+    security_sshd_client_alive_count_max: 0
+
+.. note::
+
+    The STIG requires that ``ClientAliveInterval`` is set to 600 and
+    ``ClientAliveCountMax`` is set to zero, which sets a 10 minute session
+    timeout. If no data is transferred in a 10 minute period, the session is
+    disconnected.
+
+    The ``ClientAliveInterval`` specifies how long the ssh daemon waits
+    before it sends a message to the client to see if it is still alive. The
+    ``ClientAliveCountMax`` specifies how many of these messages are sent
+    without receiving a response.
+
+    Deployers should refer to :ref:`stig-V-72237` to customize the
+    ``ClientAliveInterval`` setting.

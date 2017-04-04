@@ -1,0 +1,32 @@
+---
+id: V-72271
+status: opt-in
+tag: misc
+---
+
+Although the STIG requires that incoming TCP connections are rate limited with
+``firewalld``, this setting can cause problems with certain applications which
+handle large amounts of TCP connections. Therefore, the tasks in the security
+role do not apply the rate limit by default.
+
+Deployers can opt in for this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_enable_firewalld_rate_limit: yes
+
+The STIG recommends a limit of 25 connection per minute and allowing bursts up
+to 100 connections. Both of these options are adjustable with the following
+Ansible variables:
+
+.. code-block:: yaml
+
+    security_enable_firewalld_rate_limit_per_minute: 25
+    security_enable_firewalld_rate_limit_burst: 100
+
+.. warning::
+
+    Deployers should test rate limiting in a non-production environment first
+    before applying it to production systems. Ensure that the application
+    running on the system is receiving a large volume of requests so that the
+    rule can be thoroughly tested.

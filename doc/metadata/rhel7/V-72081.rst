@@ -1,0 +1,29 @@
+---
+id: V-72081
+status: implemented
+tag: auditd
+---
+
+The audit daemon takes various actions when there is an auditing failure. There
+are three options for the ``-f`` flag for ``auditctl``:
+
+* ``0``: In the event of an auditing failure, do nothing.
+* ``1``: In the event of an auditing failure, write messages to the kernel log.
+* ``2``: In the event of an auditing failure, cause a kernel panic.
+
+Most operating systems set the failure flag to ``1`` by default, which
+maximizes system availability while still causing an alert. The tasks in the
+security role set the flag to ``1`` by default.
+
+Deployers can adjust the following Ansible variable to customize the failure
+flag:
+
+.. code-block:: yaml
+
+    security_rhel7_audit_failure_flag: 1
+
+.. warning::
+
+    Setting the failure flag to ``2`` is **strongly** discouraged unless the
+    security of the system takes priority over its availability. Any failure in
+    auditing causes a kernel panic and the system requires a hard reboot.

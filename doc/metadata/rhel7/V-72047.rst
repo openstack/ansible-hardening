@@ -1,0 +1,13 @@
+---
+id: V-72047
+status: implemented
+tag: file_perms
+---
+
+The tasks in the security role examine the world-writable directories on the
+system and report any directories that are not group-owned by the ``root``
+user. Those directories appear in the Ansible output.
+
+Deployers should review the list of directories and group owners to ensure
+that they are appropriate for the directory. Unauthorized group ownership
+could allow certain users to modify files from other users.

@@ -1,0 +1,19 @@
+---
+id: V-72283
+status: implemented
+tag: kernel
+---
+
+The tasks in this role set ``net.ipv4.conf.all.accept_source_route`` and
+``net.ipv4.conf.default.accept_source_route`` to ``0`` by default. This
+prevents the system from forwarding source-routed IPv4 packets on all
+new and existing interfaces.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_disallow_source_routed_packet_forward_ipv4: no
+
+For more details on source routed packets, refer to the
+`Red Hat documentation <https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-Server_Security-Disable-Source-Routing.html>`_.

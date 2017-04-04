@@ -1,0 +1,25 @@
+---
+id: V-72269
+status: implemented
+tag: misc
+---
+
+The tasks in the security role make the following changes on each host:
+
+* The ``chrony`` package is installed.
+* The service (``chronyd`` on Red Hat and CentOS, ``chrony`` on Ubuntu) is
+  started and enabled at boot time.
+* A configuration file template is deployed that includes ``maxpoll 10`` on
+  each server line.
+
+Deployers can opt out of these changes by setting the following Ansible
+variable:
+
+.. code-block:: yaml
+
+  security_rhel7_enable_chrony: no
+
+.. note::
+
+    Although the STIG mentions the traditional ``ntpd`` service, this role uses
+    ``chrony``, which is a more modern implementation.

@@ -1,0 +1,16 @@
+---
+id: V-71953
+status: implemented
+tag: graphical
+---
+
+If ``AutomaticLoginEnable=true`` exists in the gdm configuration file,
+``/etc/gdm/custom.conf``, the configuration will removed. This disallows
+automatic logins for gdm and requires a user to complete the username and
+password prompts.
+
+Deployers can opt-out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_disable_gdm_automatic_login: no

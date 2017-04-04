@@ -1,8 +1,0 @@
----
-id: RHEL-07-030010
-status: implemented
-tag: auditd
----
-
-The tasks in the security role start the audit daemon immediately and ensure
-that it starts at boot time.

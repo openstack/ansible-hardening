@@ -1,0 +1,20 @@
+---
+id: V-72213
+status: opt-in
+tag: misc
+---
+
+The STIG requires that a virus scanner is installed and running, but the value
+of a virus scanner within an OpenStack control plane or on a hypervisor is
+negligible in many cases. In addition, the disk I/O impact of a virus scanner
+can impact a production environment negatively.
+
+The security role has tasks to deploy ClamAV with automatic updates, but the
+tasks are disabled by default.
+
+Deployers can enable the ClamAV virus scanner by setting the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    security_enable_virus_scanner: yes

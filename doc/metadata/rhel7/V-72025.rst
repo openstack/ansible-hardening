@@ -1,0 +1,10 @@
+---
+id: V-72025
+status: exception - manual intervention
+tag: file_perms
+---
+
+Although the STIG has requirements for ownership and permissions of files and
+directories in each user's home directory, broad changes to these settings
+might cause disruptions to users on a system. Therefore, these changes are left
+to deployers to examine and adjust manually.

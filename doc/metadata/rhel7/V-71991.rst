@@ -1,0 +1,12 @@
+---
+id: V-71991
+status: implemented
+tag: misc
+---
+
+The SELinux targeted policy is enabled on CentOS 7 and Red Hat systems.
+AppArmor only has one set of policies, so this change has no effect on Ubuntu
+systems running AppArmor.
+
+For more information on this change and how to opt out, refer to
+:ref:`stig-V-71989`.

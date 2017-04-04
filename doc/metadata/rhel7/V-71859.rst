@@ -1,0 +1,29 @@
+---
+id: V-71859
+status: implemented
+tag: graphical
+---
+
+The tasks in the security role configure ``dconf`` to display a login banner
+each time a graphical session starts on the system. The default banner message
+set by the role is:
+
+    You are accessing a secured system and your actions will be logged along
+    with identifying information. Disconnect immediately if you are not an
+    authorized user of this system.
+
+Deployers can customize this message by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_enable_graphical_login_message_text: >
+        This is a customized banner message.
+
+.. warning::
+
+    The dconf configuration does not support multi-line strings. Ensure that
+    ``security_enable_graphical_login_message_text`` contains a single line
+    of text.
+
+In addition, deployers can opt out of displaying a login banner message by
+changing ``security_enable_graphical_login_message`` to ``no``.

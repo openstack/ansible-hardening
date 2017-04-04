@@ -28,7 +28,7 @@ import yaml
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 METADATA_DIR = "{0}/../../metadata".format(SCRIPT_DIR)
 DOC_SOURCE_DIR = "{0}/..".format(SCRIPT_DIR)
-XCCDF_FILE = 'U_Red_Hat_Enterprise_Linux_7_STIG_V1R0-2_Manual-xccdf.xml'
+XCCDF_FILE = 'U_Red_Hat_Enterprise_Linux_7_STIG_V1R1_Manual-xccdf.xml'
 XCCDF_NAMESPACE = {'x': 'http://checklists.nist.gov/xccdf/1.1'}
 
 
@@ -235,6 +235,7 @@ def generate_docs():
         rule['description'] = {x.tag: x.text for x in temp.iter()}
 
         # Get the deployer notes from YAML
+        print(rule['id'])
         deployer_notes = get_deployer_notes(rule['id'])
         rule['deployer_notes'] = deployer_notes
 

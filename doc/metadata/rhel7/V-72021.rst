@@ -1,0 +1,10 @@
+---
+id: V-72021
+status: opt-in
+tag: file_perms
+---
+
+This control is implemented by the tasks for another control. Refer to the
+documentation for more details on the change and how to opt out:
+
+* :ref:`stig-V-72017`

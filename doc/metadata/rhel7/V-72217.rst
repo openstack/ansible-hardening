@@ -1,0 +1,16 @@
+---
+id: V-72217
+status: opt-in
+tag: auth
+---
+
+Although the STIG requires that each account is limited to 10 concurrent
+connections, this change might be disruptive in some environments. Therefore,
+this change is not applied by default.
+
+Deployers can opt in for this change by setting a concurrent connection limit
+with this Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_concurrent_session_limit: 10

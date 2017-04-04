@@ -24,17 +24,17 @@
     - auth
     - packages
     - services
-    - RHEL-07-010072
-    - RHEL-07-020000
-    - RHEL-07-020010
-    - RHEL-07-021280
-    - RHEL-07-021910
-    - RHEL-07-030810
-    - RHEL-07-040260
-    - RHEL-07-040500
-    - RHEL-07-040560
+    - V-71897
+    - V-71967
+    - V-71969
+    - V-72067
+    - V-72077
+    - V-72213
+    - V-72233
+    - V-72301
+    - V-72307
 
-- name: RHEL-07-020200 - Clean requirements/dependencies when removing packages (rpm)
+- name: V-71987 - Clean requirements/dependencies when removing packages (rpm)
   lineinfile:
     dest: /etc/yum.conf
     regexp: "^(#)?clean_requirements_on_remove"
@@ -46,9 +46,9 @@
   tags:
     - low
     - packages
-    - RHEL-07-020200
+    - V-71987
 
-- name: RHEL-07-020200 - Clean requirements/dependencies when removing packages (dpkg)
+- name: V-71987 - Clean requirements/dependencies when removing packages (dpkg)
   lineinfile:
     dest: /etc/apt/apt.conf.d/security-autoremove
     regexp: "^(#)?APT::Get::AutomaticRemove"
@@ -61,9 +61,9 @@
   tags:
     - low
     - packages
-    - RHEL-07-020200
+    - V-71987
 
-- name: RHEL-07-020250 - System security patches and updates must be installed and up to date. (yum)
+- name: V-71999 - System security patches and updates must be installed and up to date. (yum)
   lineinfile:
     dest: /etc/yum/yum-cron.conf
     regexp: "^apply_updates"
@@ -75,9 +75,9 @@
   tags:
     - packages
     - medium
-    - RHEL-07-020250
+    - V-71999
 
-- name: RHEL-07-020250 - System security patches and updates must be installed and up to date. (apt)
+- name: V-71999 - System security patches and updates must be installed and up to date. (apt)
   copy:
     src: 20auto-upgrades
     dest: /etc/apt/apt.conf.d/20auto-upgrades
@@ -87,4 +87,4 @@
   tags:
     - packages
     - cat2
-    - RHEL-07-020250
+    - V-71999

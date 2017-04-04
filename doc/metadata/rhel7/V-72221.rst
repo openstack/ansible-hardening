@@ -1,0 +1,15 @@
+---
+id: V-72221
+status: implemented
+tag: sshd
+---
+
+The ``Ciphers`` configuration is set to ``aes128-ctr,aes192-ctr,aes256-ctr`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can change the list of ciphers by setting the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    security_sshd_cipher_list: 'cipher1,cipher2,cipher3'

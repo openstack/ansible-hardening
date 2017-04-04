@@ -1,0 +1,14 @@
+---
+id: V-72303
+status: implemented
+tag: sshd
+---
+
+The ``X11Forwarding`` configuration is set to ``yes`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_enable_x11_forwarding: no

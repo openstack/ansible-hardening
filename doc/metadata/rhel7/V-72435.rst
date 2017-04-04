@@ -1,0 +1,9 @@
+---
+id: V-72435
+status: exception - manual intervention
+tag: auth
+---
+
+Any adjustment to PKI authentication can cause disruptions for users. Deployers
+should verify that their environment is compatible with smart cards before
+requiring them for authentication.

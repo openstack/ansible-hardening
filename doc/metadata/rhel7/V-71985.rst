@@ -1,0 +1,12 @@
+---
+id: V-71985
+status: implemented
+tag: misc
+---
+
+The ``autofs`` service is stopped and disabled if it is found on the system.
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_disable_autofs: no

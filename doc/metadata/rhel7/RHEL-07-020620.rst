@@ -1,9 +1,0 @@
----
-id: RHEL-07-020620
-status: implemented
-tag: auth
----
-
-The usernames of all users without home directories assigned are provided in
-the Ansible console output. Deployers should use this list of usernames to
-audit each system to ensure every user has a valid home directory.

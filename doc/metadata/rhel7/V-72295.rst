@@ -1,0 +1,9 @@
+---
+id: V-72295
+status: verification only
+tag: misc
+---
+
+All interfaces are examined to ensure they are not in promiscuous mode. A
+warning message is printed in the Ansible output if any promiscuous interfaces
+are found.

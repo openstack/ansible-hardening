@@ -1,9 +1,0 @@
----
-id: RHEL-07-010372
-status: opt-in - Red Hat Only
-tag: auth
----
-
-This STIG control is implemented by:
-
-* :ref:`stig-RHEL-07-010371`

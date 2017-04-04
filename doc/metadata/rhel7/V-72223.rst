@@ -1,0 +1,14 @@
+---
+id: V-72223
+status: implemented
+tag: misc
+---
+
+The tasks in the security role set a 600 second (10 minute) timeout for network
+connections associated with a communication session. Deployers can change the
+timeout value by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    # Example: shorten the timeout to 5 minutes (300 seconds)
+    security_rhel7_session_timeout: 300

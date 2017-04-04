@@ -1,0 +1,17 @@
+---
+id: V-71969
+status: implemented
+tag: packages
+---
+
+The role will remove the NIS server package from the system if it is
+installed. The package name differs between Linux distributions:
+
+* CentOS: ``ypserv``
+* Ubuntu: ``nis``
+
+Deployers can opt-out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_remove_ypserv: no

@@ -1,0 +1,10 @@
+---
+id: V-72305
+status: verification only
+tag: misc
+---
+
+The tasks in the security role examine the TFTP server configuration file (if
+it exists) to verify that the secure operation flag (``-s``) is listed on the
+``server_args`` line. If it is missing, a warning message is printed in the
+Ansible output.

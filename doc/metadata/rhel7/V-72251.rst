@@ -1,0 +1,19 @@
+---
+id: V-72251
+status: implemented
+tag: sshd
+---
+
+The ``Protocol`` configuration is set to ``2`` in
+``/etc/ssh/sshd_config`` and sshd is restarted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_sshd_protocol: 2
+
+.. warning::
+
+    There is no reason to enable any other protocol than SSHv2. SSHv1 has
+    multiple vulnerabilities, and it is no longer widely used.

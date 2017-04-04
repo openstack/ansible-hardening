@@ -1,0 +1,9 @@
+---
+id: V-72311
+status: exception - manual intervention
+tag: misc
+---
+
+Deployers using NFS should examine their mounts to ensure ``krb5:krb5i:krb5p``
+is provided with the ``sec`` option. Kerberos must be installed and configured
+before making the change.

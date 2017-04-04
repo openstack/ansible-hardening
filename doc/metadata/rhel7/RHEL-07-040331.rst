@@ -1,9 +1,0 @@
----
-id: RHEL-07-040331
-status: implemented
-tag: auth
----
-
-This control is implemented by the tasks for another control:
-
-* :ref:`stig-RHEL-07-040330`

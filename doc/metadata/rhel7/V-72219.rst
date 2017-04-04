@@ -1,0 +1,8 @@
+---
+id: V-72219
+status: exception - manual intervention
+tag: misc
+---
+
+Deployers should review each firewall rule on a regular basis to ensure that
+each port is open for a valid reason.

@@ -1,8 +1,0 @@
----
-id: RHEL-07-020870
-status: exception - manual intervention
-tag: misc
----
-
-Deployers should manually inspect initialization files in each user's home
-directory and verify that all ``PATH`` lines use absolute paths.

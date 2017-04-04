@@ -1,9 +1,0 @@
----
-id: RHEL-07-030491
-status: implemented
-tag: auditd
----
-
-This control is implemented by the tasks for another control:
-
-* :ref:`stig-RHEL-07-030490`

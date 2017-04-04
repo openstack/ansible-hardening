@@ -1,0 +1,12 @@
+---
+id: V-71949
+status: exception - manual intervention
+tag: auth
+---
+
+The STIG requires all users to re-authenticate when using ``sudo``, but this
+change can be highly disruptive for automated scripts or applications that
+cannot perform interactive authentication. Automated edits from Ansible tasks
+might cause authentication disruptions on some hosts, and deployers are urged
+to carefully review each use of the ``!authenticate`` directive in their
+``sudo`` configuration files.

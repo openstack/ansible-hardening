@@ -1,0 +1,17 @@
+---
+id: V-72307
+status: implemented
+tag: packages
+---
+
+The role will remove the xorg server package from the system if it is
+installed. The package name differs between Linux distributions:
+
+* CentOS: ``xorg-x11-server-Xorg``
+* Ubuntu: ``xorg-xserver``
+
+Deployers can opt-out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_remove_xorg: no

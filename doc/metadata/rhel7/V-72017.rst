@@ -1,0 +1,25 @@
+---
+id: V-72017
+status: opt-in
+tag: file_perms
+---
+
+Although the STIG requires that all home directories have the proper owner,
+group owner, and permissions, these changes might be disruptive in some
+environments. These tasks are not executed by default.
+
+Deployers can opt in for the following changes to each home directory:
+
+* Permissions are set to ``0750`` at a maximum. If permissions are already
+  more restrictive than ``0750``, the permissions are left unchanged.
+
+* User ownership is set to the ``UID`` of the user.
+
+* Group ownership is set to the ``GID`` of the user.
+
+Deployers can opt in for these changes by setting the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    security_set_home_directory_permissions_and_owners: yes

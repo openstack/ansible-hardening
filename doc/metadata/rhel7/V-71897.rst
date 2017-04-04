@@ -1,0 +1,7 @@
+---
+id: V-71897
+status: implemented
+tag: packages
+---
+
+The role will ensure that the ``screen`` package is installed.

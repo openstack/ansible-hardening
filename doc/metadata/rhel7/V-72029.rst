@@ -1,0 +1,13 @@
+---
+id: V-72029
+status: exception - manual intervention
+tag: file_perms
+---
+
+Although the STIG requires that all initialization files for interactive users
+have proper owners, group owners, and permissions, these changes are often
+disruptive for users. The tasks in the security role do not make any changes
+to user initialization files.
+
+Deployers should review the content and discretionary access controls applied
+to each user's initialization files in their home directory.

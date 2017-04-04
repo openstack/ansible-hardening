@@ -1,0 +1,18 @@
+---
+id: V-72277
+status: opt-in
+tag: auth
+---
+
+The tasks in the security role examine the filesystem for any ``.shosts`` or
+``shosts.equiv`` files. If they are found, they are deleted.
+
+The search for these files will take a very long time on systems with slow
+disks or systems with a large amount of files. Therefore, this task is skipped
+by default.
+
+Deployers can opt in for this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_remove_shosts_files: yes

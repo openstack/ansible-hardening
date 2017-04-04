@@ -29,7 +29,7 @@
   tags:
     - always
 
-- name: RHEL-07-030330 - The operating system must off-load audit records onto a different system or media from the system being audited
+- name: V-72083 - The operating system must off-load audit records onto a different system or media from the system being audited
   lineinfile:
     dest: /etc/audisp/audisp-remote.conf
     regexp: "^(#)?remote_server"
@@ -42,9 +42,9 @@
   tags:
     - medium
     - auditd
-    - RHEL-07-030330
+    - V-72083
 
-- name: RHEL-07-030331 - The operating system must encrypt the transfer of audit records off-loaded onto a different system or media from the system being audited
+- name: V-72085 - The operating system must encrypt the transfer of audit records off-loaded onto a different system or media from the system being audited
   lineinfile:
     dest: /etc/audisp/audisp-remote.conf
     regexp: "^(#)?enable_krb5"
@@ -57,7 +57,7 @@
   tags:
     - medium
     - auditd
-    - RHEL-07-030331
+    - V-72085
 
 - name: Get valid system architectures for audit rules
   set_fact:
@@ -98,61 +98,61 @@
     - generate auditd rules
   tags:
     - auditd
-    - RHEL-07-030525
-    - RHEL-07-030513
-    - RHEL-07-030443
-    - RHEL-07-030390
-    - RHEL-07-030380
-    - RHEL-07-030420
-    - RHEL-07-030561
-    - RHEL-07-030671
-    - RHEL-07-030391
-    - RHEL-07-030392
-    - RHEL-07-030381
-    - RHEL-07-030383
-    - RHEL-07-030404
-    - RHEL-07-030401
-    - RHEL-07-030425
-    - RHEL-07-030670
-    - RHEL-07-030512
-    - RHEL-07-030382
-    - RHEL-07-030405
-    - RHEL-07-030402
-    - RHEL-07-030530
-    - RHEL-07-030524
-    - RHEL-07-030421
-    - RHEL-07-030422
-    - RHEL-07-030423
-    - RHEL-07-030630
-    - RHEL-07-030510
-    - RHEL-07-030540
-    - RHEL-07-030541
-    - RHEL-07-030560
-    - RHEL-07-030403
-    - RHEL-07-030750
-    - RHEL-07-030751
-    - RHEL-07-030444
-    - RHEL-07-030752
-    - RHEL-07-030441
-    - RHEL-07-030442
-    - RHEL-07-030400
-    - RHEL-07-030550
-    - RHEL-07-030521
-    - RHEL-07-030522
-    - RHEL-07-030526
-    - RHEL-07-030424
-    - RHEL-07-030531
-    - RHEL-07-030511
-    - RHEL-07-030753
-    - RHEL-07-030754
-    - RHEL-07-030514
-    - RHEL-07-030490
-    - RHEL-07-030523
-    - RHEL-07-030672
-    - RHEL-07-030673
-    - RHEL-07-030674
-    - RHEL-07-030710
-    - RHEL-07-030090
+    - V-72167
+    - V-72155
+    - V-72139
+    - V-72105
+    - V-72097
+    - V-72123
+    - V-72183
+    - V-72189
+    - V-72107
+    - V-72109
+    - V-72099
+    - V-72103
+    - V-72119
+    - V-72113
+    - V-72133
+    - V-72187
+    - V-72153
+    - V-72101
+    - V-72121
+    - V-72115
+    - V-72171
+    - V-72165
+    - V-72125
+    - V-72127
+    - V-72129
+    - V-72185
+    - V-72149
+    - V-72175
+    - V-72177
+    - V-72181
+    - V-72117
+    - V-72199
+    - V-72201
+    - V-72141
+    - V-72203
+    - V-72135
+    - V-72137
+    - V-72111
+    - V-72179
+    - V-72159
+    - V-72161
+    - V-72169
+    - V-72131
+    - V-72173
+    - V-72151
+    - V-72205
+    - V-72207
+    - V-72157
+    - V-72143
+    - V-72163
+    - V-72191
+    - V-72193
+    - V-72195
+    - V-72197
+    - V-72081
 
 - name: Adjust auditd/audispd configurations
   lineinfile:
@@ -168,10 +168,10 @@
   tags:
     - high
     - auditd
-    - RHEL-07-030340
-    - RHEL-07 030350
-    - RHEL-07 030351
-    - RHEL-07 030352
+    - V-72087
+    - V-72089
+    - V-72091
+    - V-72093
 
 - name: Ensure auditd is running and enabled at boot time
   service:
@@ -183,4 +183,4 @@
   tags:
     - high
     - auditd
-    - RHEL-07-030010
+    - V-72079

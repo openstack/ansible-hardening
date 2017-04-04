@@ -1,0 +1,18 @@
+---
+id: V-72007
+status: opt-in
+tag: file_perms
+---
+
+Searching an entire filesystem with ``find`` reduces system performance and
+might impact certain applications negatively. Therefore, the search for files
+and directories with an invalid owner is **disabled by default**.
+
+Deployers can opt in for this search by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_search_for_invalid_owner: yes
+
+Any files or directories without a valid user owner are displayed in the
+Ansible output.

@@ -1,0 +1,13 @@
+---
+id: V-72061
+status: exception - initial provisioning
+tag: misc
+---
+
+Deployers should consider using filesystem mounts for ``/var`` during
+the initial server provisioning process. Adding filesystem mounts after a
+system is provisioned might lead to downtime.
+
+The tasks in the security role do not take action on filesystem mounts. If the
+server does not mount ``/var`` as a separate filesystem, a warning is printed
+in the Ansible output.

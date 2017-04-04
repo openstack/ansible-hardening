@@ -114,7 +114,7 @@ security against attacks. The security role will enable SELinux on CentOS
 systems and enable AppArmor on Ubuntu systems.
 
 For more information on how these changes are applied, refer to the
-documentation for :ref:`RHEL-07-020210 <stig-RHEL-07-020210>`.
+documentation for :ref:`V-71989 <stig-V-71989>`.
 
 SSH server
 ----------

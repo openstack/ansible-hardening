@@ -1,0 +1,12 @@
+---
+id: V-72057
+status: implemented
+tag: kernel
+---
+
+The ``kdump`` service is disabled if it exists on the system. Deployers can opt
+out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_disable_kdump: no

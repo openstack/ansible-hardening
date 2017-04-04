@@ -1,9 +1,0 @@
----
-id: RHEL-07-020170
-status: exception - manual intervention
-tag: misc
----
-
-Deployers should consider the best encryption strategy for their needs and add
-that to the initial provisioning process. The tasks in the security role do not
-apply encryption to disks or individual files.

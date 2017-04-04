@@ -1,0 +1,7 @@
+---
+id: V-72299
+status: not implemented
+tag: packages
+---
+
+This STIG is not yet implemented.

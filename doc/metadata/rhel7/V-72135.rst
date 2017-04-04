@@ -1,0 +1,13 @@
+---
+id: V-72135
+status: implemented
+tag: auditd
+---
+
+Rules are added to audit any time the ``semanage`` command is used.
+
+Deployers can opt out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_audit_semanage: no

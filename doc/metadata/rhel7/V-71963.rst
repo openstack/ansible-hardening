@@ -1,0 +1,10 @@
+---
+id: V-71963
+status: opt-in
+tag: misc
+---
+
+The tasks in the security role for V-71961 will also apply changes to
+systems that use UEFI. For more details, refer to the following documentation:
+
+* :ref:`stig-V-71961`

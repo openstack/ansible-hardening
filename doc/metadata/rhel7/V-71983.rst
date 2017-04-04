@@ -1,0 +1,14 @@
+---
+id: V-71983
+status: opt-in
+tag: kernel
+---
+
+The tasks in the security role disable the ``usb-storage`` module and the
+change is applied the next time the server is rebooted.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_disable_usb_storage: no

@@ -1,0 +1,10 @@
+---
+id: V-72035
+status: exception - manual intervention
+tag: misc
+---
+
+Although the STIG requires that all initialization files must contain
+executable search paths that resolve to the user's home directory, this change
+be disruptive for most users. The tasks in the security role do not make any
+changes to user initialization files.

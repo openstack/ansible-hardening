@@ -1,9 +1,0 @@
----
-id: RHEL-07-010230
-status: implemented
-tag: auth
----
-
-If any users have a maximum password age on their current password set to a
-length of over 60 days, a list of those users is provided in the Ansible
-output.

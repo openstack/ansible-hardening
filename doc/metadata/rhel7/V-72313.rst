@@ -1,0 +1,10 @@
+---
+id: V-72313
+status: verification only
+tag: misc
+---
+
+The tasks in the security role examine the contents of the
+``/etc/snmp/snmpd.conf`` file (if it exists) and search for the default
+community strings: ``public`` and ``private``. If either default string is
+found, a message is printed in the Ansible output.

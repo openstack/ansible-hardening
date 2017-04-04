@@ -1,0 +1,9 @@
+---
+id: V-72433
+status: exception - manual intervention
+tag: auth
+---
+
+Any adjustment to PKI authentication can cause disruptions for users. Deployers
+should verify that enabling OCSP validation is compatible with their existing
+configuration.

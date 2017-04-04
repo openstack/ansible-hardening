@@ -1,0 +1,8 @@
+---
+id: V-71975
+status: implemented
+tag: aide
+---
+
+The cron job for AIDE is configured to send emails to the root user after each
+AIDE run.

@@ -1,0 +1,18 @@
+---
+id: V-71937
+status: implemented
+tag: auth
+---
+
+The Ansible tasks will ensure that PAM is configured to disallow logins from
+accounts with null or blank passwords. This involves removing a single option
+from one of the PAM configuration files:
+
+* CentOS or RHEL: removes ``nullok`` from ``/etc/pam.d/system-auth``
+* Ubuntu: removes ``nullok_secure`` from ``/etc/pam.d/common-auth``
+
+Deployers can opt-out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+   security_disallow_blank_password_login: no

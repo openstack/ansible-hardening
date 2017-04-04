@@ -1,9 +1,0 @@
----
-id: RHEL-07-010170
-status: implemented
-tag: implemented
----
-
-The PAM configuration file for password storage is checked to ensure that
-``sha512`` is found on the ``pam_unix.so`` line. If ``sha512`` is not found,
-a debug message is printed in the Ansible output.

@@ -1,8 +1,0 @@
----
-id: RHEL-07-040080
-status: implemented
-tag: file_perms
----
-
-The default group owner for ``/etc/pam_pkcs11/cn_map`` is ``root``. The role
-ensures that this default is maintained if the file exists.

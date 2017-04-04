@@ -1,0 +1,11 @@
+---
+id: V-72233
+status: implemented
+tag: packages
+---
+
+The STIG requires that every system has an ssh client and server installed. The
+role installs the following packages:
+
+* CentOS: ``openssh-clients``, ``openssh-server``
+* Ubuntu: ``openssh-client``, ``openssh-server``

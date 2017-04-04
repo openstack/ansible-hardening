@@ -1,0 +1,16 @@
+---
+id: V-71973
+status: opt-in
+tag: aide
+---
+
+Initializing the AIDE database and completing the first AIDE run causes
+increased disk I/O and CPU usage for extended periods. Therefore, the AIDE
+database is not automatically initialized by the tasks in the security role.
+
+Deployers can enable the AIDE database initialization within the security role
+by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_initialize_aide: yes

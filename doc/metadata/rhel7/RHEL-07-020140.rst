@@ -1,8 +1,0 @@
----
-id: RHEL-07-020140
-status: implemented
-tag: aide
----
-
-The cron job for AIDE is configured to send emails to the root user after each
-AIDE run.

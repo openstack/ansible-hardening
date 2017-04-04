@@ -37,8 +37,8 @@
   tags:
     - high
     - sshd
-    - RHEL-07-010040
-    - RHEL-07-040170
+    - V-71861
+    - V-72225
 
 - name: Adjust ssh server configuration based on STIG requirements
   blockinfile:
@@ -53,26 +53,25 @@
   tags:
     - high
     - sshd
-    - RHEL-07-010270
-    - RHEL-07-010440
-    - RHEL-07-010441
-    - RHEL-07-010442
-    - RHEL-07-040110
-    - RHEL-07-040170
-    - RHEL-07-040190
-    - RHEL-07-040191
-    - RHEL-07-040301
-    - RHEL-07-040310
-    - RHEL-07-040332
-    - RHEL-07-040334
-    - RHEL-07-040334
-    - RHEL-07-040540
-    - RHEL-07-040590
-    - RHEL-07-040620
-    - RHEL-07-040690
-    - RHEL-07-040700
-    - RHEL-07-040670
-    - RHEL-07-040680
+    - V-71939
+    - V-71957
+    - V-71959
+    - V-72221
+    - V-72225
+    - V-72237
+    - V-72241
+    - V-72245
+    - V-72247
+    - V-72249
+    - V-72243
+    - V-72243
+    - V-72303
+    - V-72251
+    - V-72253
+    - V-72265
+    - V-72267
+    - V-72261
+    - V-72263
 
 - name: Ensure sshd is enabled at boot time
   service:
@@ -83,7 +82,7 @@
   tags:
     - medium
     - sshd
-    - RHEL-07-040261
+    - V-72235
 
 - name: Public host key files must have mode 0644 or less
   file:
@@ -94,7 +93,7 @@
   tags:
     - medium
     - sshd
-    - RHEL-07-040640
+    - V-72255
 
 - name: Private host key files must have mode 0600 or less
   file:
@@ -105,4 +104,4 @@
   tags:
     - medium
     - sshd
-    - RHEL-07-040650
+    - V-72257

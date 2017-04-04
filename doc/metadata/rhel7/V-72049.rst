@@ -1,0 +1,13 @@
+---
+id: V-72049
+status: exception - manual intervention
+tag: file_perms
+---
+
+Although the STIG requires that all local interactive user accounts have a
+umask of ``077``, this change can be disruptive for users and the applications
+they run. This change cannot be applied in an automated way.
+
+Deployers should review user initialization files regularly to ensure that the
+umask is not specified. This allows the system-wide setting of ``077`` to be
+applied to all user sessions.

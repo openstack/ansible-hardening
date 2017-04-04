@@ -1,0 +1,11 @@
+---
+id: V-72215
+status: implemented
+tag: misc
+---
+
+By default, CentOS 7 and Red Hat Enterprise Linux 7 check for virus database
+updates 12 times a day. Ubuntu servers have a default of 24 checks per day.
+
+The tasks in the security role do not adjust these defaults as they are more
+secure than the STIG's requirement.

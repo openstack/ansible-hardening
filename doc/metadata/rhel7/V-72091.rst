@@ -1,0 +1,16 @@
+---
+id: V-72091
+status: implemented
+tag: auditd
+---
+
+The ``space_left_action`` in the audit daemon configuration is set to
+``email``. This configuration causes the root user to receive an email when the
+``space_left`` threshold is reached.
+
+Deployers can customize this configuration by setting the following Ansible
+variable:
+
+.. code-block:: yaml
+
+    security_rhel7_auditd_space_left_action: email

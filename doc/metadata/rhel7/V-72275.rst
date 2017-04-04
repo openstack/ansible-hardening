@@ -1,0 +1,14 @@
+---
+id: V-72275
+status: verification only
+tag: auth
+---
+
+The PAM configuration is checked for the presence of ``pam_lastlogin`` and a
+warning message is printed if the directive is not found. The tasks in the
+security role do not adjust PAM configurations since these changes might be
+disruptive in some environments.
+
+Deployers should review their PAM configurations and add ``pam_lastlogin`` to
+``/etc/pam.d/postlogin`` on CentOS and Red Hat Enterprise Linux or to
+``/etc/pam.d/login`` on Ubuntu.

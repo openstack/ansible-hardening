@@ -1,0 +1,14 @@
+---
+id: V-73159
+status: opt-in
+tag: auth
+---
+
+The security role can require new or changed passwords to follow the pwquality
+rules, but this change can be disruptive for users without proper
+communication. Deployers must opt in for this change by setting the following
+variable:
+
+.. code-block:: yaml
+
+    security_enable_pwquality_password_set: yes

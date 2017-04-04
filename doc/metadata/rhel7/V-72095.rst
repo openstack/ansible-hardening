@@ -1,0 +1,18 @@
+---
+id: V-72095
+status: exception - manual intervention
+tag: auditd
+---
+
+This STIG is difficult to implement in an automated way because the number of
+applications on a system with setuid/setgid permissions changes over time.
+In addition, adding audit rules for some of these automatically could cause a
+significant increase in logging traffic when these applications are used
+regularly.
+
+Deployers are urged to do the following instead:
+
+* Minimize the amount of applications with setuid/setgid privileges
+* Monitor any new applications that gain setuid/setgid privileges
+* Add risky applications with setuid/setgid privileges to auditd for detailed
+  syscall monitoring

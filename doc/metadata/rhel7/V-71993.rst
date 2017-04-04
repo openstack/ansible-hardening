@@ -1,0 +1,14 @@
+---
+id: V-71993
+status: implemented
+tag: misc
+---
+
+The tasks in the security role disable the control-alt-delete key sequence by
+masking its systemd service unit.
+
+Deployers can opt out of this change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_disable_ctrl_alt_delete: no

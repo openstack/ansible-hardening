@@ -1,0 +1,32 @@
+---
+id: V-72087
+status: implemented
+tag: auditd
+---
+
+The tasks in the security role set the ``disk_full_action`` and
+``network_failure_action`` to ``syslog`` in the audispd remote configuration.
+In the event of a full disk on the remote log server or a network interruption,
+the local system sends warnings to syslog. This is the safest option since it
+maximizes the availability of the local system.
+
+Deployers have two other options available:
+
+* ``single``: Switch the local server into single-user mode in the event of a
+  logging failure.
+
+* ``halt``: Shut off the local server gracefully in the event of a logging
+  failure.
+
+.. warning::
+
+    Choosing ``single`` or ``halt`` causes a server to go into a degraded or
+    offline state immediately after a logging failure.
+
+Deployers can adjust these configurations by setting the following Ansible
+variables (the safe defaults are shown here):
+
+.. code-block:: yaml
+
+    security_rhel7_auditd_disk_full_action: syslog
+    security_rhel7_auditd_network_failure_action: syslog

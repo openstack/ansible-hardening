@@ -1,0 +1,16 @@
+---
+id: V-72051
+status: exception - manual intervention
+tag: misc
+---
+
+Ubuntu, CentOS and Red Hat Enterprise Linux already capture the logs from cron.
+
+Ubuntu systems collect cron job logs into the main syslog file
+(``/var/log/syslog``) rather than separate them into their own log file.
+CentOS and Red Hat Enterprise Linux systems collect cron logs in
+``/var/log/cron``.
+
+Deployers should not need to adjust these configurations unless a specific
+environment requires it. The tasks in the security role do not make changes to
+the ``rsyslog`` configuration.

@@ -1,7 +1,0 @@
----
-id: RHEL-07-010072
-status: implemented
-tag: packages
----
-
-The role will ensure that the ``screen`` package is installed.

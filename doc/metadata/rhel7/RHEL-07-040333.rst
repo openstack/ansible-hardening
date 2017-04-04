@@ -1,7 +1,0 @@
----
-id: RHEL-07-040333
-status: implemented
-tag: sshd
----
-
-This STIG is already applied by the changes for :ref:`stig-RHEL-07-040332`.

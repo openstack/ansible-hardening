@@ -24,7 +24,7 @@
     - not check_mode
   tags:
     - high
-    - RHEL-07-020210
+    - V-71989
 
 # NOTE(mhayden): The "changed_when" is required here because this task will
 # always show as changed when SELinux is completely disabled. It's not possible
@@ -41,8 +41,8 @@
     - security_rhel7_enable_linux_security_module | bool
   tags:
     - high
-    - RHEL-07-020210
-    - RHEL-07-020211
+    - V-71989
+    - V-71991
 
 - name: Relabel files on next boot if SELinux mode changed
   file:
@@ -54,8 +54,8 @@
     - selinux_status_change | changed
   tags:
     - high
-    - RHEL-07-020210
-    - RHEL-07-020211
+    - V-71989
+    - V-71991
 
 # NOTE(mhayden): Ansible's find module doesn't support searching for files
 # based on SELinux contexts yet.
@@ -71,9 +71,9 @@
   tags:
     - lsm
     - medium
-    - RHEL-07-020940
+    - V-72039
 
-- name: RHEL-07-020940 - All system device files must be correctly labeled to prevent unauthorized modification.
+- name: V-72039 - All system device files must be correctly labeled to prevent unauthorized modification.
   debug:
     msg: |
       Devices were found without SELinux labels:
@@ -87,4 +87,4 @@
   tags:
     - lsm
     - medium
-    - RHEL-07-020940
+    - V-72039

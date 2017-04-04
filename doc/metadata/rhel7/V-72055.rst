@@ -1,7 +1,10 @@
 ---
 id: V-72055
-status: not implemented
+status: implemented
 tag: misc
 ---
 
-This STIG requirement is not yet implemented.
+The group ownership for ``/etc/cron.allow`` is already set by the task for the
+following STIG control:
+
+:ref:`stig-V-72053`

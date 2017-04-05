@@ -564,6 +564,15 @@ security_rhel7_session_timeout: 600                          # V-72223
 security_rhel7_enable_chrony: yes                            # V-72269
 # Restrict mail relaying.
 security_rhel7_restrict_mail_relaying: yes                   # V-72297
+# Deploy a login banner.                                     # V-72225 / V-71863
+security_login_banner_text: |
+  ------------------------------------------------------------------------------
+  * WARNING                                                                    *
+  * You are accessing a secured system and your actions will be logged along   *
+  * with identifying information. Disconnect immediately if you are not an     *
+  * authorized user of this system.                                            *
+  ------------------------------------------------------------------------------
+
 
 ## Packages (packages)
 # Remove packages from the system as required by the STIG. Set any of these

@@ -15,5 +15,14 @@ following Ansible variable:
 
     security_sshd_banner_file: /etc/motd
 
-The text of the banner file is configurable by editing
-``files/login_banner.txt`` in the security role.
+The message is customized with the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_login_banner_text: |
+      ------------------------------------------------------------------------------
+      * WARNING                                                                    *
+      * You are accessing a secured system and your actions will be logged along   *
+      * with identifying information. Disconnect immediately if you are not an     *
+      * authorized user of this system.                                            *
+      ------------------------------------------------------------------------------

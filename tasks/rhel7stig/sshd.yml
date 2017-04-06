@@ -30,7 +30,7 @@
 
 - name: Copy login warning banner
   copy:
-    src: login_banner.txt
+    content: "{{ security_login_banner_text }}"
     dest: "{{ security_sshd_banner_file }}"
     owner: root
     group: root

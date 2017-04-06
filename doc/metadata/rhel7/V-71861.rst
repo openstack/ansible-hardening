@@ -1,9 +1,28 @@
 ---
 id: V-71861
 status: implemented
-tag: sshd
+tag: graphical
 ---
 
-This control is implemented by the tasks for another control:
+The security role configures a login banner for graphical logins using
+``dconf``. Deployers can opt out of this change by setting the following
+Ansible variable:
 
-* :ref:`stig-V-72225`
+.. code-block:: yaml
+
+    security_enable_graphical_login_message: no
+
+The message is customized by setting another Ansible variable:
+
+.. code-block:: yaml
+
+    security_enable_graphical_login_message_text: >
+        You are accessing a secured system and your actions will be logged along
+        with identifying information. Disconnect immediately if you are not an
+        authorized user of this system.
+
+.. note::
+
+    The space available for the graphical banner is relatively short. Deployers
+    should limit the length of their graphical login banners to the shortest
+    length possible.

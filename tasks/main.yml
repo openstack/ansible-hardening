@@ -45,4 +45,11 @@
     tags:
       - always
 
+  - name: Check if grub is present on the remote node
+    stat:
+      path: "{{ grub_update_cmd.split(' ')[0] }}"
+    register: grub_update_binary
+    tags:
+      - always
+
   - include: "{{ stig_version }}stig/main.yml"

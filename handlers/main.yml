@@ -74,6 +74,8 @@
   command: "{{ grub_update_cmd }}"
   when:
     - security_enable_grub_update | bool
+    - grub_update_binary.stat.exists | bool
+    - grub_update_binary.stat.executable | bool
   notify:
     - set bootloader file permissions after updating grub config
 

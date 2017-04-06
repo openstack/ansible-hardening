@@ -39,7 +39,7 @@ chrony_service: chronyd
 clamav_service: 'clamd@scan'
 
 # Commands
-grub_update_cmd: "grub2-mkconfig -o {{ grub_config_file_boot }}"
+grub_update_cmd: "/usr/sbin/grub2-mkconfig -o {{ grub_config_file_boot }}"
 ssh_keysign_path: /usr/libexec/openssh
 
 # RHEL 6 STIG: Packages to add/remove

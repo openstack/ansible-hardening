@@ -42,7 +42,7 @@ chrony_service: chrony
 clamav_service: clamav-daemon
 
 # Commands
-grub_update_cmd: "update-grub"
+grub_update_cmd: "/usr/sbin/update-grub"
 ssh_keysign_path: /usr/lib/openssh
 
 # RHEL 6 STIG: Packages to add/remove

@@ -188,6 +188,7 @@
   when:
     - clamav_install_check.stat.exists
     - security_enable_virus_scanner | bool
+    - security_run_virus_scanner_update | bool
   async: 300
   poll: 5
   tags:

@@ -546,6 +546,8 @@ security_rhel7_enable_linux_security_module: yes             # V-71989 / V-71991
 security_rhel7_disable_autofs: yes                           # V-71985
 # Enable virus scanning with clamav
 security_enable_virus_scanner: no                            # V-72213
+# Run the virus scanner update during the deployment (if scanner is deployed)
+security_run_virus_scanner_update: yes
 # Disable ctrl-alt-delete key sequence on the console.
 security_rhel7_disable_ctrl_alt_delete: yes                  # V-71993
 # Install and enable firewalld for iptables management.

@@ -87,6 +87,7 @@
     security_unattended_upgrades_notifications: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
     security_rhel7_automatic_package_updates: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
     security_enable_virus_scanner: yes
+    security_run_virus_scanner_update: no
     security_search_for_invalid_owner: yes
     security_search_for_invalid_group_owner: yes
     security_enable_firewalld: yes

@@ -63,7 +63,7 @@
       The STIG requires that /home is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - "{{ ansible_mounts | selectattr('mount', 'equalto', '/home') | list | length == 0 }}"
+    - ansible_mounts | selectattr('mount', 'equalto', '/home') | list | length == 0
   tags:
     - low
     - misc
@@ -75,7 +75,7 @@
       The STIG requires that /var is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - "{{ ansible_mounts | selectattr('mount', 'equalto', '/var') | list | length == 0 }}"
+    - ansible_mounts | selectattr('mount', 'equalto', '/var') | list | length == 0
   tags:
     - low
     - misc
@@ -87,7 +87,7 @@
       The STIG requires that /var/log/audit is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - "{{ ansible_mounts | selectattr('mount', 'equalto', '/var/log/audit') | list | length == 0 }}"
+    - ansible_mounts | selectattr('mount', 'equalto', '/var/log/audit') | list | length == 0
   tags:
     - low
     - misc
@@ -99,7 +99,7 @@
       The STIG requires that /tmp is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - "{{ ansible_mounts | selectattr('mount', 'equalto', '/tmp') | list | length == 0 }}"
+    - ansible_mounts | selectattr('mount', 'equalto', '/tmp') | list | length == 0
   tags:
     - low
     - misc

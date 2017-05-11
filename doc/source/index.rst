@@ -34,7 +34,7 @@ For more details, review the *Documentation* section below.
 Documentation
 -------------
 
-The following documentation applies to the Ocata release. Documentation from
+The following documentation applies to the Pike release. Documentation from
 previous releases are available in the *Releases* section below.
 
 .. toctree::
@@ -46,10 +46,17 @@ previous releases are available in the *Releases* section below.
    controls-rhel7.rst
    developer-guide.rst
 
-The RHEL 7 STIG content was first added in the Ocata release. The original RHEL
-6 STIG content is deprecated in the Ocata release and will be removed in the
-next OpenStack release (Pike). The documentation for the RHEL 6 STIG content is
-still available:
+Special Notes: STIG Content
+---------------------------
+
+The RHEL 7 STIG content was first added in the Ocata release using the
+pre-release STIG content (version 0.2). The Pike release contains the final
+STIG release content which also included a numbering change from the
+``RHEL-xx-xxxxxx`` style to the traditional ``V-xxxxx`` style.
+
+The original RHEL 6 STIG content was deprecated in the Ocata release and will
+be removed in the Queens release (early 2018). The documentation for the
+RHEL 6 STIG content is still available:
 
 .. toctree::
    :maxdepth: 2
@@ -61,10 +68,10 @@ Releases
 
 Deployers should use the latest stable release for all production deployments.
 
-Ocata
-~~~~~
+Pike
+~~~~
 
-* **Status:** Development *(anticipated release: February 2017)*
+* **Status:** Active development *(anticipated release: September 2017)*
 
 * **Supported Operating Systems:**
 
@@ -75,14 +82,34 @@ Ocata
 
 * **Documentation:**
 
+  * `openstack-ansible-security Pike Release Notes`_
+
+.. _openstack-ansible-security Pike Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/unreleased.html
+
+Ocata
+~~~~~
+
+* **Status:** Latest stable release *(released February 2017)*
+
+* **Supported Operating Systems:**
+
+  * Ubuntu 14.04 Trusty *(Deprecated)*
+  * Ubuntu 16.04 Xenial
+  * CentOS 7
+  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
+
+* **Documentation:**
+
+  * `openstack-ansible-security Ocata Documentation`_
   * `openstack-ansible-security Ocata Release Notes`_
 
-.. _openstack-ansible-security Ocata Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/unreleased.html
+.. _openstack-ansible-security Ocata Documentation: http://docs.openstack.org/developer/openstack-ansible-security/ocata/
+.. _openstack-ansible-security Ocata Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/ocata.html
 
 Newton
 ~~~~~~
 
-* **Status:** Latest stable release *(released 2016-10-20)*
+* **Status:** Previous stable release *(released October 2016)*
 
 * **Supported Operating Systems:**
 
@@ -98,18 +125,3 @@ Newton
 
 .. _openstack-ansible-security Newton Documentation: http://docs.openstack.org/developer/openstack-ansible-security/newton/
 .. _openstack-ansible-security Newton Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/newton.html
-
-Mitaka
-~~~~~~
-
-* **Status:** Stable release *(released 2016-04-01)*
-
-* **Supported Operating Systems:** Ubuntu 14.04 Trusty
-
-* **Documentation:**
-
-  * `openstack-ansible-security Mitaka Documentation`_
-  * `openstack-ansible-security Mitaka Release Notes`_
-
-.. _openstack-ansible-security Mitaka Documentation: http://docs.openstack.org/developer/openstack-ansible-security/mitaka/
-.. _openstack-ansible-security Mitaka Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html

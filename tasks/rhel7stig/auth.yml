@@ -306,6 +306,16 @@
   tags:
     - always
 
+# NOTE(mhayden): Some systems, such as ARM, don't have grub at all. This task
+# should be skipped on those systems.
+- name: Check if GRUB defaults file exists
+  stat:
+    path: "{{ grub_defaults_file }}"
+  register: grub_defaults_file_check
+  check_mode: no
+  tags:
+    - always
+
 - name: Set a GRUB 2 password for single-user/maintenance modes
   lineinfile:
     dest: "{{ grub_defaults_file }}"
@@ -313,6 +323,7 @@
     line: 'GRUB_PASSWORD="{{ security_grub_password_hash }}"'
     state: present
   when:
+    - grub_defaults_file_check.stat.exists | bool
     - security_require_grub_authentication | bool
   notify:
     - update grub config

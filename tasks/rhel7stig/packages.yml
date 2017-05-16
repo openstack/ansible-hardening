@@ -63,6 +63,14 @@
     - packages
     - V-71987
 
+- name: Check if /etc/yum/yum-cron.conf exists
+  stat:
+    path: /etc/yum/yum-cron.conf
+  check_mode: no
+  register: yum_cron_config_check
+  tags:
+    - always
+
 - name: V-71999 - System security patches and updates must be installed and up to date. (yum)
   lineinfile:
     dest: /etc/yum/yum-cron.conf
@@ -71,6 +79,7 @@
     state: present
   when:
     - ansible_os_family | lower == 'redhat'
+    - yum_cron_config_check.stat.exists | bool
     - security_rhel7_automatic_package_updates | bool
   tags:
     - packages

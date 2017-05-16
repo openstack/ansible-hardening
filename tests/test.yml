@@ -79,13 +79,9 @@
   vars:
     security_pwquality_apply_rules: yes
     security_package_clean_on_remove: yes
-    # NOTE(mhayden): yum-cron has a bug upon update due to a RPM conflict in
-    # the yum-cron.conf file. This test should be re-enabled when the
-    # OpenStack CI images are updated.
-    # See https://bugzilla.redhat.com/show_bug.cgi?id=1293513
-    security_unattended_upgrades_enabled: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
-    security_unattended_upgrades_notifications: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
-    security_rhel7_automatic_package_updates: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
+    security_unattended_upgrades_enabled: yes
+    security_unattended_upgrades_notifications: yes
+    security_rhel7_automatic_package_updates: yes
     # NOTE(mhayden): clamav is only available if EPEL is installed. There needs
     # to be some work done to figure out how to install EPEL for use with
     # this role without causing disruptions on the system.

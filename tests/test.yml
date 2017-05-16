@@ -86,7 +86,10 @@
     security_unattended_upgrades_enabled: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
     security_unattended_upgrades_notifications: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
     security_rhel7_automatic_package_updates: "{{ (ansible_os_family | lower == 'debian') | ternary(true, false) }}"
-    security_enable_virus_scanner: yes
+    # NOTE(mhayden): clamav is only available if EPEL is installed. There needs
+    # to be some work done to figure out how to install EPEL for use with
+    # this role without causing disruptions on the system.
+    security_enable_virus_scanner: no
     security_run_virus_scanner_update: no
     security_search_for_invalid_owner: yes
     security_search_for_invalid_group_owner: yes

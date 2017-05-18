@@ -31,6 +31,37 @@
     - aide
     - V-71973
 
+# NOTE(mhayden): CentOS/RHEL already provide a very strict AIDE configuration
+# that meets the requirements of V-72069 and V-72071. That config
+# is borrowed for Ubuntu 16.04 here.
+- name: Configure AIDE to verify additional properties
+  blockinfile:
+    dest: "{{ aide_conf }}"
+    insertbefore: EOF
+    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    block: |
+      # Rules borrowed from CentOS/RHEL AIDE configuration
+      # (SELinux was removed for Ubuntu compatibility.)
+      FIPSR = p+i+n+u+g+s+m+c+acl+xattrs+sha256
+      NORMAL = FIPSR+sha512
+
+      # The following two lines apply the NORMAL rule (above this line) to the
+      # /bin and /sbin directories to meet the requirements of two STIG controls:
+      #
+      #   RHEL-07-021600 - Verify ACLs
+      #   RHEL-07-021610 - Verify extended attributes
+      #
+      /bin    NORMAL
+      /sbin   NORMAL
+  when:
+    - ansible_os_family | lower == 'ubuntu'
+  tags:
+    - low
+    - aide
+    - V-72069
+    - V-72071
+    - V-72073
+
 - name: Check to see if AIDE database is already in place
   stat:
     path: "{{ aide_database_file }}"
@@ -82,21 +113,3 @@
     - medium
     - aide
     - V-71975
-
-# NOTE(mhayden): CentOS/RHEL already provide a very strict AIDE configuration
-# that meets the requirements of V-72069 and V-72071. That config
-# is borrowed for Ubuntu 16.04 here.
-- name: Configure AIDE to verify additional properties
-  blockinfile:
-    dest: "{{ aide_conf }}"
-    insertbefore: EOF
-    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
-    block: "{{ lookup('file', 'aide_extra.conf') }}"
-  when:
-    - ansible_os_family | lower == 'ubuntu'
-  tags:
-    - low
-    - aide
-    - V-72069
-    - V-72071
-    - V-72073

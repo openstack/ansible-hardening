@@ -48,8 +48,8 @@
       # The following two lines apply the NORMAL rule (above this line) to the
       # /bin and /sbin directories to meet the requirements of two STIG controls:
       #
-      #   RHEL-07-021600 - Verify ACLs
-      #   RHEL-07-021610 - Verify extended attributes
+      #   V-72069 - Verify ACLs
+      #   V-72071 - Verify extended attributes
       #
       /bin    NORMAL
       /sbin   NORMAL

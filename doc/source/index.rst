@@ -40,8 +40,8 @@ previous releases are available in the *Releases* section below.
 .. toctree::
    :maxdepth: 2
 
-   faq.rst
    getting-started.rst
+   faq.rst
    special-notes.rst
    controls-rhel7.rst
    developer-guide.rst

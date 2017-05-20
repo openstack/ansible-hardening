@@ -1,0 +1,255 @@
+---
+# Copyright 2017, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Check if /etc/security/pwquality.conf exists
+  stat:
+    path: /etc/security/pwquality.conf
+  check_mode: no
+  register: pwquality_config_check
+  tags:
+    - always
+
+- name: Set password quality requirements
+  blockinfile:
+    dest: /etc/security/pwquality.conf
+    backup: yes
+    insertbefore: EOF
+    marker: "# {mark} Added by openstack-ansible-security role"
+    state: present
+    block: "{{ lookup('template', 'pwquality.conf.j2') }}"
+  when:
+    - pwquality_config_check.stat.exists
+  tags:
+    - accounts
+    - medium
+    - V-71903
+    - V-71905
+    - V-71907
+    - V-71909
+    - V-71911
+    - V-71913
+    - V-71915
+    - V-71917
+    - V-71935
+
+- name: Check for SHA512 password storage in PAM
+  command: "grep pam_unix.so {{ pam_password_file }}"
+  register: password_sha512_check
+  changed_when: False
+  check_mode: no
+  tags:
+    - always
+
+- name: Print warning if PAM is not using SHA512 for password storage
+  debug:
+    msg: >
+      PAM is not using SHA512 for password storage. This is a security issue.
+  when:
+    - password_sha512_check is defined
+    - "'sha512' not in password_sha512_check.stdout"
+  tags:
+    - accounts
+    - medium
+    - V-71919
+
+- name: Ensure libuser is storing passwords using SHA512
+  ini_file:
+    dest: /etc/libuser.conf
+    section: defaults
+    option: crypt_style
+    value: sha512
+    backup: yes
+  when:
+    - security_libuser_crypt_style_sha512 | bool
+    - ansible_os_family | lower == 'redhat'
+  tags:
+    - accounts
+    - medium
+    - V-71923
+
+- name: Get all user accounts with a password lifetime limit under 24 hours
+  shell: "awk -F: '$4 < 1 {print $1}' /etc/shadow"
+  check_mode: no
+  changed_when: False
+  register: password_lifetime_check
+  tags:
+    - accounts
+    - medium
+    - V-71927
+    - skip_ansible_lint
+
+- name: Print warning about accounts with password lifetimes under 24 hours
+  debug:
+    msg: |
+      Accounts were found with a minimum password lifetime limit under 24 hours:
+      {{ password_lifetime_check.stdout_lines | join(', ') }}
+  when:
+    - password_lifetime_check.stdout_lines is defined
+  tags:
+    - accounts
+    - medium
+    - V-71927
+
+- name: Print warning for accounts with a password lifetime over 60 days
+  debug:
+    msg: |
+      The following user accounts have an existing password with a lifetime of
+      greater than 60 days:
+      {%- for user in user_list.users %}
+      {% if user['shadow']['max_days'] > 60 %}
+          {{ user['name'] }} has an expiration of {{ user['shadow']['max_days'] }} days
+      {% endif %}
+      {% endfor %}
+  tags:
+    - accounts
+    - medium
+    - V-71931
+
+- name: Ensure that users cannot reuse one of their last 5 passwords
+  lineinfile:
+    dest: "{{ pam_password_file }}"
+    regexp: '^(password\s+[a-z0-9\=\[\] ]+\s+pam_unix\.so.+?)\s+(?:remember=\d+)?$'
+    line: '\1 remember={{ security_password_remember_password }}'
+    backrefs: yes
+    state: present
+  when:
+    - security_password_remember_password is defined
+  tags:
+    - accounts
+    - medium
+    - V-71933
+
+- name: Ensure accounts are disabled if the password expires
+  lineinfile:
+    dest: /etc/default/useradd
+    regexp: '^[#\s]*INACTIVE'
+    line: 'INACTIVE=0'
+  when:
+    - security_disable_account_if_password_expires | bool
+  tags:
+    - accounts
+    - medium
+    - V-71941
+
+- name: Apply shadow-utils configurations
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: "^{{ item.parameter }}"
+    line: "{{ item.parameter }} {{ item.value }}"
+    state: present
+  when:
+    - item.value != ''
+    - item.ansible_os_family == 'all' or item.ansible_os_family == ansible_os_family
+  with_items: "{{ shadow_utils_rhel7 }}"
+  tags:
+    - accounts
+    - medium
+    - V-71921
+    - V-71925
+    - V-71929
+    - V-71951
+    - V-71995
+    - V-72013
+
+- name: Print warning for groups in /etc/passwd that are not in /etc/group
+  debug:
+    msg: >
+      The following users have GIDs in /etc/passwd that do not exist in /etc/group:
+      {{ user_list.users | selectattr('group', 'equalto', False) | map(attribute='name') | join(', ') }}
+  when:
+    - user_list is defined
+    - user_list.users | selectattr('group', 'equalto', False) | list | length > 0
+  tags:
+    - accounts
+    - low
+    - V-72003
+
+- name: Get all accounts with UID 0
+  shell: "awk -F: '$3 == 0 {print $1}' /etc/passwd"
+  changed_when: False
+  check_mode: no
+  register: root_user_check
+  tags:
+    - accounts
+    - high
+    - V-72005
+    - skip_ansible_lint
+
+- name: Print warnings for non-root users with UID 0
+  fail:
+    msg: |
+      Only the 'root' user should have UID 0. Other users were found:
+      {{ root_user_check.stdout_lines | join(', ') }}"
+  when:
+    - root_user_check.stdout != 'root'
+  tags:
+    - accounts
+    - high
+    - V-72005
+
+- name: Print warning for local interactive users without a home directory assigned
+  debug:
+    msg: |
+      The following users do not have a home directory assigned:
+      {{ user_list.users | selectattr('dir', 'equalto', '') | map(attribute='name') | join(', ') }}
+  when:
+    - user_list is defined
+    - user_list.users | selectattr('dir', 'equalto', '') | map(attribute='name') | list | length > 0
+  tags:
+    - accounts
+    - medium
+    - V-72011
+
+- name: Check each user to see if its home directory exists on the filesystem
+  stat:
+    path: "{{ item['dir'] }}"
+  when:
+    - item['dir'] != ''
+  with_items: "{{ user_list.users }}"
+  register: home_directory_checks
+  tags:
+    - accounts
+    - medium
+    - V-72015
+
+- name: Print warning for users with an assigned home directory that does not exist
+  debug:
+    msg: |
+      These users have a home directory assigned, but the directory does not exist:
+      {% for check in home_directory_checks.results %}
+      {% if not check.stat.exists %}
+      {{ check.item.name }} ({{ check.item.dir }} does not exist)
+      {% endif %}
+      {% endfor %}
+  when:
+    - home_directory_checks.results | selectattr('stat.exists', 'sameas', false) | list | length > 0
+  tags:
+    - accounts
+    - medium
+    - V-72015
+
+- name: Use pwquality when passwords are changed or created
+  lineinfile:
+    dest: /etc/pam.d/passwd
+    line: "password required pam_pwquality.so retry=3"
+    state: present
+  when:
+    - security_enable_pwquality_password_set | bool
+  tags:
+    - accounts
+    - medium
+    - V-73159
+
+

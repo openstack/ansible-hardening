@@ -1,7 +1,7 @@
 ---
 id: V-72003
 status: implemented
-tag: auth
+tag: accounts
 ---
 
 If any users are found with invalid GIDs, those users are printed in the

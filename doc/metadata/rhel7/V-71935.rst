@@ -1,7 +1,7 @@
 ---
 id: V-71935
 status: opt-in
-tag: auth
+tag: accounts
 ---
 
 Although the STIG requires that passwords have a minimum length of 15

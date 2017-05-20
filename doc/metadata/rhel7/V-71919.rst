@@ -1,7 +1,7 @@
 ---
 id: V-71919
 status: implemented
-tag: implemented
+tag: accounts
 ---
 
 The PAM configuration file for password storage is checked to ensure that

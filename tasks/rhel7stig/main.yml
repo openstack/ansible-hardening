@@ -49,6 +49,13 @@
     - always
     - skip_ansible_lint
 
+- name: Get a list of users on the system to use throughout the auth tasks
+  action: get_users
+  register: user_list
+  check_mode: no
+  tags:
+    - always
+
 # Package installations and removals must come first so that configuration
 # changes can be made later.
 - include: packages.yml
@@ -65,6 +72,7 @@
 # each file are tagged with the same name (for example, tasks in `auth.yml`
 # are tagged with `auth`). Also, the tag name matches up with the "STIG
 # Controls by Tag" section of the role documentation.
+- include: accounts.yml
 - include: aide.yml
 - include: auditd.yml
 - include: auth.yml

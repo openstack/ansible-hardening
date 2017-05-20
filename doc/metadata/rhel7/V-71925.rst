@@ -1,7 +1,7 @@
 ---
 id: V-71925
 status: opt-in
-tag: auth
+tag: accounts
 ---
 
 Although the STIG requires that all passwords have a minimum lifetime set, this

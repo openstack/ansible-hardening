@@ -1,7 +1,7 @@
 ---
 id: V-72011
 status: implemented
-tag: auth
+tag: accounts
 ---
 
 The usernames of all users without home directories assigned are provided in

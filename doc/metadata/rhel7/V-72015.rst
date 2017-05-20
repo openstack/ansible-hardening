@@ -1,7 +1,7 @@
 ---
 id: V-72015
 status: implemented
-tag: auth
+tag: accounts
 ---
 
 Each interactive user on the system is checked to verify that their assigned

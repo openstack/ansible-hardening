@@ -1,7 +1,7 @@
 ---
 id: V-71941
 status: opt-in
-tag: auth
+tag: accounts
 ---
 
 The STIG requires that user accounts are disabled when their password expires.

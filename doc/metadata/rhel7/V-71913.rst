@@ -1,7 +1,7 @@
 ---
 id: V-71913
 status: opt-in
-tag: auth
+tag: accounts
 ---
 
 The password quality requirements from the STIG are examples of good security

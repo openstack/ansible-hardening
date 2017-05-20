@@ -1,7 +1,7 @@
 ---
 id: V-72005
 status: implemented
-tag: auth
+tag: accounts
 ---
 
 If an account with UID 0 other than ``root`` exists on the system, the playbook

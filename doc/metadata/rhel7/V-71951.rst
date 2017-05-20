@@ -1,7 +1,7 @@
 ---
 id: V-71951
 status: implemented
-tag: auth
+tag: accounts
 ---
 
 The tasks in the Ansible role set a four second delay between failed login

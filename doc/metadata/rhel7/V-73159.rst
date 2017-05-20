@@ -1,7 +1,7 @@
 ---
 id: V-73159
 status: opt-in
-tag: auth
+tag: accounts
 ---
 
 The security role can require new or changed passwords to follow the pwquality

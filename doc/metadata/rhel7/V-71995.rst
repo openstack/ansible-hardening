@@ -1,7 +1,7 @@
 ---
 id: V-71995
 status: opt-in - Ubuntu only
-tag: auth
+tag: accounts
 ---
 
 The STIG requires that the umask for all authenticated users is ``077``. This

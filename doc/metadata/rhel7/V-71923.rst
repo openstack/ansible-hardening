@@ -1,7 +1,7 @@
 ---
 id: V-71923
 status: implemented - red hat only
-tag: misc
+tag: accounts
 ---
 
 The role ensures that ``crypt_style`` is set to ``sha512`` in

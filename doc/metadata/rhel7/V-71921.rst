@@ -1,7 +1,7 @@
 ---
 id: V-71921
 status: implemented
-tag: auth
+tag: accounts
 ---
 
 The default password storage mechanism for Ubuntu 16.04, CentOS 7, and Red Hat

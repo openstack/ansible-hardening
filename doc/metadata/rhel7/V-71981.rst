@@ -1,6 +1,6 @@
 ---
 id: V-71981
-status: opt in
+status: opt-in
 tag: packages
 ---
 

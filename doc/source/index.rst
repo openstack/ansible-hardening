@@ -48,8 +48,8 @@ previous releases are available in the *Releases* section below.
 
 The RHEL 7 STIG content was first added in the Ocata release. The original RHEL
 6 STIG content is deprecated in the Ocata release and will be removed in the
-next OpenStack release (Pike). The documentation for the RHEL 6 STIG content is
-still available:
+Queens OpenStack release (early 2018). The documentation for the RHEL 6 STIG
+content is still available:
 
 .. toctree::
    :maxdepth: 2

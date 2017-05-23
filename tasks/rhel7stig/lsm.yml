@@ -13,6 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: Check if AppArmor is disabled at boot time
+  shell: "dmesg | grep -i apparmor"
+  register: dmesg_apparmor_output
+  changed_when: False
+  check_mode: no
+  when:
+    - ansible_os_family == "Debian"
+  tags:
+    - high
+    - V-71989
+
 - name: Ensure AppArmor is running
   service:
     name: apparmor
@@ -22,6 +33,7 @@
     - ansible_os_family == "Debian"
     - security_rhel7_enable_linux_security_module | bool
     - not check_mode
+    - '"AppArmor disabled by boot time parameter" not in dmesg_apparmor_output.stdout'
   tags:
     - high
     - V-71989

@@ -13,9 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-## Variables for Ubuntu 14.04 (trusty) and Ubuntu 16.04 (xenial)
-# The following variables apply only to Ubuntu 14.04 (trusty) and Ubuntu 16.04
-# (xenial) and deployers should not override them.
+## Variables for Ubuntu and Debian
+# The following variables apply only to Ubuntu 14.04 (trusty), Ubuntu 16.04
+# (xenial), and Debian 8 (jessie). Deployers should not need to override these
+# variables.
 #
 # For more details, see 'vars/main.yml'.
 

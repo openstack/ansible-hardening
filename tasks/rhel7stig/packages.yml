@@ -91,7 +91,7 @@
     src: 20auto-upgrades
     dest: /etc/apt/apt.conf.d/20auto-upgrades
   when:
-    - ansible_os_family | lower == 'ubuntu'
+    - ansible_os_family | lower == 'debian'
     - security_rhel7_automatic_package_updates | bool
   tags:
     - packages

@@ -373,13 +373,6 @@ security_unattended_upgrades_notifications: false
 # |  _ <|  _  | |___| |___    / /    ___) || |  | | |_| |
 # |_| \_\_| |_|_____|_____|  /_/    |____/ |_| |___\____|
 #
-#  UNDER ACTIVE DEVELOPMENT
-#
-#  The default configurations after this marker apply to the RHEL 7 STIG
-#  content in the openstack-ansible-security role. This content is still under
-#  active development and will not be applied to systems by default until
-#  the development work is complete.
-#
 ###############################################################################
 
 ## AIDE (aide)

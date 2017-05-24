@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-## Variables for CentOS 7 and Red Hat Enterprise Linux 7
-# The following variables apply only to CentOS 7 and Red Hat Enterprise Linux 7
-# and deployers should not override them.
+## Variables for CentOS 7, Red Hat Enterprise Linux 7 and Fedora 25.
+# The following variables apply only to CentOS 7, Red Hat Enterprise Linux 7
+# and Fedora 25. Deployers should not override these.
 #
 # For more details, see 'vars/main.yml'.
 
@@ -31,6 +31,7 @@ aide_cron_job_path: /etc/cron.d/aide
 aide_database_file: /var/lib/aide/aide.db.gz
 chrony_conf_file: /etc/chrony.conf
 daemon_init_params_file: /etc/init.d/functions
+pkg_mgr_config: "{{ (ansible_pkg_mgr == 'yum') | ternary('/etc/yum.conf', '/etc/dnf/dnf.conf') }}"
 
 # Service names
 cron_service: crond
@@ -144,7 +145,7 @@ stig_packages_rhel7:
     state: "{{ security_package_state }}"
     enabled: "{{ security_enable_firewalld }}"
   - packages:
-      - yum-cron
+      - "{{ (ansible_pkg_mgr == 'yum') | ternary('yum-cron', 'dnf-automatic') }}"
     state: "{{ security_package_state }}"
     enabled: "{{ security_rhel7_automatic_package_updates }}"
   - packages:

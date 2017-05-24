@@ -10,7 +10,7 @@
 # will fall back to installing its default packages which
 # will potentially be detrimental to the tests executed.
 
-# Base requirements for Ubuntu
+# Base requirements for Ubuntu and Debian
 build-essential   [platform:dpkg]
 git-core          [platform:dpkg]
 libssl-dev        [platform:dpkg]
@@ -20,7 +20,8 @@ python2.7         [platform:dpkg]
 python-dev        [platform:dpkg]
 python-apt        [platform:dpkg]
 
-# Base requirements for CentOS
+# Base requirements for CentOS and Fedora
+redhat-rpm-config [platform:rpm]
 gcc               [platform:rpm]
 gcc-c++           [platform:rpm]
 git               [platform:rpm]
@@ -38,7 +39,11 @@ libselinux-python [platform:rpm]
 python-pyasn1               [platform:dpkg]
 python-openssl              [platform:dpkg]
 python2-pyasn1              [platform:rpm]
-python2-pyOpenSSL           [platform:rpm]
+python2-pyOpenSSL           [platform:centos]
+pyOpenSSL                   [platform:fedora]
+
+# Other Ansible requirements
+python2-dnf                 [platform:fedora]
 
 # Required for compressing collected log files in CI
 gzip

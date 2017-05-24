@@ -62,11 +62,7 @@
 
 # Package managers are managed first since the changes in these tasks will
 # affect the remainder of the tasks in the role.
-- include: apt.yml
-  when: ansible_os_family | lower == 'debian'
-
-- include: rpm.yml
-  when: ansible_os_family | lower == 'redhat'
+- include: "{{ ansible_pkg_mgr }}.yml"
 
 # The bulk of the security changes are applied in these tasks. The tasks in
 # each file are tagged with the same name (for example, tasks in `auth.yml`

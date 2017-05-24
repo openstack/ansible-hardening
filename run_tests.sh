@@ -26,10 +26,14 @@ fi
 # Install bindep and tox with pip.
 sudo pip install bindep tox
 
+## Bindep pre-requisites
+# Fedora requires the redhat-lsb-core package.
 # CentOS 7 requires two additional packages:
 #   redhat-lsb-core - for bindep profile support
 #   epel-release    - required to install python-ndg_httpsclient/python2-pyasn1
-if which yum; then
+if [ -e /etc/fedora-release ]; then
+    sudo dnf -y install redhat-lsb-core
+elif [ -e /etc/centos-release ]; then
     sudo yum -y install redhat-lsb-core epel-release
 fi
 
@@ -44,7 +48,11 @@ if which apt-get; then
     DEBIAN_FRONTEND=noninteractive \
       sudo apt-get -q --option "Dpkg::Options::=--force-confold" \
       --assume-yes install $BINDEP_PKGS
-elif which yum; then
+elif [ -e /etc/fedora-release ]; then
+    if [[ ${#BINDEP_PKGS} > 0 ]]; then
+      sudo dnf install -y $BINDEP_PKGS
+    fi
+elif [ -e /etc/centos-release]; then
     # Don't run yum with an empty list of packages.
     # It will fail and cause the script to exit with an error.
     if [[ ${#BINDEP_PKGS} > 0 ]]; then

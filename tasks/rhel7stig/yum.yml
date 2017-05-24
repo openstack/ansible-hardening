@@ -58,7 +58,7 @@
 
 - name: V-71977 - Require digital signatures for all packages
   lineinfile:
-    dest: /etc/yum.conf
+    dest: "{{ pkg_mgr_config }}"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present

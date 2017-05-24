@@ -65,9 +65,9 @@
     - high
     - V-71937
 
-- name: V-71945 - If three unsuccessful logon attempts within 15 minutes occur the associated account must be locked.
+- name: Lock accounts after three failed login attempts a 15 minute period
   blockinfile:
-    dest: pam_password_file
+    dest: "{{ pam_password_file }}"
     state: present
     marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
     insertbefore: EOF

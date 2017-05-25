@@ -1,10 +1,19 @@
 ---
 id: V-71927
-status: implemented
+status: opt-in
 tag: accounts
 ---
 
-The tasks in the security role search for accounts with a minimum lifetime
-under 24 hours and display the usernames associated with those accounts.
-Ubuntu, CentOS, and Red Hat Enterprise Linux set the minimum life time to
-unlimited by default.
+Setting a minimum password lifetime on interactive user accounts provides
+security benefits by limiting the frequency of password changes. However, this
+can cause login problems for users without proper communication and
+coordination.
+
+Deployers can opt-in for this change by setting the following Ansible variable:
+
+.. code-block::
+
+    security_set_minimum_password_lifetime: yes
+
+The tasks will examine each interactive user account and set the minimum
+password age if the existing setting is not equal to one day.

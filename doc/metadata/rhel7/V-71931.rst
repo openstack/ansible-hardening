@@ -1,9 +1,21 @@
 ---
 id: V-71931
-status: implemented
+status: opt-in
 tag: accounts
 ---
 
-If any users have a maximum password age on their current password set to a
-length of over 60 days, a list of those users is provided in the Ansible
-output.
+Although the STIG requires that a maximum password lifetime is set for all
+interactive user accounts, the security benefits of this configuration are
+debatable. The `draft of NIST Publication 800-63B`_ argues that password
+rotation may reduce overall security in some situations.
+
+Deployers can opt-in for this change by setting the following Ansible variable:
+
+.. code-block::
+
+    security_set_maximum_password_lifetime: yes
+
+The tasks will examine each interactive user account and set the maximum
+password age if the existing setting is not equal to 60 days.
+
+.. _draft of NIST Publication 800-63B: https://pages.nist.gov/800-63-3/sp800-63b.html

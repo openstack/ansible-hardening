@@ -79,39 +79,25 @@
     - medium
     - V-71923
 
-- name: Get all user accounts with a password lifetime limit under 24 hours
-  shell: "awk -F: '$4 < 1 {print $1}' /etc/shadow"
-  check_mode: no
-  changed_when: False
-  register: password_lifetime_check
-  tags:
-    - accounts
-    - medium
-    - V-71927
-    - skip_ansible_lint
-
-- name: Print warning about accounts with password lifetimes under 24 hours
-  debug:
-    msg: |
-      Accounts were found with a minimum password lifetime limit under 24 hours:
-      {{ password_lifetime_check.stdout_lines | join(', ') }}
+- name: Set minimum password lifetime limit to 24 hours for interactive accounts
+  shell: "chage -m 1 {{ item.name }}"
   when:
-    - password_lifetime_check.stdout_lines is defined
+    - item.shadow.min_days != 1
+    - security_set_minimum_password_lifetime
+  with_items:
+    - "{{ interactive_user_list.users }}"
   tags:
     - accounts
     - medium
     - V-71927
 
-- name: Print warning for accounts with a password lifetime over 60 days
-  debug:
-    msg: |
-      The following user accounts have an existing password with a lifetime of
-      greater than 60 days:
-      {%- for user in user_list.users %}
-      {% if user['shadow']['max_days'] > 60 %}
-          {{ user['name'] }} has an expiration of {{ user['shadow']['max_days'] }} days
-      {% endif %}
-      {% endfor %}
+- name: Set maximum password lifetime limit to 60 days for interactive accounts
+  shell: "chage -M 60 {{ item.name }}"
+  when:
+    - item.shadow.max_days > 60
+    - security_set_maximum_password_lifetime
+  with_items:
+    - "{{ interactive_user_list.users }}"
   tags:
     - accounts
     - medium

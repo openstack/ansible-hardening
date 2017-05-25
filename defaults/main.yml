@@ -375,6 +375,11 @@ security_unattended_upgrades_notifications: false
 #
 ###############################################################################
 
+## Accounts (accounts)
+# Set minimum password lifetime to 1 day for interactive accounts.
+security_set_minimum_password_lifetime: no                   # V-71927
+security_set_maximum_password_lifetime: no                   # V-71931
+
 ## AIDE (aide)
 # Initialize the AIDE database immediately (may take time).
 security_rhel7_initialize_aide: no                           # V-71973

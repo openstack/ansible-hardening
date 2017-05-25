@@ -43,6 +43,9 @@ clamav_service: 'clamd@scan'
 grub_update_cmd: "/usr/sbin/grub2-mkconfig -o {{ grub_config_file_boot }}"
 ssh_keysign_path: /usr/libexec/openssh
 
+# Other configuration
+security_interactive_user_minimum_uid: 1000
+
 # RHEL 6 STIG: Packages to add/remove
 stig_packages:
   - packages:

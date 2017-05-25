@@ -49,9 +49,18 @@
     - always
     - skip_ansible_lint
 
-- name: Get a list of users on the system to use throughout the auth tasks
-  action: get_users
+- name: Get user data for all users on the system
+  get_users:
+    min_uid: 0
   register: user_list
+  check_mode: no
+  tags:
+    - always
+
+- name: Get user data for all interactive users on the system
+  get_users:
+    min_uid: "{{ security_interactive_user_minimum_uid }}"
+  register: interactive_user_list
   check_mode: no
   tags:
     - always

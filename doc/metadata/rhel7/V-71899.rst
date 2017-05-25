@@ -1,7 +1,7 @@
 ---
 id: V-71899
 status: implemented
-tag: file_perms
+tag: graphical
 ---
 
 This control is implemented by the tasks for another control. Refer to the

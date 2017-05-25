@@ -1,7 +1,7 @@
 ---
 id: V-72267
 status: implemented
-tag: implemented
+tag: sshd
 ---
 
 The ``Compression`` configuration is set to ``delayed`` in

@@ -1,7 +1,7 @@
 Getting started
 ===============
 
-The openstack-ansible-security role can be used along with the
+The ansible-hardening role can be used along with the
 `OpenStack-Ansible`_ project or as a standalone role that can be used along
 with other Ansible playbooks.
 
@@ -20,10 +20,10 @@ Start by installing ansible and then install the role itself using
 .. code-block:: console
 
    pip install ansible
-   ansible-galaxy install git+https://git.openstack.org/openstack/openstack-ansible-security
+   ansible-galaxy install git+https://git.openstack.org/openstack/ansible-hardening
 
 The role will be installed into
-``/etc/ansible/roles/openstack-ansible-security``.
+``/etc/ansible/roles/ansible-hardening``.
 
 Initial configuration
 ---------------------
@@ -35,7 +35,7 @@ provide custom configuration for the Ansible tasks in the role.
 Using as a standalone role
 --------------------------
 
-Adding the openstack-ansible-security role to existing playbooks is
+Adding the ansible-hardening role to existing playbooks is
 straightforward. Here is an example of an existing role for deploying web
 servers with the security hardening role added:
 
@@ -49,12 +49,12 @@ servers with the security hardening role added:
      roles:
        - common
        - webserver
-       - openstack-ansible-security
+       - ansible-hardening
 
 Using with OpenStack-Ansible
 ----------------------------
 
-The openstack-ansible-security role is automatically enabled and applied in the
+The ansible-hardening role is automatically enabled and applied in the
 Newton release of OpenStack-Ansible. Set the following Ansible variable to
 enable the role in the Mitaka release of OpenStack-Ansible:
 

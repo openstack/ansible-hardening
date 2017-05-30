@@ -44,7 +44,7 @@
   blockinfile:
     dest: /etc/ssh/sshd_config
     state: present
-    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
     insertbefore: "{{ sshd_match_check.stdout_lines[0] }}"
     validate: '/usr/sbin/sshd -T -f %s'
     block: "{{ lookup('template', 'sshd_config_block.j2') }}"

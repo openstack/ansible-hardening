@@ -38,7 +38,7 @@
   blockinfile:
     dest: "{{ aide_conf }}"
     insertbefore: EOF
-    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
     block: |
       # Rules borrowed from CentOS/RHEL AIDE configuration
       # (SELinux was removed for Ubuntu compatibility.)

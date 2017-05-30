@@ -69,7 +69,7 @@
   blockinfile:
     dest: "{{ pam_password_file }}"
     state: present
-    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
     insertbefore: EOF
     block: "{{ lookup('template', 'pam_faillock.j2') }}"
   when:
@@ -166,10 +166,10 @@
 
 - name: V-72217 - The operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types.
   blockinfile:
-    dest: /etc/security/limits.d/openstack-ansible-security-maxlogins.conf
+    dest: /etc/security/limits.d/ansible-hardening-maxlogins.conf
     create: yes
     block: |
-      # Deployed by the openstack-ansible-security role
+      # Deployed by the ansible-hardening role
       # V-72217 - Limit concurrent sessions for all accounts/types
       * hard maxlogins {{ security_rhel7_concurrent_session_limit }}
   when:

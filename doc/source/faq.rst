@@ -6,7 +6,7 @@ Does this role work only with OpenStack environments?
 
 No -- it works on almost any Linux host!
 
-The openstack-ansible-security role first began as a component of the
+The ansible-hardening role first began as a component of the
 OpenStack-Ansible project and it was designed to deploy into an existing
 OpenStack environment without causing disruptions. However, the role now works
 well in OpenStack and non-OpenStack environments.
@@ -40,7 +40,7 @@ Deployment without disruption
 Which systems are covered?
 --------------------------------------------------------
 
-The openstack-ansible-security role provides security hardening for physical
+The ansible-hardening role provides security hardening for physical
 servers running the following Linux distributions:
 
 * Ubuntu 14.04

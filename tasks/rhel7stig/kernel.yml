@@ -15,7 +15,7 @@
 
 - name: V-71983 - USB mass storage must be disabled.
   lineinfile:
-    dest: /etc/modprobe.d/openstack-ansible-security-disable-usb-storage.conf
+    dest: /etc/modprobe.d/ansible-hardening-disable-usb-storage.conf
     line: install usb-storage /bin/true
     create: yes
   when:

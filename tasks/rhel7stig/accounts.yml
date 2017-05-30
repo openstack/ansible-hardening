@@ -26,7 +26,7 @@
     dest: /etc/security/pwquality.conf
     backup: yes
     insertbefore: EOF
-    marker: "# {mark} Added by openstack-ansible-security role"
+    marker: "# {mark} Added by ansible-hardening role"
     state: present
     block: "{{ lookup('template', 'pwquality.conf.j2') }}"
   when:

@@ -17,12 +17,12 @@ Controls are divided into groups based on certain properties:
   can't be implemented with automation, or they could cause damage to an
   existing system. Other controls are listed as *opt-in* when they are
   implemented, but they require a deployer to enable them.
-  *(This categorization comes from openstack-ansible-security, not the STIG.)*
+  *(This categorization comes from ansible-hardening, not the STIG.)*
 
 * **Tag:** The controls are also separated based on which parts of the system
   they act upon. Something that secures ``grub`` would be tagged with *boot*
   while controls for ``sshd`` would be tagged with *auth*.
-  *(This categorization comes from openstack-ansible-security, not the STIG.)*
+  *(This categorization comes from ansible-hardening, not the STIG.)*
 
 You can also review the STIG controls in one very large page. This can be
 helpful when you need to search using your web browser.

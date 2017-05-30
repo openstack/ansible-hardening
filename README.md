@@ -1,24 +1,23 @@
-openstack-ansible-security
-==========================
+ansible-hardening
+=================
 
-The openstack-ansible security role applies security hardening configurations
+The ansible-hardening role applies security hardening configurations
 from the [Security Technical Implementation Guide(STIG)](http://iase.disa.mil/stigs/Pages/index.aspx)
-to systems running Ubuntu 14.04, Ubuntu 16.04, CentOS 7, and Red Hat
-Enterprise Linux 7.
+to systems running the following distributions:
 
-The role is part of the
-[OpenStack-Ansible project](https://git.openstack.org/cgit/openstack/openstack-ansible),
-which deploys enterprise-grade OpenStack clouds using Ansible.  However, the
-role can easily be used outside of an OpenStack environment to secure hosts,
-virtual machines, and containers.
+* CentOS 7
+* Debian Jessie *(experimental)*
+* Ubuntu 14.04 *(deprecated)*
+* Ubuntu 16.04
+* Red Hat Enterprise Linux 7
 
 For more details, review the
-[openstack-ansible-security documentation](http://docs.openstack.org/developer/openstack-ansible-security/).
+[ansible-hardening documentation](http://docs.openstack.org/developer/ansible-hardening/).
 
 Requirements
 ------------
 
-This role can be used with or without the OpenStack-Ansible role. It requires
+This role can be used with or without OpenStack-Ansible. It requires
 Ansible 2.3 or later.
 
 Role Variables
@@ -38,7 +37,7 @@ Using the role is fairly straightforward:
 
     - hosts: servers
       roles:
-         - openstack-ansible-security
+         - ansible-hardening
 
 Running with Vagrant
 --------------------

@@ -19,7 +19,7 @@
 # are added by the security role. For that reason, we check for the existence
 # of a marker line here and add a marker line to the file if it doesn't exist.
 - name: Check for security role marker in sshd_config
-  command: "grep '^# openstack-ansible-security configurations' /etc/ssh/sshd_config"
+  command: "grep '^# ansible-hardening configurations' /etc/ssh/sshd_config"
   register: sshd_marker_check
   changed_when: False
   check_mode: no
@@ -43,7 +43,7 @@
 # line above it.
 - name: Add security role marker with sed above Match stanza
   shell: |
-    sed -i '0,/^Match/s/^Match/\n# openstack-ansible-security configurations\n\n&/' /etc/ssh/sshd_config
+    sed -i '0,/^Match/s/^Match/\n# ansible-hardening configurations\n\n&/' /etc/ssh/sshd_config
   when:
     - sshd_marker_check.rc != 0
     - sshd_match_check.rc == 0
@@ -55,7 +55,7 @@
 - name: Add security role marker to the end of the sshd_config
   lineinfile:
     dest: /etc/ssh/sshd_config
-    line: "\n# openstack-ansible-security configurations"
+    line: "\n# ansible-hardening configurations"
     state: present
     insertbefore: EOF
     validate: '/usr/sbin/sshd -T -f %s'
@@ -71,7 +71,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PrintLastLog'
     line: 'PrintLastLog yes'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -86,7 +86,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?Protocol \d'
     line: 'Protocol 2'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -101,7 +101,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PermitEmptyPasswords'
     line: 'PermitEmptyPasswords no'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -116,7 +116,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?HostbasedAuthentication'
     line: 'HostbasedAuthentication no'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -131,7 +131,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?ClientAliveInterval'
     line: 'ClientAliveInterval {{ security_ssh_client_alive_interval }}'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -146,7 +146,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?ClientAliveCountMax'
     line: 'ClientAliveCountMax {{ security_ssh_client_alive_count_max }}'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -161,7 +161,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?IgnoreRhosts'
     line: 'IgnoreRhosts yes'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -176,7 +176,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PermitRootLogin'
     line: 'PermitRootLogin {{ security_ssh_permit_root_login }}'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   notify:
     - restart ssh
@@ -200,7 +200,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?Banner'
     line: 'Banner /etc/issue.net'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   tags:
     - ssh
@@ -213,7 +213,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?PermitUserEnvironment'
     line: 'PermitUserEnvironment no'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   tags:
     - ssh
@@ -226,7 +226,7 @@
     dest: /etc/ssh/sshd_config
     regexp: '^(#)?Ciphers'
     line: 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,aes192-cbc,aes256-cbc'
-    insertafter: "^# openstack-ansible-security configurations"
+    insertafter: "^# ansible-hardening configurations"
     validate: '/usr/sbin/sshd -T -f %s'
   tags:
     - ssh

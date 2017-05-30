@@ -2,7 +2,7 @@
 Automated security hardening for Linux hosts
 ============================================
 
-The openstack-ansible-security Ansible role uses industry-standard security
+The ansible-hardening Ansible role uses industry-standard security
 hardening guides to secure Linux hosts. Although the role is designed to work
 well in OpenStack environments that are deployed with OpenStack-Ansible, it can
 be used with almost any Linux system.
@@ -82,9 +82,9 @@ Pike
 
 * **Documentation:**
 
-  * `openstack-ansible-security Pike Release Notes`_
+  * `ansible-hardening Pike Release Notes`_
 
-.. _openstack-ansible-security Pike Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/unreleased.html
+.. _ansible-hardening Pike Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/unreleased.html
 
 Ocata
 ~~~~~
@@ -100,11 +100,11 @@ Ocata
 
 * **Documentation:**
 
-  * `openstack-ansible-security Ocata Documentation`_
-  * `openstack-ansible-security Ocata Release Notes`_
+  * `ansible-hardening Ocata Documentation`_
+  * `ansible-hardening Ocata Release Notes`_
 
-.. _openstack-ansible-security Ocata Documentation: http://docs.openstack.org/developer/openstack-ansible-security/ocata/
-.. _openstack-ansible-security Ocata Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/ocata.html
+.. _ansible-hardening Ocata Documentation: http://docs.openstack.org/developer/ansible-hardening/ocata/
+.. _ansible-hardening Ocata Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/ocata.html
 
 Newton
 ~~~~~~
@@ -120,8 +120,8 @@ Newton
 
 * **Documentation:**
 
-  * `openstack-ansible-security Newton Documentation`_
-  * `openstack-ansible-security Newton Release Notes`_
+  * `ansible-hardening Newton Documentation`_
+  * `ansible-hardening Newton Release Notes`_
 
-.. _openstack-ansible-security Newton Documentation: http://docs.openstack.org/developer/openstack-ansible-security/newton/
-.. _openstack-ansible-security Newton Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/newton.html
+.. _ansible-hardening Newton Documentation: http://docs.openstack.org/developer/ansible-hardening/newton/
+.. _ansible-hardening Newton Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/newton.html

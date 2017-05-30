@@ -1,7 +1,7 @@
 Security hardening controls in detail (RHEL 7 STIG)
 ===================================================
 
-The openstack-ansible-security role follows the Red Hat Enteprise Linux 7
+The ansible-hardening role follows the Red Hat Enteprise Linux 7
 `Security Technical Implementation Guide (STIG)`_. The guide has over 200
 controls that apply to various parts of a Linux system, and it is updated
 regularly by the Defense Information Systems Agency (DISA). DISA is part of the

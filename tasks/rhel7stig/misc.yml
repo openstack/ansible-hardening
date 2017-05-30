@@ -211,7 +211,7 @@
   blockinfile:
     dest: /etc/profile
     insertbefore: EOF
-    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+    marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
     block: |
       # Set a {{ security_rhel7_session_timeout }} second timeout for sessions
       TMOUT={{ security_rhel7_session_timeout }}

@@ -2,7 +2,7 @@
 Team and repository tags
 ========================
 
-.. image:: http://governance.openstack.org/badges/openstack-ansible-security.svg
+.. image:: http://governance.openstack.org/badges/ansible-hardening.svg
     :target: http://governance.openstack.org/reference/tags/index.html
 
 .. Change things from this point on
@@ -10,7 +10,7 @@ Team and repository tags
 Security hardening for OpenStack-Ansible
 ----------------------------------------
 
-Documentation for openstack-ansible-security is available in the `official
+Documentation for ansible-hardening is available in the `official
 OpenStack documentation site`_.
 
-.. _official OpenStack documentation site: http://docs.openstack.org/developer/openstack-ansible-security/
+.. _official OpenStack documentation site: http://docs.openstack.org/developer/ansible-hardening/

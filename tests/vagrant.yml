@@ -16,4 +16,4 @@
 - name: Playbook for role testing
   hosts: all
   roles:
-    - role: "../../../openstack-ansible-security"
+    - role: "../../../ansible-hardening"

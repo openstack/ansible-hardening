@@ -36,10 +36,10 @@ security_package_state: present
 #  |_| \_\_| |_|_____|_____|  \___/  |____/ |_| |___\____|
 #
 #  The default configurations after this marker apply to the RHEL 6 STIG
-#  content in the openstack-ansible-security role. Review the comments below
-#  as well as the main openstack-ansible-security documentation:
+#  content in the ansible-hardening role. Review the comments below
+#  as well as the main ansible-hardening documentation:
 #
-#    http://docs.openstack.org/developer/openstack-ansible-security/
+#    http://docs.openstack.org/developer/ansible-hardening/
 #
 ###############################################################################
 
@@ -283,7 +283,7 @@ security_postfix_inet_interfaces: localhost       # V-38622
 #    Ubuntu: AppArmor
 #    CentOS: SELinux
 #
-# See the openstack-ansible-security documentation for more details.
+# See the ansible-hardening documentation for more details.
 security_enable_linux_security_module: yes        # V-51337
 
 ## PAM and authentication

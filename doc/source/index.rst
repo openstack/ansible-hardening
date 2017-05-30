@@ -2,7 +2,7 @@
 Automated security hardening for Linux hosts
 ============================================
 
-The openstack-ansible-security Ansible role uses industry-standard security
+The ansible-hardening Ansible role uses industry-standard security
 hardening guides to secure Linux hosts. Although the role is designed to work
 well in OpenStack environments that are deployed with OpenStack-Ansible, it can
 be used with almost any Linux system.
@@ -64,7 +64,7 @@ Deployers should use the latest stable release for all production deployments.
 Ocata
 ~~~~~
 
-* **Status:** Development *(anticipated release: February 2017)*
+* **Status:** Stable release
 
 * **Supported Operating Systems:**
 
@@ -75,41 +75,8 @@ Ocata
 
 * **Documentation:**
 
-  * `openstack-ansible-security Ocata Release Notes`_
+  * `ansible-hardening Ocata Documentation`_
+  * `ansible-hardening Ocata Release Notes`_
 
-.. _openstack-ansible-security Ocata Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/unreleased.html
-
-Newton
-~~~~~~
-
-* **Status:** Latest stable release *(released 2016-10-20)*
-
-* **Supported Operating Systems:**
-
-  * Ubuntu 14.04 Trusty
-  * Ubuntu 16.04 Xenial
-  * CentOS 7
-  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
-
-* **Documentation:**
-
-  * `openstack-ansible-security Newton Documentation`_
-  * `openstack-ansible-security Newton Release Notes`_
-
-.. _openstack-ansible-security Newton Documentation: http://docs.openstack.org/developer/openstack-ansible-security/newton/
-.. _openstack-ansible-security Newton Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/newton.html
-
-Mitaka
-~~~~~~
-
-* **Status:** Stable release *(released 2016-04-01)*
-
-* **Supported Operating Systems:** Ubuntu 14.04 Trusty
-
-* **Documentation:**
-
-  * `openstack-ansible-security Mitaka Documentation`_
-  * `openstack-ansible-security Mitaka Release Notes`_
-
-.. _openstack-ansible-security Mitaka Documentation: http://docs.openstack.org/developer/openstack-ansible-security/mitaka/
-.. _openstack-ansible-security Mitaka Release Notes: http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html
+.. _ansible-hardening Ocata Documentation: http://docs.openstack.org/developer/ansible-hardening/ocata/
+.. _ansible-hardening Ocata Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/ocata.html

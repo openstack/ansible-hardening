@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Check if AppArmor is disabled at boot time
-  shell: "dmesg | grep -i apparmor"
+  shell: "dmesg | grep -i apparmor || true"
   register: dmesg_apparmor_output
   changed_when: False
   check_mode: no

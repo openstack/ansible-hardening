@@ -26,10 +26,19 @@ Deployers have the option to pick and choose which configurations are applied
 using Ansible variables and tags. Some tasks allow deployers to provide custom
 configurations to tighten down or relax certain requirements.
 
-For more details, review the *Documentation* section below.
-
 .. _Security Technical Implementation Guide (STIG): http://iase.disa.mil/stigs/Pages/index.aspx
 .. _Defense Information Systems Agency (DISA): http://www.disa.mil/
+
+OpenStack Summit Boston 2017 Talk
+---------------------------------
+
+This talk covers the latest updates from the project and a live demo. Slides
+from the talk are
+`available for download <https://www.slideshare.net/MajorHayden/securing-openstack-and-beyond-with-ansible>`_.
+
+.. raw:: html
+
+    <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/E67zaS_UZks?rel=0" frameborder="0" allowfullscreen></iframe>
 
 Documentation
 -------------
@@ -41,13 +50,14 @@ previous releases are available in the *Releases* section below.
    :maxdepth: 2
 
    getting-started.rst
+   deviations.rst
    faq.rst
-   special-notes.rst
+   domains.rst
    controls-rhel7.rst
    developer-guide.rst
 
-Special Notes: STIG Content
----------------------------
+Legacy RHEL 6 STIG Content
+--------------------------
 
 The RHEL 7 STIG content was first added in the Ocata release using the
 pre-release STIG content (version 0.2). The Pike release contains the final

@@ -1,0 +1,33 @@
+{#
+    This file renders *partial* documentation that is included by other
+    documentation. This is used in the "Hardening Domains" section.
+#}
+{% for section_header, stig_id_list in stig_dict.items() %}
+STIG requirements
+-----------------
+
+All of the tasks for these STIG requirements are included in
+``tasks/rhel7stig/{{ section_header }}.yml``.
+
+{% for stig_id in stig_id_list | sort %}
+
+{% set rule = all_deployer_notes[stig_id] %}
+{{ rule['id'] }}
+{{ "~" * rule['id'] | length }}
+
+* **Summary**: {{ rule['title'] | replace("\n", " ") | indent(2, False) }}
+* **Severity:** {{ rule['severity'] | title }}
+* **Implementation Status:** {{ rule['deployer_notes']['status'] | title }}
+
+Deployer/Auditor notes
+^^^^^^^^^^^^^^^^^^^^^^
+
+{{ rule['deployer_notes']['content'] }}
+
+
+{% if not loop.last %}
+----
+{% endif %}
+
+{% endfor %}
+{% endfor %}

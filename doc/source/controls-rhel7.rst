@@ -64,5 +64,4 @@ documentation below.
 
    rhel7/auto_controls-by-severity.rst
    rhel7/auto_controls-by-status.rst
-   rhel7/auto_controls-by-tag.rst
    rhel7/auto_controls-all.rst

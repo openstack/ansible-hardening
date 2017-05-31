@@ -70,4 +70,6 @@ tests/test.retry
 
 # Auto-generated documentation
 doc/source/auto_*
-doc/source/rhel7
+doc/source/rhel7/auto_*
+doc/source/rhel7/domains/auto_*
+

@@ -184,6 +184,16 @@ def render_toc(toc_type, stig_dict, all_deployer_notes):
     )
 
 
+def render_toc_partial(toc_type, stig_dict, all_deployer_notes):
+    """Generate documentation RST for each STIG configuration."""
+    template = JINJA_ENV.get_template('template_toc_partial_rhel7.j2')
+    return template.render(
+        toc_type=toc_type,
+        stig_dict=stig_dict,
+        all_deployer_notes=all_deployer_notes,
+    )
+
+
 def write_file(filename, content):
     """Write contents to files."""
     file_path = "{0}/{1}".format(DOC_SOURCE_DIR, filename)
@@ -235,7 +245,6 @@ def generate_docs():
         rule['description'] = {x.tag: x.text for x in temp.iter()}
 
         # Get the deployer notes from YAML
-        print(rule['id'])
         deployer_notes = get_deployer_notes(rule['id'])
         rule['deployer_notes'] = deployer_notes
 
@@ -258,17 +267,26 @@ def generate_docs():
     status_toc = render_toc('implementation status',
                             status,
                             all_deployer_notes)
-    tag_toc = render_toc('tag',
-                         tag,
-                         all_deployer_notes)
+
+    # Write the docs for each tag to individual files so we can include them
+    # from doc files in the domains folder.
+    unique_tags = [x for x, y in tag.items()]
+    for unique_tag in unique_tags:
+        tag_toc = render_toc_partial(None,
+                                     {unique_tag: tag[unique_tag]},
+                                     all_deployer_notes)
+        write_file("rhel7/domains/auto_{}.rst".format(unique_tag), tag_toc)
 
     write_file("rhel7/auto_controls-all.rst", all_toc)
     write_file("rhel7/auto_controls-by-severity.rst", severity_toc)
     write_file("rhel7/auto_controls-by-status.rst", status_toc)
-    write_file("rhel7/auto_controls-by-tag.rst", tag_toc)
 
 
 def setup(app):
     """Set up the Sphinx extension."""
     print("Generating RHEL7 STIG documentation...")
+    generate_docs()
+
+
+if __name__ == '__main__':
     generate_docs()

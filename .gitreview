@@ -1,5 +1,5 @@
 [gerrit]
 host=review.openstack.org
 port=29418
-project=openstack/openstack-ansible-security.git
+project=openstack/ansible-hardening.git
 defaultbranch=stable/ocata

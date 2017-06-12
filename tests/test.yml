@@ -64,7 +64,7 @@
         - not check_mode
         - ansible_pkg_mgr == 'apt'
   roles:
-    - role: "openstack-ansible-security"
+    - role: "ansible-hardening"
   vars:
     # NOTE(mhayden): yum-cron has a bug upon update due to a RPM conflict in
     # the yum-cron.conf file. This test should be re-enabled when the

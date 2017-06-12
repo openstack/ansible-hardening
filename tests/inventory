@@ -1,2 +1,2 @@
 [all]
-localhost ansible_connection=local physical_host=localhost ansible_become=True
+localhost ansible_connection=local ansible_become=True

@@ -39,7 +39,7 @@ ssh_service: ssh
 chrony_service: chrony
 
 # Commands
-grub_update_cmd: "update-grub"
+grub_update_cmd: "/usr/sbin/update-grub"
 
 # RHEL 6 STIG: Packages to add/remove
 stig_packages:

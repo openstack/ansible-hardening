@@ -36,7 +36,7 @@ ssh_service: sshd
 chrony_service: chronyd
 
 # Commands
-grub_update_cmd: "grub2-mkconfig -o /boot/grub/grub.conf"
+grub_update_cmd: "/usr/sbin/grub2-mkconfig -o /boot/grub/grub.conf"
 
 # RHEL 6 STIG: Packages to add/remove
 stig_packages:

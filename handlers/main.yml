@@ -66,9 +66,13 @@
   command: newaliases
 
 - name: update grub config
+  #stat.executable doesn't exist for this version of ansible.
+  #stat.(r|w|x)(usr|grp|oth): true/false is the alternative.
   command: "{{ grub_update_cmd }}"
   when:
     - security_enable_grub_update | bool
+    - "'xusr' in grub_update_binary.stat"
+    - grub_update_binary.stat.xusr | bool
   notify:
     - set bootloader file permissions after updating grub config
 

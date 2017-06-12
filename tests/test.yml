@@ -75,7 +75,7 @@
         - stig_version == 'rhel6'
         - ansible_pkg_mgr == 'apt'
   roles:
-    - role: "openstack-ansible-security"
+    - role: "ansible-hardening"
   vars:
     security_disable_account_if_password_expires: yes
     security_enable_firewalld: yes

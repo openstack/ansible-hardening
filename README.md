@@ -1,12 +1,15 @@
 ansible-hardening
 =================
 
+![ansible-hardening-logo](doc/source/_static/ansible-hardening-logo.png)
+
 The ansible-hardening role applies security hardening configurations
-from the [Security Technical Implementation Guide(STIG)](http://iase.disa.mil/stigs/Pages/index.aspx)
+from the [Security Technical Implementation Guide (STIG)](http://iase.disa.mil/stigs/Pages/index.aspx)
 to systems running the following distributions:
 
 * CentOS 7
 * Debian Jessie *(experimental)*
+* Fedora 25 *(experimental)*
 * Ubuntu 14.04 *(deprecated)*
 * Ubuntu 16.04
 * Red Hat Enterprise Linux 7

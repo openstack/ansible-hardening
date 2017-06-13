@@ -1,14 +1,17 @@
-============================================
-Automated security hardening for Linux hosts
-============================================
+=========================================================
+Automated security hardening for Linux hosts with Ansible
+=========================================================
+
+.. image:: _static/ansible-hardening-logo.png
+   :alt: ansible-hardening logo
+
+What does the role do?
+----------------------
 
 The ansible-hardening Ansible role uses industry-standard security
 hardening guides to secure Linux hosts. Although the role is designed to work
 well in OpenStack environments that are deployed with OpenStack-Ansible, it can
 be used with almost any Linux system.
-
-What does the role do?
-----------------------
 
 It all starts with the `Security Technical Implementation Guide (STIG)`_ from
 the `Defense Information Systems Agency (DISA)`_, part of the United States
@@ -103,10 +106,12 @@ Ocata
 
 * **Supported Operating Systems:**
 
+  * CentOS 7
+  * Debian Jessie *(experimental)*
+  * Fedora 25 *(experimental)*
+  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
   * Ubuntu 14.04 Trusty *(Deprecated)*
   * Ubuntu 16.04 Xenial
-  * CentOS 7
-  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
 
 * **Documentation:**
 

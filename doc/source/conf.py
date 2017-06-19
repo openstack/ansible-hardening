@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Documentation configuration for the openstack-ansible-security role."""
+"""Documentation configuration for the ansible-hardening role."""
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at

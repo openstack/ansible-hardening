@@ -22,12 +22,12 @@ cache_timeout: 600
 # Options are 'present' and 'latest'
 security_package_state: "latest"
 
-### Default configurations for openstack-ansible-security #####################
+### Default configurations for ansible-hardening #####################
 #
 # All of the configuration items below are documented in the developer notes
 # found here:
 #
-#    http://docs.openstack.org/developer/openstack-ansible-security/
+#    http://docs.openstack.org/developer/ansible-hardening/
 #
 ###############################################################################
 
@@ -271,7 +271,7 @@ security_postfix_inet_interfaces: localhost       # V-38622
 #    Ubuntu: AppArmor
 #    CentOS: SELinux
 #
-# See the openstack-ansible-security documentation for more details.
+# See the ansible-hardening documentation for more details.
 security_enable_linux_security_module: yes        # V-51337
 
 ## PAM and authentication

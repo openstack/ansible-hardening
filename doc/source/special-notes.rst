@@ -13,7 +13,7 @@ with production environments.
 Reviewing deviations
 --------------------
 
-The openstack-ansible-security role deviates from some of the STIG's
+The ansible-hardening role deviates from some of the STIG's
 requirements when a security control could cause significant issues with
 production systems. The role classifies each control into an implementation
 status and provides notes on why a certain control is skipped or altered.
@@ -234,14 +234,14 @@ Also, the STIG requires IPv6 support to be fully disabled, and this could cause
 issues for production systems.  The role will not disable IPv6 by default, but
 deployers can adjust this by changing ``security_disable_ipv6`` to ``yes``.
 
-Core dumps are also disabled by default in the openstack-ansible-security role.
+Core dumps are also disabled by default in the ansible-hardening role.
 
 Time synchronization
 --------------------
 
 Reliable time synchronization is a requirement in the STIG and the ``chrony``
 package will be installed to handle NTP for systems secured with the
-openstack-ansible-security role.
+ansible-hardening role.
 
 The default settings will work for most environments, but some deployers may
 prefer to use NTP servers which are geographically closer to their servers.

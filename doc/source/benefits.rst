@@ -1,7 +1,7 @@
 Security benefits FAQ
 =====================
 
-The openstack-ansible-security role provides hardened security configurations
+The ansible-hardening role provides hardened security configurations
 for the host operating system as well as many common system services.
 
 Why should this role be applied to a system?
@@ -22,7 +22,7 @@ infrastructure components.
 Which systems are covered?
 --------------------------------------------------------
 
-The openstack-ansible-security role provides security hardening for physical
+The ansible-hardening role provides security hardening for physical
 servers running the following Linux distributions:
 
 * Ubuntu 14.04

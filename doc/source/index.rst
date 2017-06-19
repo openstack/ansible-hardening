@@ -5,7 +5,7 @@ OpenStack-Ansible: Host security hardening
 Abstract
 ~~~~~~~~
 
-The openstack-ansible-security role provides security hardening for
+The ansible-hardening role provides security hardening for
 `OpenStack`_ environments deployed with `openstack-ansible`_.  The role has
 multiple goals:
 
@@ -33,7 +33,7 @@ metadata is through the `STIG Viewer`_ service provided by `UCF`_.
 Newton: Development
 ~~~~~~~~~~~~~~~~~~~
 
-The openstack-ansible-security role is currently under development for the
+The ansible-hardening role is currently under development for the
 Newton release. The Newton release supports the following Linux distributions:
 
 * Ubuntu 14.04
@@ -53,27 +53,27 @@ Newton release. The Newton release supports the following Linux distributions:
 Mitaka: Stable release
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The Mitaka release of the openstack-ansible-security role was first released
+The Mitaka release of the ansible-hardening role was first released
 with the 13.0.0 tag on April 1st, 2016.  Refer to the `Mitaka release notes
-<http://docs.openstack.org/releasenotes/openstack-ansible-security/mitaka.html>`_
+<http://docs.openstack.org/releasenotes/ansible-hardening/mitaka.html>`_
 for more details on the improvements and fixes.
 
 Ubuntu 14.04 is supported in the Mitaka release.
 
-* `openstack-ansible-security Mitaka Documentation`_
+* `ansible-hardening Mitaka Documentation`_
 
-.. _openstack-ansible-security Mitaka Documentation: http://docs.openstack.org/developer/openstack-ansible-security/mitaka/
+.. _ansible-hardening Mitaka Documentation: http://docs.openstack.org/developer/ansible-hardening/mitaka/
 
 Liberty: Previous stable release (EOL: 2016-11-17)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Refer to the `Liberty release notes
-<http://docs.openstack.org/releasenotes/openstack-ansible-security/liberty.html>`_
+<http://docs.openstack.org/releasenotes/ansible-hardening/liberty.html>`_
 for more details on the improvements and fixes.
 
 Ubuntu 14.04 is supported in the Liberty release.
 
-* `openstack-ansible-security Liberty Documentation`_
+* `ansible-hardening Liberty Documentation`_
 
-.. _openstack-ansible-security Liberty Documentation: http://docs.openstack.org/developer/openstack-ansible-security/liberty/
+.. _ansible-hardening Liberty Documentation: http://docs.openstack.org/developer/ansible-hardening/liberty/
 

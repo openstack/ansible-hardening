@@ -1,4 +1,4 @@
-openstack-ansible-security
+ansible-hardening
 ==========================
 
 The openstack-ansible security role applies security hardening configurations
@@ -13,7 +13,7 @@ role can easily be used outside of an OpenStack environment to secure hosts,
 virtual machines, and containers.
 
 For more details, review the
-[openstack-ansible-security documentation](http://docs.openstack.org/developer/openstack-ansible-security/).
+[ansible-hardening documentation](http://docs.openstack.org/developer/ansible-hardening/).
 
 Requirements
 ------------
@@ -38,7 +38,7 @@ Using the role is fairly straightforward:
 
     - hosts: servers
       roles:
-         - openstack-ansible-security
+         - ansible-hardening
 
 Running with Vagrant
 --------------------

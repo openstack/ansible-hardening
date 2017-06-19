@@ -12,7 +12,7 @@ following criteria:
 
 It requires that those directories are owned by root to prevent users from
 removing and replacing files. This ``find`` command isn't run within the
-Ansible tasks in openstack-ansible-security because it can be a very
+Ansible tasks in ansible-hardening because it can be a very
 time-consuming task and it can slow down disk I/O while it runs.
 
 Deployers are strongly urged to review the permissions and ownerships of

@@ -84,23 +84,37 @@
     - sshd
     - V-72235
 
+- name: Determine existing public ssh host keys
+  shell: ls /etc/ssh/*.pub
+  register: public_ssh_host_keys
+  # The sheel command will always report 'changed' so we need to
+  # ignore that since this role is supposed to be idempotent
+  changed_when: false
+
 - name: Public host key files must have mode 0644 or less
   file:
     path: "{{ item }}"
     mode: "u-xX,g-wxs,o-wxt"
-  with_fileglob:
-    - /etc/ssh/*.pub
+  with_items:
+    - "{{ public_ssh_host_keys.stdout_lines | default([]) }}"
   tags:
     - medium
     - sshd
     - V-72255
 
+- name: Determine existing private ssh host keys
+  shell: ls /etc/ssh/*_key
+  register: private_ssh_host_keys
+  # The sheel command will always report 'changed' so we need to
+  # ignore that since this role is supposed to be idempotent
+  changed_when: false
+
 - name: Private host key files must have mode 0600 or less
   file:
     path: "{{ item }}"
     mode: "u-xX,g-rwxs,o-rwxt"
-  with_fileglob:
-    - /etc/ssh/*_key
+  with_items:
+    - "{{ private_ssh_host_keys.stdout_lines | default([]) }}"
   tags:
     - medium
     - sshd

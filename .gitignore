@@ -61,15 +61,11 @@ ChangeLog
 releasenotes/build
 
 # Test temp files
-tests/plugins
-tests/playbooks
-tests/test.retry
+tests/common
+tests/*.retry
 
 # Vagrant artifacts
 .vagrant
 
-# Auto-generated documentation
-doc/source/auto_*
-doc/source/rhel7/auto_*
-doc/source/rhel7/domains/auto_*
-
+# Git clones
+openstack-ansible-ops

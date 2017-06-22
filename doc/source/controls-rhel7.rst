@@ -56,8 +56,8 @@ Controls are divided into groups based on the following properties:
 
 Although the STIG is specific to Red Hat Enterprise Linux 7, it also applies to
 CentOS 7 systems. In addition, almost all of the controls are easily translated
-for Ubuntu 16.04. Any deviations during translation are noted within the
-documentation below.
+for Ubuntu 16.04, openSUSE Leap and SUSE Linux Enterprise 12. Any deviations
+during translation are noted within the documentation below.
 
 .. toctree::
    :maxdepth: 2

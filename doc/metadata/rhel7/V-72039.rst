@@ -15,5 +15,5 @@ labels are applied for the class of device.
 
     This change applies only to CentOS or Red Hat Enterprise Linux systems
     since they rely on SELinux as their default Linux Security Module (LSM).
-    Ubuntu systems use AppArmor, which uses policy files rather than labels
-    applied to individual files.
+    Ubuntu, openSUSE Leap and SUSE Linux Enterprise systems use AppArmor, which
+    uses policy files rather than labels applied to individual files.

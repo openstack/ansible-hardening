@@ -17,4 +17,5 @@ Ansible variable:
 
 When enabled, the tasks install and configure ``yum-cron`` on CentOS and Red
 Hat Enterprise Linux.  On Ubuntu systems, the ``unattended-upgrades`` package
-is installed and configured.
+is installed and configured. On openSUSE Leap and SUSE Linux Enterprise systems,
+a daily cronjob is installed.

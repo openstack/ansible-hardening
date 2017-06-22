@@ -21,7 +21,7 @@
   changed_when: False
   when:
     - not check_mode | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr in ['yum', 'zypper']
     - security_reset_perm_ownership | bool
   tags:
     - file_perms
@@ -38,7 +38,7 @@
     - "{{ rpmverify_package_list.stdout_lines | default([]) }}"
   when:
     - not check_mode | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr in ['yum', 'zypper']
     - rpmverify_package_list is defined
     - rpmverify_package_list.stdout_lines | length > 0
   async: 300

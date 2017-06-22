@@ -12,3 +12,7 @@ However, Ubuntu lacks the rules that include ACL and extended attribute checks.
 The tasks in the security role will add a small configuration block at the end
 of the AIDE configuration file to meet the requirements of this STIG, as well
 as V-72069.
+
+openSUSE Leap and SUSE Linux Enterprise 12 also lack a rule to check ACLs and
+extended attributes. The default configuration file is adjusted to include those
+as well.

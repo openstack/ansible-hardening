@@ -1,6 +1,6 @@
 ---
 id: V-71995
-status: opt-in - Ubuntu only
+status: opt-in - Ubuntu and SUSE only
 tag: accounts
 ---
 
@@ -21,8 +21,9 @@ Ansible variable:
 
 .. note::
 
-    Ubuntu uses ``pam_umask`` and it uses the default umask provided by the
-    ``UMASK`` line in ``/etc/login.defs``. The default setting on Ubuntu
+    Ubuntu, openSUSE Leap and SUSE Linux Enterpsise 12 use ``pam_umask`` and it uses
+    the default umask provided by the ``UMASK`` line in ``/etc/login.defs``.
+    The default setting on Ubuntu, openSUSE Leap and SUSE Linux Enterprise 12
     systems is ``022``. This allows the user's group and other users on the
     system to read and execute files, but they cannot write to them.
 

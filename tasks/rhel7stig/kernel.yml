@@ -76,7 +76,7 @@
   failed_when: False
   check_mode: no
   when:
-    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr in ['yum', 'zypper']
   tags:
     - always
 
@@ -86,7 +86,7 @@
       FIPS is not enabled at boot time on this server.
       The STIG requires FIPS to be enabled at boot time.
   when:
-    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr in ['yum', 'zypper']
     - fips_check is defined
     - fips_check.stdout != '1'
   tags:

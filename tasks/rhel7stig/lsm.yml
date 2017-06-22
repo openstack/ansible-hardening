@@ -19,7 +19,7 @@
   changed_when: False
   check_mode: no
   when:
-    - ansible_os_family == "Debian"
+    - ansible_pkg_mgr in ['apt', 'zypper']
   tags:
     - high
     - V-71989
@@ -30,7 +30,7 @@
     state: started
     enabled: yes
   when:
-    - ansible_os_family == "Debian"
+    - ansible_pkg_mgr in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
     - not check_mode
     - '"AppArmor disabled by boot time parameter" not in dmesg_apparmor_output.stdout'

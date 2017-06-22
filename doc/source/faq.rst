@@ -47,6 +47,8 @@ servers running the following Linux distributions:
 * Ubuntu 16.04
 * CentOS 7
 * Red Hat Enterprise Linux 7
+* openSUSE Leap 42.2 and 42.3
+* SUSE Linux Enterprise 12 (experimental)
 
 The OpenStack gating system tests the role against each of these distributions
 regularly except for Red Hat Enterprise Linux 7, since it is a non-free

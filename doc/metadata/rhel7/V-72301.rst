@@ -9,6 +9,7 @@ installed. The package name differs between Linux distributions:
 
 * CentOS: ``tftp-server``
 * Ubuntu: ``tftpd``
+* openSUSE Leap: ``tftp``
 
 Deployers can opt-out of this change by setting the following Ansible variable:
 

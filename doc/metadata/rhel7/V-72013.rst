@@ -16,6 +16,6 @@ Deployers can opt out of this change by setting the following Ansible variable:
 
 .. note::
 
-    On CentOS 7 and Red Hat Enterprise Linux 7 systems, home directories are
-    always created with new users by default. Home directories are not created
-    by default on Ubuntu systems.
+    On CentOS 7, Red Hat Enterprise Linux 7 systems, openSUSE Leap and SUSE
+    Linux Enterprise 12, home directories are always created with new users by default.
+    Home directories are not created by default on Ubuntu systems.

@@ -33,6 +33,7 @@ grub_conf_file_efi: /boot/efi/EFI/ubuntu/grub.cfg
 grub_defaults_file: /etc/default/grub
 aide_cron_job_path: /etc/cron.daily/aide
 aide_database_file: /var/lib/aide/aide.db
+aide_database_out_file: /var/lib/aide/aide.db.new
 chrony_conf_file: /etc/chrony/chrony.conf
 daemon_init_params_file: /etc/init.d/rc
 

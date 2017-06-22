@@ -9,6 +9,7 @@ installed. The package name differs between Linux distributions:
 
 * CentOS: ``telnet-server``
 * Ubuntu: ``telnetd``
+* openSUSE Leap: ``telnet-server``
 
 Deployers can opt-out of this change by setting the following Ansible variable:
 

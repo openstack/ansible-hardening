@@ -1,0 +1,79 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+# Copyright 2017, SUSE LINUX GmbH.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Ensure RPM verification task has finished
+  async_status:
+    jid: "{{ rpmverify_task.ansible_job_id }}"
+  failed_when: False
+  changed_when: False
+  register: job_result
+  until: job_result.finished
+  retries: 30
+  when:
+    - not rpmverify_task | skipped
+
+- name: V-71855 - Get files with invalid checksums (rpm)
+  shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
+  register: invalid_checksum_files
+  changed_when: False
+  when:
+    - not check_mode | bool
+    - ansible_pkg_mgr == 'zypper'
+  tags:
+    - rpm
+    - high
+    - V-71855
+
+- name: V-71855 - The cryptographic hash of system files and commands must match vendor values (rpm)
+  debug:
+    msg: |
+      The following files have checksums that differ from the checksum provided
+      with their package. Each of these should be verified manually to ensure
+      they have not been modified by an unauthorized user.
+
+      {% for filename in invalid_checksum_files.stdout_lines %}
+        {{ filename }}
+      {% endfor %}
+  when:
+    - not check_mode | bool
+    - ansible_pkg_mgr == 'zypper'
+    - invalid_checksum_files is defined
+    - invalid_checksum_files.stdout is defined
+  tags:
+    - rpm
+    - high
+    - V-71855
+
+- name: Determine all SUSE repositories
+  shell: ls /etc/zypp/repos.d/*.repo
+  changed_when: false
+  register: all_zypper_repositories
+
+- name: V-71977 - Require digital signatures for all packages and repositories
+  lineinfile:
+    dest: "{{ item }}"
+    regexp: '^(#)?\s*gpgcheck'
+    line: "gpgcheck=1"
+    state: present
+  with_items:
+    - "{{ all_zypper_repositories.stdout_lines | default([]) }}"
+    - "{{ pkg_mgr_config }}"
+  tags:
+    - rpm
+    - high
+    - V-71977
+    - V-71979
+    - V-71981

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/bin/zypper -n dup -l

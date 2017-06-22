@@ -6,4 +6,5 @@ tag: file_perms
 
 The tasks in the security role check for the existence of ``/etc/cron.allow``
 and set both the user and group ownership to ``root``. This is the default on
-Ubuntu, CentOS, and Red Hat Enterprise Linux systems already.
+Ubuntu, CentOS, Red Hat Enterprise Linux systems, openSUSE Leap and SUSE Linux
+Enterprise 12 already.

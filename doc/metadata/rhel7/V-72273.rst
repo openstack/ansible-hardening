@@ -19,5 +19,5 @@ Deployers can opt in for this change by setting the following Ansible variable:
 
     Deployers must pre-configure ``firewalld`` or copy over a working XML file
     in ``/etc/firewalld/zones/`` from another server. The default firewalld
-    restrictions on Ubuntu, CentOS and Red Hat Enterprise Linux are highly
-    restrictive.
+    restrictions on Ubuntu, CentOS, Red Hat Enterprise Linux and openSUSE Leap
+    are highly restrictive.

@@ -10,6 +10,7 @@ from one of the PAM configuration files:
 
 * CentOS or RHEL: removes ``nullok`` from ``/etc/pam.d/system-auth``
 * Ubuntu: removes ``nullok_secure`` from ``/etc/pam.d/common-auth``
+* openSUSE Leap or SLE: remove ``nullok`` from ``/etc/pam.d/common-auth`` and ``/etc/pam.d/common-password``
 
 Deployers can opt-out of this change by setting the following Ansible variable:
 

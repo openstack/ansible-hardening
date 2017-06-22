@@ -65,6 +65,25 @@
     - high
     - V-71937
 
+- name: Prevent users with blank or null passwords from authenticating (SUSE)
+  lineinfile:
+    dest: "{{ item }}"
+    state: present
+    regexp: "^(.*required.*)nullok(.*)$"
+    line: '\1\2'
+    backup: yes
+    backrefs: yes
+  with_items:
+    - "{{ pam_auth_file }}"
+    - "{{ pam_password_file }}"
+  when:
+    - ansible_pkg_mgr == 'zypper'
+    - security_disallow_blank_password_login | bool
+  tags:
+    - auth
+    - high
+    - V-71937
+
 - name: Lock accounts after three failed login attempts a 15 minute period
   blockinfile:
     dest: "{{ pam_password_file }}"
@@ -73,7 +92,7 @@
     insertbefore: EOF
     block: "{{ lookup('template', 'pam_faillock.j2') }}"
   when:
-    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr in ['yum', 'zypper']
     - security_pam_faillock_enable | bool
   tags:
     - auth

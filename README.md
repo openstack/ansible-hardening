@@ -13,6 +13,8 @@ to systems running the following distributions:
 * Ubuntu 14.04 *(deprecated)*
 * Ubuntu 16.04
 * Red Hat Enterprise Linux 7
+* openSUSE Leap 42.2 and 42.3
+* SUSE Linux Enterprise 12 (*experimental*)
 
 For more details, review the
 [ansible-hardening documentation](http://docs.openstack.org/developer/ansible-hardening/).

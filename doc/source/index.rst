@@ -92,6 +92,8 @@ Pike
   * Ubuntu 16.04 Xenial
   * CentOS 7
   * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
+  * openSUSE Leap 42.2 and 42.3
+  * SUSE Linux Enterprise 12 (*experimental*)
 
 * **Documentation:**
 

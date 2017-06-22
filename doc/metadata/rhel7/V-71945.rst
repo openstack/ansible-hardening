@@ -40,5 +40,5 @@ Ansible variables:
 
 .. note::
 
-    Ubuntu does not provide ``pam_faillock``. This change is only applied to
-    CentOS 7 or Red Hat Enterprise Linux 7 systems.
+    Ubuntu, openSUSE Leap and SUSE Linux Enterprise 12 do not provide ``pam_faillock``.
+    This change is only applied to CentOS 7 or Red Hat Enterprise Linux 7 systems.

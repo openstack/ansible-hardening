@@ -34,7 +34,7 @@
     - V-72301
     - V-72307
 
-- name: V-71987 - Clean requirements/dependencies when removing packages (rpm)
+- name: V-71987 - Clean requirements/dependencies when removing packages (RedHat)
   lineinfile:
     dest: "{{ pkg_mgr_config }}"
     regexp: "^(#)?clean_requirements_on_remove"
@@ -43,6 +43,20 @@
   when:
     - security_package_clean_on_remove | bool
     - ansible_os_family | lower == 'redhat'
+  tags:
+    - low
+    - packages
+    - V-71987
+
+- name: V-71987 - Clean requirements/dependencies when removing packages (SUSE)
+  lineinfile:
+    dest: "{{ pkg_mgr_config }}"
+    regexp: '^(#)?\s*solver\.cleandepsOnRemove'
+    line: 'solver.cleandepsOnRemove = true'
+    state: present
+  when:
+    - security_package_clean_on_remove | bool
+    - ansible_pkg_mgr == 'zypper'
   tags:
     - low
     - packages
@@ -138,6 +152,18 @@
     dest: /etc/apt/apt.conf.d/20auto-upgrades
   when:
     - ansible_os_family | lower == 'debian'
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - cat2
+    - V-71999
+
+- name: Enable automatic package updates (SUSE)
+  copy:
+    src: zypper-autoupdates
+    dest: /etc/cron.daily/zypper-autoupdates
+  when:
+    - ansible_pkg_mgr == 'zypper'
     - security_rhel7_automatic_package_updates | bool
   tags:
     - packages

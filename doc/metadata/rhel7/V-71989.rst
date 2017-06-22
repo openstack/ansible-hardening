@@ -7,8 +7,8 @@ tag: lsm
 The tasks in the security role enable the appropriate Linux Security Module
 (LSM) for the operating system.
 
-For Ubuntu systems, AppArmor is installed and enabled. This change takes
-effect immediately.
+For Ubuntu, openSUSE and SUSE Linux Enterprise 12 systems, AppArmor is installed and
+enabled. This change takes effect immediately.
 
 For CentOS or Red Hat Enterprise Linux systems, SELinux is enabled (in
 enforcing mode) and its user tools are automatically installed. If SELinux is

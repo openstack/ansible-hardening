@@ -9,6 +9,7 @@ installed. The package name differs between Linux distributions:
 
 * CentOS: ``xorg-x11-server-Xorg``
 * Ubuntu: ``xorg-xserver``
+* openSUSE Leap: ``xorg-x11-server``
 
 Deployers can opt-out of this change by setting the following Ansible variable:
 

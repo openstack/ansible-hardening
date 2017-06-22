@@ -29,6 +29,7 @@ grub_conf_file_efi: "/boot/efi/EFI/{{ ansible_distribution | lower | replace(' '
 grub_defaults_file: /etc/sysconfig/grub
 aide_cron_job_path: /etc/cron.d/aide
 aide_database_file: /var/lib/aide/aide.db.gz
+aide_database_out_file: /var/lib/aide/aide.db.new.gz
 chrony_conf_file: /etc/chrony.conf
 daemon_init_params_file: /etc/init.d/functions
 pkg_mgr_config: "{{ (ansible_pkg_mgr == 'yum') | ternary('/etc/yum.conf', '/etc/dnf/dnf.conf') }}"

@@ -4,9 +4,9 @@ status: implemented
 tag: aide
 ---
 
-The default AIDE configuration in CentOS 7 and Red Hat Enterprise Linux 7
-already uses SHA512 to validate file contents and directories. No changes are
-required on these systems.
+The default AIDE configuration in CentOS 7, Red Hat Enterprise Linux 7,
+openSUSE Leap and SUSE Linux Enterprise 12 already uses SHA512 to validate
+file contents and directories. No changes are required on these systems.
 
 The tasks in the security role add a rule to end of the AIDE configuration on
 Ubuntu systems that uses SHA512 for validation.

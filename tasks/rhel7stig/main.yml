@@ -44,7 +44,7 @@
   poll: 0
   when:
     - not check_mode | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_os_family | lower in ['redhat', 'suse']
   tags:
     - always
     - skip_ansible_lint

@@ -4,9 +4,9 @@ status: implemented
 tag: accounts
 ---
 
-The default password storage mechanism for Ubuntu 16.04, CentOS 7, and Red Hat
-Enterprise Linux 7 is ``SHA512`` and the tasks in the security role ensure that
-the default is maintained.
+The default password storage mechanism for Ubuntu 16.04, CentOS 7, openSUSE Leap,
+SUSE Linux Enterprise 12 and Red Hat Enterprise Linux 7 is ``SHA512`` and the tasks
+in the security role ensure that the default is maintained.
 
 Deployers can configure a different password storage mechanism by setting the
 following Ansible variable:

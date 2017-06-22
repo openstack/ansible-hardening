@@ -15,9 +15,12 @@
 
 - name: Verify that AIDE configuration directory exists
   stat:
-    path: /etc/aide/aide.conf.d
+    path: "{{ item }}"
   register: aide_conf
   check_mode: no
+  with_items:
+    - /etc/aide/aide.conf.d
+    - /etc/aide.conf
   tags:
     - always
 
@@ -25,7 +28,7 @@
   template:
     src: ZZ_aide_exclusions.j2
     dest: /etc/aide/aide.conf.d/ZZ_aide_exclusions
-  when: aide_conf.stat.exists | bool
+  when: aide_conf.results[0].stat.exists | bool
   tags:
     - medium
     - aide
@@ -34,7 +37,7 @@
 # NOTE(mhayden): CentOS/RHEL already provide a very strict AIDE configuration
 # that meets the requirements of V-72069 and V-72071. That config
 # is borrowed for Ubuntu 16.04 here.
-- name: Configure AIDE to verify additional properties
+- name: Configure AIDE to verify additional properties (Ubuntu)
   blockinfile:
     dest: "/etc/aide/aide.conf"
     insertbefore: EOF
@@ -54,8 +57,26 @@
       /bin    NORMAL
       /sbin   NORMAL
   when:
-    - aide_conf.stat.exists | bool
+    - aide_conf.results[0].stat.exists | bool
     - ansible_os_family | lower == 'debian'
+  tags:
+    - low
+    - aide
+    - V-72069
+    - V-72071
+    - V-72073
+
+# NOTE(hwoarang): Add acl and xattrs on SUSE to meet V-72069 and V-72071.
+- name: Configure AIDE to verify additional properties (SUSE)
+  lineinfile:
+    dest: "/etc/aide.conf"
+    regexp: '(^Binlib.*= )'
+    line: '\1p+i+n+u+g+s+b+m+c+sha256+sha512+acl+xattrs'
+    state: present
+    backrefs: yes
+  when:
+    - aide_conf.results[1].stat.exists | bool
+    - ansible_pkg_mgr == 'zypper'
   tags:
     - low
     - aide
@@ -72,12 +93,14 @@
     - always
 
 - name: Initialize AIDE (this will take a few minutes)
-  # NOTE(hwoarang): aideinit is an Ubuntu wrapper.
+  # NOTE(hwoarang): aideinit is an Ubuntu wrapper. An alternative
+  # would be to use aideinit || aide -i but that will possibly mask
+  # genuine aideinit failures.
   shell: "if test -x /usr/sbin/aideinit; then aideinit; else aide -i; fi"
   changed_when: false
   register: aide_init
   when:
-    - aide_conf.stat.exists | bool
+    - aide_conf.results[0].stat.exists | bool or aide_conf.results[1].stat.exists | bool
     - not aide_database.stat.exists | bool
     - security_rhel7_initialize_aide | bool
   tags:
@@ -85,21 +108,21 @@
     - aide
     - V-71973
 
-# NOTE(mhayden): This is only needed for CentOS 7 and RHEL 7 since Ubuntu
+# NOTE(mhayden): This is only needed for CentOS 7, RHEL 7 and SUSE since Ubuntu
 # copies the new AIDE database into place automatically with its AIDE wrapper
 # script.
 - name: Move AIDE database into place
-  command: "mv /var/lib/aide/aide.db.new.gz {{ aide_database_file }}"
+  command: "mv {{ aide_database_out_file }} {{ aide_database_file }}"
   changed_when: false
   when:
     - aide_init | changed
-    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr in ['yum', 'zypper']
   tags:
     - medium
     - aide
     - V-71973
 
-# NOTE(mhayden): This is only needed for CentOS 7 and RHEL 7 since the AIDE
+# NOTE(mhayden): This is only needed for CentOS 7, RHEL 7 and SUSE since the AIDE
 # package doesn't come with a cron job file. Ubuntu packages a cron job for
 # AIDE checks already.
 - name: Create AIDE cron job
@@ -110,7 +133,7 @@
     special_time: daily
     job: "aide --check | /bin/mail -s \"$HOSTNAME - Daily aide integrity check run\" root"
   when:
-    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr in ['yum', 'zypper']
   tags:
     - medium
     - aide

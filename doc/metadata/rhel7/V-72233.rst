@@ -9,3 +9,4 @@ role installs the following packages:
 
 * CentOS: ``openssh-clients``, ``openssh-server``
 * Ubuntu: ``openssh-client``, ``openssh-server``
+* openSUSE Leap: ``openssh``

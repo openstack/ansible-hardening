@@ -1,11 +1,11 @@
 ---
 id: V-72067
-status: implemented - red hat only
+status: implemented - red hat and suse only
 tag: misc
 ---
 
-The tasks in the Ansible role install the ``dracut-fips`` and
-``dracut-fips-aesni`` packages and check to see if FIPS is enabled on the
+The tasks in the Ansible role install the ``dracut-fips`` (RHEL and SLE) and
+``dracut-fips-aesni`` (RHEL) packages and check to see if FIPS is enabled on the
 system. If it is not enabled, a warning message is printed in the Ansible
 output.
 
@@ -18,6 +18,6 @@ the bootloader configuration and regenerating the initramfs.
 
 .. note::
 
-    This change only applies to CentOS and Red Hat Enterprise Linux. Ubuntu
-    does not use dracut by default and the process for enabling the FIPS
-    functionality at boot time is more complex.
+    This change only applies to CentOS, Red Hat Enterprise Linux, openSUSE Leap
+    and SUSE Linux Enterprise. Ubuntu does not use dracut by default and the process
+    for enabling the FIPS functionality at boot time is more complex.

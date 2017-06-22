@@ -11,4 +11,4 @@ disruptive in some environments.
 
 Deployers should review their PAM configurations and add ``pam_lastlogin`` to
 ``/etc/pam.d/postlogin`` on CentOS and Red Hat Enterprise Linux or to
-``/etc/pam.d/login`` on Ubuntu.
+``/etc/pam.d/login`` on Ubuntu, openSUSE Leap and SUSE Linux Enterprise.

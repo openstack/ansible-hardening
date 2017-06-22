@@ -15,4 +15,5 @@ Deployers can opt-out of this change by setting an Ansible variable:
 
 .. note::
 
-    No action is taken on Ubuntu 16.04 because ``pt_chown`` is not available.
+    No action is taken on Ubuntu 16.04, openSUSE Leap and SUSE Linux Enterprise
+    because ``pt_chown`` is not available.

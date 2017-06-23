@@ -87,8 +87,8 @@
 - name: Determine existing public ssh host keys
   shell: ls /etc/ssh/*.pub
   register: public_ssh_host_keys
-  # The sheel command will always report 'changed' so we need to
-  # ignore that since this role is supposed to be idempotent
+  # The shell command will always report 'changed' so we need to
+  # ignore that since this role is supposed to be idempotent.
   changed_when: false
 
 - name: Public host key files must have mode 0644 or less

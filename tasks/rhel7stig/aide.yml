@@ -36,7 +36,7 @@
 # is borrowed for Ubuntu 16.04 here.
 - name: Configure AIDE to verify additional properties
   blockinfile:
-    dest: "{{ aide_conf }}"
+    dest: "/etc/aide/aide.conf"
     insertbefore: EOF
     marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
     block: |
@@ -54,7 +54,8 @@
       /bin    NORMAL
       /sbin   NORMAL
   when:
-    - ansible_os_family | lower == 'ubuntu'
+    - aide_conf.stat.exists | bool
+    - ansible_os_family | lower == 'debian'
   tags:
     - low
     - aide

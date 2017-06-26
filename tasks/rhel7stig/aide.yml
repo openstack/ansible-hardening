@@ -71,7 +71,8 @@
     - always
 
 - name: Initialize AIDE (this will take a few minutes)
-  command: "aideinit"
+  # NOTE(hwoarang): aideinit is an Ubuntu wrapper.
+  shell: "if test -x /usr/sbin/aideinit; then aideinit; else aide -i; fi"
   changed_when: false
   register: aide_init
   when:

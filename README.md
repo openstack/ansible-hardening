@@ -8,13 +8,13 @@ from the [Security Technical Implementation Guide (STIG)](http://iase.disa.mil/s
 to systems running the following distributions:
 
 * CentOS 7
-* Debian Jessie *(experimental)*
-* Fedora 25 *(experimental)*
+* Debian Jessie
+* Fedora 25
+* openSUSE Leap 42.2 and 42.3
+* Red Hat Enterprise Linux 7
+* SUSE Linux Enterprise 12 (*experimental*)
 * Ubuntu 14.04 *(deprecated)*
 * Ubuntu 16.04
-* Red Hat Enterprise Linux 7
-* openSUSE Leap 42.2 and 42.3
-* SUSE Linux Enterprise 12 (*experimental*)
 
 For more details, review the
 [ansible-hardening documentation](http://docs.openstack.org/developer/ansible-hardening/).

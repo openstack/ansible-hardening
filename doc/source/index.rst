@@ -88,12 +88,14 @@ Pike
 
 * **Supported Operating Systems:**
 
+  * CentOS 7
+  * Debian 8 Jessie
+  * Fedora 25
+  * openSUSE Leap 42.2 and 42.3
+  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
+  * SUSE Linux Enterprise 12 (*experimental*)
   * Ubuntu 14.04 Trusty *(Deprecated)*
   * Ubuntu 16.04 Xenial
-  * CentOS 7
-  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
-  * openSUSE Leap 42.2 and 42.3
-  * SUSE Linux Enterprise 12 (*experimental*)
 
 * **Documentation:**
 
@@ -109,8 +111,6 @@ Ocata
 * **Supported Operating Systems:**
 
   * CentOS 7
-  * Debian Jessie *(experimental)*
-  * Fedora 25 *(experimental)*
   * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
   * Ubuntu 14.04 Trusty *(Deprecated)*
   * Ubuntu 16.04 Xenial

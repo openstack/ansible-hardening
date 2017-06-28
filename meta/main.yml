@@ -6,18 +6,24 @@ galaxy_info:
   license: Apache
   min_ansible_version: 2.3
   platforms:
+  - name: Debian
+    versions:
+      - jessie
+  - name: Fedora
+    versions:
+      - 25
   - name: EL
     versions:
-    - 7
+      - 7
   - name: Ubuntu
     versions:
-    - trusty
-    - xenial
+      - trusty
+      - xenial
   - name: opensuse
     versions:
-    - 42.1
-    - 42.2
-    - 42.3
+      - 42.1
+      - 42.2
+      - 42.3
   categories:
   - cloud
   - security

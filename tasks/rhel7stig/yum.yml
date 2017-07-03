@@ -1,5 +1,5 @@
 ---
-# Copyright 2016, Rackspace US, Inc.
+# Copyright 2017, Rackspace US, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,59 +13,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Ensure RPM verification task has finished
-  async_status:
-    jid: "{{ rpmverify_task.ansible_job_id }}"
-  failed_when: False
-  changed_when: False
-  register: job_result
-  until: job_result.finished
-  retries: 30
-  when:
-    - not rpmverify_task | skipped
+- include: rpm.yml
 
-- name: V-71855 - Get files with invalid checksums (rpm)
-  shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
-  register: invalid_checksum_files
-  changed_when: False
+- name: Check if /etc/yum/yum-cron.conf exists
+  stat:
+    path: /etc/yum/yum-cron.conf
+  check_mode: no
+  register: yum_cron_config_check
   when:
-    - not check_mode | bool
     - ansible_os_family | lower == 'redhat'
   tags:
-    - rpm
-    - high
-    - V-71855
+    - always
 
-- name: V-71855 - The cryptographic hash of system files and commands must match vendor values (rpm)
-  debug:
-    msg: |
-      The following files have checksums that differ from the checksum provided
-      with their package. Each of these should be verified manually to ensure
-      they have not been modified by an unauthorized user.
-
-      {% for filename in invalid_checksum_files.stdout_lines %}
-        {{ filename }}
-      {% endfor %}
-  when:
-    - not check_mode | bool
-    - ansible_os_family | lower == 'redhat'
-    - invalid_checksum_files is defined
-    - invalid_checksum_files.stdout is defined
-  tags:
-    - rpm
-    - high
-    - V-71855
-
-- name: V-71977 - Require digital signatures for all packages
+- name: Enable automatic package updates (yum)
   lineinfile:
-    dest: "{{ pkg_mgr_config }}"
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
+    dest: /etc/yum/yum-cron.conf
+    regexp: "^apply_updates"
+    line: "apply_updates = yes"
     state: present
-  with_items: "{{ rpm_gpgchecks | default([]) }}"
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - yum_cron_config_check.stat.exists | bool
+    - security_rhel7_automatic_package_updates | bool
   tags:
-    - rpm
-    - high
-    - V-71977
-    - V-71979
-    - V-71981
+    - packages
+    - medium
+    - V-71999

@@ -1,6 +1,5 @@
 ---
 # Copyright 2016, Rackspace US, Inc.
-# Copyright 2017, SUSE LINUX GmbH.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,6 +30,7 @@
   changed_when: False
   when:
     - not check_mode | bool
+    - ansible_os_family | lower == 'redhat'
   tags:
     - rpm
     - high
@@ -48,6 +48,7 @@
       {% endfor %}
   when:
     - not check_mode | bool
+    - ansible_os_family | lower == 'redhat'
     - invalid_checksum_files is defined
     - invalid_checksum_files.stdout is defined
   tags:
@@ -55,20 +56,13 @@
     - high
     - V-71855
 
-- name: Determine all SUSE repositories
-  shell: ls /etc/zypp/repos.d/*.repo
-  changed_when: false
-  register: all_zypper_repositories
-
-- name: V-71977 - Require digital signatures for all packages and repositories
+- name: V-71977 - Require digital signatures for all packages
   lineinfile:
-    dest: "{{ item }}"
-    regexp: '^(#)?\s*gpgcheck'
-    line: "gpgcheck=1"
+    dest: "{{ pkg_mgr_config }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
     state: present
-  with_items:
-    - "{{ all_zypper_repositories.stdout_lines | default([]) }}"
-    - "{{ pkg_mgr_config }}"
+  with_items: "{{ rpm_gpgchecks | default([]) }}"
   tags:
     - rpm
     - high
@@ -76,26 +70,16 @@
     - V-71979
     - V-71981
 
-- name: V-71987 - Clean requirements/dependencies when removing packages (SUSE)
+- name: V-71987 - Clean requirements/dependencies when removing packages (RedHat)
   lineinfile:
     dest: "{{ pkg_mgr_config }}"
-    regexp: '^(#)?\s*solver\.cleandepsOnRemove'
-    line: 'solver.cleandepsOnRemove = true'
+    regexp: "^(#)?clean_requirements_on_remove"
+    line: "clean_requirements_on_remove=1"
     state: present
   when:
     - security_package_clean_on_remove | bool
+    - ansible_os_family | lower == 'redhat'
   tags:
     - low
     - packages
     - V-71987
-
-- name: Enable automatic package updates (SUSE)
-  copy:
-    src: zypper-autoupdates
-    dest: /etc/cron.daily/zypper-autoupdates
-  when:
-    - security_rhel7_automatic_package_updates | bool
-  tags:
-    - packages
-    - cat2
-    - V-71999

@@ -31,23 +31,9 @@
   tags:
     - always
 
-# Multiple tasks will need the output of RPM verification, so let's do the
-# lookup one time and then grep over the output in subsequent tasks.
-- name: Verify all installed RPM packages
-  shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt"
-  args:
-    warn: no
-  failed_when: False
-  changed_when: False
-  register: rpmverify_task
-  async: 300
-  poll: 0
-  when:
-    - not check_mode | bool
-    - ansible_os_family | lower in ['redhat', 'suse']
-  tags:
-    - always
-    - skip_ansible_lint
+# Some of the tasks in the role may take a long time to run. Let's start them
+# as early as possible so they have time to finish.
+- include: async_tasks.yml
 
 - name: Get user data for all users on the system
   get_users:
@@ -68,6 +54,8 @@
 # Package installations and removals must come first so that configuration
 # changes can be made later.
 - include: packages.yml
+  tags:
+    - always
 
 # Package managers are managed first since the changes in these tasks will
 # affect the remainder of the tasks in the role.

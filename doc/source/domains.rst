@@ -2,9 +2,11 @@ Hardening Domains
 =================
 
 The STIG divides its hardening requirements into severity levels, but the
-security role divides the requirements into system domains. The documentation
-provided here includes a brief overview of each hardening domain and the STIG
-requirements that go along with each.
+security role divides the requirements into system domains to make them easier
+to review.
+
+The documentation provided here includes a brief overview of each hardening
+domain and the STIG requirements that go along with each.
 
 .. toctree::
    :maxdepth: 1

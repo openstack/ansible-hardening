@@ -33,6 +33,11 @@ security_package_state: present
 # installed by the role. This may prevent certain packages from installing,
 # such as ClamAV.
 security_epel_install_repository: yes
+#
+# Some deployers install a customized EPEL package that redirects servers to
+# their internal EPEL mirrors. Provide the name of the EPEL repository package
+# (epel-release by default on CentOS) or a URL to an EPEL release RPM file.
+security_epel_release_package: epel-release
 
 ###############################################################################
 #   ____  _   _ _____ _        __     ____ _____ ___ ____

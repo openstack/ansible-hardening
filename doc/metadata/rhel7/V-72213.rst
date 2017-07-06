@@ -18,3 +18,9 @@ variable:
 .. code-block:: yaml
 
     security_enable_virus_scanner: yes
+
+.. warning::
+
+    The ClamAV packages are provided in the EPEL repository. Setting the
+    ``security_enable_virus_scanner`` will also cause the EPEL repository to
+    be installed by the role.

@@ -52,11 +52,4 @@
     tags:
       - always
 
-  - name: Install EPEL repository
-    yum:
-      name: epel-release
-      state: "{{ security_package_state }}"
-    when:
-      - ansible_pkg_mgr == 'yum'
-
   - include: "{{ stig_version }}stig/main.yml"

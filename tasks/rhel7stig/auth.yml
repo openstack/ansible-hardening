@@ -100,8 +100,15 @@
     - V-71943
     - V-71945
 
+# NOTE(mhayden): The unusual regex here ensures that we're omitting any lines
+# that are commented out. Some commented lines may be preprended with spaces,
+# so we need to account for that as well.
+#
+# First step is to find lines with 'nopasswd' in them and then omit any of
+# those lines that have a '#' as the first character or '#' as the first
+# character following a space (or series of spaces).
 - name: Check for 'nopasswd' in sudoers files
-  shell: grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ || echo 'not found'
+  shell: 'grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ | egrep -v "^([[:space:]]*)?(#|$)" || echo "not found"'
   register: sudoers_nopasswd_check
   changed_when: False
   tags:

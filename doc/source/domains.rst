@@ -1,3 +1,5 @@
+.. _hardening-domains-label:
+
 Hardening Domains
 =================
 

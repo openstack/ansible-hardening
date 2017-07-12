@@ -1,1 +1,58 @@
-yum.yml
+---
+# Copyright 2017, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- include: rpm.yml
+
+- name: Check if /etc/dnf/automatic.conf exists
+  stat:
+    path: /etc/dnf/automatic.conf
+  check_mode: no
+  register: dnf_automatic_config_check
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr == 'dnf'
+  tags:
+    - always
+
+- name: Enable automatic package updates (dnf)
+  lineinfile:
+    dest: /etc/dnf/automatic.conf
+    regexp: "^apply_updates"
+    line: "apply_updates = yes"
+    state: present
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr == 'dnf'
+    - dnf_automatic_config_check.stat.exists | bool
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - medium
+    - V-71999
+
+- name: Enable dnf-automatic timer for automatic package updates
+  systemd:
+    name: dnf-automatic.timer
+    enabled: yes
+    state: started
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr == 'dnf'
+    - dnf_automatic_config_check.stat.exists | bool
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - medium
+    - V-71999

@@ -90,3 +90,30 @@
   tags:
     - high
     - V-71979
+
+- name: V-71987 - Clean requirements/dependencies when removing packages (dpkg)
+  lineinfile:
+    dest: /etc/apt/apt.conf.d/security-autoremove
+    regexp: "^(#)?APT::Get::AutomaticRemove"
+    line: "APT{{ '::' }}Get{{ '::' }}AutomaticRemove \"0\";"
+    state: present
+    create: yes
+  when:
+    - security_package_clean_on_remove | bool
+    - ansible_os_family | lower == 'debian'
+  tags:
+    - low
+    - packages
+    - V-71987
+
+- name: Enable automatic package updates (apt)
+  copy:
+    src: 20auto-upgrades
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+  when:
+    - ansible_os_family | lower == 'debian'
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - cat2
+    - V-71999

@@ -219,27 +219,25 @@
     - auth
     - V-72275
 
-- name: Check for .shosts or shosts.equiv files
-  find:
-    paths: /
-    recurse: yes
-    hidden: yes
-    patterns: '.shosts,shosts.equiv'
-  register: shosts_find
+- name: Ensure .shosts find has finished
+  async_status:
+    jid: "{{ shosts_find.ansible_job_id }}"
+  failed_when: False
+  changed_when: False
+  register: job_result
+  until: job_result.finished | bool
+  retries: 30
   when:
-    - security_rhel7_remove_shosts_files | bool
-  tags:
-    - always
+    - not shosts_find | skipped
 
 - name: Remove .shosts or shosts.equiv files
   file:
     path: "{{ item.path }}"
     state: absent
-  with_items: "{{ shosts_find.files }}"
+  with_items: "{{ job_result.files }}"
   when:
+    - not job_result | skipped
     - security_rhel7_remove_shosts_files | bool
-    - shosts_find is defined
-    - shosts_find.files is defined
   tags:
     - high
     - auth

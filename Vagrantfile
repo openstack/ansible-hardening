@@ -1,3 +1,11 @@
+# Note:
+# This file is maintained in the openstack-ansible-tests repository.
+# https://git.openstack.org/cgit/openstack/openstack-ansible-tests/tree/Vagrantfile
+#
+# If you need to perform any change on it, you should modify the central file,
+# then, an OpenStack CI job will propagate your changes to every OSA repository
+# since every repo uses the same Vagrantfile
+
 # Verify whether required plugins are installed.
 required_plugins = [ "vagrant-disksize" ]
 required_plugins.each do |plugin|
@@ -8,7 +16,7 @@ end
 
 Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
+    v.memory = 4096
     v.cpus = 2
   end
 

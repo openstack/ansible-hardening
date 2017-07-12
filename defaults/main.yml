@@ -28,6 +28,12 @@ cache_timeout: 600
 # Options are 'present' and 'latest'
 security_package_state: present
 
+## EPEL
+# Set the following variable to `no` to prevent the EPEL repository from being
+# installed by the role. This may prevent certain packages from installing,
+# such as ClamAV.
+security_epel_install_repository: yes
+
 ###############################################################################
 #   ____  _   _ _____ _        __     ____ _____ ___ ____
 #  |  _ \| | | | ____| |      / /_   / ___|_   _|_ _/ ___|

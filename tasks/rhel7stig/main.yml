@@ -51,6 +51,19 @@
   tags:
     - always
 
+# NOTE(mhayden): EPEL is only needed for the clamav packages. We should only
+# install EPEL if the deployer asked for clamav to be installed.
+- name: Install EPEL repository
+  yum:
+    name: epel-release
+    state: "{{ security_package_state }}"
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - security_epel_install_repository | bool
+    - security_enable_virus_scanner | bool
+  tags:
+    - always
+
 # Package installations and removals must come first so that configuration
 # changes can be made later.
 - include: packages.yml

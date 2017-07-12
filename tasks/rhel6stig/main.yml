@@ -13,6 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+  - name: Install EPEL repository
+    yum:
+      name: epel-release
+      state: "{{ security_package_state }}"
+    when:
+      - ansible_pkg_mgr == 'yum'
+
   - include: apt.yml
     static: no
     when: ansible_pkg_mgr == 'apt'

@@ -14,8 +14,19 @@
 # limitations under the License.
 
 ## STIG version selection
-# The RHEL 7 STIG content was first added in the Ocata release.
-# The RHEL 6 STIG content is deprecated in the Ocata release.
+# The RHEL 7 STIG content first appeared in the Ocata release and is compatible
+# with the following operating systems:
+#
+#  * CentOS 7
+#  * Debian Jessie
+#  * Fedora 25
+#  * openSUSE Leap 42.x
+#  * SUSE Linux Enterprise 12
+#  * Ubuntu 16.04 Xenial LTS
+#
+# The RHEL 6 STIG content is deprecated in the Ocata release. It is compatible
+# with Ubuntu 14.04 Trusty LTS.
+#
 # Valid options: rhel7, rhel6
 stig_version: rhel7
 
@@ -40,17 +51,310 @@ security_epel_install_repository: yes
 security_epel_release_package: epel-release
 
 ###############################################################################
+#  ____  _   _ _____ _       _____   ____ _____ ___ ____
+# |  _ \| | | | ____| |     |___  | / ___|_   _|_ _/ ___|
+# | |_) | |_| |  _| | |        / /  \___ \ | |  | | |  _
+# |  _ <|  _  | |___| |___    / /    ___) || |  | | |_| |
+# |_| \_\_| |_|_____|_____|  /_/    |____/ |_| |___\____|
+#
+# The following options are specific to the RHEL 7 STIG. For details on each
+# option, refer to the ansible-hardening documentation:
+#
+#   https://docs.openstack.org/ansible-hardening/latest/domains.html
+#
+###############################################################################
+
+## Accounts (accounts)
+# Set minimum password lifetime to 1 day for interactive accounts.
+security_set_minimum_password_lifetime: no                   # V-71927
+security_set_maximum_password_lifetime: no                   # V-71931
+
+## AIDE (aide)
+# Initialize the AIDE database immediately (may take time).
+security_rhel7_initialize_aide: no                           # V-71973
+
+## Audit daemon (auditd)
+# Send audit records to a different system using audisp.
+#security_audisp_remote_server: '10.0.21.1'                  # V-72083
+# Encrypt audit records when they are transmitted over the network.
+#security_audisp_enable_krb5: yes                            # V-72085
+# Set the auditd failure flag. WARNING: READ DOCUMENTATION BEFORE CHANGING!
+security_rhel7_audit_failure_flag: 1                         # V-72081
+# Set the action to take when the disk is full or network events cannot be sent.
+security_rhel7_auditd_disk_full_action: syslog               # V-72087
+security_rhel7_auditd_network_failure_action: syslog         # V-72087
+# Size of remaining disk space (in MB) that triggers alerts.
+security_rhel7_auditd_space_left: "{{ (ansible_mounts | selectattr('mount', 'equalto', '/') | map(attribute='size_total') | first * 0.25 / 1024 / 1024) | int }}" # V-72089
+# Action to take when the space_left threshold is reached.
+security_rhel7_auditd_space_left_action: email               # V-72091
+# Send auditd email alerts to this user.
+security_rhel7_auditd_action_mail_acct: root                 # V-72093
+# Add audit rules for commands/syscalls.
+security_rhel7_audit_chsh: yes                               # V-72167
+security_rhel7_audit_chage: yes                              # V-72155
+security_rhel7_audit_chcon: yes                              # V-72139
+security_rhel7_audit_chmod: no                               # V-72105
+security_rhel7_audit_chown: no                               # V-72097
+security_rhel7_audit_creat: yes                              # V-72123
+security_rhel7_audit_crontab: yes                            # V-72183
+security_rhel7_audit_delete_module: yes                      # V-72189
+security_rhel7_audit_fchmod: no                              # V-72107
+security_rhel7_audit_fchmodat: no                            # V-72109
+security_rhel7_audit_fchown: no                              # V-72099
+security_rhel7_audit_fchownat: no                            # V-72103
+security_rhel7_audit_fremovexattr: no                        # V-72119
+security_rhel7_audit_fsetxattr: no                           # V-72113
+security_rhel7_audit_ftruncate: yes                          # V-72133
+security_rhel7_audit_init_module: yes                        # V-72187
+security_rhel7_audit_gpasswd: yes                            # V-72153
+security_rhel7_audit_lchown: no                              # V-72101
+security_rhel7_audit_lremovexattr: no                        # V-72121
+security_rhel7_audit_lsetxattr: no                           # V-72115
+security_rhel7_audit_mount: yes                              # V-72171
+security_rhel7_audit_newgrp: yes                             # V-72165
+security_rhel7_audit_open: yes                               # V-72125
+security_rhel7_audit_openat: yes                             # V-72127
+security_rhel7_audit_open_by_handle_at: yes                  # V-72129
+security_rhel7_audit_pam_timestamp_check: yes                # V-72185
+security_rhel7_audit_passwd: yes                             # V-72149
+security_rhel7_audit_postdrop: yes                           # V-72175
+security_rhel7_audit_postqueue: yes                          # V-72177
+security_rhel7_audit_pt_chown: yes                           # V-72181
+security_rhel7_audit_removexattr: no                         # V-72117
+security_rhel7_audit_rename: yes                             # V-72199
+security_rhel7_audit_renameat: yes                           # V-72201
+security_rhel7_audit_restorecon: yes                         # V-72141
+security_rhel7_audit_rmdir: yes                              # V-72203
+security_rhel7_audit_semanage: yes                           # V-72135
+security_rhel7_audit_setsebool: yes                          # V-72137
+security_rhel7_audit_setxattr: no                            # V-72111
+security_rhel7_audit_ssh_keysign: yes                        # V-72179
+security_rhel7_audit_su: yes                                 # V-72159
+security_rhel7_audit_sudo: yes                               # V-72161
+security_rhel7_audit_sudoedit: yes                           # V-72169
+security_rhel7_audit_truncate: yes                           # V-72131
+security_rhel7_audit_umount: yes                             # V-72173
+security_rhel7_audit_unix_chkpwd: yes                        # V-72151
+security_rhel7_audit_unlink: yes                             # V-72205
+security_rhel7_audit_unlinkat: yes                           # V-72207
+security_rhel7_audit_userhelper: yes                         # V-72157
+# Add audit rules for other events.
+security_rhel7_audit_account_access: yes                     # V-72143
+security_rhel7_audit_sudo_config_changes: yes                # V-72163
+security_rhel7_audit_insmod: yes                             # V-72191
+security_rhel7_audit_rmmod: yes                              # V-72193
+security_rhel7_audit_modprobe: yes                           # V-72195
+security_rhel7_audit_account_actions: yes                    # V-72197
+
+## Authentication (auth)
+# Disallow logins from accounts with blank/null passwords via PAM.
+security_disallow_blank_password_login: yes                  # V-71937
+# Apply password quality rules.
+# NOTE: The security_pwquality_apply_rules variable is a "master switch".
+# Set the 'security_pwquality_apply_rules' variable to 'yes' to apply all of
+# the password quality rules. Each rule can be disabled with a value of 'no'.
+security_pwquality_apply_rules: no
+security_pwquality_require_uppercase: yes                    # V-71903
+security_pwquality_require_lowercase: yes                    # V-71905
+security_pwquality_require_numeric: yes                      # V-71907
+security_pwquality_require_special: yes                      # V-71909
+security_pwquality_require_characters_changed: yes           # V-71911
+security_pwquality_require_character_classes_changed: yes    # V-71913
+security_pwquality_limit_repeated_characters: yes            # V-71915
+security_pwquality_limit_repeated_character_classes: yes     # V-71917
+security_pwquality_require_minimum_password_length: no       # V-71935
+# Use pwquality when passwords are changed or established.
+security_enable_pwquality_password_set: no                   # V-73159
+# Ensure passwords are stored using SHA512.
+security_password_encrypt_method: SHA512                     # V-71921
+# Ensure user/group admin utilities only store encrypted passwords.
+security_libuser_crypt_style_sha512: yes                     # V-71923
+# Set a minimum/maximum lifetime limit for user passwords.
+#security_password_min_lifetime_days: 1                      # V-71925
+#security_password_max_lifetime_days: 60                     # V-71929
+# Set a delay (in seconds) between failed login attempts.
+security_shadow_utils_fail_delay: 4                          # V-71951
+# Set a umask for all authenticated users.
+# security_shadow_utils_umask: '077'                         # V-71995
+# Create home directories for new users by default.
+security_shadow_utils_create_home: yes                       # V-72013
+# How many old user password to remember to prevent password re-use.
+#security_password_remember_password: 5                      # V-71933
+# Disable user accounts if the password expires.
+security_disable_account_if_password_expires: no             # V-71941
+# Lock user accounts with excessive login failures. See documentation.
+security_pam_faillock_enable: no                             # V-71945 / V-71943 / RHEL-07-010373
+security_pam_faillock_interval: 900
+security_pam_faillock_attempts: 3
+security_pam_faillock_deny_root: yes                         # RHEL-07-010373
+security_pam_faillock_unlock_time: 604800                    # V-71943
+# Limit the number of concurrent connections per account.
+#security_rhel7_concurrent_session_limit: 10                 # V-72217
+# Remove .shosts and shosts.equiv files.
+security_rhel7_remove_shosts_files: no                       # V-72277
+
+## File permissions (file_perms)
+# Reset file permissions and ownership for files installed via RPM packages.
+security_reset_perm_ownership: no                            # V-71849
+# Search for files/directories owned by invalid users or groups.
+security_search_for_invalid_owner: no                        # V-72007
+security_search_for_invalid_group_owner: no                  # V-72009
+# Set user/group owners on each home directory and set mode to 0750.
+security_set_home_directory_permissions_and_owners: no       # V-72017 / V-72019 / V-72021
+
+## Graphical interfaces (graphical)
+# Disable automatic gdm logins
+security_disable_gdm_automatic_login: yes                    # V-71953
+# Disable timed gdm logins for guests
+security_disable_gdm_timed_login: yes                        # V-71955
+# Enable session locking for graphical logins.
+security_lock_session: no                                    # V-71891
+# Set a timer (in seconds) when an inactive session is locked.
+security_lock_session_inactive_delay: 900                    # V-71893
+# Prevent users from modifying session lock settings.
+security_lock_session_override_user: yes                     # RHEL-07-010071
+# Lock a session (start screensaver) when a session is inactive.
+security_lock_session_when_inactive: yes                     # V-71893
+# Time after screensaver starts when user login is required.
+security_lock_session_screensaver_lock_delay: 5              # V-71901
+# Enable a login banner and set the text for the banner.
+security_enable_graphical_login_message: yes                 # V-71859
+security_enable_graphical_login_message_text: >
+    You are accessing a secured system and your actions will be logged along
+    with identifying information. Disconnect immediately if you are not an
+    authorized user of this system.
+
+## Linux Security Module (lsm)
+# Enable SELinux on Red Hat/CentOS and AppArmor on Ubuntu.
+security_rhel7_enable_linux_security_module: yes             # V-71989 / V-71991
+
+## Miscellaneous (misc)
+# Disable the autofs service.
+security_rhel7_disable_autofs: yes                           # V-71985
+# Enable virus scanning with clamav
+security_enable_virus_scanner: no                            # V-72213
+# Run the virus scanner update during the deployment (if scanner is deployed)
+security_run_virus_scanner_update: yes
+# Disable ctrl-alt-delete key sequence on the console.
+security_rhel7_disable_ctrl_alt_delete: yes                  # V-71993
+# Install and enable firewalld for iptables management.
+security_enable_firewalld: no                                # V-72273
+# Rate limit TCP connections to 25/min and burstable to 100.
+security_enable_firewalld_rate_limit: no                     # V-72271
+security_enable_firewalld_rate_limit_per_minute: 25
+security_enable_firewalld_rate_limit_burst: 100
+# Require authentication in GRUB to boot into single-user or maintenance modes.
+security_require_grub_authentication: no                     # V-71961 / V-71963
+# The default password for grub authentication is 'secrete'.
+security_grub_password_hash: grub.pbkdf2.sha512.10000.7B21785BEAFEE3AC71459D8210E3FB42EC0F5011C24A2DF31A8127D43A0BB4F1563549DF443791BE8EDA3AE4E4D4E04DB78D4CA35320E4C646CF38320CBE16EC.4B46176AAB1405D97BADB696377C29DE3B3266188D9C3D2E57F3AE851815CCBC16A275B0DBF6F79D738DAD8F598BEE64C73AE35F19A28C5D1E7C7D96FF8A739B
+# Set session timeout.
+security_rhel7_session_timeout: 600                          # V-72223
+# Enable chrony for NTP time synchronization.
+security_rhel7_enable_chrony: yes                            # V-72269
+# Restrict mail relaying.
+security_rhel7_restrict_mail_relaying: yes                   # V-72297
+# Deploy a login banner.                                     # V-72225 / V-71863
+security_login_banner_text: |
+  ------------------------------------------------------------------------------
+  * WARNING                                                                    *
+  * You are accessing a secured system and your actions will be logged along   *
+  * with identifying information. Disconnect immediately if you are not an     *
+  * authorized user of this system.                                            *
+  ------------------------------------------------------------------------------
+
+
+## Packages (packages)
+# Remove packages from the system as required by the STIG. Set any of these
+# to 'no' to skip their removal.
+security_rhel7_remove_rsh_server: yes                        # V-71967
+security_rhel7_remove_telnet_server: yes                     # V-72077
+security_rhel7_remove_tftp_server: yes                       # V-72301
+security_rhel7_remove_xorg: yes                              # V-72307
+security_rhel7_remove_ypserv: yes                            # V-71969
+# Automatically remove dependencies when removing packages.
+security_package_clean_on_remove: no                         # V-71987
+# Automatically update packages.
+security_rhel7_automatic_package_updates: no                 # V-71999
+# Install packages for multi-factor authentication.
+security_install_multifactor_auth_packages: yes              # V-72417
+
+## RPM (rpm)
+# Enable GPG checks for packages and repository data.
+security_enable_gpgcheck_packages: yes                       # V-71977
+security_enable_gpgcheck_packages_local: yes                 # V-71979
+security_enable_gpgcheck_repo: no                            # V-71981
+
+## ssh server (sshd)
+# Ensure sshd is running and enabled at boot time.
+security_enable_sshd: yes                                    # V-72235
+# Disallow logins from users with empty/null passwords.
+security_sshd_disallow_empty_password: yes                   # V-71939 / RHEL-07-010440
+# Disallow users from overriding the ssh environment variables.
+security_sshd_disallow_environment_override: yes             # V-71957
+# Disallow host based authentication.
+security_sshd_disallow_host_based_auth: yes                  # V-71959
+# Set a list of allowed ssh ciphers.
+security_sshd_cipher_list: 'aes128-ctr,aes192-ctr,aes256-ctr' # V-72221
+# Specify a text file to be displayed as the banner/MOTD for all sessions.
+security_sshd_banner_file: /etc/motd                         # V-71861 / V-72225
+# Set the interval for max session length and the number of intervals to allow.
+security_sshd_client_alive_interval: 600                     # V-72237
+security_sshd_client_alive_count_max: 0                      # V-72241
+# Print the last login for a user when they log in over ssh.
+security_sshd_print_last_log: yes                            # V-72245
+# Permit direct root logins
+security_sshd_permit_root_login: no                          # V-72247
+# Disallow authentication using known hosts authentication.
+security_sshd_disallow_known_hosts_auth: yes                 # V-72249 / V-72239
+# Disallow rhosts authentication.
+security_sshd_disallow_rhosts_auth: yes                      # V-72243
+# Enable X11 forwarding.
+security_sshd_enable_x11_forwarding: yes                     # V-72303
+# Set the allowed ssh protocols.
+security_sshd_protocol: 2                                    # V-72251
+# Set the list of allowed Message Authentication Codes (MACs) for ssh.
+security_sshd_allowed_macs: 'hmac-sha2-256,hmac-sha2-512'    # V-72253
+# Disallow Generic Security Service Application Program Interface (GSSAPI) auth.
+security_sshd_disallow_gssapi: yes                           # V-72259
+# Disallow compression or delay after login.
+security_sshd_compression: 'delayed'                         # V-72267
+# Require privilege separation at every opportunity.
+security_sshd_enable_privilege_separation: yes               # V-72265
+# Require strict mode checking of home directory configuration files.
+security_sshd_enable_strict_modes: yes                       # V-72263
+# Disallow Kerberos authentication.
+security_sshd_disable_kerberos_auth: yes                     # V-72261
+
+## Kernel settings (kernel)
+# Disallow forwarding IPv4/IPv6 source routed packets on all interfaces
+# immediately and by default on new interfaces.
+security_disallow_source_routed_packet_forward_ipv4: yes     # V-72283 / V-72285
+security_disallow_source_routed_packet_forward_ipv6: yes     # V-72319
+# Disallow responses to IPv4 ICMP echoes sent to broadcast address.
+security_disallow_echoes_broadcast_address: yes              # V-72287
+# Disallow IPV4 ICMP redirects on all interfaces immediately and by default on
+# new interfaces.
+security_disallow_icmp_redirects: yes                        # V-73175 / V-72289 / V-72291 / V-72293
+# Disallow IP forwarding.
+security_disallow_ip_forwarding: no                          # V-72309
+# Disable USB storage support.
+security_rhel7_disable_usb_storage: yes                      # V-71983
+# Disable kdump.
+security_disable_kdump: yes                                  # V-72057
+
+
+###############################################################################
 #   ____  _   _ _____ _        __     ____ _____ ___ ____
 #  |  _ \| | | | ____| |      / /_   / ___|_   _|_ _/ ___|
 #  | |_) | |_| |  _| | |     | '_ \  \___ \ | |  | | |  _
 #  |  _ <|  _  | |___| |___  | (_) |  ___) || |  | | |_| |
 #  |_| \_\_| |_|_____|_____|  \___/  |____/ |_| |___\____|
 #
-#  The default configurations after this marker apply to the RHEL 6 STIG
-#  content in the ansible-hardening role. Review the comments below
-#  as well as the main ansible-hardening documentation:
+#  DEPRECATED! The RHEL 6 STIG content and its tasks were deprecated in the
+#  Ocata release and will be removed in a future release.
 #
-#    http://docs.openstack.org/developer/ansible-hardening/
+#  These configuration options apply to the RHEL 6 STIG content. Be sure to set
+#  `stig_version` to `rhel6` to use the tasks for the RHEL 6 STIG content.
 #
 ###############################################################################
 
@@ -376,290 +680,3 @@ security_sudoers_remove_authenticate: no          # V-58901
 ## Unattended upgrades (APT) configuration
 security_unattended_upgrades_enabled: false
 security_unattended_upgrades_notifications: false
-
-###############################################################################
-#  ____  _   _ _____ _       _____   ____ _____ ___ ____
-# |  _ \| | | | ____| |     |___  | / ___|_   _|_ _/ ___|
-# | |_) | |_| |  _| | |        / /  \___ \ | |  | | |  _
-# |  _ <|  _  | |___| |___    / /    ___) || |  | | |_| |
-# |_| \_\_| |_|_____|_____|  /_/    |____/ |_| |___\____|
-#
-###############################################################################
-
-## Accounts (accounts)
-# Set minimum password lifetime to 1 day for interactive accounts.
-security_set_minimum_password_lifetime: no                   # V-71927
-security_set_maximum_password_lifetime: no                   # V-71931
-
-## AIDE (aide)
-# Initialize the AIDE database immediately (may take time).
-security_rhel7_initialize_aide: no                           # V-71973
-
-## Audit daemon (auditd)
-# Send audit records to a different system using audisp.
-#security_audisp_remote_server: '10.0.21.1'                  # V-72083
-# Encrypt audit records when they are transmitted over the network.
-#security_audisp_enable_krb5: yes                            # V-72085
-# Set the auditd failure flag. WARNING: READ DOCUMENTATION BEFORE CHANGING!
-security_rhel7_audit_failure_flag: 1                         # V-72081
-# Set the action to take when the disk is full or network events cannot be sent.
-security_rhel7_auditd_disk_full_action: syslog               # V-72087
-security_rhel7_auditd_network_failure_action: syslog         # V-72087
-# Size of remaining disk space (in MB) that triggers alerts.
-security_rhel7_auditd_space_left: "{{ (ansible_mounts | selectattr('mount', 'equalto', '/') | map(attribute='size_total') | first * 0.25 / 1024 / 1024) | int }}" # V-72089
-# Action to take when the space_left threshold is reached.
-security_rhel7_auditd_space_left_action: email               # V-72091
-# Send auditd email alerts to this user.
-security_rhel7_auditd_action_mail_acct: root                 # V-72093
-# Add audit rules for commands/syscalls.
-security_rhel7_audit_chsh: yes                               # V-72167
-security_rhel7_audit_chage: yes                              # V-72155
-security_rhel7_audit_chcon: yes                              # V-72139
-security_rhel7_audit_chmod: no                               # V-72105
-security_rhel7_audit_chown: no                               # V-72097
-security_rhel7_audit_creat: yes                              # V-72123
-security_rhel7_audit_crontab: yes                            # V-72183
-security_rhel7_audit_delete_module: yes                      # V-72189
-security_rhel7_audit_fchmod: no                              # V-72107
-security_rhel7_audit_fchmodat: no                            # V-72109
-security_rhel7_audit_fchown: no                              # V-72099
-security_rhel7_audit_fchownat: no                            # V-72103
-security_rhel7_audit_fremovexattr: no                        # V-72119
-security_rhel7_audit_fsetxattr: no                           # V-72113
-security_rhel7_audit_ftruncate: yes                          # V-72133
-security_rhel7_audit_init_module: yes                        # V-72187
-security_rhel7_audit_gpasswd: yes                            # V-72153
-security_rhel7_audit_lchown: no                              # V-72101
-security_rhel7_audit_lremovexattr: no                        # V-72121
-security_rhel7_audit_lsetxattr: no                           # V-72115
-security_rhel7_audit_mount: yes                              # V-72171
-security_rhel7_audit_newgrp: yes                             # V-72165
-security_rhel7_audit_open: yes                               # V-72125
-security_rhel7_audit_openat: yes                             # V-72127
-security_rhel7_audit_open_by_handle_at: yes                  # V-72129
-security_rhel7_audit_pam_timestamp_check: yes                # V-72185
-security_rhel7_audit_passwd: yes                             # V-72149
-security_rhel7_audit_postdrop: yes                           # V-72175
-security_rhel7_audit_postqueue: yes                          # V-72177
-security_rhel7_audit_pt_chown: yes                           # V-72181
-security_rhel7_audit_removexattr: no                         # V-72117
-security_rhel7_audit_rename: yes                             # V-72199
-security_rhel7_audit_renameat: yes                           # V-72201
-security_rhel7_audit_restorecon: yes                         # V-72141
-security_rhel7_audit_rmdir: yes                              # V-72203
-security_rhel7_audit_semanage: yes                           # V-72135
-security_rhel7_audit_setsebool: yes                          # V-72137
-security_rhel7_audit_setxattr: no                            # V-72111
-security_rhel7_audit_ssh_keysign: yes                        # V-72179
-security_rhel7_audit_su: yes                                 # V-72159
-security_rhel7_audit_sudo: yes                               # V-72161
-security_rhel7_audit_sudoedit: yes                           # V-72169
-security_rhel7_audit_truncate: yes                           # V-72131
-security_rhel7_audit_umount: yes                             # V-72173
-security_rhel7_audit_unix_chkpwd: yes                        # V-72151
-security_rhel7_audit_unlink: yes                             # V-72205
-security_rhel7_audit_unlinkat: yes                           # V-72207
-security_rhel7_audit_userhelper: yes                         # V-72157
-# Add audit rules for other events.
-security_rhel7_audit_account_access: yes                     # V-72143
-security_rhel7_audit_sudo_config_changes: yes                # V-72163
-security_rhel7_audit_insmod: yes                             # V-72191
-security_rhel7_audit_rmmod: yes                              # V-72193
-security_rhel7_audit_modprobe: yes                           # V-72195
-security_rhel7_audit_account_actions: yes                    # V-72197
-
-## Authentication (auth)
-# Disallow logins from accounts with blank/null passwords via PAM.
-security_disallow_blank_password_login: yes                  # V-71937
-# Apply password quality rules.
-# NOTE: The security_pwquality_apply_rules variable is a "master switch".
-# Set the 'security_pwquality_apply_rules' variable to 'yes' to apply all of
-# the password quality rules. Each rule can be disabled with a value of 'no'.
-security_pwquality_apply_rules: no
-security_pwquality_require_uppercase: yes                    # V-71903
-security_pwquality_require_lowercase: yes                    # V-71905
-security_pwquality_require_numeric: yes                      # V-71907
-security_pwquality_require_special: yes                      # V-71909
-security_pwquality_require_characters_changed: yes           # V-71911
-security_pwquality_require_character_classes_changed: yes    # V-71913
-security_pwquality_limit_repeated_characters: yes            # V-71915
-security_pwquality_limit_repeated_character_classes: yes     # V-71917
-security_pwquality_require_minimum_password_length: no       # V-71935
-# Use pwquality when passwords are changed or established.
-security_enable_pwquality_password_set: no                   # V-73159
-# Ensure passwords are stored using SHA512.
-security_password_encrypt_method: SHA512                     # V-71921
-# Ensure user/group admin utilities only store encrypted passwords.
-security_libuser_crypt_style_sha512: yes                     # V-71923
-# Set a minimum/maximum lifetime limit for user passwords.
-#security_password_min_lifetime_days: 1                      # V-71925
-#security_password_max_lifetime_days: 60                     # V-71929
-# Set a delay (in seconds) between failed login attempts.
-security_shadow_utils_fail_delay: 4                          # V-71951
-# Set a umask for all authenticated users.
-# security_shadow_utils_umask: '077'                         # V-71995
-# Create home directories for new users by default.
-security_shadow_utils_create_home: yes                       # V-72013
-# How many old user password to remember to prevent password re-use.
-#security_password_remember_password: 5                      # V-71933
-# Disable user accounts if the password expires.
-security_disable_account_if_password_expires: no             # V-71941
-# Lock user accounts with excessive login failures. See documentation.
-security_pam_faillock_enable: no                             # V-71945 / V-71943 / RHEL-07-010373
-security_pam_faillock_interval: 900
-security_pam_faillock_attempts: 3
-security_pam_faillock_deny_root: yes                         # RHEL-07-010373
-security_pam_faillock_unlock_time: 604800                    # V-71943
-# Limit the number of concurrent connections per account.
-#security_rhel7_concurrent_session_limit: 10                 # V-72217
-# Remove .shosts and shosts.equiv files.
-security_rhel7_remove_shosts_files: no                       # V-72277
-
-## File permissions (file_perms)
-# Reset file permissions and ownership for files installed via RPM packages.
-security_reset_perm_ownership: no                            # V-71849
-# Search for files/directories owned by invalid users or groups.
-security_search_for_invalid_owner: no                        # V-72007
-security_search_for_invalid_group_owner: no                  # V-72009
-# Set user/group owners on each home directory and set mode to 0750.
-security_set_home_directory_permissions_and_owners: no       # V-72017 / V-72019 / V-72021
-
-## Graphical interfaces (graphical)
-# Disable automatic gdm logins
-security_disable_gdm_automatic_login: yes                    # V-71953
-# Disable timed gdm logins for guests
-security_disable_gdm_timed_login: yes                        # V-71955
-# Enable session locking for graphical logins.
-security_lock_session: no                                    # V-71891
-# Set a timer (in seconds) when an inactive session is locked.
-security_lock_session_inactive_delay: 900                    # V-71893
-# Prevent users from modifying session lock settings.
-security_lock_session_override_user: yes                     # RHEL-07-010071
-# Lock a session (start screensaver) when a session is inactive.
-security_lock_session_when_inactive: yes                     # V-71893
-# Time after screensaver starts when user login is required.
-security_lock_session_screensaver_lock_delay: 5              # V-71901
-# Enable a login banner and set the text for the banner.
-security_enable_graphical_login_message: yes                 # V-71859
-security_enable_graphical_login_message_text: >
-    You are accessing a secured system and your actions will be logged along
-    with identifying information. Disconnect immediately if you are not an
-    authorized user of this system.
-
-## Linux Security Module (lsm)
-# Enable SELinux on Red Hat/CentOS and AppArmor on Ubuntu.
-security_rhel7_enable_linux_security_module: yes             # V-71989 / V-71991
-
-## Miscellaneous (misc)
-# Disable the autofs service.
-security_rhel7_disable_autofs: yes                           # V-71985
-# Enable virus scanning with clamav
-security_enable_virus_scanner: no                            # V-72213
-# Run the virus scanner update during the deployment (if scanner is deployed)
-security_run_virus_scanner_update: yes
-# Disable ctrl-alt-delete key sequence on the console.
-security_rhel7_disable_ctrl_alt_delete: yes                  # V-71993
-# Install and enable firewalld for iptables management.
-security_enable_firewalld: no                                # V-72273
-# Rate limit TCP connections to 25/min and burstable to 100.
-security_enable_firewalld_rate_limit: no                     # V-72271
-security_enable_firewalld_rate_limit_per_minute: 25
-security_enable_firewalld_rate_limit_burst: 100
-# Require authentication in GRUB to boot into single-user or maintenance modes.
-security_require_grub_authentication: no                     # V-71961 / V-71963
-# The default password for grub authentication is 'secrete'.
-security_grub_password_hash: grub.pbkdf2.sha512.10000.7B21785BEAFEE3AC71459D8210E3FB42EC0F5011C24A2DF31A8127D43A0BB4F1563549DF443791BE8EDA3AE4E4D4E04DB78D4CA35320E4C646CF38320CBE16EC.4B46176AAB1405D97BADB696377C29DE3B3266188D9C3D2E57F3AE851815CCBC16A275B0DBF6F79D738DAD8F598BEE64C73AE35F19A28C5D1E7C7D96FF8A739B
-# Set session timeout.
-security_rhel7_session_timeout: 600                          # V-72223
-# Enable chrony for NTP time synchronization.
-security_rhel7_enable_chrony: yes                            # V-72269
-# Restrict mail relaying.
-security_rhel7_restrict_mail_relaying: yes                   # V-72297
-# Deploy a login banner.                                     # V-72225 / V-71863
-security_login_banner_text: |
-  ------------------------------------------------------------------------------
-  * WARNING                                                                    *
-  * You are accessing a secured system and your actions will be logged along   *
-  * with identifying information. Disconnect immediately if you are not an     *
-  * authorized user of this system.                                            *
-  ------------------------------------------------------------------------------
-
-
-## Packages (packages)
-# Remove packages from the system as required by the STIG. Set any of these
-# to 'no' to skip their removal.
-security_rhel7_remove_rsh_server: yes                        # V-71967
-security_rhel7_remove_telnet_server: yes                     # V-72077
-security_rhel7_remove_tftp_server: yes                       # V-72301
-security_rhel7_remove_xorg: yes                              # V-72307
-security_rhel7_remove_ypserv: yes                            # V-71969
-# Automatically remove dependencies when removing packages.
-security_package_clean_on_remove: no                         # V-71987
-# Automatically update packages.
-security_rhel7_automatic_package_updates: no                 # V-71999
-# Install packages for multi-factor authentication.
-security_install_multifactor_auth_packages: yes              # V-72417
-
-## RPM (rpm)
-# Enable GPG checks for packages and repository data.
-security_enable_gpgcheck_packages: yes                       # V-71977
-security_enable_gpgcheck_packages_local: yes                 # V-71979
-security_enable_gpgcheck_repo: no                            # V-71981
-
-## ssh server (sshd)
-# Ensure sshd is running and enabled at boot time.
-security_enable_sshd: yes                                    # V-72235
-# Disallow logins from users with empty/null passwords.
-security_sshd_disallow_empty_password: yes                   # V-71939 / RHEL-07-010440
-# Disallow users from overriding the ssh environment variables.
-security_sshd_disallow_environment_override: yes             # V-71957
-# Disallow host based authentication.
-security_sshd_disallow_host_based_auth: yes                  # V-71959
-# Set a list of allowed ssh ciphers.
-security_sshd_cipher_list: 'aes128-ctr,aes192-ctr,aes256-ctr' # V-72221
-# Specify a text file to be displayed as the banner/MOTD for all sessions.
-security_sshd_banner_file: /etc/motd                         # V-71861 / V-72225
-# Set the interval for max session length and the number of intervals to allow.
-security_sshd_client_alive_interval: 600                     # V-72237
-security_sshd_client_alive_count_max: 0                      # V-72241
-# Print the last login for a user when they log in over ssh.
-security_sshd_print_last_log: yes                            # V-72245
-# Permit direct root logins
-security_sshd_permit_root_login: no                          # V-72247
-# Disallow authentication using known hosts authentication.
-security_sshd_disallow_known_hosts_auth: yes                 # V-72249 / V-72239
-# Disallow rhosts authentication.
-security_sshd_disallow_rhosts_auth: yes                      # V-72243
-# Enable X11 forwarding.
-security_sshd_enable_x11_forwarding: yes                     # V-72303
-# Set the allowed ssh protocols.
-security_sshd_protocol: 2                                    # V-72251
-# Set the list of allowed Message Authentication Codes (MACs) for ssh.
-security_sshd_allowed_macs: 'hmac-sha2-256,hmac-sha2-512'    # V-72253
-# Disallow Generic Security Service Application Program Interface (GSSAPI) auth.
-security_sshd_disallow_gssapi: yes                           # V-72259
-# Disallow compression or delay after login.
-security_sshd_compression: 'delayed'                         # V-72267
-# Require privilege separation at every opportunity.
-security_sshd_enable_privilege_separation: yes               # V-72265
-# Require strict mode checking of home directory configuration files.
-security_sshd_enable_strict_modes: yes                       # V-72263
-# Disallow Kerberos authentication.
-security_sshd_disable_kerberos_auth: yes                     # V-72261
-
-## Kernel settings (kernel)
-# Disallow forwarding IPv4/IPv6 source routed packets on all interfaces
-# immediately and by default on new interfaces.
-security_disallow_source_routed_packet_forward_ipv4: yes     # V-72283 / V-72285
-security_disallow_source_routed_packet_forward_ipv6: yes     # V-72319
-# Disallow responses to IPv4 ICMP echoes sent to broadcast address.
-security_disallow_echoes_broadcast_address: yes              # V-72287
-# Disallow IPV4 ICMP redirects on all interfaces immediately and by default on
-# new interfaces.
-security_disallow_icmp_redirects: yes                        # V-73175 / V-72289 / V-72291 / V-72293
-# Disallow IP forwarding.
-security_disallow_ip_forwarding: no                          # V-72309
-# Disable USB storage support.
-security_rhel7_disable_usb_storage: yes                      # V-71983
-# Disable kdump.
-security_disable_kdump: yes                                  # V-72057

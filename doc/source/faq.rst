@@ -43,12 +43,14 @@ Which systems are covered?
 The ansible-hardening role provides security hardening for physical
 servers running the following Linux distributions:
 
-* Ubuntu 14.04
-* Ubuntu 16.04
 * CentOS 7
-* Red Hat Enterprise Linux 7
+* Debian 8 Jessie
+* Fedora 25
 * openSUSE Leap 42.2 and 42.3
-* SUSE Linux Enterprise 12 (experimental)
+* Red Hat Enterprise Linux 7 *(partial automated test coverage)*
+* SUSE Linux Enterprise 12 (*experimental*)
+* Ubuntu 14.04 Trusty *(Deprecated)*
+* Ubuntu 16.04 Xenial
 
 The OpenStack gating system tests the role against each of these distributions
 regularly except for Red Hat Enterprise Linux 7, since it is a non-free

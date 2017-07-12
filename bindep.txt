@@ -9,41 +9,55 @@
 # is better to have this file empty, otherwise OpenStack-CI
 # will fall back to installing its default packages which
 # will potentially be detrimental to the tests executed.
+#
+# Note:
+# This file is maintained in the openstack-ansible-tests repository.
+# https://git.openstack.org/cgit/openstack/openstack-ansible-tests/tree/bindep.txt
+# If you need to remove or add extra dependencies, you should modify
+# the central file instead and once your change is accepted then update
+# this file as well. The purpose of this file is to ensure that Python and
+# Ansible have all their necessary binary requirements on the test host before
+# tox executes. Any binary requirements needed by services/roles should be
+# installed by those roles in their applicable package install tasks, not through
+# using this file.
+#
 
-# Base requirements for Ubuntu and Debian
+# Base requirements for Ubuntu
 build-essential   [platform:dpkg]
 git-core          [platform:dpkg]
 libssl-dev        [platform:dpkg]
 libffi-dev        [platform:dpkg]
-libxslt1-dev      [platform:dpkg]
 python2.7         [platform:dpkg]
-python-dev        [platform:dpkg]
 python-apt        [platform:dpkg]
+python-dev        [platform:dpkg]
 
-# Base requirements for CentOS and Fedora
-redhat-rpm-config [platform:rpm]
+# Base requirements for RPM distros
 gcc               [platform:rpm]
 gcc-c++           [platform:rpm]
 git               [platform:rpm]
-libxslt-devel     [platform:rpm]
+libffi-devel      [platform:rpm !platform:opensuseproject-42]
+libffi-devel-gcc5 [platform:opensuseproject-42]
+openssl-devel     [platform:redhat]
+libopenssl-devel  [platform:suse]
 python-devel      [platform:rpm]
-
-# Requirements for Paramiko 2.0
-libffi-devel      [platform:rpm]
-openssl-devel     [platform:rpm]
+python2-dnf       [platform:fedora]
 
 # For SELinux
-libselinux-python [platform:rpm]
+libselinux-python [platform:redhat]
+libsemanage-python [platform:redhat]
 
 # For SSL SNI support
-python-pyasn1               [platform:dpkg]
+python-pyasn1               [platform:dpkg platform:suse]
 python-openssl              [platform:dpkg]
-python2-pyasn1              [platform:rpm]
-python2-pyOpenSSL           [platform:centos]
+python-ndg-httpsclient      [platform:ubuntu !platform:ubuntu-14]
+python2-pyasn1              [platform:redhat]
+python2-pyOpenSSL           [platform:redhat !platform:fedora]
 pyOpenSSL                   [platform:fedora]
-
-# Other Ansible requirements
-python2-dnf                 [platform:fedora]
+python-pyOpenSSL            [platform:opensuseproject-42]
+python2-pyOpenSSL           [platform:suse !platform:opensuseproject-42]
+python-ndg_httpsclient      [platform:redhat !platform:fedora]
+python2-ndg_httpsclient     [platform:fedora]
+python-ndg-httpsclient      [platform:suse]
 
 # Required for compressing collected log files in CI
 gzip

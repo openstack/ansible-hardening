@@ -55,7 +55,7 @@
 # install EPEL if the deployer asked for clamav to be installed.
 - name: Install EPEL repository
   yum:
-    name: epel-release
+    name: "{{ security_epel_release_package }}"
     state: "{{ security_package_state }}"
   when:
     - ansible_pkg_mgr == 'yum'

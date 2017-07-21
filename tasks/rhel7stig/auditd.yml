@@ -36,7 +36,7 @@
     line: "remote_server = {{ security_audisp_remote_server }}"
   when:
     - security_audisp_remote_server is defined
-    - auditd_conf.stat.exists
+    - audisp_remote_conf.stat.exists
   notify:
     - restart auditd
   tags:
@@ -51,7 +51,7 @@
     line: "enable_krb5 = yes"
   when:
     - security_audisp_enable_krb5 is defined
-    - auditd_conf.stat.exists
+    - audisp_remote_conf.stat.exists
   notify:
     - restart auditd
   tags:

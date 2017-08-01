@@ -1,0 +1,48 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+  privileged: true
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
+
+transport:
+  max_ssh_sessions: 5
+
+provisioner:
+  name: ansible_playbook
+  hosts: all
+  require_ansible_repo: false
+  require_chef_for_busser: false
+  require_ruby_for_busser: false
+  ansible_verbose: true
+  ansible_diff: true
+  roles_path: ../ansible-hardening/
+  http_proxy: <%= ENV['http_proxy'] || nil %>
+  https_proxy: <%= ENV['https_proxy'] || nil %>
+  #ansible_cfg_path: tests/ansible.cfg
+  playbook: tests/test.yml
+  #requirements_path: tests/requirements.yml
+
+platforms:
+- name: centos7-ansible-latest
+  driver:
+    image: rndmh3ro/docker-centos7-ansible:latest
+    platform: centos
+- name: ubuntu1404-ansible-latest
+  driver:
+    image: rndmh3ro/docker-ubuntu1404-ansible:latest
+    platform: ubuntu
+- name: ubuntu1604-ansible-latest
+  driver:
+    image: rndmh3ro/docker-ubuntu1604-ansible:latest
+    platform: ubuntu
+
+verifier:
+  name: inspec
+  sudo: true
+  inspec_tests:
+    - https://github.com/dev-sec/tests-os-hardening
+
+suites:
+- name: os

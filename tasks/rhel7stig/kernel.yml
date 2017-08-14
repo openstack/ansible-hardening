@@ -31,6 +31,8 @@
     value: "{{ item.value }}"
     state: "{{ item.enabled | ternary('present', 'absent') }}"
     reload: yes
+  when:
+    - item.enabled | bool
   with_items: "{{ sysctl_settings_rhel7 }}"
   tags:
     - medium

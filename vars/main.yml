@@ -317,7 +317,9 @@ shadow_utils_rhel7:
 #
 #   name: the sysctl configuration name
 #   value: the value to set for the sysctl configuration
-#   enabled: whether the variable should be set or not
+#   enabled: yes or no
+#     - 'yes' (ensure the variable is set)
+#     - 'no' (the role will not alter the configuration)
 #
 sysctl_settings_rhel7:
   - name: net.ipv4.conf.all.accept_source_route

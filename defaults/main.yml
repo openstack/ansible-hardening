@@ -538,11 +538,11 @@ security_ssh_client_alive_interval: 900           # V-38608
 # Timeout ssh sessions as soon as ClientAliveInterval is reached once
 security_ssh_client_alive_count_max: 0            # V-38610
 #
-# The ssh daemon must not permit root logins. The default value of 'yes' is a
-# deviation from the STIG requirements due to how openstack-ansible operates,
-# especially within OpenStack CI gate jobs. See documentation for V-38613 for
-# more details.
-security_ssh_permit_root_login: 'yes'             # V-38613
+# The ssh daemon must not permit root logins. The default value of
+# 'without-password' is a deviation from the STIG requirements due to how
+# OpenStack-Ansible operates, especially within OpenStack CI gate jobs. See
+# documentation for V-38613 for more details.
+security_ssh_permit_root_login: 'without-password' # V-38613
 
 ## Kernel
 # Set these booleans to 'yes' to disable the kernel module (following the

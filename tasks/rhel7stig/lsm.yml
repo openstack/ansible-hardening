@@ -24,6 +24,22 @@
     - high
     - V-71989
 
+# NOTE(mhayden): The systemd unit file for apparmor just calls an old SysV
+# init script and exits. It's not possible to ask systemd if apparmor is
+# running and if we tell systemd to start apparmor, it will tell us that it
+# started apparmor each time. This breaks idempotency and we check
+# apparmor_status directly as an alternative.
+- name: Check if apparmor is running
+  command: apparmor_status
+  register: apparmor_status_output
+  changed_when: false
+  failed_when: false
+  when:
+    - ansible_pkg_mgr in ['apt', 'zypper']
+  tags:
+    - high
+    - V-71989
+
 - name: Ensure AppArmor is running
   service:
     name: apparmor
@@ -34,6 +50,7 @@
     - security_rhel7_enable_linux_security_module | bool
     - not check_mode
     - '"AppArmor disabled by boot time parameter" not in dmesg_apparmor_output.stdout'
+    - '"apparmor module is loaded" in apparmor_status_output.stdout'
   tags:
     - high
     - V-71989

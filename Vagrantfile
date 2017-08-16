@@ -36,6 +36,10 @@ Vagrant.configure(2) do |config|
     leap422.vm.box = "opensuse/openSUSE-42.2-x86_64"
   end
 
+  config.vm.define "opensuse423" do |leap423|
+    leap423.vm.box = "opensuse/openSUSE-42.3-x86_64"
+  end
+
   config.vm.define "centos7" do |centos7|
     centos7.vm.box = "centos/7"
   end

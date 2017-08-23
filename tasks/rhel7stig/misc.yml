@@ -35,16 +35,6 @@
     - misc
     - V-71985
 
-# This returns an exit code of 0 if it's running, 3 if it's masked.
-- name: Check if ctrl-alt-del.target is already masked
-  command: systemctl status ctrl-alt-del.target
-  register: cad_mask_check
-  check_mode: no
-  changed_when: False
-  failed_when: cad_mask_check.rc not in [0,3]
-  tags:
-    - always
-
 - name: V-71993 - The x86 Ctrl-Alt-Delete key sequence must be disabled
   systemd:
     name: ctrl-alt-del.target

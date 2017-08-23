@@ -46,12 +46,11 @@
     - always
 
 - name: V-71993 - The x86 Ctrl-Alt-Delete key sequence must be disabled
-  command: systemctl mask ctrl-alt-del.target
-  when:
-    - security_rhel7_disable_ctrl_alt_delete | bool
-    - cad_mask_check.rc != 3
-  notify:
-    - reload systemd
+  systemd:
+    name: ctrl-alt-del.target
+    enabled: no
+    masked: yes
+    daemon_reload: yes
   tags:
     - high
     - misc

@@ -23,7 +23,7 @@
 #
 
 # Base requirements for Ubuntu
-build-essential   [platform:dpkg]
+gcc               [platform:dpkg]
 git-core          [platform:dpkg]
 libssl-dev        [platform:dpkg]
 libffi-dev        [platform:dpkg]

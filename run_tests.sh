@@ -56,7 +56,7 @@ git_clone_repo() {
         if [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
             ln -s ${WORKING_DIR} ${WORKING_DIR}/tests/common
         else
-            git clone \
+            git clone -b stable/pike \
                 https://git.openstack.org/openstack/openstack-ansible-tests \
                 tests/common
         fi

@@ -78,7 +78,7 @@ elif [[ ! -d tests/common ]]; then
     if [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
         ln -s ${WORKING_DIR} ${WORKING_DIR}/tests/common
     else
-        git clone \
+        git clone -b stable/pike \
             https://git.openstack.org/openstack/openstack-ansible-tests \
             ${WORKING_DIR}/tests/common
     fi
@@ -92,7 +92,7 @@ fi
 # tests repo are not supported.
 if [[ "${CLONE_UPGRADE_TESTS}" == "yes" ]]; then
     if [[ ! -d "${WORKING_DIR}/tests/common/previous" ]]; then
-        git clone -b stable/ocata \
+        git clone -b stable/pike \
             https://git.openstack.org/openstack/openstack-ansible-tests \
             ${WORKING_DIR}/tests/common/previous
   fi

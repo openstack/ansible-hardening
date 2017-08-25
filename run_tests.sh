@@ -12,44 +12,57 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Note:
+# This file is maintained in the openstack-ansible-tests repository.
+# https://git.openstack.org/cgit/openstack/openstack-ansible-tests/tree/run_tests.sh
+# If you need to modify this file, update the one in the openstack-ansible-tests
+# repository and then update this file as well. The purpose of this file is to
+# prepare the host and then execute all the tox tests.
+#
 
-set -euov
+## Shell Opts ----------------------------------------------------------------
+set -xeu
 
-FUNCTIONAL_TEST=${FUNCTIONAL_TEST:-true}
+## Vars ----------------------------------------------------------------------
 
-# Install pip
-if [ ! "$(which pip)" ]; then
-  curl --silent --show-error --retry 5 \
-    https://bootstrap.pypa.io/get-pip.py | sudo python2.7
-fi
+export WORKING_DIR=${WORKING_DIR:-$(pwd)}
 
-# Install bindep and tox
-sudo pip install bindep tox
+## Main ----------------------------------------------------------------------
 
-# CentOS 7 requires two additional packages:
-#   redhat-lsb-core - for bindep profile support
-#   epel-release    - required to install python-ndg_httpsclient/python2-pyasn1
-if [ "$(which yum)" ]; then
-    sudo yum -y install redhat-lsb-core epel-release
-fi
+source /etc/os-release || source /usr/lib/os-release
 
-# Install OS packages using bindep
-if apt-get -v >/dev/null 2>&1 ; then
-    sudo apt-get update
-    DEBIAN_FRONTEND=noninteractive \
-      sudo apt-get -q --option "Dpkg::Options::=--force-confold" \
-      --assume-yes install `bindep -b -f bindep.txt test`
-else
-    sudo yum install -y `bindep -b -f bindep.txt test`
-fi
+install_pkg_deps() {
+    pkg_deps="git"
 
-# run through each tox env and execute the test
-for tox_env in $(awk -F= '/envlist/ {print $2}' tox.ini | sed 's/,/ /g'); do
-  if [ "${tox_env}" != "ansible-functional" ]; then
-    tox -e ${tox_env}
-  elif [ "${tox_env}" == "ansible-functional" ]; then
-    if ${FUNCTIONAL_TEST}; then
-      tox -e ${tox_env}
+    case ${ID,,} in
+        centos|rhel) pkg_mgr_cmd="yum install -y" ;;
+        fedora) pkg_mgr_cmd="dnf -y install" ;;
+        ubuntu|debian) pkg_mgr_cmd="apt-get install -y" ;;
+        *) echo "unsupported distribution: ${ID,,}"; exit 1 ;;
+    esac
+
+    eval sudo $pkg_mgr_cmd $pkg_deps
+}
+
+git_clone_repo() {
+    if [[ ! -d tests/common ]]; then
+        # The tests repo doesn't need a clone, we can just
+        # symlink it.
+        if [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
+            ln -s ${WORKING_DIR} ${WORKING_DIR}/tests/common
+        else
+            git clone -b stable/ocata \
+                https://git.openstack.org/openstack/openstack-ansible-tests \
+                tests/common
+        fi
     fi
-  fi
-done
+}
+
+install_pkg_deps
+
+git_clone_repo
+
+# start executing the main test script
+source tests/common/run_tests_common.sh
+

@@ -28,10 +28,11 @@
 # init script and exits. It's not possible to ask systemd if apparmor is
 # running and if we tell systemd to start apparmor, it will tell us that it
 # started apparmor each time. This breaks idempotency and we check
-# apparmor_status directly as an alternative.
+# systemd's status directly as an alternative.
 - name: Check if apparmor is running
-  command: apparmor_status
-  register: apparmor_status_output
+  command: "systemctl status apparmor"
+  register: systemctl_apparmor_status
+  check_mode: no
   changed_when: false
   failed_when: false
   when:
@@ -40,17 +41,33 @@
     - high
     - V-71989
 
-- name: Ensure AppArmor is running
+- name: Ensure AppArmor is enabled at boot time
   service:
     name: apparmor
-    state: started
     enabled: yes
   when:
     - ansible_pkg_mgr in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
     - not check_mode
     - '"AppArmor disabled by boot time parameter" not in dmesg_apparmor_output.stdout'
-    - '"apparmor module is loaded" in apparmor_status_output.stdout'
+  tags:
+    - high
+    - V-71989
+
+# NOTE(mhayden): Since the AppArmor systemd unit calls a SysV init script, the
+# unit will always say AppArmor is dead. This means that the following task
+# will always start the unit every time it runs (which breaks idempotency).
+- name: Ensure AppArmor is running
+  service:
+    name: apparmor
+    state: started
+  changed_when:
+    - '"active (exited)" not in systemctl_apparmor_status.stdout'
+  when:
+    - ansible_pkg_mgr in ['apt', 'zypper']
+    - security_rhel7_enable_linux_security_module | bool
+    - not check_mode
+    - '"AppArmor disabled by boot time parameter" not in dmesg_apparmor_output.stdout'
   tags:
     - high
     - V-71989

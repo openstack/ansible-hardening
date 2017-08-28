@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-## Variables for CentOS 7, Red Hat Enterprise Linux 7 and Fedora 25.
+## Variables for CentOS 7, Red Hat Enterprise Linux 7 and Fedora 26.
 # The following variables apply only to CentOS 7, Red Hat Enterprise Linux 7
-# and Fedora 25. Deployers should not override these.
+# and Fedora 26. Deployers should not override these.
 #
 # For more details, see 'vars/main.yml'.
 

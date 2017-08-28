@@ -45,7 +45,7 @@ servers running the following Linux distributions:
 
 * CentOS 7
 * Debian 8 Jessie
-* Fedora 25
+* Fedora 26
 * openSUSE Leap 42.2 and 42.3
 * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
 * SUSE Linux Enterprise 12 (*experimental*)

@@ -42,9 +42,44 @@
     - medium
     - V-71999
 
-- name: Enable dnf-automatic timer for automatic package updates
+# NOTE(mhayden): Fedora < 26 and CentOS 7 only have dnf-automatic.timer while
+# Fedora 26 has dnf-automatic-install.timer. We need to check for which one
+# exists on the system.
+- name: Check to see which dnf automatic timers are available
+  shell: "rpm -ql dnf-automatic | grep timer || true"
+  args:
+    warn: no
+  register: dnf_automatic_timers
+  check_mode: no
+  changed_when: False
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr == 'dnf'
+    - dnf_automatic_config_check.stat.exists | bool
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - medium
+    - V-71999
+    - skip_ansible_lint
+
+- name: Set a fact for the proper dnf automatic timer
+  set_fact:
+    dnf_automatic_timer: "{{ ('dnf-automatic-install.timer' in dnf_automatic_timers.stdout) | ternary('dnf-automatic-install.timer', 'dnf-automatic.timer')  }}"
+  when:
+    - ansible_os_family | lower == 'redhat'
+    - ansible_pkg_mgr == 'dnf'
+    - dnf_automatic_config_check.stat.exists | bool
+    - security_rhel7_automatic_package_updates | bool
+  tags:
+    - packages
+    - medium
+    - V-71999
+    - skip_ansible_lint
+
+- name: Enable dnf automatic timer for automatic package updates
   systemd:
-    name: dnf-automatic.timer
+    name: "{{ dnf_automatic_timer }}"
     enabled: yes
     state: started
   when:

@@ -13,11 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Check if AppArmor is disabled at boot time
-  shell: "dmesg | grep -i apparmor || true"
-  register: dmesg_apparmor_output
-  changed_when: False
+- name: Check apparmor_status output
+  command: apparmor_status
+  register: apparmor_status_output
   check_mode: no
+  changed_when: false
+  failed_when: false
   when:
     - ansible_pkg_mgr in ['apt', 'zypper']
   tags:
@@ -48,8 +49,6 @@
   when:
     - ansible_pkg_mgr in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
-    - not check_mode
-    - '"AppArmor disabled by boot time parameter" not in dmesg_apparmor_output.stdout'
   tags:
     - high
     - V-71989
@@ -67,7 +66,7 @@
     - ansible_pkg_mgr in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
     - not check_mode
-    - '"AppArmor disabled by boot time parameter" not in dmesg_apparmor_output.stdout'
+    - '"apparmor filesystem is not mounted" not in apparmor_status_output.stderr'
   tags:
     - high
     - V-71989

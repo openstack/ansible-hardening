@@ -84,7 +84,7 @@ Deployers should use the latest stable release for all production deployments.
 Pike
 ~~~~
 
-* **Status:** Active development *(anticipated release: September 2017)*
+* **Status:** Latest stable release *(released September 2017)*
 
 * **Supported Operating Systems:**
 
@@ -101,12 +101,13 @@ Pike
 
   * `ansible-hardening Pike Release Notes`_
 
-.. _ansible-hardening Pike Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/unreleased.html
+.. _ansible-hardening Pike Documentation: http://docs.openstack.org/developer/ansible-hardening/pike/
+.. _ansible-hardening Pike Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/pike.html
 
 Ocata
 ~~~~~
 
-* **Status:** Latest stable release *(released February 2017)*
+* **Status:** Previous stable release *(released February 2017)*
 
 * **Supported Operating Systems:**
 

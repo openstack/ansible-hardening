@@ -19,7 +19,7 @@
   lineinfile:
     dest: /etc/pam.d/login
     regexp: '^(auth[\s]+optional[\s]+pam_faildelay.so).*$'
-    line: '\1 delay={{ security_shadow_utils_fail_delay * 10**6 }}'
+    line: '\1 delay={{ (security_shadow_utils_fail_delay | int) * 10**6 }}'
     state: present
     backrefs: yes
   when:

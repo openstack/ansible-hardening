@@ -1,9 +1,0 @@
----
-id: V-38677
-status: implemented
-tag: nfsd
----
-
-If the system has NFS exports configured, the Ansible tasks will search for
-``insecure_locks`` in the options column for any of the available exports. If
-the option is found, the playbook will fail with an error.

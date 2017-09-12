@@ -1,8 +1,0 @@
----
-id: V-38673
-status: implemented
-tag: aide
----
-
-AIDE is configured to exclude certain directories, and that list of directories
-is controlled by the ``security_aide_exclude_dirs`` Ansible variable.

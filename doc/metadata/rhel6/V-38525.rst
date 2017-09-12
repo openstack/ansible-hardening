@@ -1,7 +1,0 @@
----
-id: V-38525
-status: implemented
-tag: auditd
----
-
-Rules are added for auditing changes to system time done via ``stime``.

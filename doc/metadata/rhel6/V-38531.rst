@@ -1,7 +1,0 @@
----
-id: V-38531
-status: implemented
-tag: auditd
----
-
-The audit rules from V-38534 already cover all account modifications.

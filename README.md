@@ -13,7 +13,6 @@ to systems running the following distributions:
 * openSUSE Leap 42.2 and 42.3
 * Red Hat Enterprise Linux 7
 * SUSE Linux Enterprise 12 (*experimental*)
-* Ubuntu 14.04 *(deprecated)*
 * Ubuntu 16.04
 
 For more details, review the
@@ -50,7 +49,6 @@ Running with Vagrant
 This role can be tested easily on multiple platforms using Vagrant.
 
 The `Vagrantfile` supports testing on:
- * Ubuntu 14.04
  * Ubuntu 16.04
  * CentOS 7
 

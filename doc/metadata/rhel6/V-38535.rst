@@ -1,9 +1,0 @@
----
-id: V-38535
-status: implemented
-tag: kernel
----
-
-The Ansible tasks will ensure that ``net.ipv4.icmp_echo_ignore_broadcasts`` is
-set to ``1``, which will cause the system to stop responding to ICMPv4 packets
-sent to the broadcast address.

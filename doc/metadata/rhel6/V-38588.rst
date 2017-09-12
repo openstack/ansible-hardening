@@ -1,9 +1,0 @@
----
-id: V-38588
-status: exception
-tag: boot
----
-
-As with V-38585, this configuration is left up to the deployer to determine
-their risk of attacks via physical access or out-of-band access to a server
-console.

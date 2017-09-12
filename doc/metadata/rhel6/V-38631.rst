@@ -1,7 +1,0 @@
----
-id: V-38631
-status: implemented
-tag: auditd
----
-
-This STIG requirement overlaps with V-38632.

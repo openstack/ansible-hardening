@@ -1,7 +1,0 @@
----
-id: V-38540
-status: implemented
-tag: auditd
----
-
-Rules are added that allows auditd to track network configuration changes.

@@ -1,9 +1,0 @@
----
-id: V-38537
-status: implemented
-tag: kernel
----
-
-The Ansible tasks will ensure that
-``net.ipv4.icmp_ignore_bogus_error_responses`` is set to ``1``. This prevents
-a host from responding to bogus ICMPv4 error messages.

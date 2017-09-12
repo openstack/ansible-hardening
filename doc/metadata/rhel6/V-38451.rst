@@ -1,7 +1,0 @@
----
-id: V-38451
-status: implemented
-tag: auth
----
-
-The group ownership for ``/etc/passwd`` will be set to root.

@@ -1,7 +1,0 @@
----
-id: V-38609
-status: implemented
-tag: services
----
-
-The package containing the ``tftpd`` service is removed by V-38606.

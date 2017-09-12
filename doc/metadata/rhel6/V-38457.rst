@@ -1,7 +1,0 @@
----
-id: V-38457
-status: implemented
-tag: auth
----
-
-The permissions for ``/etc/passwd`` will be set to ``0644``.

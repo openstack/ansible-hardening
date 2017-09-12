@@ -1,8 +1,0 @@
----
-id: V-38473
-status: exception - initial provisioning
-tag: misc
----
-
-Creating ``/home`` on a different partition is highly recommended but it is
-left to deployers to configure during the installation of the OS.

@@ -1,8 +1,0 @@
----
-id: V-38459
-status: implemented
-tag: auth
----
-
-The Ansible tasks will ensure that ``/etc/group`` is owned by the ``root``
-user.

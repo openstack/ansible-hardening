@@ -1,8 +1,0 @@
----
-id: V-38619
-status: implemented
-tag: misc
----
-
-The Ansible tasks will check for ``.netrc`` files in ``/root`` and
-``/home`` on the system and print a failure warning if any are found.

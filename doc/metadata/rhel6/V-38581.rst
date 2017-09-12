@@ -1,7 +1,0 @@
----
-id: V-38581
-status: implemented
-tag: file_perms
----
-
-The group ownership for ``/boot/grub/grub.cfg`` will be set to `root`.

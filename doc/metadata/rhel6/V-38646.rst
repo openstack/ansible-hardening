@@ -1,9 +1,0 @@
----
-id: V-38646
-status: exception - manual intervention
-tag: services
----
-
-Very few environments run the ``oddjobd`` service, and those that do run it are
-usually associated with highly-available, clustered systems. Deployers will
-need to disable this service manually if it is running on the system.

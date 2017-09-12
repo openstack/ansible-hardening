@@ -1,7 +1,0 @@
----
-id: V-38614
-status: implemented
-tag: sshd
----
-
-The tasks in ``sshd.yml`` will ensure that SSH does not allow empty passwords.

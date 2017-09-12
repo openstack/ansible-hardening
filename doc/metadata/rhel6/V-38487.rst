@@ -1,9 +1,0 @@
----
-id: V-38487
-status: implemented
-tag: package
----
-
-The Ansible task for V-38462 already checks for apt configurations that would
-disable any GPG checks when installing packages. However, it's possible for
-the root user to override these configurations via command line parameters.

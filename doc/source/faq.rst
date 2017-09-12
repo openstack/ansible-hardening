@@ -49,7 +49,6 @@ servers running the following Linux distributions:
 * openSUSE Leap 42.2 and 42.3
 * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
 * SUSE Linux Enterprise 12 (*experimental*)
-* Ubuntu 14.04 Trusty *(Deprecated)*
 * Ubuntu 16.04 Xenial
 
 The OpenStack gating system tests the role against each of these distributions

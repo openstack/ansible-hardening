@@ -1,8 +1,0 @@
----
-id: V-38461
-status: implemented
-tag: auth
----
-
-The Ansible tasks will ensure that the mode of ``/etc/group//` is set to
-``0644``.

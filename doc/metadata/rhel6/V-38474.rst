@@ -1,8 +1,0 @@
----
-id: V-38474
-status: exception
-tag: x11
----
-
-The openstack-ansible roles don't install X by default, so there is no
-graphical desktop to configure.

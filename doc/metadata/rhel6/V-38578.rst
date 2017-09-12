@@ -1,7 +1,0 @@
----
-id: V-38578
-status: implemented
-tag: auditd
----
-
-Rules are added to audit changes to ``/etc/sudoers``.

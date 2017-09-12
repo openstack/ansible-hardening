@@ -1,8 +1,0 @@
----
-id: V-38601
-status: implemented
-tag: kernel
----
-
-The Ansible tasks will set ``net.ipv4.conf.all.send_redirects`` to ``0`` so
-that hosts will stop sending ICMPv4 redirects on all interfaces.

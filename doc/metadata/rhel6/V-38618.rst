@@ -1,7 +1,0 @@
----
-id: V-38618
-status: implemented
-tag: services
----
-
-The avahi daemon will be disabled if the package is installed.

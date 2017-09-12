@@ -1,7 +1,0 @@
----
-id: V-38450
-status: implemented
-tag: auth
----
-
-The ownership of ``/etc/passwd`` will be changed to root.

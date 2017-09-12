@@ -46,8 +46,9 @@ from the talk are
 Documentation
 -------------
 
-The following documentation applies to the Pike release. Documentation from
-previous releases are available in the *Releases* section below.
+The following documentation applies to the Queens release (currently under
+active development). Documentation for the latest stable and previous stable
+releases is found within the *Releases* section below.
 
 .. toctree::
    :maxdepth: 2
@@ -59,32 +60,36 @@ previous releases are available in the *Releases* section below.
    controls-rhel7.rst
    developer-guide.rst
 
-Legacy RHEL 6 STIG Content
---------------------------
-
-The RHEL 7 STIG content was first added in the Ocata release using the
-pre-release STIG content (version 0.2). The Pike release contains the final
-STIG release content which also included a numbering change from the
-``RHEL-xx-xxxxxx`` style to the traditional ``V-xxxxx`` style.
-
-The original RHEL 6 STIG content was deprecated in the Ocata release and will
-be removed in the Queens release (early 2018). The documentation for the
-RHEL 6 STIG content is still available:
-
-.. toctree::
-   :maxdepth: 2
-
-   controls.rst
-
 Releases
 --------
 
 Deployers should use the latest stable release for all production deployments.
 
+Queens
+~~~~~~
+
+* **Status:** Active development
+
+* **Supported Operating Systems:**
+
+  * CentOS 7
+  * Debian 8 Jessie
+  * Fedora 26
+  * openSUSE Leap 42.2 and 42.3
+  * Red Hat Enterprise Linux 7 *(partial automated test coverage)*
+  * SUSE Linux Enterprise 12 (*experimental*)
+  * Ubuntu 16.04 Xenial
+
+* **Documentation:**
+
+  * `ansible-hardening Queens Release Notes`_
+
+.. _ansible-hardening Queens Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/unreleased.html
+
 Pike
 ~~~~
 
-* **Status:** Active development *(anticipated release: September 2017)*
+* **Status:** Latest stable release *(released: September 2017)*
 
 * **Supported Operating Systems:**
 
@@ -101,7 +106,8 @@ Pike
 
   * `ansible-hardening Pike Release Notes`_
 
-.. _ansible-hardening Pike Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/unreleased.html
+.. _ansible-hardening Pike Documentation: http://docs.openstack.org/developer/ansible-hardening/pike/
+.. _ansible-hardening Pike Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/pike.html
 
 Ocata
 ~~~~~

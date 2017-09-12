@@ -1,9 +1,0 @@
----
-id: V-38656
-status: implemented
-tag: services
----
-
-The Ansible tasks will check to see if the samba package is installed and the
-configuration file will be adjusted. If adjustments are made, the service will
-be restarted.

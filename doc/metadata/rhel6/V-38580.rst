@@ -1,8 +1,0 @@
----
-id: V-38580
-status: implemented
-tag: auditd
----
-
-Rules will be added to auditd so that any kernel module loading or unloading
-events will be logged.

@@ -1,8 +1,0 @@
----
-id: V-38503
-status: implemented
-tag: auth
----
-
-The user and group ownership of ``/etc/passwd`` is root by default. The Ansible
-task will ensure that the default is maintained.

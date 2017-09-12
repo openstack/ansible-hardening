@@ -1,8 +1,0 @@
----
-id: V-38607
-status: implemented
-tag: sshd
----
-
-The tasks in ``sshd.yml`` will ensure that SSH requires all connections to use
-protocol version 2.

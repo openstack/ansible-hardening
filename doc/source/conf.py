@@ -49,7 +49,6 @@ sys.setrecursionlimit(4000)
 # ones.
 extensions = [
     'openstackdocstheme',
-    'metadata-docs',
     'metadata-docs-rhel7',
 ]
 

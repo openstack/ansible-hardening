@@ -1,8 +1,0 @@
----
-id: V-38595
-status: exception - manual intervention
-tag: auth
----
-
-Use of additional factors for authentication is left up to the deployer, but
-it is strongly recommended.

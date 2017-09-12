@@ -1,7 +1,0 @@
----
-id: V-38604
-status: implemented
-tag: services
----
-
-The ``ypbind`` service is removed entirely as part of V-38603.

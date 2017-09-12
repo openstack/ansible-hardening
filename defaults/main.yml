@@ -262,10 +262,10 @@ security_rhel7_session_timeout: 600                          # V-72223
 security_rhel7_enable_chrony: yes                            # V-72269
 # Use the following NTP servers.
 security_ntp_servers:
-  - 0.north-america.pool.ntp.org
-  - 1.north-america.pool.ntp.org
-  - 2.north-america.pool.ntp.org
-  - 3.north-america.pool.ntp.org
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+  - 3.pool.ntp.org
 # Restrict mail relaying.
 security_rhel7_restrict_mail_relaying: yes                   # V-72297
 # Deploy a login banner.                                     # V-72225 / V-71863

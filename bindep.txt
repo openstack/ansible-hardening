@@ -49,17 +49,5 @@ python2-dnf       [platform:fedora]
 libselinux-python [platform:redhat]
 libsemanage-python [platform:redhat]
 
-# For SSL SNI support
-python-pyasn1               [platform:dpkg platform:suse]
-python-openssl              [platform:dpkg]
-python-ndg-httpsclient      [platform:ubuntu !platform:ubuntu-14]
-python2-pyasn1              [platform:redhat]
-pyOpenSSL                   [platform:redhat]
-python-pyOpenSSL            [platform:opensuseproject-42]
-python2-pyOpenSSL           [platform:suse !platform:opensuseproject-42]
-python-ndg_httpsclient      [platform:redhat !platform:fedora]
-python2-ndg_httpsclient     [platform:fedora]
-python-ndg-httpsclient      [platform:suse]
-
 # Required for compressing collected log files in CI
 gzip

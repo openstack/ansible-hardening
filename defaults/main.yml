@@ -260,6 +260,12 @@ security_grub_password_hash: grub.pbkdf2.sha512.10000.7B21785BEAFEE3AC71459D8210
 security_rhel7_session_timeout: 600                          # V-72223
 # Enable chrony for NTP time synchronization.
 security_rhel7_enable_chrony: yes                            # V-72269
+# Use the following NTP servers.
+security_ntp_servers:
+  - 0.north-america.pool.ntp.org
+  - 1.north-america.pool.ntp.org
+  - 2.north-america.pool.ntp.org
+  - 3.north-america.pool.ntp.org
 # Restrict mail relaying.
 security_rhel7_restrict_mail_relaying: yes                   # V-72297
 # Deploy a login banner.                                     # V-72225 / V-71863

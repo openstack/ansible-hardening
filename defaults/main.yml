@@ -266,6 +266,14 @@ security_ntp_servers:
   - 1.pool.ntp.org
   - 2.pool.ntp.org
   - 3.pool.ntp.org
+# Chrony limits access to clients that are on certain subnets.  Adjust the
+# following subnets here to limit client access to chrony servers.
+security_allowed_ntp_subnets:
+  - 10/8
+  - 192.168/16
+  - 172.16/12
+# Listen for NTP requests only on local interfaces.
+security_ntp_bind_local_interfaces_only: yes
 # Restrict mail relaying.
 security_rhel7_restrict_mail_relaying: yes                   # V-72297
 # Deploy a login banner.                                     # V-72225 / V-71863

@@ -145,11 +145,6 @@ audited_commands:
     path: /usr/sbin
     stig_id: V-72177
     arch_specific: no
-  - command: pt_chown
-    path: /usr/libexec
-    stig_id: V-72181
-    arch_specific: no
-    distro: redhat
   - command: removexattr
     stig_id: V-72117
     arch_specific: yes

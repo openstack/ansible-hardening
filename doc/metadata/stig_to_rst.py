@@ -17,7 +17,7 @@ import os
 import xmltodict
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-xml_file = 'U_Red_Hat_Enterprise_Linux_7_STIG_V1R1_Manual-xccdf.xml'
+xml_file = 'U_Red_Hat_Enterprise_Linux_7_STIG_V1R2_Manual-xccdf.xml'
 with open('{}/{}'.format(SCRIPT_DIR, xml_file), 'r') as f:
     xmldict = xmltodict.parse(f.read())
 

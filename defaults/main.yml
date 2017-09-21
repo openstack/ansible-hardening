@@ -126,7 +126,6 @@ security_rhel7_audit_pam_timestamp_check: yes                # V-72185
 security_rhel7_audit_passwd: yes                             # V-72149
 security_rhel7_audit_postdrop: yes                           # V-72175
 security_rhel7_audit_postqueue: yes                          # V-72177
-security_rhel7_audit_pt_chown: yes                           # V-72181
 security_rhel7_audit_removexattr: no                         # V-72117
 security_rhel7_audit_rename: yes                             # V-72199
 security_rhel7_audit_renameat: yes                           # V-72201

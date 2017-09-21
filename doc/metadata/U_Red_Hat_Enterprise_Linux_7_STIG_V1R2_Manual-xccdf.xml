@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?>
 <Benchmark xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://checklists.nist.gov/xccdf/1.1" id="RHEL_7_STIG" xml:lang="en" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd">
-  <status date="2017-03-08">accepted</status>
+  <status date="2017-07-08">accepted</status>
   <title>Red Hat Enterprise Linux 7 Security Technical Implementation Guide</title>
   <description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description>
   <notice id="terms-of-use" xml:lang="en"/>
@@ -9,7 +9,7 @@
     <dc:publisher>DISA</dc:publisher>
     <dc:source>STIG.DOD.MIL</dc:source>
   </reference>
-  <plain-text id="release-info">Release: 1 Benchmark Date: 27 Feb 2017</plain-text>
+  <plain-text id="release-info">Release: 2 Benchmark Date: 28 Jul 2017</plain-text>
   <version>1</version>
   <Profile id="MAC-1_Classified">
     <title>I - Mission Critical Classified</title>
@@ -164,7 +164,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -403,7 +402,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -642,7 +640,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -881,7 +878,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -1120,7 +1116,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -1359,7 +1354,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -1598,7 +1592,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -1837,7 +1830,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -2076,7 +2068,6 @@
     <select idref="V-72175" selected="true"/>
     <select idref="V-72177" selected="true"/>
     <select idref="V-72179" selected="true"/>
-    <select idref="V-72181" selected="true"/>
     <select idref="V-72183" selected="true"/>
     <select idref="V-72185" selected="true"/>
     <select idref="V-72187" selected="true"/>
@@ -2495,7 +2486,7 @@ If the text in the "/etc/issue" file does not match the Standard Mandatory DoD N
   <Group id="V-71891">
     <title>SRG-OS-000028-GPOS-00009</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86515r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86515r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-010060</version>
       <title>The operating system must enable a user session lock until that user re-establishes access using established identification and authentication procedures.</title>
       <description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
@@ -2513,25 +2504,16 @@ Satisfies: SRG-OS-000028-GPOS-00009, SRG-OS-000030-GPOS-00011&lt;/VulnDiscussion
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000056</ident>
-      <fixtext fixref="F-78243r4_fix">Configure the operating system to enable a user's session lock until that user re-establishes access using established identification and authentication procedures.
+      <fixtext fixref="F-78243r5_fix">Configure the operating system to enable a user's session lock until that user re-establishes access using established identification and authentication procedures.
 
 Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
 
 # touch /etc/dconf/db/local.d/00-screensaver
 
-Edit “org/gnome/desktop/session” and add or update the following lines:
-
-# Set the lock time out to 900 seconds before the session is considered idle
-idle-delay=uint32 900
-
 Edit "org/gnome/desktop/screensaver" and add or update the following lines:
 
 # Set this to true to lock the screen when the screensaver activates
 lock-enabled=true
-# Set the lock timeout to 180 seconds after the screensaver has been activated
-lock-delay=uint32 180
-
-You must include the "uint32" along with the integer key values as shown.
 
 Override the user's setting and prevent the user from changing it by editing “/etc/dconf/db/local.d/locks/screensaver” and adding or updating the following lines:
 
@@ -2545,7 +2527,7 @@ Update the system databases:
 # dconf update
 
 Users must log out and back in again before the system-wide settings take effect.</fixtext>
-      <fix id="F-78243r4_fix"/>
+      <fix id="F-78243r5_fix"/>
       <check system="C-72123r1_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system enables a user's session lock until that user re-establishes access using established identification and authentication procedures. The screen program must be installed to lock sessions on the console.
@@ -2564,7 +2546,7 @@ If the "lock-enabled" setting is missing or is not set to "true", this is a find
   <Group id="V-71893">
     <title>SRG-OS-000029-GPOS-00010</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86517r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86517r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-010070</version>
       <title>The operating system must initiate a screensaver after a 15-minute period of inactivity for graphical user interfaces.</title>
       <description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
@@ -2578,27 +2560,20 @@ The session lock is implemented at the point where session activity can be deter
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000057</ident>
-      <fixtext fixref="F-78245r3_fix">Configure the operating system to initiate a screensaver after a 15-minute period of inactivity for graphical user interfaces.
+      <fixtext fixref="F-78245r4_fix">Configure the operating system to initiate a screensaver after a 15-minute period of inactivity for graphical user interfaces.
 
 Create a database to contain the system-wide screensaver settings (if it does not already exist) with the following command:
 
 # touch /etc/dconf/db/local.d/00-screensaver
 
-Edit “org/gnome/desktop/session” and add or update the following lines:
+Edit "/org/gnome/desktop/session" and add or update the following lines:
 
 # Set the lock time out to 900 seconds before the session is considered idle
 idle-delay=uint32 900
 
-Edit "org/gnome/desktop/screensaver" and add or update the following lines:
-
-# Set this to true to lock the screen when the screensaver activates
-lock-enabled=true
-# Set the lock timeout to 180 seconds after the screensaver has been activated
-lock-delay=uint32 180
-
 You must include the "uint32" along with the integer key values as shown.
 
-Override the user's setting and prevent the user from changing it by editing “/etc/dconf/db/local.d/locks/screensaver” and adding or updating the following lines:
+Override the user's setting and prevent the user from changing it by editing "/etc/dconf/db/local.d/locks/screensaver" and adding or updating the following lines:
 
 # Lock desktop screensaver settings
 /org/gnome/desktop/session/idle-delay
@@ -2610,7 +2585,7 @@ Update the system databases:
 # dconf update
 
 Users must log out and back in again before the system-wide settings take effect.</fixtext>
-      <fix id="F-78245r3_fix"/>
+      <fix id="F-78245r4_fix"/>
       <check system="C-72125r1_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system initiates a screensaver after a 15-minute period of inactivity for graphical user interfaces. The screen program must be installed to lock sessions on the console.
@@ -2844,7 +2819,7 @@ If the value of "ucredit" is not set to a negative value, this is a finding.</ch
   <Group id="V-71905">
     <title>SRG-OS-000070-GPOS-00038</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86529r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86529r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-010130</version>
       <title>When passwords are changed or new passwords are established, the new password must contain at least one lower-case character.</title>
       <description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
@@ -2858,18 +2833,12 @@ Password complexity is one factor of several that determines how long it takes t
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000193</ident>
-      <fixtext fixref="F-78257r4_fix">Configure the operating system to lock an account for the maximum period when three unsuccessful logon attempts in 15 minutes are made.
+      <fixtext fixref="F-78257r5_fix">Configure the operating system to require at least one lower-case character when passwords are changed or new passwords are established.
 
-Modify the first three lines of the "auth" section of the "/etc/pam.d/system-auth-ac" and "/etc/pam.d/password-auth-ac" files to match the following lines:
+Add the following line to /etc/security/pwquality.conf (or modify the line to have the required value):
 
-Note: RHEL 7.3 and later allows for a value of “never” for "unlock_time". This is an acceptable value but should be used with caution if availability is a concern.
-
-auth        required       pam_faillock.so preauth silent audit deny=3 even_deny_root fail_interval=900 unlock_time=604800
-auth        sufficient     pam_unix.so try_first_pass
-auth        [default=die]  pam_faillock.so authfail audit deny=3 even_deny_root fail_interval=900 unlock_time=604800
-
-and run the "authconfig" command.</fixtext>
-      <fix id="F-78257r4_fix"/>
+lcredit = -1</fixtext>
+      <fix id="F-78257r5_fix"/>
       <check system="C-72137r5_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Note: The value to require a number of lower-case characters to be set is expressed as a negative number in "/etc/security/pwquality.conf".
@@ -3848,7 +3817,7 @@ If the "HostbasedAuthentication" keyword is not set to "no", is missing, or is c
   <Group id="V-71961">
     <title>SRG-OS-000080-GPOS-00048</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86585r1_rule" severity="high" weight="10.0">
+    <Rule id="SV-86585r2_rule" severity="high" weight="10.0">
       <version>RHEL-07-010480</version>
       <title>Systems with a Basic Input/Output System (BIOS) must require authentication upon booting into single-user and maintenance modes.</title>
       <description>&lt;VulnDiscussion&gt;If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -3882,11 +3851,11 @@ Generate a new "grub.conf" file with the new password with the following command
 # grub2-mkconfig --output=/tmp/grub2.cfg
 # mv /tmp/grub2.cfg /boot/grub2/grub.cfg</fixtext>
       <fix id="F-78313r1_fix"/>
-      <check system="C-72193r1_chk">
+      <check system="C-72193r2_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Check to see if an encrypted root password is set. On systems that use a BIOS, use the following command:
 
-# grep -i password /boot/grub2/grub.cfg
+# grep -i ^password_pbkdf2 /boot/grub2/grub.cfg
 password_pbkdf2 superusers-account password-hash
 
 If the root password entry does not begin with "password_pbkdf2", this is a finding.</check-content>
@@ -4341,7 +4310,7 @@ If there is no process to validate the metadata of packages that is approved by 
   <Group id="V-71983">
     <title>SRG-OS-000114-GPOS-00059</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86607r1_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86607r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-020100</version>
       <title>USB mass storage must be disabled.</title>
       <description>&lt;VulnDiscussion&gt;USB mass storage permits easy introduction of unknown devices, thereby facilitating malicious activity.
@@ -4357,17 +4326,15 @@ Satisfies: SRG-OS-000114-GPOS-00059, SRG-OS-000378-GPOS-00163, SRG-OS-000480-GPO
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
       <ident system="http://iase.disa.mil/cci">CCI-000778</ident>
       <ident system="http://iase.disa.mil/cci">CCI-001958</ident>
-      <fixtext fixref="F-78335r1_fix">Configure the operating system to disable the ability to use USB mass storage devices.
+      <fixtext fixref="F-78335r2_fix">Configure the operating system to disable the ability to use USB mass storage devices.
 
-Create a file under "/etc/modprobe.d" with the following command:
+# vi /etc/modprobe.d/blacklist.conf
 
-#touch /etc/modprobe.d/nousbstorage
+Add or update the line:
 
-Add the following line to the created file:
-
-install usb-storage /bin/true</fixtext>
-      <fix id="F-78335r1_fix"/>
-      <check system="C-72215r1_chk">
+blacklist usb-storage</fixtext>
+      <fix id="F-78335r2_fix"/>
+      <check system="C-72215r2_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>If there is an HBSS with a Device Control Module and a Data Loss Prevention mechanism, this requirement is not applicable.
 
@@ -4375,11 +4342,10 @@ Verify the operating system disables the ability to use USB mass storage devices
 
 Check to see if USB mass storage is disabled with the following command:
 
-#grep -i usb-storage /etc/modprobe.d/*
+# grep usb-storage /etc/modprobe.d/blacklist.conf
+blacklist usb-storage
 
-install usb-storage /bin/true
-
-If the command does not return any output, and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</check-content>
+If the command does not return any output or the output is not "blacklist usb-storage", and use of USB storage devices is not documented with the Information System Security Officer (ISSO) as an operational requirement, this is a finding.</check-content>
       </check>
     </Rule>
   </Group>
@@ -4985,7 +4951,7 @@ If any home directories referenced in "/etc/passwd" are returned as not defined,
   <Group id="V-72017">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86641r1_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86641r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-020630</version>
       <title>All local interactive user home directories must have mode 0750 or less permissive.</title>
       <description>&lt;VulnDiscussion&gt;Excessive permissions on local interactive user home directories may allow unauthorized access to user files by other users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -5003,7 +4969,7 @@ Note: The example will be for the user "smithj".
 
 # chmod 0750 /home/smithj</fixtext>
       <fix id="F-78369r1_fix"/>
-      <check system="C-72249r1_chk">
+      <check system="C-72249r2_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the assigned home directory of all local interactive users has a mode of "0750" or less permissive.
 
@@ -5011,7 +4977,7 @@ Check the home directory assignment for all non-privileged users on the system w
 
 Note: This may miss interactive users that have been assigned a privileged User Identifier (UID). Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
-# ls -ld $ (egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
+# ls -ld $(egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
 -rwxr-x--- 1 smithj users  18 Mar  5 17:06 /home/smithj
 
 If home directories referenced in "/etc/passwd" do not have a mode of "0750" or less permissive, this is a finding.</check-content>
@@ -5021,7 +4987,7 @@ If home directories referenced in "/etc/passwd" do not have a mode of "0750" or 
   <Group id="V-72019">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86643r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86643r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-020640</version>
       <title>All local interactive user home directories must be owned by their respective users.</title>
       <description>&lt;VulnDiscussion&gt;If a local interactive user does not own their home directory, unauthorized users could access or modify the user's files, and the users may not be able to access their own files.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -5039,7 +5005,7 @@ Note: The example will be for the user smithj, who has a home directory of "/hom
 
 # chown smithj /home/smithj</fixtext>
       <fix id="F-78371r1_fix"/>
-      <check system="C-72251r3_chk">
+      <check system="C-72251r4_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the assigned home directory of all local interactive users on the system exists.
 
@@ -5047,7 +5013,7 @@ Check the home directory assignment for all local interactive non-privileged use
 
 Note: This may miss interactive users that have been assigned a privileged UID. Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
-# ls -ld $ (egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
+# ls -ld $(egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
 -rwxr-x--- 1 smithj users  18 Mar  5 17:06 /home/smithj
 
 If any home directories referenced in "/etc/passwd" are returned as not defined, this is a finding.</check-content>
@@ -5057,7 +5023,7 @@ If any home directories referenced in "/etc/passwd" are returned as not defined,
   <Group id="V-72021">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86645r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86645r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-020650</version>
       <title>All local interactive user home directories must be group-owned by the home directory owners primary group.</title>
       <description>&lt;VulnDiscussion&gt;If the Group Identifier (GID) of a local interactive user’s home directory is not the same as the primary GID of the user, this would allow unauthorized access to the user’s files, and users that share the same group may not be able to access files that they legitimately should.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -5075,7 +5041,7 @@ Note: The example will be for the user "smithj", who has a home directory of "/h
 
 # chgrp users /home/smithj</fixtext>
       <fix id="F-78373r1_fix"/>
-      <check system="C-72253r3_chk">
+      <check system="C-72253r4_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the assigned home directory of all local interactive users is group-owned by that user’s primary GID.
 
@@ -5083,7 +5049,7 @@ Check the home directory assignment for all non-privileged users on the system w
 
 Note: This may miss local interactive users that have been assigned a privileged UID. Evidence of interactive use may be obtained from a number of log files containing system logon information.
 
-# ls -ld $ (egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
+# ls -ld $(egrep ':[0-9]{4}' /etc/passwd | cut -d: -f6)
 -rwxr-x--- 1 smithj users  18 Mar  5 17:06 /home/smithj
 
 Check the user's primary group with the following command:
@@ -5564,7 +5530,7 @@ If a file system found in "/etc/fstab" refers to NFS and it does not have the "n
   <Group id="V-72047">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86671r1_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86671r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-021030</version>
       <title>All world-writable directories must be group-owned by root, sys, bin, or an application group.</title>
       <description>&lt;VulnDiscussion&gt;If a world-writable directory has the sticky bit set and is not group-owned by a privileged Group Identifier (GID), unauthorized users may be able to modify files created by others.
@@ -5582,7 +5548,7 @@ The only authorized public directories are those temporary directories supplied 
 
 # chgrp root &lt;directory&gt;</fixtext>
       <fix id="F-78399r1_fix"/>
-      <check system="C-72279r1_chk">
+      <check system="C-72279r2_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify all world-writable directories are group-owned by root, sys, bin, or an application group.
 
@@ -5590,7 +5556,7 @@ Check the system for world-writable directories with the following command:
 
 Note: The value after -fstype must be replaced with the filesystem type. XFS is used as an example.
 
-# find / -perm -002 -xdev -type d -fstype xfs -exec ls -lLd {} \;
+# find / -xdev -perm -002 -type d -fstype xfs -exec ls -lLd {} \;
 drwxrwxrwt. 2 root root 40 Aug 26 13:07 /dev/mqueue
 drwxrwxrwt. 2 root root 220 Aug 26 13:23 /dev/shm
 drwxrwxrwt. 14 root root 4096 Aug 26 13:29 /tmp
@@ -5689,7 +5655,7 @@ If the entry is in the "/etc/rsyslog.conf" file but is after the entry "*.*", th
   <Group id="V-72053">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86677r1_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86677r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-021110</version>
       <title>If the cron.allow file exists it must be owned by root.</title>
       <description>&lt;VulnDiscussion&gt;If the owner of the "cron.allow" file is not set to root, the possibility exists for an unauthorized user to view or to edit sensitive information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -5705,13 +5671,13 @@ If the entry is in the "/etc/rsyslog.conf" file but is after the entry "*.*", th
 
 # chown root /etc/cron.allow</fixtext>
       <fix id="F-78405r1_fix"/>
-      <check system="C-72285r1_chk">
+      <check system="C-72285r2_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify that the "cron.allow" file is owned by root.
 
 Check the owner of the "cron.allow" file with the following command:
 
-# l s -al /etc/cron.allow
+# ls -al /etc/cron.allow
 -rw------- 1 root root 6 Mar  5  2011 /etc/cron.allow
 
 If the "cron.allow" file exists and has an owner other than root, this is a finding.</check-content>
@@ -5865,7 +5831,7 @@ If a separate entry for "/var" is not in use, this is a finding.</check-content>
   <Group id="V-72063">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86687r3_rule" severity="low" weight="10.0">
+    <Rule id="SV-86687r4_rule" severity="low" weight="10.0">
       <version>RHEL-07-021330</version>
       <title>The system must use a separate file system for the system audit data path.</title>
       <description>&lt;VulnDiscussion&gt;The use of separate file systems for different paths can protect the system from failures resulting from a file system becoming full or failing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -5879,35 +5845,18 @@ If a separate entry for "/var" is not in use, this is a finding.</check-content>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
       <fixtext fixref="F-78415r1_fix">Migrate the system audit data path onto a separate file system.</fixtext>
       <fix id="F-78415r1_fix"/>
-      <check system="C-72295r7_chk">
+      <check system="C-72295r8_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the file integrity tool is configured to use FIPS 140-2 approved cryptographic hashes for validating file contents and directories.
+        <check-content>Verify that a separate file system/partition has been created for the system audit data path.
 
-Note: If RHEL-07-021350 is a finding, this is automatically a finding as the system cannot implement FIPS 140-2 approved cryptographic algorithms and hashes.
+Check that a file system/partition has been created for the system audit data path with the following command:
 
-Check to see if Advanced Intrusion Detection Environment (AIDE) is installed on the system with the following command:
+# grep /var/log/audit /etc/fstab
+UUID=3645951a    /var/log/audit          ext4    defaults                 1 2
 
-# yum list installed aide
+If a separate entry for /var/log/audit does not exist, ask the System Administrator (SA) if the system audit logs are being written to a different file system/partition on the system, then grep for that file system/partition.
 
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
-
-If there is no application installed to perform file integrity checks, this is a finding.
-
-Note: AIDE is highly configurable at install time. These commands assume the "aide.conf" file is under the "/etc" directory.
-
-Use the following command to determine if the file is in another location:
-
-# find / -name aide.conf
-
-Check the "aide.conf" file to determine if the "sha512" rule has been added to the rule list being applied to the files and directories selection lists.
-
-An example rule that includes the "sha512" rule follows:
-
-All=p+i+n+u+g+s+m+S+sha512+acl+xattrs+selinux
-/bin All            # apply the custom rule to the files in bin
-/sbin All          # apply the same custom rule to the files in sbin
-
-If the "sha512" rule is not being used on all selection lines in the "/etc/aide.conf" file, or another file integrity tool is not using FIPS 140-2 approved cryptographic hashes for validating file contents and directories, this is a finding.</check-content>
+If a separate file system/partition does not exist for the system audit data path, this is a finding.</check-content>
       </check>
     </Rule>
   </Group>
@@ -6619,7 +6568,7 @@ If the value of the "action_mail_acct" keyword is not set to "root" and other ac
   <Group id="V-72095">
     <title>SRG-OS-000327-GPOS-00127</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86719r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86719r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-030360</version>
       <title>All privileged function executions must be audited.</title>
       <description>&lt;VulnDiscussion&gt;Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -6631,7 +6580,7 @@ If the value of the "action_mail_acct" keyword is not set to "root" and other ac
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-002234</ident>
-      <fixtext fixref="F-78447r4_fix">Configure the operating system to audit the execution of privileged functions.
+      <fixtext fixref="F-78447r5_fix">Configure the operating system to audit the execution of privileged functions.
 
 To find the relevant "setuid"/"setgid" programs, run the following command for each local partition [PART]:
 
@@ -6639,8 +6588,8 @@ To find the relevant "setuid"/"setgid" programs, run the following command for e
 
 For each "setuid"/"setgid" program on the system, which is not covered by an audit rule for a (sub) directory (such as "/usr/sbin"), add a line of the following form to "/etc/audit/audit.rules", where &lt;suid_prog_with_full_path&gt; is the full path to each "setuid"/"setgid" program in the list:
 
--a always,exit -F &lt;suid_prog_with_full_path&gt; -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k setuid/setgid</fixtext>
-      <fix id="F-78447r4_fix"/>
+-a always,exit -F part=&lt;suid_prog_with_full_path&gt; -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k setuid/setgid</fixtext>
+      <fix id="F-78447r5_fix"/>
       <check system="C-72327r4_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system audits the execution of privileged functions.
@@ -8551,49 +8500,6 @@ If the command does not return any output, this is a finding.</check-content>
       </check>
     </Rule>
   </Group>
-  <Group id="V-72181">
-    <title>SRG-OS-000042-GPOS-00020</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86805r2_rule" severity="medium" weight="10.0">
-      <version>RHEL-07-030790</version>
-      <title>All uses of the pt_chown command must be audited.</title>
-      <description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
-
-At a minimum, the organization must audit the full-text recording of privileged commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
-
-Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Red Hat 7</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Red Hat 7</dc:subject>
-        <dc:identifier>2777</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-000135</ident>
-      <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
-      <ident system="http://iase.disa.mil/cci">CCI-002884</ident>
-      <fixtext fixref="F-78535r3_fix">Configure the operating system to generate audit records when successful/unsuccessful attempts to use the "pt_chown" command occur.
-
-Add or update the following rule in "/etc/audit/rules.d/audit.rules":
-
--a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged_terminal
-
-The audit daemon must be restarted for the changes to take effect.</fixtext>
-      <fix id="F-78535r3_fix"/>
-      <check system="C-72415r3_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
-        <check-content>Verify the operating system generates audit records when successful/unsuccessful attempts to use the "pt_chown" command occur.
-
-Check for the following system call being audited by performing the following command to check the file system rules in "/etc/audit/audit.rules":
-
-# grep -i /usr/libexec/pt_chown /etc/audit/audit.rules
-
--a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid&gt;=1000 -F auid!=4294967295 -k privileged_terminal
-
-If the command does not return any output, this is a finding.</check-content>
-      </check>
-    </Rule>
-  </Group>
   <Group id="V-72183">
     <title>SRG-OS-000042-GPOS-00020</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
@@ -9870,7 +9776,7 @@ If "ClientAliveInterval" is not set to "600" in "/etc/ ssh/sshd_config", and a l
   <Group id="V-72239">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86863r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86863r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-040330</version>
       <title>The SSH daemon must not allow authentication using RSA rhosts authentication.</title>
       <description>&lt;VulnDiscussion&gt;Configuring this setting for the SSH daemon provides additional assurance that remote logon via SSH will require a password, even in the event of misconfiguration elsewhere.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -9882,25 +9788,24 @@ If "ClientAliveInterval" is not set to "600" in "/etc/ ssh/sshd_config", and a l
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
-      <fixtext fixref="F-78593r3_fix">Configure the SSH daemon to not allow authentication using RSA rhosts authentication.
+      <fixtext fixref="F-78593r4_fix">Configure the SSH daemon to not allow authentication using RSA rhosts authentication.
 
-Add the following line in "/etc/ssh/sshd_config", or uncomment the line and set the value to "yes":
+Add the following line in "/etc/ssh/sshd_config", or uncomment the line and set the value to "no":
 
-RhostsRSAAuthentication yes
+RhostsRSAAuthentication no
 
 The SSH service must be restarted for changes to take effect.</fixtext>
-      <fix id="F-78593r3_fix"/>
-      <check system="C-72473r3_chk">
+      <fix id="F-78593r4_fix"/>
+      <check system="C-72473r4_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the SSH daemon does not allow authentication using RSA rhosts authentication.
 
 To determine how the SSH daemon's "RhostsRSAAuthentication" option is set, run the following command:
 
 # grep RhostsRSAAuthentication /etc/ssh/sshd_config
+RhostsRSAAuthentication no
 
-RhostsRSAAuthentication yes
-
-If the value is returned as "no", the returned line is commented out, or no output is returned, this is a finding.</check-content>
+If the value is returned as "yes", the returned line is commented out, or no output is returned, this is a finding.</check-content>
       </check>
     </Rule>
   </Group>
@@ -10494,7 +10399,7 @@ If a crontab file does not exist in the "/etc/cron.daily" that executes the "ntp
   <Group id="V-72271">
     <title>SRG-OS-000420-GPOS-00186</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86895r1_rule" severity="medium" weight="10.0">
+    <Rule id="SV-86895r2_rule" severity="medium" weight="10.0">
       <version>RHEL-07-040510</version>
       <title>The operating system must protect against or limit the effects of Denial of Service (DoS) attacks by validating the operating system is implementing rate-limiting measures on impacted network interfaces.</title>
       <description>&lt;VulnDiscussion&gt;DoS is a condition when a resource is not available for legitimate users. When this occurs, the organization either cannot accomplish its mission or must operate at degraded capacity.
@@ -10508,12 +10413,16 @@ This requirement addresses the configuration of the operating system to mitigate
         <dc:identifier>2777</dc:identifier>
       </reference>
       <ident system="http://iase.disa.mil/cci">CCI-002385</ident>
-      <fixtext fixref="F-78625r1_fix">Create a direct firewall rule to protect against DoS attacks with the following command:
+      <fixtext fixref="F-78625r2_fix">Create a direct firewall rule to protect against DoS attacks with the following command:
 
 Note: The command is to add a rule to the public zone.
 
-# firewall-cmd --direct --add-rule ipv4 filter IN_public_allow 0 -p tcp -m limit --limit 25/minute --limit-burst 100  -j ACCEPT</fixtext>
-      <fix id="F-78625r1_fix"/>
+# firewall-cmd --direct --permanent --add-rule ipv4 filter IN_public_allow 0 -m tcp -p tcp -m limit --limit 25/minute --limit-burst 100 -j ACCEPT
+
+The firewalld service will need to be restarted for this to take effect:
+
+# systemctl restart firewalld</fixtext>
+      <fix id="F-78625r2_fix"/>
       <check system="C-72505r1_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system protects against or limits the effects of DoS attacks by ensuring the operating system is implementing rate-limiting measures on impacted network interfaces.
@@ -10591,7 +10500,7 @@ If "firewalld" does not show a state of "running", this is a finding.</check-con
   <Group id="V-72275">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-86899r1_rule" severity="low" weight="10.0">
+    <Rule id="SV-86899r2_rule" severity="low" weight="10.0">
       <version>RHEL-07-040530</version>
       <title>The system must display the date and time of the last successful account logon upon logon.</title>
       <description>&lt;VulnDiscussion&gt;Providing users with feedback on when account accesses last occurred facilitates user recognition and reporting of unauthorized account use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10609,17 +10518,21 @@ Add the following line to the top of "/etc/pam.d/postlogin-ac":
 
 session     required      pam_lastlog.so showfailed</fixtext>
       <fix id="F-78629r1_fix"/>
-      <check system="C-72509r1_chk">
+      <check system="C-72509r2_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify users are provided with feedback on when account accesses last occurred.
 
 Check that "pam_lastlog" is used and not silent with the following command:
 
 # grep pam_lastlog /etc/pam.d/postlogin-ac
+session required pam_lastlog.so showfailed
 
-session     required      pam_lastlog.so showfailed silent
+If the "silent" option is present with "pam_lastlog" check the sshd configuration file.
 
-If "pam_lastlog" is missing from "/etc/pam.d/postlogin-ac" file, or the silent option is present on the line check for the "PrintLastLog" keyword in the sshd daemon configuration file, this is a finding.</check-content>
+# grep -i printlastlog /etc/ssh/sshd_config
+PrintLastLog yes
+
+If "pam_lastlog" is missing from "/etc/pam.d/postlogin-ac" file, or the silent option is present and PrintLastLog is missing from or set to "no" in the "/etc/ssh/sshd_config" file this is a finding.</check-content>
       </check>
     </Rule>
   </Group>
@@ -11968,7 +11881,7 @@ If the command does not return a line, or the line is commented out, this is a f
   <Group id="V-73173">
     <title>SRG-OS-000004-GPOS-00004</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-87825r2_rule" severity="medium" weight="10.0">
+    <Rule id="SV-87825r3_rule" severity="medium" weight="10.0">
       <version>RHEL-07-030874</version>
       <title>The operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/opasswd.</title>
       <description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
@@ -11985,23 +11898,23 @@ Audit records can be generated from various components within the information sy
       <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
       <ident system="http://iase.disa.mil/cci">CCI-001403</ident>
       <ident system="http://iase.disa.mil/cci">CCI-002130</ident>
-      <fixtext fixref="F-79619r4_fix">Configure the operating system to generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/opasswd.
+      <fixtext fixref="F-79619r5_fix">Configure the operating system to generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/opasswd.
 
 Add or update the following file system rule in "/etc/audit/rules.d/audit.rules":
 
--w /etc/opasswd -p wa -k identity
+-w /etc/security/opasswd -p wa -k identity
 
 The audit daemon must be restarted for the changes to take effect.</fixtext>
-      <fix id="F-79619r4_fix"/>
-      <check system="C-73297r2_chk">
+      <fix id="F-79619r5_fix"/>
+      <check system="C-73297r3_chk">
         <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_RHEL_7_STIG.xml"/>
         <check-content>Verify the operating system must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/opasswd.
 
 Check the auditing rules in "/etc/audit/rules.d/audit.rules" with the following command:
 
-# grep /etc/opasswd /etc/audit/rules.d/audit.rules
+# grep /etc/security/opasswd /etc/audit/rules.d/audit.rules
 
--w /etc/opasswd -p wa -k audit_rules_usergroup_modification
+-w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification
 
 If the command does not return a line, or the line is commented out, this is a finding.</check-content>
       </check>

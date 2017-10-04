@@ -344,7 +344,7 @@
 
 - name: V-38692 - Lock inactive accounts
   lineinfile:
-    dest: /etc/default_useradd
+    dest: /etc/default/useradd
     regexp: "^(#)?INACTIVE"
     line: "INACTIVE {{ security_inactive_account_lock_days }}"
   when: security_inactive_account_lock_days is defined

@@ -22,7 +22,7 @@ ClientAliveCountMax {{ security_sshd_client_alive_count_max }}
 # V-72245
 PrintLastLog yes
 {% endif %}
-{% if security_sshd_permit_root_login | bool %}
+{% if not (security_sshd_permit_root_login | bool) %}
 # V-72247
 PermitRootLogin no
 {% endif %}

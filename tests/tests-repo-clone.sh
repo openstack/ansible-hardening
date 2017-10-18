@@ -33,6 +33,7 @@ set -e
 export TESTING_HOME=${TESTING_HOME:-$HOME}
 export WORKING_DIR=${WORKING_DIR:-$(pwd)}
 export CLONE_UPGRADE_TESTS=${CLONE_UPGRADE_TESTS:-no}
+export ZUUL_TESTS_CLONE_LOCATION="/home/zuul/src/git.openstack.org/openstack/openstack-ansible-tests"
 
 ## Functions -----------------------------------------------------------------
 
@@ -52,7 +53,11 @@ EOF
 # If zuul-cloner is present, use it so that we
 # also include any dependent patches from the
 # tests repo noted in the commit message.
-if [[ -x /usr/zuul-env/bin/zuul-cloner ]]; then
+# We only want to use zuul-cloner if we detect
+# zuul v2 running, so we check for the presence
+# of the ZUUL_REF environment variable.
+# ref: http://git.openstack.org/cgit/openstack-infra/zuul/tree/zuul/ansible/filter/zuul_filters.py?h=feature/zuulv3#n17
+if [[ -x /usr/zuul-env/bin/zuul-cloner ]] && [[ "${ZUUL_REF:-none}" != "none" ]]; then
 
     # Prepare the clonemap for zuul-cloner to use
     create_tests_clonemap
@@ -74,9 +79,22 @@ if [[ -x /usr/zuul-env/bin/zuul-cloner ]]; then
 elif [[ ! -d tests/common ]]; then
 
     # The tests repo doesn't need a clone, we can just
-    # symlink it.
-    if [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
+    # symlink it. As zuul v3 clones into a folder called
+    # 'workspace' we have to use one of its environment
+    # variables to determine the project name.
+    if [[ "${ZUUL_SHORT_PROJECT_NAME:-none}" == "openstack-ansible-tests" ]] ||\
+       [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
         ln -s ${WORKING_DIR} ${WORKING_DIR}/tests/common
+
+    # In zuul v3 any dependent repository is placed into
+    # /home/zuul/src/git.openstack.org, so we check to see
+    # if there is a tests checkout there already. If so, we
+    # symlink that and use it.
+    elif [[ -d "${ZUUL_TESTS_CLONE_LOCATION}" ]]; then
+        ln -s "${ZUUL_TESTS_CLONE_LOCATION}" ${WORKING_DIR}/tests/common
+
+    # Otherwise we're clearly not in zuul or using a previously setup
+    # repo in some way, so just clone it from upstream.
     else
         git clone \
             https://git.openstack.org/openstack/openstack-ansible-tests \

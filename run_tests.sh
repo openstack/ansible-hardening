@@ -49,24 +49,11 @@ install_pkg_deps() {
     eval sudo $pkg_mgr_cmd $pkg_deps
 }
 
-git_clone_repo() {
-    if [[ ! -d tests/common ]]; then
-        # The tests repo doesn't need a clone, we can just
-        # symlink it.
-        if [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
-            ln -s ${WORKING_DIR} ${WORKING_DIR}/tests/common
-        else
-            git clone \
-                https://git.openstack.org/openstack/openstack-ansible-tests \
-                tests/common
-        fi
-    fi
-}
-
 install_pkg_deps
 
-git_clone_repo
+# Clone the tests repo for access to the common test script
+source tests/tests-repo-clone.sh
 
-# start executing the main test script
+# Execute the common test script
 source tests/common/run_tests_common.sh
 

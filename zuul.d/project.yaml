@@ -23,7 +23,6 @@
         - openstack-ansible-functional-opensuse-423
         - openstack-ansible-functional-ubuntu-xenial
     gate:
-      queue: openstack-ansible
       jobs:
         - openstack-ansible-functional-centos-7
         - openstack-ansible-functional-debian-jessie

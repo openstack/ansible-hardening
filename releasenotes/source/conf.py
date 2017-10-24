@@ -58,11 +58,12 @@ master_doc = 'index'
 author = 'OpenStack-Ansible Contributors'
 category = 'Miscellaneous'
 copyright = '2014-2017, OpenStack-Ansible Contributors'
-description = 'OpenStack-Ansible deploys OpenStack environments using Ansible.'
-project = 'OpenStack-Ansible'
+description = ('The ansible-hardening Ansible role uses industry-standard '
+               'security hardening guides to secure Linux hosts.')
+project = 'ansible-hardening'
 role_name = 'ansible-hardening'
 target_name = 'ansible-hardening'
-title = 'ansible-hardening Documentation:'
+title = 'ansible-hardening Release Notes:'
 
 # The link to the browsable source code (for the left hand menu)
 oslosphinx_cgit_link = (

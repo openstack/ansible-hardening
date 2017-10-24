@@ -81,7 +81,7 @@ is an example of a basic playbook that uses the ansible-hardening role:
 
 The variables provided in the ``vars`` section can enable, disable, or alter
 configuration for various tasks in the ansible-hardening role. For more details
-on the available variables, refer to the :ref:`hardening-domains_label`
+on the available variables, refer to the :ref:`hardening_domains_label`
 section.
 
 .. note::

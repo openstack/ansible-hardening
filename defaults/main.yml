@@ -299,6 +299,7 @@ security_package_clean_on_remove: no                         # V-71987
 security_rhel7_automatic_package_updates: no                 # V-71999
 # Install packages for multi-factor authentication.
 security_install_multifactor_auth_packages: yes              # V-72417
+security_check_package_checksums: no                         # V-71855
 
 ## RPM (rpm)
 # Enable GPG checks for packages and repository data.

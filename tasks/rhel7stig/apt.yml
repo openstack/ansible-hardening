@@ -17,12 +17,14 @@
   apt:
     name: debsums
     state: installed
+  when: security_check_package_checksums | bool
 
 - name: Gather debsums report
   shell: "debsums > {{ temp_dir }}/debsums.txt"
   changed_when: False
   failed_when: False
   when:
+    - security_check_package_checksums | bool
     - not check_mode | bool
 
 - name: V-71855 - Get files with invalid checksums (apt)
@@ -30,6 +32,7 @@
   register: invalid_checksum_files
   changed_when: False
   when:
+    - security_check_package_checksums | bool
     - not check_mode | bool
     - ansible_os_family | lower == 'debian'
   tags:
@@ -40,6 +43,7 @@
   set_fact:
     invalid_checksum_files_violations: "{{ invalid_checksum_files.stdout_lines | default([]) | join(', ') }}"
   when:
+    - security_check_package_checksums | bool
     - invalid_checksum_files is defined
     - invalid_checksum_files.stdout is defined
   tags:
@@ -54,6 +58,7 @@
       they have not been modified by an unauthorized user:
       {{ invalid_checksum_files_violations }}
   when:
+    - security_check_package_checksums | bool
     - ansible_os_family | lower == 'debian'
     - invalid_checksum_files is defined
     - invalid_checksum_files.stdout is defined

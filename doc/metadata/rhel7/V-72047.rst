@@ -1,6 +1,6 @@
 ---
 id: V-72047
-status: implemented
+status: opt-in
 tag: file_perms
 ---
 
@@ -11,3 +11,14 @@ user. Those directories appear in the Ansible output.
 Deployers should review the list of directories and group owners to ensure
 that they are appropriate for the directory. Unauthorized group ownership
 could allow certain users to modify files from other users.
+
+Searching the entire filesystem for world-writable directories will consume
+a significant amount of disk I/O and could impact the performance of a
+production system. It can also delay the playbook's completion. Therefore,
+the search is disabled by default.
+
+Deployers can enable the search by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_find_world_writable_dirs: yes

@@ -49,6 +49,7 @@ install_pkg_deps() {
     eval sudo $pkg_mgr_cmd $pkg_deps
 }
 
+# Install the host distro package dependencies
 install_pkg_deps
 
 # Clone the tests repo for access to the common test script

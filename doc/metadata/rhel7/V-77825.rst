@@ -1,0 +1,18 @@
+---
+id: V-77825
+status: implemented
+tag: kernel
+---
+
+Most modern systems enable Address Space Layout Randomization (ASLR) by
+default (with a setting of ``2``), and the role ensures that the secure
+default is maintained.
+
+Deployers can opt out of the change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_enable_aslr: no
+
+For more details on the ASLR settings, review the
+`sysctl documentation <https://www.kernel.org/doc/Documentation/sysctl/kernel.txt>`_.

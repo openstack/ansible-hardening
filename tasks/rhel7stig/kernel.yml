@@ -95,3 +95,15 @@
     - high
     - misc
     - V-72067
+
+- name: V-77821 - Datagram Congestion Control Protocol (DCCP) kernel module must be disabled
+  lineinfile:
+    dest: /etc/modprobe.d/ansible-hardening-disable-dccp.conf
+    line: install dccp /bin/true
+    create: yes
+  when:
+    - security_rhel7_disable_dccp | bool
+  tags:
+    - kernel
+    - medium
+    - V-77821

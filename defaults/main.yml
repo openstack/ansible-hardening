@@ -363,3 +363,7 @@ security_disallow_ip_forwarding: no                          # V-72309
 security_rhel7_disable_usb_storage: yes                      # V-71983
 # Disable kdump.
 security_disable_kdump: yes                                  # V-72057
+# Disable Datagram Congestion Control Protocol (DCCP).
+security_rhel7_disable_dccp: yes                             # V-77821
+# Enable Address Space Layout Randomization (ASLR).
+security_enable_aslr: yes                                    # V-77825

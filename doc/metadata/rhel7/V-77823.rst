@@ -1,0 +1,13 @@
+---
+id: V-77823
+status: exception - manual intervention
+tag: auth
+---
+
+Modifying sensitive systemd unit files directly or via overrides could cause
+a system to have issues during the boot process. The role does not make any
+adjustments to the ``rescue.service`` because this service is critical during
+emergencies.
+
+All of the distributions supported by the role already require authentication
+for single user mode.

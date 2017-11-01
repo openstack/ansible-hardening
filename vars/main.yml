@@ -253,9 +253,9 @@ password_quality_rhel7:
     description: "Password must have at least four character classes changed"
     enabled: "{{ security_pwquality_require_character_classes_changed }}"
   - parameter: maxrepeat
-    value: 4
+    value: 3
     stig_id: V-71915
-    description: "Password must have at most four characters repeated consecutively"
+    description: "Password must have at most three characters repeated consecutively"
     enabled: "{{ security_pwquality_limit_repeated_characters }}"
   - parameter: maxclassrepeat
     value: 4
@@ -341,3 +341,6 @@ sysctl_settings_rhel7:
   - name: net.ipv4.conf.default.accept_redirects
     value: 0
     enabled: "{{ security_disallow_icmp_redirects | bool }}"
+  - name: kernel.randomize_va_space
+    value: 2
+    enabled: "{{ security_enable_aslr | bool }}"

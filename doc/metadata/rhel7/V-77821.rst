@@ -1,0 +1,14 @@
+---
+id: V-77821
+status: implemented
+tag: kernel
+---
+
+The ansible-hardening role disables the DCCP kernel module by default. Each
+system must be rebooted to fully apply the change.
+
+Deployers can opt out of the change by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_disable_dccp: no

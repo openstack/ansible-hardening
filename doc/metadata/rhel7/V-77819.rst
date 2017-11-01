@@ -1,0 +1,13 @@
+---
+id: V-77819
+status: exception - manual intervention
+tag: misc
+---
+
+The STIG requires that multifactor authentication is used for graphical user
+logon, but this change requires custom configuration based on the
+authentication solution that is used.
+
+Deployers should review the available options, such as traditional
+smartcards, USB devices (such as Yubikeys), or software token systems, and
+use one of these solutions on each system.

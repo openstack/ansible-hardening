@@ -70,6 +70,9 @@ Queens
 
 * **Status:** Active development
 
+* **STIG Version:**
+  RHEL 7 STIG Version 1, Release 3 *(Published on 2017-10-27)*
+
 * **Supported Operating Systems:**
 
   * CentOS 7
@@ -90,6 +93,9 @@ Pike
 ~~~~
 
 * **Status:** Latest stable release *(released: September 2017)*
+
+* **STIG Version:**
+  RHEL 7 STIG Version 1, Release 1 *(Published on 2017-02-27)*
 
 * **Supported Operating Systems:**
 

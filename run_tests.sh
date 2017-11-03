@@ -35,8 +35,12 @@ source /etc/os-release || source /usr/lib/os-release
 install_pkg_deps() {
     pkg_deps="git"
 
+    # Prefer dnf over yum for CentOS.
+    which dnf &>/dev/null && RHT_PKG_MGR='dnf' || RHT_PKG_MGR='yum'
+
     case ${ID,,} in
-        centos|rhel) pkg_mgr_cmd="yum install -y" ;;
+        *suse*) pkg_mgr_cmd="zypper -n in" ;;
+        centos|rhel) pkg_mgr_cmd="${RHT_PKG_MGR} install -y" ;;
         fedora) pkg_mgr_cmd="dnf -y install" ;;
         ubuntu|debian) pkg_mgr_cmd="apt-get install -y" ;;
         *) echo "unsupported distribution: ${ID,,}"; exit 1 ;;
@@ -45,24 +49,12 @@ install_pkg_deps() {
     eval sudo $pkg_mgr_cmd $pkg_deps
 }
 
-git_clone_repo() {
-    if [[ ! -d tests/common ]]; then
-        # The tests repo doesn't need a clone, we can just
-        # symlink it.
-        if [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
-            ln -s ${WORKING_DIR} ${WORKING_DIR}/tests/common
-        else
-            git clone -b stable/newton \
-                https://git.openstack.org/openstack/openstack-ansible-tests \
-                tests/common
-        fi
-    fi
-}
-
+# Install the host distro package dependencies
 install_pkg_deps
 
-git_clone_repo
+# Clone the tests repo for access to the common test script
+source tests/tests-repo-clone.sh
 
-# start executing the main test script
+# Execute the common test script
 source tests/common/run_tests_common.sh
 

@@ -22,9 +22,14 @@ ClientAliveCountMax {{ security_sshd_client_alive_count_max }}
 # V-72245
 PrintLastLog yes
 {% endif %}
-{% if not (security_sshd_permit_root_login | bool) %}
+{% if security_sshd_permit_root_login | string in ['False', 'True', 'without-password', 'prohibit-password', 'forced-commands-only', 'no', 'yes' ] %}
+{%   if security_sshd_permit_root_login | string in ['False', 'True'] %}
+{%     set _security_sshd_permit_root_login = ((security_sshd_permit_root_login | bool) | ternary('yes','no')) %}
+{%   else %}
+{%     set _security_sshd_permit_root_login = security_sshd_permit_root_login %}
+{%   endif %}
 # V-72247
-PermitRootLogin no
+PermitRootLogin {{ _security_sshd_permit_root_login }}
 {% endif %}
 {% if security_sshd_disallow_known_hosts_auth | bool %}
 # V-72249 / V-72239

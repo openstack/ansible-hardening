@@ -110,9 +110,10 @@ Pike
 
 * **Documentation:**
 
+  * `ansible-hardening Pike Documentation`_
   * `ansible-hardening Pike Release Notes`_
 
-.. _ansible-hardening Pike Documentation: http://docs.openstack.org/developer/ansible-hardening/pike/
+.. _ansible-hardening Pike Documentation: https://docs.openstack.org/ansible-hardening/pike/
 .. _ansible-hardening Pike Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/pike.html
 
 Ocata
@@ -132,7 +133,7 @@ Ocata
   * `ansible-hardening Ocata Documentation`_
   * `ansible-hardening Ocata Release Notes`_
 
-.. _ansible-hardening Ocata Documentation: http://docs.openstack.org/developer/ansible-hardening/ocata/
+.. _ansible-hardening Ocata Documentation: https://docs.openstack.org/ansible-hardening/ocata/
 .. _ansible-hardening Ocata Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/ocata.html
 
 Newton
@@ -152,5 +153,5 @@ Newton
   * `ansible-hardening Newton Documentation`_
   * `ansible-hardening Newton Release Notes`_
 
-.. _ansible-hardening Newton Documentation: http://docs.openstack.org/developer/ansible-hardening/newton/
+.. _ansible-hardening Newton Documentation: https://docs.openstack.org/ansible-hardening/newton/
 .. _ansible-hardening Newton Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/newton.html

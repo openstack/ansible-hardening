@@ -11,7 +11,7 @@ rotation may reduce overall security in some situations.
 
 Deployers can opt-in for this change by setting the following Ansible variable:
 
-.. code-block::
+.. code-block:: yaml
 
     security_set_maximum_password_lifetime: yes
 

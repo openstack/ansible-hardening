@@ -7,4 +7,4 @@ tag: misc
 The security role already deploys a login banner for console logins with tasks
 from another STIG:
 
-* :ref:`stig-V-V-7225`
+* :ref:`stig-V-72225`

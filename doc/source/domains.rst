@@ -1,4 +1,4 @@
-.. _hardening-domains-label:
+.. _hardening_domains_label:
 
 Hardening Domains
 =================
@@ -19,7 +19,6 @@ domain and the STIG requirements that go along with each.
    rhel7/domains/auth.rst
    rhel7/domains/file_perms.rst
    rhel7/domains/graphical.rst
-   rhel7/domains/implemented.rst
    rhel7/domains/kernel.rst
    rhel7/domains/lsm.rst
    rhel7/domains/misc.rst

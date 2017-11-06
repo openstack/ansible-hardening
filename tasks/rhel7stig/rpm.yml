@@ -29,6 +29,7 @@
   register: invalid_checksum_files
   changed_when: False
   when:
+    - security_check_package_checksums | bool
     - not check_mode | bool
     - ansible_os_family | lower == 'redhat'
   tags:
@@ -47,6 +48,7 @@
         {{ filename }}
       {% endfor %}
   when:
+    - security_check_package_checksums | bool
     - not check_mode | bool
     - ansible_os_family | lower == 'redhat'
     - invalid_checksum_files is defined

@@ -1,6 +1,6 @@
 ---
 id: V-71855
-status: implemented
+status: opt-in
 tag: packages
 ---
 
@@ -15,3 +15,13 @@ system administration practices.
 
 Configuration files may appear in the list as well, but these are often less
 concerning since some of these files are adjusted by the security role itself.
+
+Generating and validating checksums of all files installed by packages consume a
+significant amount of disk I/O and could impact the performance of a production system.
+It can also delay the playbook's completion. Therefore, the check is disabled by default.
+
+Deployers can enable the check by setting the following Ansible variable:
+
+.. code-block:: yaml
+
+   security_check_package_checksums: yes

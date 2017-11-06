@@ -30,6 +30,7 @@
   register: invalid_checksum_files
   changed_when: False
   when:
+    - security_check_package_checksums | bool
     - not check_mode | bool
   tags:
     - rpm
@@ -47,6 +48,7 @@
         {{ filename }}
       {% endfor %}
   when:
+    - security_check_package_checksums | bool
     - not check_mode | bool
     - invalid_checksum_files is defined
     - invalid_checksum_files.stdout is defined

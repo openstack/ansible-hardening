@@ -84,7 +84,7 @@
 - name: set bootloader file permissions after updating grub config
   file:
     path: "{{ grub_config_file_boot }}"
-    mode: 0644
+    mode: "0644"
 
 - name: dconf update
   command: dconf update

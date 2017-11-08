@@ -344,3 +344,6 @@ sysctl_settings_rhel7:
   - name: kernel.randomize_va_space
     value: 2
     enabled: "{{ security_enable_aslr | bool }}"
+  - name: net.ipv6.conf.all.disable_ipv6
+    value: 1
+    enabled: "{{ (security_contrib_enabled | bool) and (security_contrib_disable_ipv6 | bool) }}"

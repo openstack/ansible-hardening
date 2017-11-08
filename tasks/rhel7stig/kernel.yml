@@ -46,6 +46,7 @@
     - V-72293
     - V-72309
     - V-72319
+    - C-00001
 
 - name: Check kdump service
   command: systemctl status kdump

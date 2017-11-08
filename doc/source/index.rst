@@ -58,6 +58,7 @@ releases is found within the *Releases* section below.
    faq.rst
    domains.rst
    controls-rhel7.rst
+   contrib.rst
    developer-guide.rst
 
 Releases

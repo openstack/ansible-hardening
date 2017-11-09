@@ -53,6 +53,7 @@
     security_rhel7_remove_shosts_files: yes
     security_search_for_invalid_owner: yes
     security_search_for_invalid_group_owner: yes
+    security_set_home_directory_permissions_and_owners: yes
     security_set_minimum_password_lifetime: yes
     security_unattended_upgrades_enabled: yes
     security_unattended_upgrades_notifications: yes

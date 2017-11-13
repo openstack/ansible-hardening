@@ -75,6 +75,9 @@
   # The shell command will always report 'changed' so we need to
   # ignore that since this role is supposed to be idempotent.
   changed_when: false
+  check_mode: no
+  tags:
+    - always
 
 - name: Public host key files must have mode 0644 or less
   file:
@@ -90,9 +93,12 @@
 - name: Determine existing private ssh host keys
   shell: ls /etc/ssh/*_key
   register: private_ssh_host_keys
-  # The sheel command will always report 'changed' so we need to
+  # The shell command will always report 'changed' so we need to
   # ignore that since this role is supposed to be idempotent
   changed_when: false
+  check_mode: no
+  tags:
+    - always
 
 - name: Private host key files must have mode 0600 or less
   file:

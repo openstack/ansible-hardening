@@ -13,21 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Adding additional sshd configuration options is usually easy, but if a
-# configuration file ends with certain configurations, like a "Match" stanza,
-# we need a blank line to separate those configurations from the ones that
-# are added by the security role. For that reason, we check for the existence
-# of a marker line here and add a marker line to the file if it doesn't exist.
-
-- name: Find first 'Match' line in sshd_config (if it exists)
-  shell: "grep '^Match' /etc/ssh/sshd_config || echo 'EOF'"
-  register: sshd_match_check
-  changed_when: False
-  check_mode: no
-  tags:
-    - always
-    - sshd
-
 - name: Copy login warning banner
   copy:
     content: "{{ security_login_banner_text }}"
@@ -45,7 +30,7 @@
     dest: /etc/ssh/sshd_config
     state: present
     marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
-    insertbefore: "{{ sshd_match_check.stdout_lines[0] }}"
+    insertbefore: "BOF"
     validate: '/usr/sbin/sshd -T -f %s'
     block: "{{ lookup('template', 'sshd_config_block.j2') }}"
   notify:

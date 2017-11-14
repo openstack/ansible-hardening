@@ -327,7 +327,7 @@ security_sshd_client_alive_interval: 600                     # V-72237
 security_sshd_client_alive_count_max: 0                      # V-72241
 # Print the last login for a user when they log in over ssh.
 security_sshd_print_last_log: yes                            # V-72245
-# Permit direct root logins
+# Permit direct root logins ('yes', 'no', 'without-password', 'prohibit-password', 'forced-commands-only')
 security_sshd_permit_root_login: no                          # V-72247
 # Disallow authentication using known hosts authentication.
 security_sshd_disallow_known_hosts_auth: yes                 # V-72249 / V-72239

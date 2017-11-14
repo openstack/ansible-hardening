@@ -7,7 +7,9 @@ tag: sshd
 The ``PermitRootLogin`` configuration is set to ``no`` in
 ``/etc/ssh/sshd_config`` and sshd is restarted.
 
-Deployers can opt out of this change by setting the following Ansible variable:
+Deployers can select another setting for PermitRootLogin, from the available
+options ``without-password``, ``prohibit-password``, ``forced-commands-only``,
+``yes``, or ``no`` by setting the following variable:
 
 .. code-block:: yaml
 

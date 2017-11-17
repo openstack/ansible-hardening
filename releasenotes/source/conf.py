@@ -22,8 +22,6 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import pbr.version
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -70,16 +68,12 @@ oslosphinx_cgit_link = (
     'https://git.openstack.org/cgit/openstack/{}'.format(target_name)
 )
 
-# The version info for the project you're documenting, acts as replacement for
-# |version| and |release|, also used in various other places throughout the
-# built documents.
-#
-# The short X.Y version.
-version_info = pbr.version.VersionInfo(target_name)
+# Release notes do not need a version number in the title, they
+# cover multiple releases.
 # The full version, including alpha/beta/rc tags.
-release = version_info.version_string_with_vcs()
+release = ''
 # The short X.Y version.
-version = version_info.canonical_version_string()
+version = ''
 
 # openstackdocstheme options
 repository_name = 'openstack/' + target_name

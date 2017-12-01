@@ -370,3 +370,29 @@ security_disable_kdump: yes                                  # V-72057
 security_rhel7_disable_dccp: yes                             # V-77821
 # Enable Address Space Layout Randomization (ASLR).
 security_enable_aslr: yes                                    # V-77825
+
+###############################################################################
+#   ____            _        _ _
+#  / ___|___  _ __ | |_ _ __(_) |__
+# | |   / _ \| '_ \| __| '__| | '_ \
+# | |__| (_) | | | | |_| |  | | |_) |
+#  \____\___/|_| |_|\__|_|  |_|_.__/
+#
+#
+# The following configurations apply to tasks that are contributed by
+# ansible-hardening developers and may not be part of a hardening standard
+# or compliance program. For more information on the 'contrib' tasks, review
+# the documentation:
+#
+#   https://docs.openstack.org/ansible-hardening/latest/contrib.html
+#
+###############################################################################
+
+# To enable the contrib tasks, set this variable to 'yes'.
+security_contrib_enabled: no
+
+# Disable IPv6.
+# DANGER: This option causes IPv6 networking to be disabled for the ENTIRE
+# DANGER: SYSTEM. This will cause downtime for any services that depend on
+# DANGER: IPv6 network connectivity.
+security_contrib_disable_ipv6: no                            # C-00001

@@ -1,7 +1,7 @@
 .. _hardening_domains_label:
 
-Hardening Domains
-=================
+Hardening Domains (RHEL 7 STIG)
+===============================
 
 The STIG divides its hardening requirements into severity levels, but the
 security role divides the requirements into system domains to make them easier

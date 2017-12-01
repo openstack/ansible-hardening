@@ -62,3 +62,5 @@
     # this role without causing disruptions on the system.
     security_enable_virus_scanner: no
     security_run_virus_scanner_update: no
+    # Enable the contrib tasks.
+    security_contrib_enabled: yes

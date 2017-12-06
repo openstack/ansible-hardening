@@ -22,8 +22,10 @@
 # using this file.
 #
 
+# The gcc compiler
+gcc
+
 # Base requirements for Ubuntu
-gcc               [platform:dpkg]
 git-core          [platform:dpkg]
 libssl-dev        [platform:dpkg]
 libffi-dev        [platform:dpkg]
@@ -35,13 +37,10 @@ python3-apt       [platform:dpkg]
 python3-dev       [platform:dpkg]
 
 # Base requirements for RPM distros
-gcc               [platform:rpm]
 gcc-c++           [platform:rpm]
 git               [platform:rpm]
-libffi-devel      [platform:rpm !platform:opensuseproject-42]
-libffi-devel-gcc5 [platform:opensuseproject-42]
-openssl-devel     [platform:redhat]
-libopenssl-devel  [platform:suse]
+libffi-devel      [platform:rpm]
+openssl-devel     [platform:rpm]
 python-devel      [platform:rpm]
 python2-dnf       [platform:fedora]
 

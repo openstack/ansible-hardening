@@ -20,6 +20,9 @@
 #   - vars/redhat.yml
 #   - vars/ubuntu.yml
 
+## grub custom configuration
+grub_custom_file: /etc/grub.d/40_custom
+
 ## auditd configuration
 auditd_config:
   - parameter: disk_full_action

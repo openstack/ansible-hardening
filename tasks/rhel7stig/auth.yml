@@ -236,6 +236,11 @@
   retries: 30
   when:
     - not shosts_find | skipped
+  tags:
+    - high
+    - auth
+    - V-72277
+    - V-72279
 
 - name: Remove .shosts or shosts.equiv files
   file:

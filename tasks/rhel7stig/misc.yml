@@ -207,9 +207,26 @@
     - misc
     - RHEL-07-030810
 
+# NOTE(mhayden): This role changed names and this task ensures that the old
+# configuration block is properly removed. Without this task, /etc/profile
+# will have two config blocks that set the same variable and this leads to
+# errors on the command prompt. See LP bug 1736702.
+# TODO(mhayden): Remove this task when the Rocky release is in development.
+- name: Remove old config block for RHEL-07-040160 from openstack-ansible-security
+  blockinfile:
+    dest: /etc/profile
+    state: absent
+    insertbefore: EOF
+    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
+  tags:
+    - medium
+    - misc
+    - RHEL-07-040160
+
 - name: RHEL-07-040160 - Set 10 minute timeout on communication sessions
   blockinfile:
     dest: /etc/profile
+    state: present
     insertbefore: EOF
     marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
     block: |

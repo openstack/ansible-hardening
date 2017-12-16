@@ -23,6 +23,10 @@
   retries: 30
   when:
     - not rpmverify_task | skipped
+  tags:
+    - rpm
+    - high
+    - V-71855
 
 - name: V-71855 - Get files with invalid checksums (rpm)
   shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"

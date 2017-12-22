@@ -32,6 +32,7 @@ aide_cron_job_path: /etc/cron.daily/aide
 aide_database_file: /var/lib/aide/aide.db
 aide_database_out_file: /var/lib/aide/aide.db.new
 chrony_conf_file: /etc/chrony.conf
+chrony_key_file: /etc/chrony.keys
 daemon_init_params_file: /etc/rc.status
 pkg_mgr_config: /etc/zypp/zypp.conf
 

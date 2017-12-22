@@ -34,6 +34,7 @@ aide_cron_job_path: /etc/cron.daily/aide
 aide_database_file: /var/lib/aide/aide.db
 aide_database_out_file: /var/lib/aide/aide.db.new
 chrony_conf_file: /etc/chrony/chrony.conf
+chrony_key_file: /etc/chrony/chrony.keys
 daemon_init_params_file: /etc/init.d/rc
 
 # Service name

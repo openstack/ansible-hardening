@@ -28,6 +28,9 @@
     - not check_mode | bool
     - ansible_os_family | lower in ['redhat', 'suse']
   tags:
+    - rpm
+    - high
+    - V-71855
     - skip_ansible_lint
 
 - name: Check for .shosts or shosts.equiv files
@@ -43,3 +46,8 @@
   when:
     - not check_mode | bool
     - security_rhel7_remove_shosts_files | bool
+  tags:
+    - high
+    - auth
+    - V-72277
+    - V-72279

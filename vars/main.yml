@@ -22,6 +22,8 @@
 
 ## grub custom configuration
 grub_custom_file: /etc/grub.d/40_custom
+## grub main linux configuration
+grub_linux_file: /etc/grub.d/10_linux
 
 ## auditd configuration
 auditd_config:

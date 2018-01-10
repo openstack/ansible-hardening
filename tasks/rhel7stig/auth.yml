@@ -174,19 +174,28 @@
     - always
 
 - name: Set a GRUB 2 password for single-user/maintenance modes
-  blockinfile:
-    path: "{{ grub_custom_file }}"
-    insertbefore: EOF
-    marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
-    block: |
-      set superusers="root"
-      password_pbkdf2 root {{ security_grub_password_hash }}
-    state: present
+  block:
+    - blockinfile:
+        path: "{{ grub_custom_file }}"
+        insertbefore: EOF
+        marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
+        block: |
+          set superusers="root"
+          password_pbkdf2 root {{ security_grub_password_hash }}
+        state: present
+      notify:
+        - update grub config
+    - lineinfile:
+        path: "{{ grub_linux_file }}"
+        regexp: '^CLASS=.*'
+        line: 'CLASS="--class gnu-linux --class gnu --class os --unrestricted"'
+        state: present
+        backrefs: yes
+      notify:
+        - update grub config
   when:
     - grub_custom_file_check.stat.exists | bool
     - security_require_grub_authentication | bool
-  notify:
-    - update grub config
   tags:
     - auth
     - high

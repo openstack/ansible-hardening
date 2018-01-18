@@ -52,8 +52,8 @@
     tags:
       - always
 
-  - include: "{{ stig_version }}stig/main.yml"
+  - include_tasks: "{{ stig_version }}stig/main.yml"
 
-  - include: contrib/main.yml
+  - include_tasks: contrib/main.yml
     when:
       - security_contrib_enabled | bool

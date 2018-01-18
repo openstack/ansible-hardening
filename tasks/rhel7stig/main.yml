@@ -33,7 +33,7 @@
 
 # Some of the tasks in the role may take a long time to run. Let's start them
 # as early as possible so they have time to finish.
-- include: async_tasks.yml
+- include_tasks: async_tasks.yml
 
 - name: Get user data for all users on the system
   get_users:
@@ -66,28 +66,28 @@
 
 # Package installations and removals must come first so that configuration
 # changes can be made later.
-- include: packages.yml
+- include_tasks: packages.yml
   tags:
     - always
 
 # Package managers are managed first since the changes in these tasks will
 # affect the remainder of the tasks in the role.
-- include: "{{ ansible_pkg_mgr }}.yml"
+- include_tasks: "{{ ansible_pkg_mgr }}.yml"
 
 # The bulk of the security changes are applied in these tasks. The tasks in
 # each file are tagged with the same name (for example, tasks in `auth.yml`
 # are tagged with `auth`). Also, the tag name matches up with the "STIG
 # Controls by Tag" section of the role documentation.
-- include: accounts.yml
-- include: aide.yml
-- include: auditd.yml
-- include: auth.yml
-- include: file_perms.yml
-- include: graphical.yml
-- include: kernel.yml
-- include: lsm.yml
-- include: misc.yml
-- include: sshd.yml
+- include_tasks: accounts.yml
+- include_tasks: aide.yml
+- include_tasks: auditd.yml
+- include_tasks: auth.yml
+- include_tasks: file_perms.yml
+- include_tasks: graphical.yml
+- include_tasks: kernel.yml
+- include_tasks: lsm.yml
+- include_tasks: misc.yml
+- include_tasks: sshd.yml
 
 - name: Remove the temporary directory
   file:

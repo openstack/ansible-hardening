@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- include: rpm.yml
+- include_tasks: rpm.yml
 
 - name: Check if /etc/yum/yum-cron.conf exists
   stat:

@@ -20,6 +20,8 @@ Vagrant.configure(2) do |config|
     v.cpus = 2
   end
 
+  config.vm.synced_folder ".", "/vagrant", type: "rsync"
+
   config.vm.provision "shell",
       privileged: false,
       inline: <<-SHELL

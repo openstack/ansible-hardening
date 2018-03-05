@@ -19,6 +19,6 @@
     nodeset: debian-jessie
 
 - job:
-    name: openstack-ansible-functional-fedora-26
+    name: openstack-ansible-functional-fedora-27
     parent: openstack-ansible-functional
-    nodeset: fedora-26
+    nodeset: fedora-27

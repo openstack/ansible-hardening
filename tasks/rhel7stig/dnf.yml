@@ -43,7 +43,7 @@
     - V-71999
 
 # NOTE(mhayden): Fedora < 26 and CentOS 7 only have dnf-automatic.timer while
-# Fedora 26 has dnf-automatic-install.timer. We need to check for which one
+# Fedora >= 26 has dnf-automatic-install.timer. We need to check for which one
 # exists on the system.
 - name: Check to see which dnf automatic timers are available
   shell: "rpm -ql dnf-automatic | grep timer || true"

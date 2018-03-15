@@ -111,8 +111,7 @@
   check_mode: no
   when:
     - ansible_os_family == 'RedHat'
-    - ansible_selinux.status is defined
-    - ansible_selinux.status != 'disabled'
+    - ansible_selinux.status == 'enabled'
   tags:
     - lsm
     - medium

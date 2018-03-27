@@ -69,3 +69,4 @@ tests/*.retry
 
 # Git clones
 openstack-ansible-ops
+previous

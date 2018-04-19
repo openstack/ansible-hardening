@@ -14,9 +14,9 @@
 # limitations under the License.
 
 - job:
-    name: openstack-ansible-functional-debian-jessie
+    name: openstack-ansible-functional-debian-stable
     parent: openstack-ansible-functional
-    nodeset: debian-jessie
+    nodeset: debian-stable
 
 - job:
     name: openstack-ansible-functional-fedora-27

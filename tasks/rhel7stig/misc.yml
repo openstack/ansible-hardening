@@ -311,7 +311,7 @@
 # Linting checks need to be skipped because this command doesn't create any
 # files.
 - name: Count nameserver entries in /etc/resolv.conf
-  command: grep nameserver /etc/resolv.conf
+  command: grep ^nameserver /etc/resolv.conf
   register: nameserver_check
   check_mode: no
   changed_when: False

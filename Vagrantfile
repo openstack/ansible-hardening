@@ -30,15 +30,20 @@ Vagrant.configure(2) do |config|
       SHELL
 
   config.vm.define "ubuntu1604" do |xenial|
-    xenial.vm.box = "bento/ubuntu-16.04"
+    xenial.disksize.size = "40GB"
+    xenial.vm.box = "ubuntu/xenial64"
   end
 
   config.vm.define "opensuse423" do |leap423|
-    leap423.vm.box = "bento/opensuse-leap-42.3"
+    leap423.vm.box = "opensuse/openSUSE-42.3-x86_64"
+  end
+
+  config.vm.define "opensuse150" do |leap150|
+    leap150.vm.box = "opensuse/openSUSE-15.0-x86_64"
   end
 
   config.vm.define "centos7" do |centos7|
-    centos7.vm.box = "bento/centos-7"
+    centos7.vm.box = "centos/7"
   end
 
 end

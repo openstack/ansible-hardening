@@ -18,6 +18,8 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 6144
     v.cpus = 2
+    # https://github.com/hashicorp/vagrant/issues/9524
+    v.customize ["modifyvm", :id, "--audio", "none"]
   end
 
   config.vm.synced_folder ".", "/vagrant", type: "rsync"

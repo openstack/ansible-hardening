@@ -19,6 +19,6 @@ Deployers can opt in for this change by setting the following Ansible variable:
 
 .. code-block:: yaml
 
-    security_rhel7_audit_lsetxattr: no
+    security_rhel7_audit_lsetxattr: yes
 
 This rule is compatible with x86, x86_64, and ppc64 architectures.

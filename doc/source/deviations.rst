@@ -30,7 +30,7 @@ Opt-In
   and how to enable it if needed.
 
 Deployers should review the full list of controls
-`sorted by implementation status <auto_controls-by-status.html>`_.
+`sorted by implementation status <rhel7/auto_controls-by-status.html>`_.
 
 .. note::
 

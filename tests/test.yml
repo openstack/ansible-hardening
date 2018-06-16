@@ -20,8 +20,13 @@
       apt:
         update_cache: yes
         cache_valid_time: "{{ cache_timeout }}"
-      when: ansible_pkg_mgr == 'apt'
       changed_when: False
+      when:
+        - ansible_pkg_mgr == 'apt'
+      register: refresh_cache
+      until: refresh_cache is success
+      retries: 5
+      delay: 2
     - name: Ensure OpenStack CI image has a logrotate cron job
       file:
         path: /etc/cron.daily/logrotate
@@ -32,8 +37,13 @@
       package:
         name: dconf
         state: installed
-      when: ansible_os_family == 'RedHat'
       changed_when: False
+      when:
+        - ansible_os_family == 'RedHat'
+      register: install_packages
+      until: install_packages is success
+      retries: 5
+      delay: 2
   roles:
     - role: "ansible-hardening"
   vars:

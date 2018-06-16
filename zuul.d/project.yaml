@@ -13,22 +13,13 @@
 # limitations under the License.
 
 - project:
+    templates:
+      - openstack-ansible-role-jobs
     check:
       jobs:
-        - openstack-ansible-linters
-        - openstack-ansible-functional-centos-7
         - openstack-ansible-functional-debian-stable
         - openstack-ansible-functional-fedora-27
-        - openstack-ansible-functional-opensuse-423
-        - openstack-ansible-functional-ubuntu-xenial
-    experimental:
-      jobs:
-        - openstack-ansible-integrated-deploy-aio
     gate:
       jobs:
-        - openstack-ansible-linters
-        - openstack-ansible-functional-centos-7
         - openstack-ansible-functional-debian-stable
         - openstack-ansible-functional-fedora-27
-        - openstack-ansible-functional-opensuse-423
-        - openstack-ansible-functional-ubuntu-xenial

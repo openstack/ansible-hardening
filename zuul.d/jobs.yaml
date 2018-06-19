@@ -19,6 +19,6 @@
     nodeset: debian-stable
 
 - job:
-    name: openstack-ansible-functional-fedora-27
+    name: openstack-ansible-functional-fedora-latest
     parent: openstack-ansible-functional
-    nodeset: fedora-27
+    nodeset: fedora-latest

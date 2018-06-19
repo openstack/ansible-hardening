@@ -18,8 +18,8 @@
     check:
       jobs:
         - openstack-ansible-functional-debian-stable
-        - openstack-ansible-functional-fedora-27
+        - openstack-ansible-functional-fedora-latest
     gate:
       jobs:
         - openstack-ansible-functional-debian-stable
-        - openstack-ansible-functional-fedora-27
+        - openstack-ansible-functional-fedora-latest

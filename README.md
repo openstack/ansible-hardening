@@ -18,6 +18,9 @@ to systems running the following distributions:
 For more details, review the
 [ansible-hardening documentation](http://docs.openstack.org/developer/ansible-hardening/).
 
+Release notes for the project can be found at:
+  https://docs.openstack.org/releasenotes/ansible-hardening
+
 Requirements
 ------------
 

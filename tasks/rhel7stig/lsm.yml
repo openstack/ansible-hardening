@@ -96,7 +96,7 @@
   when:
     - ansible_os_family == "RedHat"
     - security_rhel7_enable_linux_security_module | bool
-    - selinux_status_change | changed
+    - selinux_status_change  is changed
   tags:
     - high
     - V-71989

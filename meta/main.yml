@@ -19,6 +19,7 @@ galaxy_info:
     versions:
       - trusty
       - xenial
+      - bionic
   - name: opensuse
     versions:
       - 42.1

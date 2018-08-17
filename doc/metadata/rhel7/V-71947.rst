@@ -10,3 +10,9 @@ cannot perform interactive authentication. Automated edits from Ansible tasks
 might cause authentication disruptions on some hosts, and deployers are urged
 to carefully review each use of the ``NOPASSWD`` directive in their ``sudo``
 configuration files.
+
+Deployers can opt-out of this change by setting an Ansible variable:
+
+.. code-block:: yaml
+
+    security_sudoers_nopasswd_check_enable: no

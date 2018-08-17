@@ -153,6 +153,9 @@ security_rhel7_audit_modprobe: yes                           # V-72195
 security_rhel7_audit_account_actions: yes                    # V-72197
 
 ## Authentication (auth)
+# Check if sudoers has the NOPASSWD rule enabled
+security_sudoers_nopasswd_check_enable: yes
+
 # Disallow logins from accounts with blank/null passwords via PAM.
 security_disallow_blank_password_login: yes                  # V-71937
 # Apply password quality rules.

@@ -73,6 +73,9 @@ allow {{ subnet }}
 
 logchange 0.5
 
+# Adjust the clock on startup if difference is larger than 1 sec.
+makestep 1 3
+
 # This directive defines an email address to which mail should be sent
 # if chronyd applies a correction exceeding a particular threshold to the
 # system clock.

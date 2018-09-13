@@ -110,7 +110,7 @@ fi
 # tests repo are not supported.
 if [[ "${CLONE_UPGRADE_TESTS}" == "yes" ]]; then
     if [[ ! -d "${WORKING_DIR}/tests/common/previous" ]]; then
-        git clone -b stable/newton \
+        git clone -b newton-eol \
             https://git.openstack.org/openstack/openstack-ansible-tests \
             ${WORKING_DIR}/tests/common/previous
   fi

@@ -15,6 +15,9 @@
 - project:
     templates:
       - openstack-ansible-role-jobs
+      - check-requirements
+      - publish-openstack-sphinx-docs
+      - release-notes-jobs
     check:
       jobs:
         - openstack-ansible-functional-debian-stable

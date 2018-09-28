@@ -36,6 +36,11 @@ Vagrant.configure(2) do |config|
     xenial.vm.box = "ubuntu/xenial64"
   end
 
+  config.vm.define "ubuntu1804" do |bionic|
+    bionic.disksize.size = "40GB"
+    bionic.vm.box = "ubuntu/bionic64"
+  end
+
   config.vm.define "opensuse423" do |leap423|
     leap423.vm.box = "opensuse/openSUSE-42.3-x86_64"
   end

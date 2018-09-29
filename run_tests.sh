@@ -33,6 +33,7 @@ set -xeu
 ## Vars ----------------------------------------------------------------------
 
 WORKING_DIR="$(readlink -f $(dirname $0))"
+OSA_PROJECT_NAME="$(sed -n 's|^project=openstack/\(.*\).git$|\1|p' $(pwd)/.gitreview)"
 
 COMMON_TESTS_PATH="${WORKING_DIR}/tests/common"
 TESTING_HOME=${TESTING_HOME:-$HOME}
@@ -69,7 +70,7 @@ which git &>/dev/null || eval sudo "${pkg_mgr_cmd}" git
 if [[ ! -d "${COMMON_TESTS_PATH}" ]]; then
     # The tests repo doesn't need a clone, we can just
     # symlink it.
-    if [[ "$(basename ${WORKING_DIR})" == "openstack-ansible-tests" ]]; then
+    if [[ "${OSA_PROJECT_NAME}" == "openstack-ansible-tests" ]]; then
         ln -s "${WORKING_DIR}" "${COMMON_TESTS_PATH}"
 
     # In zuul v3 any dependent repository is placed into

@@ -70,3 +70,6 @@ tests/*.retry
 # Git clones
 openstack-ansible-ops
 previous
+
+# Editor files
+.vscode

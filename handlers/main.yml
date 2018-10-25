@@ -32,6 +32,11 @@
     name: fail2ban
     state: restarted
 
+- name: restart auditbeat
+  service:
+    name: auditbeat
+    state: restarted
+
 - name: restart postfix
   service:
     name: postfix

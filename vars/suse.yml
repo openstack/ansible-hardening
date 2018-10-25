@@ -54,6 +54,9 @@ stig_packages_rhel7:
   - packages:
       - audit-audispd-plugins
       - audit
+    state: "{{ 'present' if security_audit_daemon == 'audit' else 'absent' }}"
+    enabled: true
+  - packages:
       - aide
       - dracut-fips
       - openssh

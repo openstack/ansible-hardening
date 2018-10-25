@@ -1,0 +1,12 @@
+{{ security_auditbeat_config|to_yaml }}
+{% if security_auditbeat_logstash_servers |default([]) | length > 0  %}
+output.logstash:
+{% if security_auditbeat_logstash_servers|default([]) | length > 1 %}
+  loadbalance: yes
+{% endif %}
+  ssl.enabled: true #V-72085
+  hosts:  {{ security_auditbeat_logstash_servers| to_yaml }}
+{% else %}
+output.console:
+  enabled: true
+{%- endif %}

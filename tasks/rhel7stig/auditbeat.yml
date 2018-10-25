@@ -1,0 +1,160 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+- name: Setup beats repository (RedHat)
+  yum_repository:
+    name: elastic-6.x
+    description: Elastic repository for 6.x packages
+    baseurl: https://artifacts.elastic.co/packages/6.x/yum
+    gpgcheck: yes
+    gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+  when: ansible_os_family == 'RedHat'
+
+- name: Setup beats repository (Debian)
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/6.x/apt stable main
+    state: present
+    filename: elastic-6.x
+  when: ansible_os_family == 'Debian'
+
+- name: stop auditd
+  become: true
+  command: killall auditd
+  register: audit_stop_result
+  changed_when: audit_stop_result.rc == 0
+  failed_when: false
+  args:
+    warn: no
+
+- name: Install auditbeat
+  package:
+    name: auditbeat
+    state: present
+  tags:
+    - auditbeat
+
+- name: Remove sample rules
+  file:
+    path: "/etc/auditbeat/audit.rules.d/{{item}}"
+    state: absent
+  loop:
+    - sample-rules-linux-32bit.conf
+    - sample-rules-linux-64bit.conf
+
+
+- name: Get valid system architectures for audit rules
+  set_fact:
+    auditd_architectures: "{{ (ansible_architecture == 'ppc64le') | ternary(['ppc64'], ['b32', 'b64']) }}"
+  check_mode: no
+  tags:
+    - always
+    - auditbeat
+
+- name: Deploy rules for auditd based on STIG requirements
+  template:
+    src: osas-auditd-rhel7.j2
+    dest: /etc/auditbeat/audit.rules.d/osas-auditd-rhel7.conf
+  notify:
+    - restart auditbeat
+  tags:
+    - auditbeat
+    - V-72167
+    - V-72155
+    - V-72139
+    - V-72105
+    - V-72097
+    - V-72123
+    - V-72183
+    - V-72189
+    - V-72107
+    - V-72109
+    - V-72099
+    - V-72103
+    - V-72119
+    - V-72113
+    - V-72133
+    - V-72187
+    - V-72153
+    - V-72101
+    - V-72121
+    - V-72115
+    - V-72171
+    - V-72165
+    - V-72125
+    - V-72127
+    - V-72129
+    - V-72185
+    - V-72149
+    - V-72175
+    - V-72177
+    - V-72117
+    - V-72199
+    - V-72201
+    - V-72141
+    - V-72203
+    - V-72135
+    - V-72137
+    - V-72111
+    - V-72179
+    - V-72159
+    - V-72161
+    - V-72169
+    - V-72131
+    - V-72173
+    - V-72151
+    - V-72205
+    - V-72207
+    - V-72157
+    - V-72143
+    - V-72163
+    - V-72191
+    - V-72193
+    - V-72195
+    - V-72197
+    - V-72081
+
+- name: Configure auditbeat
+  template:
+    src: auditbeat.j2
+    dest: /etc/auditbeat/auditbeat.yml
+    mode: 0640
+    owner: root
+    group: root
+  validate: auditbeat test config
+  notify: restart auditbeat
+  tags:
+    - auditbeat
+    - high
+    - V-72085
+
+- name: Make sure following STIGs are cared for in elastic/logstash monitoring
+  run_once: true
+  debug:
+    msg:
+      - V-72087
+      - V-72089
+      - V-72091
+      - V-72093
+
+- name: Ensure auditbeat is running and enabled at boot time
+  service:
+    name: auditbeat
+    state: started
+    enabled: yes
+  tags:
+    - high
+    - auditbeat
+    - V-72079

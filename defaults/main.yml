@@ -81,8 +81,20 @@ security_aide_exclude_dirs:
   - /var
 
 ## Audit daemon (auditd)
+security_audit_daemon: auditd
 # Send audit records to a different system using audisp.
 #security_audisp_remote_server: '10.0.21.1'                  # V-72083
+# Send audit records to a different system using auditbeat.
+security_auditbeat_logstash_servers: []               # V-72083
+security_auditbeat_config:
+  auditbeat.modules:
+  - module: auditd
+    audit_rule_files: [ '${path.config}/audit.rules.d/*.conf' ]
+  fields:
+    type: audit
+  fields_under_root: true
+  codec.json:
+    pretty: false
 # Encrypt audit records when they are transmitted over the network.
 #security_audisp_enable_krb5: yes                            # V-72085
 # Set the auditd failure flag. WARNING: READ DOCUMENTATION BEFORE CHANGING!

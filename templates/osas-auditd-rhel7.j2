@@ -6,6 +6,7 @@
 #    http://docs.openstack.org/developer/ansible-hardening/
 #
 
+{% if security_audit_daemon == 'auditd' %}
 # Delete all existing auditd rules prior to loading this ruleset.
 -D
 
@@ -14,7 +15,7 @@
 
 # Set the auditd failure flag.
 -f {{ security_rhel7_audit_failure_flag }}
-
+{% endif %}
 {#                                                                           #}
 {# The following loop takes a variable called audited_commands (a list of    #}
 {# dictionaries) and creates audit rules for each audited command or         #}
@@ -71,19 +72,28 @@
 -w /etc/sudoers.d/ -p wa -k V-72163
 {% endif %}
 
-{% if security_rhel7_audit_insmod | bool %}
+{% if security_rhel7_audit_insmod | bool and security_audit_daemon == 'auditd' %}
 # V-72191 - All uses of the insmod command must be audited.
 -w /sbin/insmod -p x -F auid!=4294967295 -k V-72191
+{% elif security_rhel7_audit_insmod | bool and security_audit_daemon == 'auditbeat' %}
+# V-72191 - All uses of the insmod command must be audited.
+-w /sbin/insmod -p x -k V-72191
 {% endif %}
 
-{% if security_rhel7_audit_rmmod | bool %}
+{% if security_rhel7_audit_rmmod | bool and security_audit_daemon == 'auditd' %}
 # V-72193 - All uses of the rmmod command must be audited.
 -w /sbin/rmmod -p x -F auid!=4294967295 -k V-72193
+{% elif security_rhel7_audit_rmmod | bool and security_audit_daemon == 'auditbeat' %}
+# V-72193 - All uses of the rmmod command must be audited.
+-w /sbin/rmmod -p x -k V-72193
 {% endif %}
 
-{% if security_rhel7_audit_modprobe | bool %}
+{% if security_rhel7_audit_modprobe | bool and security_audit_daemon == 'auditd' %}
 # V-72195 - All uses of the modprobe command must be audited.
 -w /sbin/modprobe -p x -F auid!=4294967295 -k V-72195
+{% elif security_rhel7_audit_modprobe | bool and security_audit_daemon == 'auditbeat' %}
+# V-72195 - All uses of the modprobe command must be audited.
+-w /sbin/modprobe -p x -k V-72195
 {% endif %}
 
 {% if security_rhel7_audit_account_actions | bool %}

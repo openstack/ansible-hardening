@@ -53,8 +53,11 @@ security_interactive_user_minimum_uid: 500
 # RHEL 7 STIG: Packages to add/remove
 stig_packages_rhel7:
   - packages:
-      - auditd
       - audispd-plugins
+      - auditd
+    state: "{{ 'present' if security_audit_daemon == 'audit' else 'absent' }}"
+    enabled: true
+  - packages:
       - aide
       - aide-common
       - libpwquality-common

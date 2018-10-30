@@ -33,7 +33,7 @@
 
 # Some of the tasks in the role may take a long time to run. Let's start them
 # as early as possible so they have time to finish.
-- include_tasks: async_tasks.yml
+- import_tasks: async_tasks.yml
 
 - name: Get user data for all users on the system
   get_users:
@@ -66,7 +66,7 @@
 
 # Package installations and removals must come first so that configuration
 # changes can be made later.
-- include_tasks: packages.yml
+- import_tasks: packages.yml
   tags:
     - always
 
@@ -78,16 +78,16 @@
 # each file are tagged with the same name (for example, tasks in `auth.yml`
 # are tagged with `auth`). Also, the tag name matches up with the "STIG
 # Controls by Tag" section of the role documentation.
-- include_tasks: accounts.yml
-- include_tasks: aide.yml
-- include_tasks: auditd.yml
-- include_tasks: auth.yml
-- include_tasks: file_perms.yml
-- include_tasks: graphical.yml
-- include_tasks: kernel.yml
-- include_tasks: lsm.yml
-- include_tasks: misc.yml
-- include_tasks: sshd.yml
+- import_tasks: accounts.yml
+- import_tasks: aide.yml
+- import_tasks: auditd.yml
+- import_tasks: auth.yml
+- import_tasks: file_perms.yml
+- import_tasks: graphical.yml
+- import_tasks: kernel.yml
+- import_tasks: lsm.yml
+- import_tasks: misc.yml
+- import_tasks: sshd.yml
 
 - name: Remove the temporary directory
   file:

@@ -88,7 +88,7 @@ Queens
 
   * `ansible-hardening Queens Release Notes`_
 
-.. _ansible-hardening Queens Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/unreleased.html
+.. _ansible-hardening Queens Release Notes: https://docs.openstack.org/releasenotes/ansible-hardening/unreleased.html
 
 Pike
 ~~~~

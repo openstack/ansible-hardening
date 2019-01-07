@@ -115,7 +115,7 @@
   command: "mv {{ aide_database_out_file }} {{ aide_database_file }}"
   changed_when: false
   when:
-    - not aide_init | skipped
+    - aide_init is not skipped
     - ansible_pkg_mgr in ['yum', 'zypper']
   tags:
     - medium

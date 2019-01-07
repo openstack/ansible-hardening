@@ -136,7 +136,7 @@
       {{ world_writable_dirs.stdout }}
   when:
     - world_writable_dirs is defined
-    - not world_writable_dirs | skipped
+    - world_writable_dirs is not skipped
   tags:
     - medium
     - file_perms

@@ -23,7 +23,7 @@
   until: job_result.finished
   retries: 30
   when:
-    - not rpmverify_task | skipped
+    - rpmverify_task is not skipped
   tags:
     - rpm
     - high

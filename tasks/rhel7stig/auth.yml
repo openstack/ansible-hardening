@@ -125,7 +125,7 @@
       Remove the directive to ensure that all users must provide a password to
       run commands as the root user.
   when:
-    - not sudoers_nopasswd_check | skipped
+    - sudoers_nopasswd_check is not skipped
     - sudoers_nopasswd_check.stdout != 'not found'
   tags:
     - auth
@@ -149,7 +149,7 @@
       files. Remove the directive to ensure that all users must provide a
       password to run commands as the root user each time they use sudo.
   when:
-    - not sudoers_authenticate_check | skipped
+    - sudoers_authenticate_check is not skipped
     - sudoers_authenticate_check.stdout != 'not found'
   tags:
     - auth
@@ -249,7 +249,7 @@
   until: job_result.finished | bool
   retries: 30
   when:
-    - not shosts_find | skipped
+    - shosts_find is not skipped
   tags:
     - high
     - auth
@@ -262,7 +262,7 @@
     state: absent
   with_items: "{{ job_result.files }}"
   when:
-    - not job_result | skipped
+    - job_result is not skipped
     - security_rhel7_remove_shosts_files | bool
   tags:
     - high

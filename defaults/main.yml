@@ -269,6 +269,8 @@ security_ntp_servers:
   - 3.pool.ntp.org
 # Configure Chrony to synchronize the hardware clock
 security_ntp_sync_rtc: false
+# NTP server options.
+security_ntp_server_options: offline maxpoll 10 minpoll 8
 # Chrony limits access to clients that are on certain subnets.  Adjust the
 # following subnets here to limit client access to chrony servers.
 security_allowed_ntp_subnets:

@@ -82,13 +82,16 @@ makestep 1 3
 
 # mailonchange root@localhost 0.5
 
+{% if security_ntp_sync_rtc | bool %}
 # This directive tells chrony to regulate the real-time clock and tells it
 # Where to store related data.  It may not work on some newer motherboards
 # that use the HPET real-time clock.  It requires enhanced real-time
-# support in the kernel.  I've commented it out because with certain
+# support in the kernel.  It is disabled by default because with certain
 # combinations of motherboard and kernel it is reported to cause lockups.
 
-# rtcfile /var/lib/chrony/chrony.rtc
+rtcfile /var/lib/chrony/chrony.rtc
+rtcautotrim 10
+{% endif %}
 
 # If the last line of this file reads 'rtconutc' chrony will assume that
 # the CMOS clock is on UTC (GMT).  If it reads '# rtconutc' or is absent

@@ -83,14 +83,12 @@ makestep 1 3
 # mailonchange root@localhost 0.5
 
 {% if security_ntp_sync_rtc | bool %}
-# This directive tells chrony to regulate the real-time clock and tells it
-# Where to store related data.  It may not work on some newer motherboards
-# that use the HPET real-time clock.  It requires enhanced real-time
-# support in the kernel.  It is disabled by default because with certain
-# combinations of motherboard and kernel it is reported to cause lockups.
-
-rtcfile /var/lib/chrony/chrony.rtc
-rtcautotrim 10
+# The rtcsync directive enables a mode where the system time is periodically
+# copied to the real time clock (RTC).
+# On Linux the RTC copy is performed by the kernel every 11 minutes. This
+# directive cannot be used when the normal RTC tracking is enabled, i.e. when
+# the rtcfile directive is used.
+rtcsync
 {% endif %}
 
 # If the last line of this file reads 'rtconutc' chrony will assume that

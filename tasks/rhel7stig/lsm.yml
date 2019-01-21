@@ -80,7 +80,7 @@
     state: enforcing
     policy: targeted
   register: selinux_status_change
-  changed_when: selinux_status_change | changed and ansible_selinux.status != 'disabled'
+  changed_when: selinux_status_change is changed and ansible_selinux.status != 'disabled'
   when:
     - ansible_os_family == "RedHat"
     - security_rhel7_enable_linux_security_module | bool

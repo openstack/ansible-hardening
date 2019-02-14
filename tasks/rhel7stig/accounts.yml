@@ -98,11 +98,11 @@
 # NOTE(mhayden): The "is mapping" check is required below because some users
 # may be attached to a Kerberos realm and they may not have shadow data on the
 # system. See bug 1659232 for more details.
-- name: Set maximum password lifetime limit to 60 days for interactive accounts
-  shell: "chage -M 60 {{ item.name }}"
+- name: "Set maximum password lifetime limit to {{ security_password_max_lifetime_days|default(60) }} days for interactive accounts"
+  shell: "chage -M {{ security_password_max_lifetime_days|default(60) }} {{ item.name }}"
   when:
     - item.shadow is mapping
-    - item.shadow.max_days > 60
+    - item.shadow.max_days > (security_password_max_lifetime_days|default(60))
     - security_set_maximum_password_lifetime | bool
   with_items:
     - "{{ interactive_user_list.users }}"

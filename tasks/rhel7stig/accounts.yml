@@ -83,7 +83,7 @@
 # may be attached to a Kerberos realm and they may not have shadow data on the
 # system. See bug 1659232 for more details.
 - name: Set minimum password lifetime limit to 24 hours for interactive accounts
-  shell: "chage -m 1 {{ item.name }}"
+  command: "chage -m 1 {{ item.name }}"
   when:
     - item.shadow is mapping
     - item.shadow.min_days != 1
@@ -99,7 +99,7 @@
 # may be attached to a Kerberos realm and they may not have shadow data on the
 # system. See bug 1659232 for more details.
 - name: Set maximum password lifetime limit to 60 days for interactive accounts
-  shell: "chage -M 60 {{ item.name }}"
+  command: "chage -M 60 {{ item.name }}"
   when:
     - item.shadow is mapping
     - item.shadow.max_days > 60
@@ -144,7 +144,7 @@
     line: "{{ item.parameter }} {{ item.value }}"
     state: present
   when:
-    - item.value != ''
+    - item.value | length > 0
     - item.ansible_os_family == 'all' or item.ansible_os_family == ansible_os_family
   with_items: "{{ shadow_utils_rhel7 }}"
   tags:
@@ -210,7 +210,7 @@
   stat:
     path: "{{ item['dir'] }}"
   when:
-    - item['dir'] != ''
+    - item['dir'] | length > 0
   with_items: "{{ user_list.users }}"
   register: home_directory_checks
   tags:

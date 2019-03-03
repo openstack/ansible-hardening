@@ -16,5 +16,5 @@
 # (c) 2017, Jean-Philippe Evrard <jean-philippe.evrard@rackspace.co.uk>
 
 maturity_info:
-  status: complete
+  status: complete # noqa 701
   created_during: liberty

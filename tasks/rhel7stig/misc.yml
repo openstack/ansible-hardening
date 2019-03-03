@@ -15,7 +15,7 @@
 
 - name: Check autofs service
   command: systemctl status autofs
-  register: autofs_check
+  register: autofs_check # noqa 303
   failed_when: autofs_check.rc not in [0,3,4]
   changed_when: False
   check_mode: no
@@ -175,7 +175,9 @@
     - V-72213
 
 - name: Check if ClamAV update process is already running
-  shell: "ps -ef | egrep [f]reshclam -q"
+  shell: "set -o pipefail && ps -ef | egrep [f]reshclam -q"
+  args:
+    executable: /bin/bash
   register: freshclam_proc
   changed_when: False
   failed_when: False
@@ -278,7 +280,7 @@
 # Returns 0 if installed, 3 if not installed
 - name: Check firewalld status
   command: systemctl status firewalld
-  register: firewalld_status_check
+  register: firewalld_status_check # noqa 303
   failed_when: firewalld_status_check.rc not in [0,3,4]
   changed_when: False
   check_mode: no
@@ -299,7 +301,9 @@
     - V-72273
 
 - name: Limit new TCP connections to 25/minute and allow bursting to 100
-  command: "firewall-cmd --direct --add-rule ipv4 filter IN_public_allow 0 -m tcp -p tcp -m limit --limit {{ security_enable_firewalld_rate_limit_per_minute }}/minute --limit-burst {{ security_enable_firewalld_rate_limit_burst }} -j ACCEPT"
+  command: "firewall-cmd --direct --add-rule ipv4 filter IN_public_allow 0 -m tcp -p tcp -m limit
+            --limit {{ security_enable_firewalld_rate_limit_per_minute }}/minute
+            --limit-burst {{ security_enable_firewalld_rate_limit_burst }} -j ACCEPT"
   register: add_rate_limit_firewalld_rule
   changed_when: "'ALREADY_ENABLED' not in add_rate_limit_firewalld_rule.stdout"
   when:
@@ -336,7 +340,9 @@
     - V-72281
 
 - name: Check for interfaces in promiscuous mode
-  shell: "ip link | grep -i promisc"
+  shell: "set -o pipefail && ip link | grep -i promisc"
+  args:
+    executable: /bin/bash
   register: promiscuous_interface_check
   changed_when: False
   failed_when: False
@@ -407,7 +413,9 @@
     - V-72305
 
 - name: Check to see if snmpd config contains public/private
-  shell: 'egrep "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
+  shell: 'set -o pipefail && egrep "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
+  args:
+    executable: /bin/bash
   register: snmp_public_private_check
   changed_when: False
   failed_when: False

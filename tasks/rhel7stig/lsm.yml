@@ -32,7 +32,7 @@
 # systemd's status directly as an alternative.
 - name: Check if apparmor is running
   command: "systemctl status apparmor"
-  register: systemctl_apparmor_status
+  register: systemctl_apparmor_status # noqa 303
   check_mode: no
   changed_when: false
   failed_when: false

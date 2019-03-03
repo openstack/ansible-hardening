@@ -30,7 +30,9 @@
     - V-71855
 
 - name: V-71855 - Get files with invalid checksums (rpm)
-  shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
+  shell: "set -o pipefail && grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
+  args:
+    executable: /bin/bash
   register: invalid_checksum_files
   changed_when: False
   when:

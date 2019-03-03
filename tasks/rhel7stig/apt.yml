@@ -28,7 +28,9 @@
     - not check_mode | bool
 
 - name: V-71855 - Get files with invalid checksums (apt)
-  shell: "grep -v OK$ {{ temp_dir }}/debsums.txt | awk '{ print $1 }'"
+  shell: "set -o pipefail && grep -v OK$ {{ temp_dir }}/debsums.txt | awk '{ print $1 }'"
+  args:
+    executable: /bin/bash
   register: invalid_checksum_files
   changed_when: False
   when:

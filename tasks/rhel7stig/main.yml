@@ -15,7 +15,7 @@
 
 - name: Create temporary directory to hold any temporary files
   command: "mktemp -d"
-  register: mktemp_result
+  register: mktemp_result # noqa 303
   changed_when: False
   when:
     - not check_mode | bool

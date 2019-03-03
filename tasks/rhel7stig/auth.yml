@@ -108,7 +108,9 @@
 # those lines that have a '#' as the first character or '#' as the first
 # character following a space (or series of spaces).
 - name: Check for 'nopasswd' in sudoers files
-  shell: 'grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ | egrep -v "^([[:space:]]*)?(#|$)" || echo "not found"'
+  shell: 'set -o pipefail && grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ | egrep -v "^([[:space:]]*)?(#|$)" || echo "not found"'
+  args:
+    executable: /bin/bash
   register: sudoers_nopasswd_check
   changed_when: False
   when:
@@ -177,7 +179,8 @@
 
 - name: Set a GRUB 2 password for single-user/maintenance modes
   block:
-    - blockinfile:
+    - name: blockinfile # noqa 502
+      blockinfile:
         path: "{{ grub_custom_file }}"
         insertbefore: EOF
         marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
@@ -187,7 +190,8 @@
         state: present
       notify:
         - update grub config
-    - lineinfile:
+    - name: lineinfile # noqa 502
+      lineinfile:
         path: "{{ grub_linux_file }}"
         regexp: '^CLASS=.*'
         line: 'CLASS="--class gnu-linux --class gnu --class os --unrestricted"'

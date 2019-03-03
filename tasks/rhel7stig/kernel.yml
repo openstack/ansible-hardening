@@ -50,7 +50,7 @@
 
 - name: Check kdump service
   command: systemctl status kdump
-  register: kdump_service_check
+  register: kdump_service_check # noqa 303
   failed_when: kdump_service_check.rc not in [0,3,4]
   changed_when: False
   check_mode: no

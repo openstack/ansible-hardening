@@ -20,9 +20,7 @@
       - release-notes-jobs-python3
     check:
       jobs:
-        - openstack-ansible-functional-debian-stable
         - openstack-ansible-functional-fedora-latest
     gate:
       jobs:
-        - openstack-ansible-functional-debian-stable
         - openstack-ansible-functional-fedora-latest

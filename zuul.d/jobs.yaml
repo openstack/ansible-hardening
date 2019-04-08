@@ -14,6 +14,11 @@
 # limitations under the License.
 
 - job:
+    name: openstack-ansible-functional-debian-stable
+    parent: openstack-ansible-functional
+    nodeset: debian-stable
+
+- job:
     name: openstack-ansible-functional-fedora-latest
     parent: openstack-ansible-functional
     nodeset: fedora-latest

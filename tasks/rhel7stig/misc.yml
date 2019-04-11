@@ -266,7 +266,7 @@
     src: chrony.conf.j2
     dest: "{{ chrony_conf_file }}"
   when:
-    - chrony_conf_check.stat.exists
+    - chrony_conf_check.stat.exists | bool
     - security_rhel7_enable_chrony | bool
   notify:
     - restart chrony

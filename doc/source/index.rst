@@ -135,7 +135,7 @@ Ocata
   * `ansible-hardening Ocata Release Notes`_
 
 .. _ansible-hardening Ocata Documentation: https://docs.openstack.org/ansible-hardening/ocata/
-.. _ansible-hardening Ocata Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/ocata.html
+.. _ansible-hardening Ocata Release Notes: https://docs.openstack.org/releasenotes/ansible-hardening/ocata.html
 
 Newton
 ~~~~~~

@@ -155,4 +155,4 @@ Newton
   * `ansible-hardening Newton Release Notes`_
 
 .. _ansible-hardening Newton Documentation: https://docs.openstack.org/ansible-hardening/newton/
-.. _ansible-hardening Newton Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/newton.html
+.. _ansible-hardening Newton Release Notes: https://docs.openstack.org/releasenotes/ansible-hardening/newton.html

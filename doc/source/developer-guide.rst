@@ -81,4 +81,4 @@ section to explain the changes found within your patch. Delete any unused
 sections and submit the release note with your patch.
 
 For more details, refer to the documentation on release notes found in the
-`OpenStack-Ansible developer documentation <http://docs.openstack.org/developer/openstack-ansible/developer-docs/contribute.html#release-notes>`_
+`OpenStack-Ansible developer documentation <https://docs.openstack.org/developer/openstack-ansible/developer-docs/contribute.html#release-notes>`_

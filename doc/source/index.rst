@@ -115,7 +115,7 @@ Pike
   * `ansible-hardening Pike Release Notes`_
 
 .. _ansible-hardening Pike Documentation: https://docs.openstack.org/ansible-hardening/pike/
-.. _ansible-hardening Pike Release Notes: http://docs.openstack.org/releasenotes/ansible-hardening/pike.html
+.. _ansible-hardening Pike Release Notes: https://docs.openstack.org/releasenotes/ansible-hardening/pike.html
 
 Ocata
 ~~~~~

@@ -1,6 +1,6 @@
 # Note:
 # This file is maintained in the openstack-ansible-tests repository.
-# https://git.openstack.org/cgit/openstack/openstack-ansible-tests/tree/Vagrantfile
+# https://opendev.org/openstack/openstack-ansible-tests/src/Vagrantfile
 #
 # If you need to perform any change on it, you should modify the central file,
 # then, an OpenStack CI job will propagate your changes to every OSA repository

@@ -41,12 +41,12 @@ Vagrant.configure(2) do |config|
     bionic.vm.box = "ubuntu/bionic64"
   end
 
-  config.vm.define "opensuse423" do |leap423|
-    leap423.vm.box = "opensuse/openSUSE-42.3-x86_64"
-  end
-
   config.vm.define "opensuse150" do |leap150|
     leap150.vm.box = "opensuse/openSUSE-15.0-x86_64"
+  end
+
+  config.vm.define "opensuse151" do |leap151|
+    leap151.vm.box = "opensuse/openSUSE-15.1-x86_64"
   end
 
   config.vm.define "centos7" do |centos7|

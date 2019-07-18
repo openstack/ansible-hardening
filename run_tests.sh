@@ -65,7 +65,10 @@ case ${ID,,} in
 esac
 
 # Install git so that we can clone the tests repo if git is not available
-which git &>/dev/null || eval sudo "${pkg_mgr_cmd}" git
+case ${ID,,} in
+  gentoo) which git &>/dev/null || eval sudo "${pkg_mgr_cmd}" dev-vcs/git ;;
+  *) which git &>/dev/null || eval sudo "${pkg_mgr_cmd}" git ;;
+esac
 
 # Clone the tests repo for access to the common test script
 if [[ ! -d "${COMMON_TESTS_PATH}" ]]; then
@@ -92,4 +95,3 @@ fi
 
 # Execute the common test script
 source tests/common/run_tests_common.sh
-

@@ -22,5 +22,5 @@ Learn more about ansible-hardening content can be found in the online
 documentation.
 
 * Documentation: https://docs.openstack.org/ansible-hardening/latest/
-* Source: https://git.openstack.org/cgit/openstack/ansible-hardening
+* Source: https://opendev.org/openstack/ansible-hardening/
 * Release Notes: https://docs.openstack.org/releasenotes/ansible-hardening/

@@ -48,8 +48,10 @@ sys.setrecursionlimit(4000)
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autodoc',
     'openstackdocstheme',
     'metadata-docs-rhel7',
+    'sphinxcontrib.rsvgconverter',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -76,7 +78,7 @@ title = 'ansible-hardening Documentation:'
 
 # The link to the browsable source code (for the left hand menu)
 oslosphinx_cgit_link = (
-    'https://git.openstack.org/cgit/openstack/{}'.format(target_name)
+    'https://opendev.org/openstack/{}'.format(target_name)
 )
 
 # The version info for the project you're documenting, acts as replacement for
@@ -246,9 +248,11 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, target_name + '.tex',
+    (master_doc, 'doc-' + target_name + '.tex',
      title, author, 'manual'),
 ]
+
+latex_use_xindy = False
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
@@ -313,3 +317,5 @@ pdf_documents = [
     (master_doc, target_name,
      title, author)
 ]
+
+locale_dirs = ['locale/']

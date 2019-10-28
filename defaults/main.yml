@@ -186,7 +186,7 @@ security_shadow_utils_fail_delay: 4                          # V-71951
 # Set a umask for all authenticated users.
 # security_shadow_utils_umask: '077'                         # V-71995
 # Create home directories for new users by default.
-security_shadow_utils_create_home: yes                       # V-72013
+security_shadow_utils_create_home: "yes"                     # V-72013
 # How many old user password to remember to prevent password re-use.
 #security_password_remember_password: 5                      # V-71933
 # Disable user accounts if the password expires.

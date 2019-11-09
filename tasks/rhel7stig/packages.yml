@@ -13,12 +13,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Add or remove packages based on STIG requirements
+- name: Add packages based on STIG requirements
   package:
     name: "{{ stig_packages_rhel7 | selectattr('enabled') | selectattr('state', 'equalto', item) | sum(attribute='packages', start=[]) }}"
     state: "{{ item }}"
   with_items:
-    - "{{ stig_packages_rhel7 | selectattr('enabled') | map(attribute='state') | unique | list }}"
+    - "{{ stig_packages_rhel7 | selectattr('enabled') | selectattr('state', 'equalto', 'present') | map(attribute='state') | unique | list }}"
+  tags:
+    - cat1
+    - auth
+    - packages
+    - services
+    - V-71897
+    - V-71967
+    - V-71969
+    - V-72067
+    - V-72077
+    - V-72213
+    - V-72233
+    - V-72301
+    - V-72307
+
+- name: Remove packages based on STIG requirements
+  package:
+    name: "{{ stig_packages_rhel7 | selectattr('enabled') | selectattr('state', 'equalto', item) | sum(attribute='packages', start=[]) }}"
+    state: "{{ item }}"
+  with_items:
+    - "{{ stig_packages_rhel7 | selectattr('enabled') | selectattr('state', 'equalto', 'absent') | map(attribute='state') | unique | list }}"
   tags:
     - cat1
     - auth

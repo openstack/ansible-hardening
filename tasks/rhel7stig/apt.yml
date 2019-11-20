@@ -16,7 +16,7 @@
 - name: Ensure debsums is installed
   apt:
     name: debsums
-    state: installed
+    state: present
   when: security_check_package_checksums | bool
 
 - name: Gather debsums report

@@ -14,13 +14,6 @@
 # limitations under the License.
 
 - job:
-    name: openstack-ansible-rhel_6-ubuntu-trusty
-    parent: openstack-ansible-functional
-    nodeset: ubuntu-trusty
-    vars:
-      tox_env: func_rhel6
-
-- job:
     name: openstack-ansible-rhel_7-ubuntu-xenial
     parent: openstack-ansible-functional-ubuntu-xenial
 

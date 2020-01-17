@@ -20,12 +20,10 @@
     check:
       jobs:
         - openstack-ansible-linters
-        - openstack-ansible-rhel_6-ubuntu-trusty
         - openstack-ansible-rhel_7-centos-7
         - openstack-ansible-rhel_7-ubuntu-xenial
     gate:
       jobs:
         - openstack-ansible-linters
-        - openstack-ansible-rhel_6-ubuntu-trusty
         - openstack-ansible-rhel_7-centos-7
         - openstack-ansible-rhel_7-ubuntu-xenial

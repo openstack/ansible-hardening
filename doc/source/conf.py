@@ -48,9 +48,10 @@ sys.setrecursionlimit(4000)
 extensions = [
     'sphinx.ext.autodoc',
     'openstackdocstheme',
-    'metadata-docs-rhel7',
     'sphinxcontrib.rsvgconverter',
 ]
+
+#    'metadata-docs-rhel7',
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']

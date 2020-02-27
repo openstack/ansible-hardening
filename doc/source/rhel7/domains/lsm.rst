@@ -12,5 +12,3 @@ Overview
 The STIG requires that SELinux is in enforcing mode to provide additional
 security against attacks. The security role will enable SELinux on CentOS
 systems and enable AppArmor on Ubuntu and Debian systems.
-
-.. include:: auto_lsm.rst

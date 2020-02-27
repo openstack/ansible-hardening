@@ -15,5 +15,3 @@ coordination.
 Deployers should consider an authentication solution that uses centralized
 authentication, such as LDAP, Active Directory, or Kerberos, for the best
 security posture.
-
-.. include:: auto_accounts.rst

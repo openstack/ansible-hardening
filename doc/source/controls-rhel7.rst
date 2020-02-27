@@ -2,7 +2,7 @@ Security hardening controls in detail (RHEL 7 STIG)
 ===================================================
 
 The ansible-hardening role follows the Red Hat Enteprise Linux 7
-`Security Technical Implementation Guide (STIG)`_. The guide has over 200
+Security Technical Implementation Guide (STIG). The guide has over 200
 controls that apply to various parts of a Linux system, and it is updated
 regularly by the Defense Information Systems Agency (DISA). DISA is part of the
 United States Department of Defense. The current version of the openstack-
@@ -52,16 +52,7 @@ Controls are divided into groups based on the following properties:
     itself. For example, all tasks tagged with ``auditd`` are found within
     ``tasks/rhel7stig/auditd.yml``.
 
-.. _Security Technical Implementation Guide (STIG): http://iase.disa.mil/stigs/os/unix-linux/Pages/red-hat.aspx
-
 Although the STIG is specific to Red Hat Enterprise Linux 7, it also applies to
 CentOS 7 systems. In addition, almost all of the controls are easily translated
 for Ubuntu 16.04, openSUSE Leap and SUSE Linux Enterprise 12. Any deviations
 during translation are noted within the documentation below.
-
-.. toctree::
-   :maxdepth: 2
-
-   rhel7/auto_controls-by-severity.rst
-   rhel7/auto_controls-by-status.rst
-   rhel7/auto_controls-all.rst

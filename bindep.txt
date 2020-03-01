@@ -29,9 +29,6 @@ gcc
 git-core          [platform:dpkg platform:suse]
 libssl-dev        [platform:dpkg]
 libffi-dev        [platform:dpkg]
-python2.7         [platform:dpkg]
-python-apt        [platform:dpkg]
-python-dev        [platform:dpkg]
 python3           [platform:dpkg]
 python3-apt       [platform:dpkg]
 python3-dev       [platform:dpkg]
@@ -41,14 +38,14 @@ gcc-c++           [platform:rpm]
 git               [platform:rpm !platform:suse]
 libffi-devel      [platform:rpm]
 openssl-devel     [platform:rpm]
-python-devel      [platform:rpm]
-python2-dnf       [platform:fedora]
+python3-devel     [platform:rpm]
+python3-dnf       [platform:fedora]
 
 # Base requirements for Gentoo
 git               [platform:gentoo]
 
 # For SELinux
-libselinux-python [platform:redhat]
+libselinux-python  [platform:redhat]
 libsemanage-python [platform:redhat]
 
 # Required for compressing collected log files in CI

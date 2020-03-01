@@ -35,11 +35,23 @@
     - misc
     - V-71985
 
+# NOTE(noonedeadpunk): We run this twice because of the ansible bug:
+#                      https://github.com/ansible/ansible/issues/68680
 # This returns an exit code of 0 if it's running, 3 if it's masked.
 - name: V-71993 - The x86 Ctrl-Alt-Delete key sequence must be disabled
   systemd:
     name: ctrl-alt-del.target
     enabled: no
+  when:
+    - security_rhel7_disable_ctrl_alt_delete | bool
+  tags:
+    - high
+    - misc
+    - V-71993
+
+- name: V-71993 - The x86 Ctrl-Alt-Delete key sequence must be disabled
+  systemd:
+    name: ctrl-alt-del.target
     masked: yes
     daemon_reload: yes
   when:

@@ -16,6 +16,9 @@
 - name: Playbook for role testing
   hosts: localhost
   pre_tasks:
+    - name: Set ansible_python_interpreter
+      set_fact:
+        ansible_python_interpreter: "/usr/bin/{{ (ansible_distribution == 'CentOS' and ansible_distribution_version is version('8', '<')) | ternary('python2', 'python3') }}"
     - name: Ensure apt cache is updated before testing
       apt:
         update_cache: yes

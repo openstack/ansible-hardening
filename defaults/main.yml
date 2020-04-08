@@ -227,7 +227,7 @@ security_lock_session_override_user: yes                     # RHEL-07-010071
 # Lock a session (start screensaver) when a session is inactive.
 security_lock_session_when_inactive: yes                     # V-71893
 # Time after screensaver starts when user login is required.
-security_lock_session_screensaver_lock_delay: 5              # V-71901
+security_lock_session_screensaver_lock_delay: 'uint32 5'     # V-71901
 # Enable a login banner and set the text for the banner.
 security_enable_graphical_login_message: yes                 # V-71859
 security_enable_graphical_login_message_text: >

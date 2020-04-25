@@ -74,11 +74,6 @@ role_name = 'ansible-hardening'
 target_name = 'ansible-hardening'
 title = 'ansible-hardening Documentation:'
 
-# The link to the browsable source code (for the left hand menu)
-oslosphinx_cgit_link = (
-    'https://opendev.org/openstack/{}'.format(target_name)
-)
-
 # openstackdocstheme options
 repository_name = 'openstack/' + target_name
 bug_project = project.lower()

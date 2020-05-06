@@ -18,9 +18,3 @@
       - check-requirements
       - publish-openstack-docs-pti
       - release-notes-jobs-python3
-    check:
-      jobs:
-        - openstack-ansible-functional-fedora-latest
-    gate:
-      jobs:
-        - openstack-ansible-functional-fedora-latest

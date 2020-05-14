@@ -66,10 +66,57 @@ Releases
 
 Deployers should use the latest stable release for all production deployments.
 
+Train
+~~~~~~
+
+* **Status:** Latest stable release
+
+* **STIG Version:**
+  RHEL 7 STIG Version 1, Release 3 *(Published on 2017-10-27)*
+
+* **Supported Operating Systems:**
+
+  * CentOS 7
+  * Debian 10 Buster
+  * openSUSE Leap 15 and 15.1
+  * Red Hat Enterprise Linux 7
+  * Ubuntu 18.04 Bionic
+
+Stein
+~~~~~~
+
+* **Status:** Latest stable release
+
+* **STIG Version:**
+  RHEL 7 STIG Version 1, Release 3 *(Published on 2017-10-27)*
+
+* **Supported Operating Systems:**
+
+  * CentOS 7
+  * Debian 9 Stretch and 10 Buster
+  * openSUSE Leap 15 and 15.1
+  * Red Hat Enterprise Linux 7
+  * Ubuntu 18.04 Bionic
+
+Rocky
+~~~~~~
+
+* **Status:** Latest stable release
+
+* **STIG Version:**
+  RHEL 7 STIG Version 1, Release 3 *(Published on 2017-10-27)*
+
+* **Supported Operating Systems:**
+
+  * CentOS 7
+  * openSUSE Leap 42.3
+  * Red Hat Enterprise Linux 7
+  * Ubuntu 16.04 Xenial and 18.04 Bionic
+
 Queens
 ~~~~~~
 
-* **Status:** Active development
+* **Status:** Latest stable release
 
 * **STIG Version:**
   RHEL 7 STIG Version 1, Release 3 *(Published on 2017-10-27)*

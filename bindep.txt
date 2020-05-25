@@ -45,8 +45,12 @@ python3-dnf       [platform:fedora]
 git               [platform:gentoo]
 
 # For SELinux
-libselinux-python  [platform:redhat]
-libsemanage-python [platform:redhat]
+python3-libselinux  [platform:redhat]
+libsemanage-python3 [platform:redhat]
+
+libselinux-python  [platform:redhat !platform:rhel-8 !platform:centos-8]
+libsemanage-python [platform:redhat !platform:rhel-8 !platform:centos-8]
+
 
 # Required for compressing collected log files in CI
 gzip

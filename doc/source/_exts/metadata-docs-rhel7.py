@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Build documentation from STIG and deployer notes."""
-from __future__ import print_function, unicode_literals
 import os
 import re
 

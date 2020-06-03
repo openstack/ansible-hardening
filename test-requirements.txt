@@ -1,0 +1,6 @@
+# These are actually only used for doc building but
+# doc/requirements.txt is synced from openstack-ansible-tests, so we
+# need to add them elsewhere.
+
+Jinja2>=2.10 # BSD License (3 clause)
+lxml!=3.7.0,>=3.4.1 # BSD

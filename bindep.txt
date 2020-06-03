@@ -38,19 +38,13 @@ gcc-c++           [platform:rpm]
 git               [platform:rpm !platform:suse]
 libffi-devel      [platform:rpm]
 openssl-devel     [platform:rpm]
-python3-devel     [platform:rpm]
 python3-dnf       [platform:fedora]
+python3-devel     [platform:rpm]
 
 # Base requirements for Gentoo
 git               [platform:gentoo]
 
 # For SELinux
-python3-libselinux  [platform:redhat]
+libselinux-python3  [platform:redhat]
 libsemanage-python3 [platform:redhat]
-
-libselinux-python  [platform:redhat !platform:rhel-8 !platform:centos-8]
-libsemanage-python [platform:redhat !platform:rhel-8 !platform:centos-8]
-
-
-# Required for compressing collected log files in CI
-gzip
+iptables [platform:redhat]

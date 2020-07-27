@@ -2,10 +2,16 @@
 # of appearance. Changing the order has an impact on the overall integration
 # process, which may cause wedges in the gate later.
 
-# this is required for the docs build jobs
+# WARNING:
+# This file is maintained in the openstack-ansible-tests repository.
+# https://opendev.org/openstack/openstack-ansible-tests/src/branch/master/sync/doc/requirements.txt
+# If you need to modify this file, update the one in the
+# openstack-ansible-tests repository. Once it merges there, the changes will
+# automatically be proposed to all the repositories which use it.
+
 sphinx!=1.6.6,!=1.6.7,>=1.6.2,<2.0.0;python_version=='2.7'  # BSD
 sphinx>=1.8.0,!=2.1.0,>=1.6.2;python_version>='3.4'  # BSD
 sphinxcontrib-svg2pdfconverter>=0.1.0 # BSD
 openstackdocstheme>=1.20.0 # Apache-2.0
-doc8>=0.6.0 # Apache-2.0
 reno>=2.5.0 # Apache-2.0
+doc8>=0.6.0 # Apache-2.0

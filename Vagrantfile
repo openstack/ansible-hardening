@@ -31,8 +31,8 @@ Vagrant.configure(2) do |config|
          ./run_tests.sh
       SHELL
 
-  config.vm.define "centos7" do |centos7|
-    centos7.vm.box = "centos/7"
+  config.vm.define "centos8" do |centos8|
+    centos8.vm.box = "centos/8"
   end
 
   config.vm.define "debian8" do |debian8|

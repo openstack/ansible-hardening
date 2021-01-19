@@ -21,6 +21,7 @@
   failed_when: false
   when:
     - ansible_pkg_mgr in ['apt', 'zypper']
+    - security_rhel7_enable_linux_security_module | bool
   tags:
     - high
     - V-71989
@@ -31,13 +32,14 @@
 # started apparmor each time. This breaks idempotency and we check
 # systemd's status directly as an alternative.
 - name: Check if apparmor is running
-  command: "systemctl status apparmor"
+  command: "systemctl status apparmor" # noqa 303
   register: systemctl_apparmor_status
   check_mode: no
   changed_when: false
   failed_when: false
   when:
     - ansible_pkg_mgr in ['apt', 'zypper']
+    - security_rhel7_enable_linux_security_module | bool
   tags:
     - high
     - V-71989
@@ -49,6 +51,7 @@
   when:
     - ansible_pkg_mgr in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
+    - not check_mode
   tags:
     - high
     - V-71989

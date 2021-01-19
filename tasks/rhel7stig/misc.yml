@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Check autofs service
-  command: systemctl status autofs
+  command: systemctl status autofs # noqa 303
   register: autofs_check
   failed_when: autofs_check.rc not in [0,3,4]
   changed_when: False
@@ -289,7 +289,7 @@
 
 # Returns 0 if installed, 3 if not installed
 - name: Check firewalld status
-  command: systemctl status firewalld
+  command: systemctl status firewalld # noqa 303
   register: firewalld_status_check
   failed_when: firewalld_status_check.rc not in [0,3,4]
   changed_when: False

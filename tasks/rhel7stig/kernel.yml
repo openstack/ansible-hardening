@@ -49,7 +49,7 @@
     - C-00001
 
 - name: Check kdump service
-  command: systemctl status kdump
+  command: systemctl status kdump # noqa 303
   register: kdump_service_check
   failed_when: kdump_service_check.rc not in [0,3,4]
   changed_when: False

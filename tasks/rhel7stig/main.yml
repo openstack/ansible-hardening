@@ -14,9 +14,10 @@
 # limitations under the License.
 
 - name: Create temporary directory to hold any temporary files
-  command: "mktemp -d"
+  tempfile:
+    state: directory
+    suffix: hardening
   register: mktemp_result
-  changed_when: False
   when:
     - not check_mode | bool
   tags:
@@ -24,7 +25,7 @@
 
 - name: Set a fact for the temporary directory
   set_fact:
-    temp_dir: "{{ mktemp_result.stdout }}"
+    temp_dir: "{{ mktemp_result.path }}"
   changed_when: False
   when:
     - not check_mode | bool

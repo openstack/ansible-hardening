@@ -177,7 +177,8 @@
 
 - name: Set a GRUB 2 password for single-user/maintenance modes
   block:
-    - blockinfile:
+    - name: Define password options for grub
+      blockinfile:
         path: "{{ grub_custom_file }}"
         insertbefore: EOF
         marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
@@ -187,7 +188,8 @@
         state: present
       notify:
         - update grub config
-    - lineinfile:
+    - name: Set CLASS for grub file
+      lineinfile:
         path: "{{ grub_linux_file }}"
         regexp: '^CLASS=.*'
         line: 'CLASS="--class gnu-linux --class gnu --class os --unrestricted"'
@@ -246,8 +248,8 @@
   failed_when: False
   changed_when: False
   register: job_result
-  until: job_result.finished | bool
-  retries: 30
+  until: job_result.finished
+  retries: 60
   when:
     - shosts_find is not skipped
   tags:

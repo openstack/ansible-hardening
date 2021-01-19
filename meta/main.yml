@@ -4,22 +4,25 @@ galaxy_info:
   description: Security hardening role for OpenStack-Ansible
   company: OpenStack
   license: Apache
-  min_ansible_version: 2.3
+  min_ansible_version: 2.10
   platforms:
   - name: Debian
     versions:
       - jessie
+      - buster
   - name: Fedora
     versions:
       - 25
   - name: EL
     versions:
       - 7
+      - 8
   - name: Ubuntu
     versions:
       - trusty
       - xenial
       - bionic
+      - focal
   - name: opensuse
     versions:
       - 42.1

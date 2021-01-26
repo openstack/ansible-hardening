@@ -81,6 +81,7 @@
 # Controls by Tag" section of the role documentation.
 - import_tasks: accounts.yml
 - import_tasks: aide.yml
+  when: security_rhel7_enable_aide | bool
 - import_tasks: auditd.yml
 - import_tasks: auth.yml
 - import_tasks: file_perms.yml

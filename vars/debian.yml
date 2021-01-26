@@ -55,14 +55,17 @@ stig_packages_rhel7:
   - packages:
       - auditd
       - audispd-plugins
-      - aide
-      - aide-common
       - libpwquality-common
       - openssh-client
       - openssh-server
       - screen
     state: "{{ security_package_state }}"
     enabled: True
+  - packages:
+      - aide
+      - aide-common
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_aide }}"
   - packages:
       - apparmor
       - apparmor-profiles

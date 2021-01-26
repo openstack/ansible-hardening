@@ -69,6 +69,7 @@ security_set_maximum_password_lifetime: no                   # V-71931
 ## AIDE (aide)
 # Initialize the AIDE database immediately (may take time).
 security_rhel7_initialize_aide: no                           # V-71973
+security_rhel7_enable_aide: yes
 
 # The default Ubuntu configuration for AIDE will cause it to wander into some
 # terrible places on the system, such as /var/lib/lxc and images in /opt.

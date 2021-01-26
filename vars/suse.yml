@@ -54,12 +54,15 @@ stig_packages_rhel7:
   - packages:
       - audit-audispd-plugins
       - audit
-      - aide
       - dracut-fips
       - openssh
       - screen
     state: "{{ security_package_state }}"
     enabled: True
+  - packages:
+      - aide
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_aide }}"
   - packages:
       - apparmor-parser
       - apparmor-profiles

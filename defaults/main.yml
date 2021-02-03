@@ -201,7 +201,11 @@ security_pam_faillock_unlock_time: 604800                    # V-71943
 #security_rhel7_concurrent_session_limit: 10                 # V-72217
 # Remove .shosts and shosts.equiv files.
 security_rhel7_remove_shosts_files: no                       # V-72277
-
+# Exclude these directories from the shosts files find
+security_rhel7_remove_shosts_exclude_dirs:
+  - '/sys'
+  - '/proc'
+  - '/dev'
 ## File permissions (file_perms)
 # Reset file permissions and ownership for files installed via RPM packages.
 security_reset_perm_ownership: no                            # V-71849

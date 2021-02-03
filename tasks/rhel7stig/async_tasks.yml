@@ -33,9 +33,24 @@
     - V-71855
     - skip_ansible_lint
 
-- name: Check for .shosts or shosts.equiv files
+
+- name: Locate top level directories to check for .shosts
   find:
     paths: /
+    file_type: directory
+  register: shosts_dirs
+  when:
+    - not check_mode | bool
+    - security_rhel7_remove_shosts_files | bool
+  tags:
+    - high
+    - auth
+    - V-72277
+    - V-72279
+
+- name: Check for .shosts or shosts.equiv files
+  find:
+    paths: "{{ shosts_dirs.files | map(attribute='path') | difference(security_rhel7_remove_shosts_exclude_dirs) }}"
     recurse: yes
     hidden: yes
     patterns: '.shosts,shosts.equiv'

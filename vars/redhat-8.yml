@@ -52,13 +52,16 @@ stig_packages_rhel7:
   - packages:
       - audispd-plugins
       - audit
-      - aide
       - dracut-fips
       - dracut-fips-aesni
       - openssh-clients
       - openssh-server
     state: "{{ security_package_state }}"
     enabled: True
+  - packages:
+      - aide
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_aide }}"
   - packages:
       - python3-libselinux
       - policycoreutils-python-utils

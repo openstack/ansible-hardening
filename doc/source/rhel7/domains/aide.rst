@@ -31,4 +31,10 @@ re-apply the role:
     a long time on some systems. During this time, the CPU and disks are **very
     busy**.
 
+To avoid installing and initializing AIDE, set the following Ansible variable:
+
+.. code-block:: yaml
+
+    security_rhel7_enable_aide: false
+
 .. include:: auto_aide.rst

@@ -67,7 +67,7 @@
       The STIG requires that /home is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - ansible_mounts | selectattr('mount', 'equalto', '/home') | list | length == 0
+    - ansible_facts['mounts'] | selectattr('mount', 'equalto', '/home') | list | length == 0
   tags:
     - low
     - misc
@@ -79,7 +79,7 @@
       The STIG requires that /var is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - ansible_mounts | selectattr('mount', 'equalto', '/var') | list | length == 0
+    - ansible_facts['mounts'] | selectattr('mount', 'equalto', '/var') | list | length == 0
   tags:
     - low
     - misc
@@ -91,7 +91,7 @@
       The STIG requires that /var/log/audit is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - ansible_mounts | selectattr('mount', 'equalto', '/var/log/audit') | list | length == 0
+    - ansible_facts['mounts'] | selectattr('mount', 'equalto', '/var/log/audit') | list | length == 0
   tags:
     - low
     - misc
@@ -103,7 +103,7 @@
       The STIG requires that /tmp is on its own filesystem, but this system
       does not appear to be following the requirement.
   when:
-    - ansible_mounts | selectattr('mount', 'equalto', '/tmp') | list | length == 0
+    - ansible_facts['mounts'] | selectattr('mount', 'equalto', '/tmp') | list | length == 0
   tags:
     - low
     - misc
@@ -148,7 +148,7 @@
   when:
     - clamav_install_check.stat.exists
     - security_enable_virus_scanner | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
   notify:
     - restart clamav
   tags:
@@ -164,7 +164,7 @@
   when:
     - clamav_install_check.stat.exists
     - security_enable_virus_scanner | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
   notify:
     - restart clamav
   tags:
@@ -179,7 +179,7 @@
   when:
     - clamav_install_check.stat.exists
     - security_enable_virus_scanner | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
   notify:
     - restart clamav
   tags:

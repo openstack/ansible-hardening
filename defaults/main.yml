@@ -92,7 +92,7 @@ security_rhel7_audit_failure_flag: 1                         # V-72081
 security_rhel7_auditd_disk_full_action: syslog               # V-72087
 security_rhel7_auditd_network_failure_action: syslog         # V-72087
 # Size of remaining disk space (in MB) that triggers alerts.
-security_rhel7_auditd_space_left: "{{ (ansible_mounts | selectattr('mount', 'equalto', '/') | map(attribute='size_total') | first * 0.25 / 1024 / 1024) | int }}" # V-72089
+security_rhel7_auditd_space_left: "{{ (ansible_facts['mounts'] | selectattr('mount', 'equalto', '/') | map(attribute='size_total') | first * 0.25 / 1024 / 1024) | int }}" # V-72089
 # Action to take when the space_left threshold is reached.
 security_rhel7_auditd_space_left_action: email               # V-72091
 # Send auditd email alerts to this user.

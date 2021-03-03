@@ -16,11 +16,11 @@
 - name: Gather variables for each operating system
   include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
-    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
-    - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
-    - "{{ ansible_distribution | lower }}.yml"
-    - "{{ ansible_os_family | lower }}.yml"
+    - "{{ ansible_facts['distribution'] | lower }}-{{ ansible_facts['distribution_version'] | lower }}.yml"
+    - "{{ ansible_facts['distribution'] | lower }}-{{ ansible_facts['distribution_major_version'] | lower }}.yml"
+    - "{{ ansible_facts['os_family'] | lower }}-{{ ansible_facts['distribution_major_version'] | lower }}.yml"
+    - "{{ ansible_facts['distribution'] | lower }}.yml"
+    - "{{ ansible_facts['os_family'] | lower }}.yml"
   tags:
     - always
 
@@ -33,14 +33,14 @@
 
 - name: Check to see if we are booting with EFI or UEFI
   set_fact:
-    booted_with_efi: "{{ ansible_mounts | selectattr('mount', 'equalto', '/boot/efi') | list | length > 0 }}"
+    booted_with_efi: "{{ ansible_facts['mounts'] | selectattr('mount', 'equalto', '/boot/efi') | list | length > 0 }}"
   tags:
     - always
 
 - name: Set facts
   set_fact:
     check_mode: "{{ noop_result is skipped }}"
-    linux_security_module: "{{ (ansible_os_family == 'Debian') | ternary('apparmor','selinux') }}"
+    linux_security_module: "{{ (ansible_facts['os_family'] == 'Debian') | ternary('apparmor','selinux') }}"
     grub_config_file_boot: "{{ booted_with_efi | ternary(grub_conf_file_efi, grub_conf_file) }}"
   tags:
     - always

@@ -21,7 +21,7 @@
   check_mode: no
   register: yum_cron_config_check
   when:
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
   tags:
     - always
 
@@ -32,7 +32,7 @@
     line: "apply_updates = yes"
     state: present
   when:
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
     - yum_cron_config_check.stat.exists | bool
     - security_rhel7_automatic_package_updates | bool
   tags:

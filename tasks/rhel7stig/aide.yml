@@ -58,7 +58,7 @@
       /sbin   NORMAL
   when:
     - aide_conf.results[0].stat.exists | bool
-    - ansible_os_family | lower == 'debian'
+    - ansible_facts['os_family'] | lower == 'debian'
   tags:
     - low
     - aide
@@ -76,7 +76,7 @@
     backrefs: yes
   when:
     - aide_conf.results[1].stat.exists | bool
-    - ansible_pkg_mgr == 'zypper'
+    - ansible_facts['pkg_mgr'] == 'zypper'
   tags:
     - low
     - aide
@@ -116,7 +116,7 @@
   changed_when: false
   when:
     - aide_init is not skipped
-    - ansible_pkg_mgr in ['yum', 'zypper']
+    - ansible_facts['pkg_mgr'] in ['yum', 'zypper']
   tags:
     - medium
     - aide
@@ -133,7 +133,7 @@
     special_time: daily
     job: "/sbin/aide --check | /bin/mail -s \"$HOSTNAME - Daily aide integrity check run\" root"
   when:
-    - ansible_pkg_mgr in ['yum', 'zypper']
+    - ansible_facts['pkg_mgr'] in ['yum', 'zypper']
   tags:
     - medium
     - aide

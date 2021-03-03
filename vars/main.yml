@@ -55,7 +55,7 @@ auditd_config:
 #                  otherwise 'no' (required)
 #   path: the path to the command (optional, default is '/usr/bin')
 #   distro: restrict deployment to a single Linux distribution (optional,
-#           should be equal to 'ansible_os_family | lower', such as 'redhat'
+#           should be equal to 'ansible_facts['os_family'] | lower', such as 'redhat'
 #           or 'ubuntu')
 #
 audited_commands:

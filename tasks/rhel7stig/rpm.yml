@@ -35,7 +35,7 @@
   when:
     - security_check_package_checksums | bool
     - not check_mode | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
   tags:
     - rpm
     - high
@@ -54,7 +54,7 @@
   when:
     - security_check_package_checksums | bool
     - not check_mode | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
     - invalid_checksum_files is defined
     - invalid_checksum_files.stdout is defined
   tags:
@@ -84,7 +84,7 @@
     state: present
   when:
     - security_package_clean_on_remove | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
   tags:
     - low
     - packages

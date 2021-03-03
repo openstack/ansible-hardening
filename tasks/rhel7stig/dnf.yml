@@ -21,8 +21,8 @@
   check_mode: no
   register: dnf_automatic_config_check
   when:
-    - ansible_os_family | lower == 'redhat'
-    - ansible_pkg_mgr == 'dnf'
+    - ansible_facts['os_family'] | lower == 'redhat'
+    - ansible_facts['pkg_mgr'] == 'dnf'
   tags:
     - always
 
@@ -33,8 +33,8 @@
     line: "apply_updates = yes"
     state: present
   when:
-    - ansible_os_family | lower == 'redhat'
-    - ansible_pkg_mgr == 'dnf'
+    - ansible_facts['os_family'] | lower == 'redhat'
+    - ansible_facts['pkg_mgr'] == 'dnf'
     - dnf_automatic_config_check.stat.exists | bool
     - security_rhel7_automatic_package_updates | bool
   tags:
@@ -53,8 +53,8 @@
   check_mode: no
   changed_when: False
   when:
-    - ansible_os_family | lower == 'redhat'
-    - ansible_pkg_mgr == 'dnf'
+    - ansible_facts['os_family'] | lower == 'redhat'
+    - ansible_facts['pkg_mgr'] == 'dnf'
     - dnf_automatic_config_check.stat.exists | bool
     - security_rhel7_automatic_package_updates | bool
   tags:
@@ -67,8 +67,8 @@
   set_fact:
     dnf_automatic_timer: "{{ ('dnf-automatic-install.timer' in dnf_automatic_timers.stdout) | ternary('dnf-automatic-install.timer', 'dnf-automatic.timer')  }}"
   when:
-    - ansible_os_family | lower == 'redhat'
-    - ansible_pkg_mgr == 'dnf'
+    - ansible_facts['os_family'] | lower == 'redhat'
+    - ansible_facts['pkg_mgr'] == 'dnf'
     - dnf_automatic_config_check.stat.exists | bool
     - security_rhel7_automatic_package_updates | bool
   tags:
@@ -83,8 +83,8 @@
     enabled: yes
     state: started
   when:
-    - ansible_os_family | lower == 'redhat'
-    - ansible_pkg_mgr == 'dnf'
+    - ansible_facts['os_family'] | lower == 'redhat'
+    - ansible_facts['pkg_mgr'] == 'dnf'
     - dnf_automatic_config_check.stat.exists | bool
     - security_rhel7_automatic_package_updates | bool
   tags:

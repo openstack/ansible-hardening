@@ -73,7 +73,7 @@
     backup: yes
   when:
     - security_libuser_crypt_style_sha512 | bool
-    - ansible_os_family | lower == 'redhat'
+    - ansible_facts['os_family'] | lower == 'redhat'
   tags:
     - accounts
     - medium
@@ -145,7 +145,7 @@
     state: present
   when:
     - item.value is truthy(convert_bool=True)
-    - item.ansible_os_family == 'all' or item.ansible_os_family == ansible_os_family
+    - item.ansible_os_family == 'all' or item.ansible_os_family == ansible_facts['os_family']
   with_items: "{{ shadow_utils_rhel7 }}"
   tags:
     - accounts

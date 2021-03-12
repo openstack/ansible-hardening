@@ -35,28 +35,17 @@ Vagrant.configure(2) do |config|
     centos8.vm.box = "centos/8"
   end
 
-  config.vm.define "debian8" do |debian8|
-    debian8.vm.box = "debian/jessie64"
-  end
-
-  config.vm.define "debian9" do |debian9|
-    debian9.vm.box = "debian/stretch64"
-  end
-
-  config.vm.define "gentoo" do |gentoo|
-    gentoo.vm.box = "generic/gentoo"
-  end
-
-  config.vm.define "opensuse150" do |leap150|
-    leap150.vm.box = "opensuse/openSUSE-15.0-x86_64"
-  end
-
-  config.vm.define "opensuse151" do |leap151|
-    leap151.vm.box = "opensuse/openSUSE-15.1-x86_64"
+  config.vm.define "debian10" do |debian10|
+    debian10.vm.box = "debian/buster64"
   end
 
   config.vm.define "ubuntu1804" do |bionic|
     bionic.disksize.size = "40GB"
     bionic.vm.box = "ubuntu/bionic64"
+  end
+
+  config.vm.define "ubuntu2004" do |focal|
+    bionic.disksize.size = "40GB"
+    bionic.vm.box = "ubuntu/focal64"
   end
 end

@@ -26,7 +26,7 @@
 gcc
 
 # Base requirements for Ubuntu
-git-core          [platform:dpkg platform:suse]
+git-core          [platform:dpkg]
 libssl-dev        [platform:dpkg]
 libffi-dev        [platform:dpkg]
 python3           [platform:dpkg]
@@ -35,14 +35,11 @@ python3-dev       [platform:dpkg]
 
 # Base requirements for RPM distros
 gcc-c++           [platform:rpm]
-git               [platform:rpm !platform:suse]
+git               [platform:rpm]
 libffi-devel      [platform:rpm]
 openssl-devel     [platform:rpm]
 python3-dnf       [platform:fedora]
 python3-devel     [platform:rpm]
-
-# Base requirements for Gentoo
-git               [platform:gentoo]
 
 # For SELinux
 libselinux-python3  [platform:redhat]

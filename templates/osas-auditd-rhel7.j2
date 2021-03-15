@@ -31,7 +31,7 @@
 {# Verify that the variable controlling the rule is enabled and any distro-  #}
 {# specific requirements are met.                                            #}
 {#                                                                           #}
-{% if vars['security_rhel7_audit_' + command_sanitized ] | bool and (audited_command['distro'] | default(ansible_os_family | lower) == ansible_os_family | lower) %}
+{% if vars['security_rhel7_audit_' + command_sanitized ] | bool and (audited_command['distro'] | default(ansible_facts['os_family'] | lower) == ansible_facts['os_family'] | lower) %}
 # {{ audited_command['stig_id'] }} - All uses of the {{ audited_command['command'] }} command must be audited.
 {#                                                                           #}
 {# Some audit rules are specific to syscalls. Different rules are needed for #}

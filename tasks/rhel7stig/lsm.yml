@@ -20,7 +20,7 @@
   changed_when: false
   failed_when: false
   when:
-    - ansible_pkg_mgr in ['apt', 'zypper']
+    - ansible_facts['pkg_mgr'] in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
   tags:
     - high
@@ -38,7 +38,7 @@
   changed_when: false
   failed_when: false
   when:
-    - ansible_pkg_mgr in ['apt', 'zypper']
+    - ansible_facts['pkg_mgr'] in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
   tags:
     - high
@@ -49,7 +49,7 @@
     name: apparmor
     enabled: yes
   when:
-    - ansible_pkg_mgr in ['apt', 'zypper']
+    - ansible_facts['pkg_mgr'] in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
     - not check_mode
   tags:
@@ -66,7 +66,7 @@
   changed_when:
     - '"active (exited)" not in systemctl_apparmor_status.stdout'
   when:
-    - ansible_pkg_mgr in ['apt', 'zypper']
+    - ansible_facts['pkg_mgr'] in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
     - not check_mode
     - '"apparmor filesystem is not mounted" not in apparmor_status_output.stderr'
@@ -83,9 +83,9 @@
     state: enforcing
     policy: targeted
   register: selinux_status_change
-  changed_when: selinux_status_change is changed and ansible_selinux.status != 'disabled'
+  changed_when: selinux_status_change is changed and ansible_facts['selinux']['status'] != 'disabled'
   when:
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"
     - security_rhel7_enable_linux_security_module | bool
   tags:
     - high
@@ -97,7 +97,7 @@
     path: /.autorelabel
     state: touch
   when:
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"
     - security_rhel7_enable_linux_security_module | bool
     - selinux_status_change is changed
   tags:
@@ -113,8 +113,8 @@
   changed_when: False
   check_mode: no
   when:
-    - ansible_os_family == 'RedHat'
-    - ansible_selinux.status == 'enabled'
+    - ansible_facts['os_family'] == 'RedHat'
+    - ansible_facts['selinux']['status'] == 'enabled'
   tags:
     - lsm
     - medium
@@ -128,7 +128,7 @@
       {{ device }}
       {% endfor %}
   when:
-    - ansible_os_family == 'RedHat'
+    - ansible_facts['os_family'] == 'RedHat'
     - unlabeled_devices.stdout is defined
     - unlabeled_devices.stdout | length > 0
   tags:

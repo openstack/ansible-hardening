@@ -61,7 +61,7 @@
 
 - name: Get valid system architectures for audit rules
   set_fact:
-    auditd_architectures: "{{ (ansible_architecture == 'ppc64le') | ternary(['ppc64'], ['b32', 'b64']) }}"
+    auditd_architectures: "{{ (ansible_facts['architecture'] == 'ppc64le') | ternary(['ppc64'], ['b32', 'b64']) }}"
   check_mode: no
   tags:
     - always

@@ -26,7 +26,7 @@
   poll: 0
   when:
     - not check_mode | bool
-    - ansible_os_family | lower in ['redhat', 'suse']
+    - ansible_facts['os_family'] | lower in ['redhat', 'suse']
   tags:
     - rpm
     - high

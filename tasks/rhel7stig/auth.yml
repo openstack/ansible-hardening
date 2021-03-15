@@ -24,7 +24,7 @@
     backrefs: yes
   when:
     - security_shadow_utils_fail_delay is defined
-    - ansible_os_family | lower == 'debian'
+    - ansible_facts['os_family'] | lower == 'debian'
   tags:
     - auth
     - medium
@@ -39,7 +39,7 @@
     backup: yes
     backrefs: yes
   when:
-    - ansible_os_family == 'Debian'
+    - ansible_facts['os_family'] == 'Debian'
     - security_disallow_blank_password_login | bool
   tags:
     - auth
@@ -58,7 +58,7 @@
     - auth
     - password
   when:
-    - ansible_os_family == 'RedHat'
+    - ansible_facts['os_family'] == 'RedHat'
     - security_disallow_blank_password_login | bool
   tags:
     - auth
@@ -77,7 +77,7 @@
     - "{{ pam_auth_file }}"
     - "{{ pam_password_file }}"
   when:
-    - ansible_pkg_mgr == 'zypper'
+    - ansible_facts['pkg_mgr'] == 'zypper'
     - security_disallow_blank_password_login | bool
   tags:
     - auth
@@ -92,7 +92,7 @@
     insertbefore: EOF
     block: "{{ lookup('template', 'pam_faillock.j2') }}"
   when:
-    - ansible_pkg_mgr in ['yum', 'zypper']
+    - ansible_facts['pkg_mgr'] in ['yum', 'zypper']
     - security_pam_faillock_enable | bool
   tags:
     - auth

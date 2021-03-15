@@ -59,7 +59,7 @@
     name: "{{ security_epel_release_package }}"
     state: "{{ security_package_state }}"
   when:
-    - ansible_pkg_mgr == 'yum'
+    - ansible_facts['pkg_mgr'] == 'yum'
     - security_epel_install_repository | bool
     - security_enable_virus_scanner | bool
   tags:
@@ -73,7 +73,7 @@
 
 # Package managers are managed first since the changes in these tasks will
 # affect the remainder of the tasks in the role.
-- include_tasks: "{{ ansible_pkg_mgr }}.yml"
+- include_tasks: "{{ ansible_facts['pkg_mgr'] }}.yml"
 
 # The bulk of the security changes are applied in these tasks. The tasks in
 # each file are tagged with the same name (for example, tasks in `auth.yml`

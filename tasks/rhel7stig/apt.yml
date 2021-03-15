@@ -34,7 +34,7 @@
   when:
     - security_check_package_checksums | bool
     - not check_mode | bool
-    - ansible_os_family | lower == 'debian'
+    - ansible_facts['os_family'] | lower == 'debian'
   tags:
     - high
     - V-71855
@@ -59,7 +59,7 @@
       {{ invalid_checksum_files_violations }}
   when:
     - security_check_package_checksums | bool
-    - ansible_os_family | lower == 'debian'
+    - ansible_facts['os_family'] | lower == 'debian'
     - invalid_checksum_files is defined
     - invalid_checksum_files.stdout is defined
   tags:
@@ -105,7 +105,7 @@
     create: yes
   when:
     - security_package_clean_on_remove | bool
-    - ansible_os_family | lower == 'debian'
+    - ansible_facts['os_family'] | lower == 'debian'
   tags:
     - low
     - packages
@@ -116,7 +116,7 @@
     src: 20auto-upgrades
     dest: /etc/apt/apt.conf.d/20auto-upgrades
   when:
-    - ansible_os_family | lower == 'debian'
+    - ansible_facts['os_family'] | lower == 'debian'
     - security_rhel7_automatic_package_updates | bool
   tags:
     - packages

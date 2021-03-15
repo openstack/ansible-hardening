@@ -25,14 +25,14 @@ pam_password_file: /etc/pam.d/password-auth
 pam_postlogin_file: /etc/pam.d/postlogin
 vsftpd_conf_file: /etc/vsftpd/vsftpd.conf
 grub_conf_file: /boot/grub2/grub.cfg
-grub_conf_file_efi: "/boot/efi/EFI/{{ ansible_distribution | lower | replace(' ', '') }}/grub.cfg"
+grub_conf_file_efi: "/boot/efi/EFI/{{ ansible_facts['distribution'] | lower | replace(' ', '') }}/grub.cfg"
 aide_cron_job_path: /etc/cron.d/aide
 aide_database_file: /var/lib/aide/aide.db.gz
 aide_database_out_file: /var/lib/aide/aide.db.new.gz
 chrony_conf_file: /etc/chrony.conf
 chrony_key_file: /etc/chrony.keys
 daemon_init_params_file: /etc/init.d/functions
-pkg_mgr_config: "{{ (ansible_pkg_mgr == 'yum') | ternary('/etc/yum.conf', '/etc/dnf/dnf.conf') }}"
+pkg_mgr_config: "{{ (ansible_facts['pkg_mgr'] == 'yum') | ternary('/etc/yum.conf', '/etc/dnf/dnf.conf') }}"
 
 # Service names
 cron_service: crond
@@ -91,7 +91,7 @@ stig_packages_rhel7:
     state: "{{ security_package_state }}"
     enabled: "{{ security_enable_firewalld }}"
   - packages:
-      - "{{ (ansible_pkg_mgr == 'yum') | ternary('yum-cron', 'dnf-automatic') }}"
+      - "{{ (ansible_facts['pkg_mgr'] == 'yum') | ternary('yum-cron', 'dnf-automatic') }}"
     state: "{{ security_package_state }}"
     enabled: "{{ security_rhel7_automatic_package_updates }}"
   - packages:

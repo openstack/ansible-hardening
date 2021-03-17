@@ -145,7 +145,7 @@
     state: present
   when:
     - item.value is truthy(convert_bool=True)
-    - item.ansible_os_family == 'all' or item.ansible_os_family == ansible_facts['os_family']
+    - item.os_family == 'all' or item.os_family == ansible_facts['os_family']
   with_items: "{{ shadow_utils_rhel7 }}"
   tags:
     - accounts

@@ -7,13 +7,10 @@ The ansible-hardening role applies security hardening configurations
 from the [Security Technical Implementation Guide (STIG)](http://iase.disa.mil/stigs/Pages/index.aspx)
 to systems running the following distributions:
 
-* CentOS 7
-* Debian Jessie
-* Fedora 27
-* openSUSE Leap 42.2 and 42.3
-* Red Hat Enterprise Linux 7
-* SUSE Linux Enterprise 12 (*experimental*)
-* Ubuntu 16.04
+* CentOS 8
+* Debian Buster
+* Ubuntu Bionic
+* Ubuntu Focal
 
 For more details, review the
 [ansible-hardening documentation](http://docs.openstack.org/developer/ansible-hardening/).

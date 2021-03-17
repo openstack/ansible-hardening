@@ -90,7 +90,7 @@
     insertbefore: EOF
     block: "{{ lookup('template', 'pam_faillock.j2') }}"
   when:
-    - ansible_facts['pkg_mgr'] in ['yum', 'zypper']
+    - ansible_facts['pkg_mgr'] == 'dnf'
     - security_pam_faillock_enable | bool
   tags:
     - auth

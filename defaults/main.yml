@@ -17,12 +17,11 @@
 # The RHEL 7 STIG content first appeared in the Ocata release and is compatible
 # with the following operating systems:
 #
-#  * CentOS 7
-#  * Debian Jessie
+#  * CentOS 8
+#  * Debian Buster
 #  * Fedora 27
-#  * openSUSE Leap 42.x
-#  * SUSE Linux Enterprise 12
-#  * Ubuntu 16.04 Xenial LTS
+#  * Ubuntu Bionic
+#  * Ubuntu Focal
 #
 # Valid options: rhel7
 stig_version: rhel7

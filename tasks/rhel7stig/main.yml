@@ -59,7 +59,7 @@
     name: "{{ security_epel_release_package }}"
     state: "{{ security_package_state }}"
   when:
-    - ansible_facts['pkg_mgr'] == 'yum'
+    - ansible_facts['pkg_mgr'] == 'dnf'
     - security_epel_install_repository | bool
     - security_enable_virus_scanner | bool
   tags:

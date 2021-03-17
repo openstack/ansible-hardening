@@ -116,7 +116,7 @@
   changed_when: false
   when:
     - aide_init is not skipped
-    - ansible_facts['pkg_mgr'] in ['yum', 'zypper']
+    - ansible_facts['pkg_mgr'] == 'dnf'
   tags:
     - medium
     - aide
@@ -133,7 +133,7 @@
     special_time: daily
     job: "/sbin/aide --check | /bin/mail -s \"$HOSTNAME - Daily aide integrity check run\" root"
   when:
-    - ansible_facts['pkg_mgr'] in ['yum', 'zypper']
+    - ansible_facts['pkg_mgr'] == 'dnf'
   tags:
     - medium
     - aide

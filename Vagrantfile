@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "ubuntu2004" do |focal|
-    bionic.disksize.size = "40GB"
-    bionic.vm.box = "ubuntu/focal64"
+    focal.disksize.size = "40GB"
+    focal.vm.box = "ubuntu/focal64"
   end
 end

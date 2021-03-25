@@ -21,7 +21,8 @@
   changed_when: False
   register: job_result
   until: job_result.finished
-  retries: 30
+  retries: 360
+  delay: 10
   when:
     - rpmverify_task is not skipped
   tags:

@@ -22,7 +22,7 @@
   failed_when: False
   changed_when: False
   register: rpmverify_task
-  async: 300
+  async: 3600
   poll: 0
   when:
     - not check_mode | bool

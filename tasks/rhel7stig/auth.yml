@@ -48,15 +48,13 @@
 
 - name: Prevent users with blank or null passwords from authenticating (Red Hat)
   lineinfile:
-    dest: "{{ pam_auth_file }}"
+    dest: "{{ item[1] }}"
     state: present
-    regexp: "^({{ item }}.*sufficient.*)nullok(.*)$"
+    regexp: "^({{ item[0] }}.*sufficient.*)nullok(.*)$"
     line: '\1\2'
     backup: yes
     backrefs: yes
-  with_items:
-    - auth
-    - password
+  loop: "{{ ['auth', 'password'] |product(['{{ pam_auth_file }}', '{{ pam_password_file }}'])|list }}"
   when:
     - ansible_facts['os_family'] == 'RedHat'
     - security_disallow_blank_password_login | bool

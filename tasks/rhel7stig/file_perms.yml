@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: V-71849 - Get packages with incorrect file permissions or ownership
-  shell: "grep '^.M' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
+  shell: "grep '^.M' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'" # noqa risky-shell-pipe
   args:
     warn: no
   register: rpmverify_package_list
@@ -119,7 +119,7 @@
     - V-72021
 
 - name: Find all world-writable directories
-  shell: "find / -perm -002 -type d -exec ls -lLd {} \\; | tr -s ' ' | cut -d' ' -f 4,9 | grep -v ^root"
+  shell: "find / -perm -002 -type d -exec ls -lLd {} \\; | tr -s ' ' | cut -d' ' -f 4,9 | grep -v ^root" # noqa risky-shell-pipe
   register: world_writable_dirs
   changed_when: False
   failed_when: False

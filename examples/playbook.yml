@@ -1,0 +1,17 @@
+---
+- name: Gather security hardening facts
+  hosts: "{{ security_host_group|default('hosts') }}"
+  gather_facts: True
+  tags:
+    - always
+
+- name: Apply security hardening configurations
+  hosts: "{{ security_host_group|default('hosts') }}"
+  gather_facts: false
+  user: root
+  roles:
+    - role: "ansible-hardening"
+      when: apply_security_hardening | default(True) | bool
+  environment: "{{ deployment_environment_variables | default({}) }}"
+  tags:
+    - security

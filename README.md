@@ -83,4 +83,4 @@ Apache 2.0
 Author Information
 ------------------
 
-For more information, join `#openstack-ansible` on Freenode.
+For more information, join `#openstack-ansible` on OFTC.

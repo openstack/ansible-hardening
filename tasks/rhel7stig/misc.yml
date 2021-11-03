@@ -159,8 +159,24 @@
   lineinfile:
     dest: /etc/clamd.d/scan.conf
     regexp: "^(#)?LocalSocket (.*)$"
-    line: 'LocalSocket \2'
+    line: "LocalSocket {{ clamav_service_details['socket_path'] }}"
     backrefs: yes
+  when:
+    - clamav_install_check.stat.exists
+    - security_enable_virus_scanner | bool
+    - ansible_facts['os_family'] | lower == 'redhat'
+  notify:
+    - restart clamav
+  tags:
+    - misc
+    - V-72213
+
+- name: Ensure ClamAV socket directory exists
+  file:
+    path: "{{ clamav_service_details['socket_path'] | dirname }}"
+    user: "{{ clamav_service_details['user'] }}"
+    group: "{{ clamav_service_details['group'] }}"
+    mode: "{{ clamav_service_details['mode'] }}"
   when:
     - clamav_install_check.stat.exists
     - security_enable_virus_scanner | bool

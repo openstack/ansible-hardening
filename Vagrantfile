@@ -39,11 +39,6 @@ Vagrant.configure(2) do |config|
     debian10.vm.box = "debian/buster64"
   end
 
-  config.vm.define "ubuntu1804" do |bionic|
-    bionic.disksize.size = "40GB"
-    bionic.vm.box = "ubuntu/bionic64"
-  end
-
   config.vm.define "ubuntu2004" do |focal|
     focal.disksize.size = "40GB"
     focal.vm.box = "ubuntu/focal64"

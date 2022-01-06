@@ -1,0 +1,130 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+## Variables for CentOS 7, Red Hat Enterprise Linux 7 and Fedora 27.
+# The following variables apply only to CentOS 7, Red Hat Enterprise Linux 7
+# and Fedora 27. Deployers should not override these.
+#
+# For more details, see 'vars/main.yml'.
+
+# Configuration file paths
+pam_auth_file: /etc/pam.d/system-auth
+pam_password_file: /etc/pam.d/password-auth
+pam_postlogin_file: /etc/pam.d/postlogin
+vsftpd_conf_file: /etc/vsftpd/vsftpd.conf
+grub_conf_file: /boot/grub2/grub.cfg
+grub_conf_file_efi: "/boot/efi/EFI/{{ ansible_facts['distribution'] | lower | replace(' ', '') }}/grub.cfg"
+aide_cron_job_path: /etc/cron.d/aide
+aide_database_file: /var/lib/aide/aide.db.gz
+aide_database_out_file: /var/lib/aide/aide.db.new.gz
+chrony_conf_file: /etc/chrony.conf
+chrony_key_file: /etc/chrony.keys
+daemon_init_params_file: /etc/init.d/functions
+pkg_mgr_config: /etc/dnf/dnf.conf
+
+# Service names
+cron_service: crond
+ssh_service: sshd
+chrony_service: chronyd
+clamav_service: 'clamd@scan'
+
+# Clamav paparms
+clamav_service_details:
+  user: clamscan
+  group: virusgroup
+  socket_path: /run/clamd.scan/clamd.sock
+  mode: 0710
+
+# Commands
+grub_update_cmd: "/usr/sbin/grub2-mkconfig -o {{ grub_config_file_boot }}"
+ssh_keysign_path: /usr/libexec/openssh
+
+# Other configuration
+security_interactive_user_minimum_uid: 1000
+
+# RHEL 7 STIG: Packages to add/remove
+stig_packages_rhel7:
+  - packages:
+      - audispd-plugins
+      - audit
+      - dracut-fips
+      - dracut-fips-aesni
+      - openssh-clients
+      - openssh-server
+    state: "{{ security_package_state }}"
+    enabled: True
+  - packages:
+      - aide
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_aide }}"
+  - packages:
+      - python3-libselinux
+      - policycoreutils-python-utils
+      - selinux-policy
+      - selinux-policy-targeted
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_linux_security_module }}"
+  - packages:
+      - chrony
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_enable_chrony }}"
+  - packages:
+      - clamav
+      - clamav-data
+      - clamav-devel
+      - clamav-filesystem
+      - clamav-lib
+      - clamav-scanner-systemd
+      - clamav-server-systemd
+      - clamav-server
+      - clamav-update
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_enable_virus_scanner }}"
+  - packages:
+      - firewalld
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_enable_firewalld }}"
+  - packages:
+      - dnf-automatic
+    state: "{{ security_package_state }}"
+    enabled: "{{ security_rhel7_automatic_package_updates }}"
+  - packages:
+      - rsh-server
+    state: absent
+    enabled: "{{ security_rhel7_remove_rsh_server }}"
+  - packages:
+      - telnet-server
+    state: absent
+    enabled: "{{ security_rhel7_remove_telnet_server }}"
+  - packages:
+      - tftp-server
+    state: absent
+    enabled: "{{ security_rhel7_remove_tftp_server }}"
+  - packages:
+      - xorg-x11-server-Xorg
+    state: absent
+    enabled: "{{ security_rhel7_remove_xorg }}"
+  - packages:
+      - ypserv
+    state: absent
+    enabled: "{{ security_rhel7_remove_ypserv }}"
+
+rpm_gpgchecks:
+  - regexp: "^gpgcheck.*"
+    line: "gpgcheck={{ security_enable_gpgcheck_packages | bool | ternary('1', 0) }}"
+  - regexp: "^localpkg_gpgcheck.*"
+    line: "localpkg_gpgcheck={{ security_enable_gpgcheck_packages_local | bool | ternary('1', 0) }}"
+  - regexp: "^repo_gpgcheck.*"
+    line: "repo_gpgcheck={{ security_enable_gpgcheck_repo | bool | ternary('1', 0) }}"

@@ -53,7 +53,7 @@ source /etc/os-release || source /usr/lib/os-release
 
 # Figure out the appropriate package install command
 case ${ID,,} in
-    centos|rhel|fedora) pkg_mgr_cmd="dnf install -y" ;;
+    centos|rhel|fedora|rocky) pkg_mgr_cmd="dnf install -y" ;;
     ubuntu|debian) pkg_mgr_cmd="apt-get install -y" ;;
     *) echo "unsupported distribution: ${ID,,}"; exit 1 ;;
 esac

@@ -352,3 +352,77 @@ sysctl_settings_rhel7:
   - name: net.ipv6.conf.all.disable_ipv6
     value: 1
     enabled: "{{ (security_contrib_enabled | bool) and (security_contrib_disable_ipv6 | bool) }}"
+
+sshd_settings_rhel7:
+  - name: PermitEmptyPasswords
+    value: "no"
+    enabled: "{{ security_sshd_disallow_empty_password | bool }}"
+    stig_id: V-71939 / RHEL-07-010440
+  - name: PermitUserEnvironment
+    value: "no"
+    enabled: "{{ security_sshd_disallow_environment_override | bool }}"
+    stig_id: V-71957
+  - name: HostbasedAuthentication
+    value: "no"
+    enabled: "{{ security_sshd_disallow_host_based_auth | bool }}"
+    stig_id: V-71959
+  - name: Ciphers
+    value: "{{ security_sshd_cipher_list }}"
+    enabled: True
+    stig_id: V-72221
+  - name: ClientAliveInterval
+    value: "{{ security_sshd_client_alive_interval }}"
+    enabled: True
+    stig_id: V-72237
+  - name: ClientAliveCountMax
+    value: "{{ security_sshd_client_alive_count_max }}"
+    enabled: True
+    stig_id: V-72241
+  - name: PrintLastLog
+    value: "yes"
+    enabled: "{{ security_sshd_print_last_log | bool }}"
+    stig_id: V-72245
+  # NOTE(noonedeadpunk): We leave else/endif on same string not to deal with stripping of '\n' later on
+  - name: PermitRootLogin
+    value: |-
+      {% if security_sshd_permit_root_login | string in ['False', 'True'] %}
+      {{ (security_sshd_permit_root_login | bool) | ternary('yes', 'no') }}{% else %}
+      {{ security_sshd_permit_root_login }}{% endif %}
+    enabled: True
+    stig_id: V-72247
+  - name: IgnoreUserKnownHosts
+    value: "yes"
+    enabled: "{{ security_sshd_disallow_known_hosts_auth | bool }}"
+    stig_id: V-72249 / V-72239
+  - name: IgnoreRhosts
+    value: "yes"
+    enabled: "{{ security_sshd_disallow_rhosts_auth | bool }}"
+    stig_id: V-72243
+  - name: X11Forwarding
+    value: "yes"
+    enabled: "{{ security_sshd_enable_x11_forwarding | bool }}"
+    stig_id: V-72303
+  - name: Protocol
+    value: "{{ security_sshd_protocol }}"
+    enabled: yes
+    stig_id: V-72251
+  - name: MACs
+    value: "{{security_sshd_allowed_macs }}"
+    enabled: yes
+    stig_id: V-72253
+  - name: UsePrivilegeSeparation
+    value: sandbox
+    enabled: "{{ security_sshd_enable_privilege_separation | bool }}"
+    stig_id: V-72265
+  - name: Compression
+    value: "{{ security_sshd_compression }}"
+    enabled: yes
+    stig_id: V-72267
+  - name: KerberosAuthentication
+    value: "no"
+    enabled: "{{ security_sshd_disable_kerberos_auth | bool }}"
+    stig_id: V-72261
+  - name: StrictModes
+    value: "yes"
+    enabled: "{{ security_sshd_enable_strict_modes | bool }}"
+    stig_id: V-72263

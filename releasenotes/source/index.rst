@@ -6,6 +6,7 @@ ansible-hardening Release Notes
    :maxdepth: 1
 
    unreleased
+   zed
    xena
    ussuri
    train

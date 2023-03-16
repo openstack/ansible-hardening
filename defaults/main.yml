@@ -355,7 +355,7 @@ security_sshd_disallow_gssapi: yes                           # V-72259
 # Disallow compression or delay after login.
 security_sshd_compression: 'delayed'                         # V-72267
 # Require privilege separation at every opportunity.
-security_sshd_enable_privilege_separation: yes               # V-72265
+security_sshd_enable_privilege_separation: no                # V-72265
 # Require strict mode checking of home directory configuration files.
 security_sshd_enable_strict_modes: yes                       # V-72263
 # Disallow Kerberos authentication.

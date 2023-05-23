@@ -29,13 +29,6 @@ server {{ ntp_server }} {{ security_ntp_server_options }}
 
 keyfile {{ chrony_key_file }}
 
-# Set runtime command key.  Note that if you change the key (not the
-# password) to anything other than 1 you will need to edit
-# /etc/ppp/ip-up.d/chrony, /etc/ppp/ip-down.d/chrony, /etc/init.d/chrony
-# and /etc/cron.weekly/chrony as these scripts use it to get the password.
-
-commandkey 1
-
 # I moved the driftfile to /var/lib/chrony to comply with the Debian
 # filesystem standard.
 

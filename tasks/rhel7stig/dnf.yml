@@ -46,9 +46,7 @@
 # Fedora >= 26 has dnf-automatic-install.timer. We need to check for which one
 # exists on the system.
 - name: Check to see which dnf automatic timers are available
-  shell: "rpm -ql dnf-automatic | grep timer || true"
-  args:
-    warn: no
+  shell: "rpm -ql dnf-automatic | grep timer || true" # noqa: command-instead-of-module
   register: dnf_automatic_timers
   check_mode: no
   changed_when: False

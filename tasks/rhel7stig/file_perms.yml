@@ -15,8 +15,6 @@
 
 - name: V-71849 - Get packages with incorrect file permissions or ownership
   shell: "grep '^.M' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'" # noqa risky-shell-pipe
-  args:
-    warn: no
   register: rpmverify_package_list
   changed_when: False
   when:
@@ -29,9 +27,7 @@
     - V-71849
 
 - name: V-71849 - Reset file permissions/ownership to vendor values
-  shell: "rpm {{ item[0] }} `rpm -qf {{ item[1] }}`"
-  args:
-    warn: no
+  shell: "rpm {{ item[0] }} `rpm -qf {{ item[1] }}`" # noqa: command-instead-of-shell command-instead-of-module risky-shell-pipe
   changed_when: false
   with_nested:
     - ['--setperms', '--setugids']
@@ -51,9 +47,7 @@
     - skip_ansible_lint
 
 - name: Search for files/directories with an invalid owner
-  command: find / -xdev -nouser -fstype local
-  args:
-    warn: no
+  command: find / -xdev -nouser -fstype local # noqa: command-instead-of-module
   register: invalid_owner_files
   changed_when: false
   when:
@@ -76,9 +70,7 @@
     - V-72007
 
 - name: Search for files/directories with an invalid group owner
-  command: find / -xdev -nogroup -fstype local
-  args:
-    warn: no
+  command: find / -xdev -nogroup -fstype local # noqa: command-instead-of-module
   register: invalid_group_owner_files
   changed_when: false
   when:

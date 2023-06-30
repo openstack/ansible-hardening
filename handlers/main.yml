@@ -18,9 +18,7 @@
 # NOTE(mhayden): It's not possible to use systemd to restart auditd on CentOS
 # since it's a special service. Using the old service scripts is required.
 - name: restart auditd
-  command: service auditd restart
-  args:
-    warn: no
+  command: service auditd restart # noqa: command-instead-of-module
 
 - name: restart chrony
   service:

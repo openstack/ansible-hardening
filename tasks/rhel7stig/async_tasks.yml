@@ -16,9 +16,7 @@
 # Multiple tasks will need the output of RPM verification, so let's do the
 # lookup one time and then grep over the output in subsequent tasks.
 - name: Verify all installed RPM packages
-  shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt"
-  args:
-    warn: no
+  shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt" # noqa: command-instead-of-module
   failed_when: False
   changed_when: False
   register: rpmverify_task

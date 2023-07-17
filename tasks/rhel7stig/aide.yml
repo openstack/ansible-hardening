@@ -28,6 +28,7 @@
   template:
     src: ZZ_aide_exclusions.j2
     dest: /etc/aide/aide.conf.d/ZZ_aide_exclusions
+    mode: "0644"
   when: aide_conf.results[0].stat.exists | bool
   tags:
     - medium

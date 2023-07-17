@@ -19,6 +19,7 @@
     dest: "{{ security_sshd_banner_file }}"
     owner: root
     group: root
+    mode: "0644"
   tags:
     - high
     - sshd
@@ -33,7 +34,7 @@
     validate: '/usr/sbin/sshd -T -f %s'
   with_items: "{{ sshd_settings_rhel7 | selectattr('enabled') }}"
   notify:
-    - restart ssh
+    - Restart ssh
   tags:
     - high
     - sshd
@@ -71,7 +72,7 @@
       {{ option['name'] ~ ' ' ~ option['value'] }}
       {% endfor %}
   notify:
-    - restart ssh
+    - Restart ssh
   tags:
     - high
     - sshd

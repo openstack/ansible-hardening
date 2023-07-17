@@ -32,7 +32,7 @@
 # started apparmor each time. This breaks idempotency and we check
 # systemd's status directly as an alternative.
 - name: Check if apparmor is running
-  command: "systemctl status apparmor" # noqa 303
+  command: "systemctl status apparmor" # noqa: command-instead-of-module
   register: systemctl_apparmor_status
   check_mode: no
   changed_when: false
@@ -96,6 +96,7 @@
   file:
     path: /.autorelabel
     state: touch
+    mode: "0644"
   when:
     - ansible_facts['os_family'] == "RedHat"
     - security_rhel7_enable_linux_security_module | bool

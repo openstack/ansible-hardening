@@ -100,6 +100,7 @@
   copy:
     src: zypper-autoupdates
     dest: /etc/cron.daily/zypper-autoupdates
+    mode: "0750"
   when:
     - security_rhel7_automatic_package_updates | bool
   tags:

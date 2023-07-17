@@ -27,7 +27,8 @@ grub_conf_file: /boot/grub2/grub.cfg
 # NOTE(hwoarang) SUSE seems to be using the ID field from /etc/os-release to
 # create the EFI distro directory. Since this information is not available on
 # Ansible, we have to improvise a bit...
-grub_conf_file_efi: "{% set os_id = ansible_facts['distribution'].split(' ')[0].lower() %}/boot/efi/EFI/{{ (os_id == 'opensuse') | ternary('opensuse','sles') }}/grub.cfg"
+grub_conf_file_efi: >-
+  {% set os_id = ansible_facts['distribution'].split(' ')[0].lower() %}/boot/efi/EFI/{{ (os_id == 'opensuse') | ternary('opensuse', 'sles') }}/grub.cfg
 aide_cron_job_path: /etc/cron.daily/aide
 aide_database_file: /var/lib/aide/aide.db
 aide_database_out_file: /var/lib/aide/aide.db.new

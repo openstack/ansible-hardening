@@ -103,6 +103,7 @@
     line: "APT{{ '::' }}Get{{ '::' }}AutomaticRemove \"0\";"
     state: present
     create: yes
+    mode: "0644"
   when:
     - security_package_clean_on_remove | bool
     - ansible_facts['os_family'] | lower == 'debian'
@@ -115,6 +116,7 @@
   copy:
     src: 20auto-upgrades
     dest: /etc/apt/apt.conf.d/20auto-upgrades
+    mode: "0644"
   when:
     - ansible_facts['os_family'] | lower == 'debian'
     - security_rhel7_automatic_package_updates | bool

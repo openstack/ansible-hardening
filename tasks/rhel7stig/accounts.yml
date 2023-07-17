@@ -71,6 +71,7 @@
     option: crypt_style
     value: sha512
     backup: yes
+    mode: "0644"
   when:
     - security_libuser_crypt_style_sha512 | bool
     - ansible_facts['os_family'] | lower == 'redhat'
@@ -84,6 +85,7 @@
 # system. See bug 1659232 for more details.
 - name: Set minimum password lifetime limit to 24 hours for interactive accounts
   command: "chage -m 1 {{ item.name }}"
+  changed_when: false
   when:
     - item.shadow is mapping
     - item.shadow.min_days != 1
@@ -100,6 +102,7 @@
 # system. See bug 1659232 for more details.
 - name: Set maximum password lifetime limit to 60 days for interactive accounts
   command: "chage -M 60 {{ item.name }}"
+  changed_when: false
   when:
     - item.shadow is mapping
     - item.shadow.max_days > 60
@@ -245,5 +248,3 @@
     - accounts
     - medium
     - V-73159
-
-

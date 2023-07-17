@@ -17,76 +17,48 @@
 #
 # NOTE(mhayden): It's not possible to use systemd to restart auditd on CentOS
 # since it's a special service. Using the old service scripts is required.
-- name: restart auditd
+- name: Restart auditd
   command: service auditd restart # noqa: command-instead-of-module
+  changed_when: false
 
-- name: restart chrony
+- name: Restart chrony
   service:
     name: "{{ chrony_service }}"
     state: restarted
 
-- name: restart fail2ban
-  service:
-    name: fail2ban
-    state: restarted
-
-- name: restart postfix
-  service:
-    name: postfix
-    state: restarted
-
-- name: restart rsyslog
-  service:
-    name: rsyslog
-    state: restarted
-
-- name: restart samba
-  service:
-    name: smbd
-    state: restarted
-
-- name: restart ssh
+- name: Restart ssh
   service:
     name: "{{ ssh_service }}"
     state: restarted
 
-- name: restart vsftpd
-  service:
-    name: vsftpd
-    state: restarted
-
-- name: restart clamav
+- name: Restart clamav
   service:
     name: "{{ clamav_service }}"
     state: restarted
 
 # Miscellaneous ##############################################################
-- name: generate auditd rules
+- name: Generate auditd rules
   command: augenrules --load
+  changed_when: false
   notify: restart auditd
 
-- name: rehash aliases
-  command: newaliases
-
-- name: update grub config
+- name: Update grub config
   command: "{{ grub_update_cmd }}"
+  changed_when: false
   when:
     - security_enable_grub_update | bool
     - grub_update_binary.stat.exists | bool
     - grub_update_binary.stat.executable | bool
   notify:
-    - set bootloader file permissions after updating grub config
+    - Set bootloader file permissions after updating grub config
 
 # NOTE(mhayden): Running `update-grub` causes the bootloader permissions to
 # change, which breaks V-38583.
-- name: set bootloader file permissions after updating grub config
+- name: Set bootloader file permissions after updating grub config
   file:
     path: "{{ grub_config_file_boot }}"
     mode: "0644"
 
-- name: dconf update
+- name: Dconf update
   command: dconf update
-
-- name: reload systemd
-  systemd:
-    daemon-reload: yes
+  changed_when: false

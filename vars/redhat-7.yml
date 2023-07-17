@@ -45,7 +45,7 @@ clamav_service_details:
   user: clamscan
   group: virusgroup
   socket_path: /run/clamd.scan/clamd.sock
-  mode: 0710
+  mode: "0710"
 
 # Commands
 grub_update_cmd: "/usr/sbin/grub2-mkconfig -o {{ grub_config_file_boot }}"

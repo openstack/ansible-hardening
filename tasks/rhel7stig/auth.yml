@@ -54,7 +54,7 @@
     line: '\1\2'
     backup: yes
     backrefs: yes
-  loop: "{{ ['auth', 'password'] |product(['{{ pam_auth_file }}', '{{ pam_password_file }}'])|list }}"
+  loop: "{{ ['auth', 'password'] | product(['{{ pam_auth_file }}', '{{ pam_password_file }}']) | list }}"
   when:
     - ansible_facts['os_family'] == 'RedHat'
     - security_disallow_blank_password_login | bool
@@ -185,7 +185,7 @@
           password_pbkdf2 root {{ security_grub_password_hash }}
         state: present
       notify:
-        - update grub config
+        - Update grub config
     - name: Set CLASS for grub file
       lineinfile:
         path: "{{ grub_linux_file }}"
@@ -194,7 +194,7 @@
         state: present
         backrefs: yes
       notify:
-        - update grub config
+        - Update grub config
   when:
     - grub_custom_file_check.stat.exists | bool
     - security_require_grub_authentication | bool
@@ -208,6 +208,7 @@
   blockinfile:
     dest: /etc/security/limits.d/ansible-hardening-maxlogins.conf
     create: yes
+    mode: "0644"
     block: |
       # Deployed by the ansible-hardening role
       # V-72217 - Limit concurrent sessions for all accounts/types

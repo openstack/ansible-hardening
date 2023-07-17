@@ -44,8 +44,8 @@
 
 - name: Set facts
   set_fact:
-    check_mode: "{{ noop_result is skipped }}"
-    linux_security_module: "{{ (ansible_facts['os_family'] == 'Debian') | ternary('apparmor','selinux') }}"
+    check_mode: "{{ noop_result is skipped }}" # noqa: var-naming[no-reserved]
+    linux_security_module: "{{ (ansible_facts['os_family'] == 'Debian') | ternary('apparmor', 'selinux') }}"
     grub_config_file_boot: "{{ booted_with_efi | ternary(grub_conf_file_efi, grub_conf_file) }}"
   tags:
     - always
@@ -57,8 +57,10 @@
   tags:
     - always
 
-- import_tasks: "{{ stig_version }}stig/main.yml"
+- name: Importing STIG tasks
+  import_tasks: "{{ stig_version }}stig/main.yml"
 
-- include_tasks: contrib/main.yml
+- name: Including contrib tasks
+  include_tasks: contrib/main.yml
   when:
     - security_contrib_enabled | bool

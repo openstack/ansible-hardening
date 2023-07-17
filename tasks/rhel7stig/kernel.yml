@@ -18,6 +18,7 @@
     dest: /etc/modprobe.d/ansible-hardening-disable-usb-storage.conf
     line: install usb-storage /bin/true
     create: yes
+    mode: "0644"
   when:
     - security_rhel7_disable_usb_storage | bool
   tags:
@@ -49,7 +50,7 @@
     - C-00001
 
 - name: Check kdump service
-  command: systemctl status kdump # noqa 303
+  command: systemctl status kdump # noqa: command-instead-of-module
   register: kdump_service_check
   failed_when: kdump_service_check.rc not in [0,3,4]
   changed_when: False
@@ -101,6 +102,7 @@
   copy:
     src: ansible-hardening-disable-dccp.conf
     dest: /etc/modprobe.d/ansible-hardening-disable-dccp.conf
+    mode: "0644"
   when:
     - security_rhel7_disable_dccp | bool
   tags:

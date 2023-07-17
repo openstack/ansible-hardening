@@ -4,20 +4,23 @@ galaxy_info:
   description: Security hardening role for OpenStack-Ansible
   company: OpenStack
   license: Apache
-  min_ansible_version: 2.10
+  role_name: hardening
+  namespace: openstack
+  min_ansible_version: "2.10"
   platforms:
-  - name: Debian
-    versions:
-      - buster
-  - name: EL
-    versions:
-      - 8
-  - name: Ubuntu
-    versions:
-      - bionic
-      - focal
-  categories:
-  - cloud
-  - security
-  - system
+    - name: Debian
+      versions:
+        - bullseye
+    - name: EL
+      versions:
+        - "8"
+        - "9"
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+  galaxy_tags:
+    - cloud
+    - security
+    - system
 dependencies: []

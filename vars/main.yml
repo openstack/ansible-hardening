@@ -327,7 +327,7 @@ sysctl_settings_rhel7:
     enabled: "{{ security_disallow_source_routed_packet_forward_ipv4 | bool }}"
   - name: net.ipv4.conf.default.accept_source_route
     value: 0
-    enabled: "{{ security_disallow_source_routed_packet_forward_ipv4 | bool}}"
+    enabled: "{{ security_disallow_source_routed_packet_forward_ipv4 | bool }}"
   - name: net.ipv4.icmp_echo_ignore_broadcasts
     value: 1
     enabled: "{{ security_disallow_echoes_broadcast_address | bool }}"
@@ -407,7 +407,7 @@ sshd_settings_rhel7:
     enabled: yes
     stig_id: V-72251
   - name: MACs
-    value: "{{security_sshd_allowed_macs }}"
+    value: "{{ security_sshd_allowed_macs }}"
     enabled: yes
     stig_id: V-72253
   - name: UsePrivilegeSeparation

@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Check autofs service
-  command: systemctl status autofs # noqa 303
+  command: systemctl status autofs # noqa: command-instead-of-module
   register: autofs_check
   failed_when: autofs_check.rc not in [0,3,4]
   changed_when: False
@@ -150,7 +150,7 @@
     - security_enable_virus_scanner | bool
     - ansible_facts['os_family'] | lower == 'redhat'
   notify:
-    - restart clamav
+    - Restart clamav
   tags:
     - misc
     - V-72213
@@ -166,7 +166,7 @@
     - security_enable_virus_scanner | bool
     - ansible_facts['os_family'] | lower == 'redhat'
   notify:
-    - restart clamav
+    - Restart clamav
   tags:
     - misc
     - V-72213
@@ -174,7 +174,7 @@
 - name: Ensure ClamAV socket directory exists
   file:
     path: "{{ clamav_service_details['socket_path'] | dirname }}"
-    user: "{{ clamav_service_details['user'] }}"
+    owner: "{{ clamav_service_details['user'] }}"
     group: "{{ clamav_service_details['group'] }}"
     mode: "{{ clamav_service_details['mode'] }}"
   when:
@@ -182,7 +182,7 @@
     - security_enable_virus_scanner | bool
     - ansible_facts['os_family'] | lower == 'redhat'
   notify:
-    - restart clamav
+    - Restart clamav
   tags:
     - misc
     - V-72213
@@ -197,7 +197,7 @@
     - security_enable_virus_scanner | bool
     - ansible_facts['os_family'] | lower == 'redhat'
   notify:
-    - restart clamav
+    - Restart clamav
   tags:
     - misc
     - V-72213
@@ -293,11 +293,12 @@
   template:
     src: chrony.conf.j2
     dest: "{{ chrony_conf_file }}"
+    mode: "0644"
   when:
     - chrony_conf_check.stat.exists | bool
     - security_rhel7_enable_chrony | bool
   notify:
-    - restart chrony
+    - Restart chrony
   tags:
     - medium
     - misc
@@ -305,7 +306,7 @@
 
 # Returns 0 if installed, 3 if not installed
 - name: Check firewalld status
-  command: systemctl status firewalld # noqa 303
+  command: systemctl status firewalld # noqa: command-instead-of-module
   register: firewalld_status_check
   failed_when: firewalld_status_check.rc not in [0,3,4]
   changed_when: False
@@ -327,7 +328,9 @@
     - V-72273
 
 - name: Limit new TCP connections to 25/minute and allow bursting to 100
-  command: "firewall-cmd --direct --add-rule ipv4 filter IN_public_allow 0 -m tcp -p tcp -m limit --limit {{ security_enable_firewalld_rate_limit_per_minute }}/minute --limit-burst {{ security_enable_firewalld_rate_limit_burst }} -j ACCEPT"
+  command: >-
+    firewall-cmd --direct --add-rule ipv4 filter IN_public_allow 0 -m tcp -p tcp -m limit --limit {{
+      security_enable_firewalld_rate_limit_per_minute }}/minute --limit-burst {{ security_enable_firewalld_rate_limit_burst }} -j ACCEPT
   register: add_rate_limit_firewalld_rule
   changed_when: "'ALREADY_ENABLED' not in add_rate_limit_firewalld_rule.stdout"
   when:

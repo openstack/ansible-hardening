@@ -38,7 +38,7 @@
     - security_audisp_remote_server is defined
     - audisp_remote_conf.stat.exists
   notify:
-    - restart auditd
+    - Restart auditd
   tags:
     - medium
     - auditd
@@ -53,7 +53,7 @@
     - security_audisp_enable_krb5 is defined
     - audisp_remote_conf.stat.exists
   notify:
-    - restart auditd
+    - Restart auditd
   tags:
     - medium
     - auditd
@@ -73,7 +73,7 @@
   when:
     - auditd_conf.stat.exists
   notify:
-    - generate auditd rules
+    - Generate auditd rules
   tags:
     - always
 
@@ -84,7 +84,7 @@
   when:
     - auditd_conf.stat.exists
   notify:
-    - generate auditd rules
+    - Generate auditd rules
   tags:
     - always
 
@@ -92,10 +92,11 @@
   template:
     src: osas-auditd-rhel7.j2
     dest: /etc/audit/rules.d/osas-auditd-rhel7.rules
+    mode: "0644"
   when:
     - auditd_conf.stat.exists
   notify:
-    - generate auditd rules
+    - Generate auditd rules
   tags:
     - auditd
     - V-72167
@@ -163,7 +164,7 @@
     - auditd_conf.stat.exists
     - audisp_remote_conf.stat.exists
   notify:
-    - restart auditd
+    - Restart auditd
   tags:
     - high
     - auditd

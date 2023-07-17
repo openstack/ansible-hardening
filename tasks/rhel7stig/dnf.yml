@@ -13,7 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- include_tasks: rpm.yml
+- name: Including rpm tasks
+  include_tasks: rpm.yml
 
 - name: Check if /etc/dnf/automatic.conf exists
   stat:

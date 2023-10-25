@@ -360,6 +360,8 @@ security_sshd_enable_privilege_separation: no                # V-72265
 security_sshd_enable_strict_modes: yes                       # V-72263
 # Disallow Kerberos authentication.
 security_sshd_disable_kerberos_auth: yes                     # V-72261
+# Disallow GSSAPI authentication.
+security_sshd_disable_gssapi_auth: yes                       # V-204598
 
 ## Kernel settings (kernel)
 # Disallow forwarding IPv4/IPv6 source routed packets on all interfaces

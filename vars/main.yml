@@ -422,6 +422,10 @@ sshd_settings_rhel7:
     value: "no"
     enabled: "{{ security_sshd_disable_kerberos_auth | bool }}"
     stig_id: V-72261
+  - name: GSSAPIAuthentication
+    value: "no"
+    enabled: "{{ security_sshd_disable_gssapi_auth | bool }}"
+    stig_id: V-204598
   - name: StrictModes
     value: "yes"
     enabled: "{{ security_sshd_enable_strict_modes | bool }}"

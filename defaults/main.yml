@@ -333,6 +333,8 @@ security_sshd_disallow_host_based_auth: yes                  # V-71959
 security_sshd_cipher_list: 'aes128-ctr,aes192-ctr,aes256-ctr' # V-72221
 # Specify a text file to be displayed as the banner/MOTD for all sessions.
 security_sshd_banner_file: /etc/motd                         # V-71861 / V-72225
+# Disable dynamic MOTD banner that is provided by /run/motd.dynamic
+security_sshd_dynamic_banner_disable: True
 # Set the interval for max session length and the number of intervals to allow.
 security_sshd_client_alive_interval: 600                     # V-72237
 security_sshd_client_alive_count_max: 0                      # V-72241

@@ -426,3 +426,7 @@ sshd_settings_rhel7:
     value: "yes"
     enabled: "{{ security_sshd_enable_strict_modes | bool }}"
     stig_id: V-72263
+  - name: PrintMotd
+    value: "{{ (security_sshd_dynamic_banner_disable | bool) | ternary('yes', 'no') }}"
+    enabled: true
+    stig_id: V-71861

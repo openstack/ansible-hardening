@@ -6,6 +6,7 @@ ansible-hardening Release Notes
    :maxdepth: 1
 
    unreleased
+   2023.2
    zed
    xena
    ussuri

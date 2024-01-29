@@ -148,10 +148,9 @@
     - sshd
     - V-72257
 
-- name: Remove motd from pam.d
-  lineinfile:
+- name: Manage motd in pam.d
+  replace:
     path: /etc/pam.d/sshd
     regexp: '^(#\s)?(session\s*optional\s*pam_motd.so.*)$'
-    line: '{{ (security_sshd_dynamic_banner_disable | bool) | ternary("# \2", "\2") }}'
-    backrefs: yes
+    replace: '{{ (security_sshd_dynamic_banner_disable | bool) | ternary("# \2", "\2") }}'
   when: security_sshd_dynamic_banner_disable | bool

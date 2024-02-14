@@ -305,7 +305,7 @@ shadow_utils_rhel7:
     stig_id: V-71995
     os_family: all
   - parameter: CREATE_HOME
-    value: "{{ security_shadow_utils_create_home | default('') }}"
+    value: "{{ security_shadow_utils_create_home | bool | ternary('yes', 'no') }}"
     stig_id: V-72013
     os_family: all
 

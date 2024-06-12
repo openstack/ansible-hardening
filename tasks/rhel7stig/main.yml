@@ -40,7 +40,7 @@
 - name: Get user data for all users on the system
   get_users:
     min_uid: 0
-  register: user_list
+  register: hardening_user_list
   check_mode: no
   tags:
     - always

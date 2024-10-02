@@ -147,7 +147,7 @@
     line: "{{ item.parameter }} {{ item.value }}"
     state: present
   when:
-    - item.value is truthy(convert_bool=True)
+    - item.value != ''
     - item.os_family == 'all' or item.os_family == ansible_facts['os_family']
   with_items: "{{ shadow_utils_rhel7 }}"
   tags:
@@ -209,11 +209,12 @@
     - medium
     - V-72011
 
-- name: Check each user to see if its home directory exists on the filesystem
+- name: Check each user to see if its home directory exists on the filesystem, exclude LDAP users
   stat:
     path: "{{ item['dir'] }}"
   when:
     - item['dir'] | length > 0
+    - "'/export/home/' not in item['dir']"
   with_items: "{{ hardening_user_list.users }}"
   register: home_directory_checks
   tags:
@@ -226,7 +227,7 @@
     msg: |
       These users have a home directory assigned, but the directory does not exist:
       {% for check in home_directory_checks.results %}
-      {% if not check.stat.exists %}
+      {% if check.skipped is not defined and not check.stat.exists %}
       {{ check.item.name }} ({{ check.item.dir }} does not exist)
       {% endif %}
       {% endfor %}

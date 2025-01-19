@@ -412,3 +412,5 @@ security_contrib_enabled: no
 # DANGER: SYSTEM. This will cause downtime for any services that depend on
 # DANGER: IPv6 network connectivity.
 security_contrib_disable_ipv6: no                            # C-00001
+
+security_sysctl_file: "{{ openstack_sysctl_file | default('/etc/sysctl.conf') }}"

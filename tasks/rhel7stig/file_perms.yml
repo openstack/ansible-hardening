@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: V-71849 - Get packages with incorrect file permissions or ownership
-  shell: "grep '^.M' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'" # noqa risky-shell-pipe
+  ansible.builtin.shell: "grep '^.M' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
   register: rpmverify_package_list
   changed_when: false
   when:
@@ -47,7 +47,7 @@
     - skip_ansible_lint
 
 - name: Search for files/directories with an invalid owner
-  command: find / -xdev -nouser -fstype local # noqa: command-instead-of-module
+  ansible.builtin.command: find / -xdev -nouser -fstype local
   register: invalid_owner_files
   changed_when: false
   when:
@@ -56,7 +56,7 @@
     - always
 
 - name: V-72007 - All files and directories must have a valid owner.
-  debug:
+  ansible.builtin.debug:
     msg: |
       Files and directories were found that are owned by an invalid user:
       {{ invalid_owner_files.stdout_lines | join('\n') }}
@@ -70,7 +70,7 @@
     - V-72007
 
 - name: Search for files/directories with an invalid group owner
-  command: find / -xdev -nogroup -fstype local # noqa: command-instead-of-module
+  ansible.builtin.command: find / -xdev -nogroup -fstype local
   register: invalid_group_owner_files
   changed_when: false
   when:
@@ -79,7 +79,7 @@
     - always
 
 - name: V-72009 - All files and directories must have a valid group owner.
-  debug:
+  ansible.builtin.debug:
     msg: |
       Files and directories were found that are owned by an invalid group:
       {{ invalid_group_owner_files.stdout_lines | join('\n') }}
@@ -93,7 +93,7 @@
     - V-72009
 
 - name: Set proper owner, group owner, and permissions on home directories
-  file:
+  ansible.builtin.file:
     dest: "{{ item.dir }}"
     owner: "{{ item.name }}"
     group: "{{ item.group.name }}"
@@ -111,7 +111,7 @@
     - V-72021
 
 - name: Find all world-writable directories
-  shell: "find / -perm -002 -type d -exec ls -lLd {} \\; | tr -s ' ' | cut -d' ' -f 4,9 | grep -v ^root" # noqa risky-shell-pipe
+  ansible.builtin.shell: "find / -perm -002 -type d -exec ls -lLd {} \\; | tr -s ' ' | cut -d' ' -f 4,9 | grep -v ^root"
   register: world_writable_dirs
   changed_when: false
   failed_when: false
@@ -122,7 +122,7 @@
     - always
 
 - name: V-72047 - All world-writable directories must be group-owned by root, sys, bin, or an application group.
-  debug:
+  ansible.builtin.debug:
     msg: |
       The group owners on the following world-writable directories should be examined:
       {{ world_writable_dirs.stdout }}
@@ -135,14 +135,14 @@
     - V-72047
 
 - name: Check if /etc/cron.allow exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/cron.allow
   register: cron_allow_check
   tags:
     - always
 
 - name: Set owner/group owner on /etc/cron.allow
-  file:
+  ansible.builtin.file:
     path: /etc/cron.allow
     owner: root
     group: root

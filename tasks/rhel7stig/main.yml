@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Create temporary directory to hold any temporary files
-  tempfile:
+  ansible.builtin.tempfile:
     state: directory
     suffix: hardening
   register: mktemp_result
@@ -24,7 +24,7 @@
     - always
 
 - name: Set a fact for the temporary directory
-  set_fact:
+  ansible.builtin.set_fact:
     temp_dir: "{{ mktemp_result.path }}"
   changed_when: false
   when:
@@ -35,8 +35,7 @@
 # Some of the tasks in the role may take a long time to run. Let's start them
 # as early as possible so they have time to finish.
 - name: Importing async_tasks tasks
-  import_tasks: async_tasks.yml
-
+  ansible.builtin.import_tasks: async_tasks.yml
 - name: Get user data for all users on the system
   get_users:
     min_uid: 0
@@ -56,7 +55,7 @@
 # NOTE(mhayden): EPEL is only needed for the clamav packages. We should only
 # install EPEL if the deployer asked for clamav to be installed.
 - name: Install EPEL repository
-  yum:
+  ansible.builtin.dnf:
     name: "{{ security_epel_release_package }}"
     state: "{{ security_package_state }}"
   when:
@@ -69,43 +68,43 @@
 # Package installations and removals must come first so that configuration
 # changes can be made later.
 - name: Importing packages tasks
-  import_tasks: packages.yml
+  ansible.builtin.import_tasks: packages.yml
   tags:
     - always
 
 # Package managers are managed first since the changes in these tasks will
 # affect the remainder of the tasks in the role.
 - name: Including OS-specific tasks
-  include_tasks: "{{ ansible_facts['pkg_mgr'] }}.yml"
+  ansible.builtin.include_tasks: "{{ ansible_facts['pkg_mgr'] }}.yml"
 
 # The bulk of the security changes are applied in these tasks. The tasks in
 # each file are tagged with the same name (for example, tasks in `auth.yml`
 # are tagged with `auth`). Also, the tag name matches up with the "STIG
 # Controls by Tag" section of the role documentation.
 - name: Importing accounts tasks
-  import_tasks: accounts.yml
+  ansible.builtin.import_tasks: accounts.yml
 - name: Importing aide tasks
-  import_tasks: aide.yml
+  ansible.builtin.import_tasks: aide.yml
   when: security_rhel7_enable_aide | bool
 - name: Importing auditd tasks
-  import_tasks: auditd.yml
+  ansible.builtin.import_tasks: auditd.yml
 - name: Importing auth tasks
-  import_tasks: auth.yml
+  ansible.builtin.import_tasks: auth.yml
 - name: Importing file_perms tasks
-  import_tasks: file_perms.yml
+  ansible.builtin.import_tasks: file_perms.yml
 - name: Importing graphical tasks
-  import_tasks: graphical.yml
+  ansible.builtin.import_tasks: graphical.yml
 - name: Importing kernel tasks
-  import_tasks: kernel.yml
+  ansible.builtin.import_tasks: kernel.yml
 - name: Importing lsm tasks
-  import_tasks: lsm.yml
+  ansible.builtin.import_tasks: lsm.yml
 - name: Importing misc tasks
-  import_tasks: misc.yml
+  ansible.builtin.import_tasks: misc.yml
 - name: Importing sshd tasks
-  import_tasks: sshd.yml
+  ansible.builtin.import_tasks: sshd.yml
 
 - name: Remove the temporary directory
-  file:
+  ansible.builtin.file:
     path: "{{ temp_dir }}"
     state: absent
   changed_when: false

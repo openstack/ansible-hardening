@@ -15,7 +15,7 @@
 # limitations under the License.
 
 - name: Ensure RPM verification task has finished
-  async_status:
+  ansible.builtin.async_status:
     jid: "{{ rpmverify_task.ansible_job_id }}"
   failed_when: false
   changed_when: false
@@ -31,7 +31,7 @@
     - V-71855
 
 - name: V-71855 - Get files with invalid checksums (rpm)
-  shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'" # noqa risky-shell-pipe
+  ansible.builtin.shell: "grep '^..5' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'"
   register: invalid_checksum_files
   changed_when: false
   when:
@@ -43,7 +43,7 @@
     - V-71855
 
 - name: V-71855 - The cryptographic hash of system files and commands must match vendor values (rpm)
-  debug:
+  ansible.builtin.debug:
     msg: |
       The following files have checksums that differ from the checksum provided
       with their package. Each of these should be verified manually to ensure
@@ -63,12 +63,12 @@
     - V-71855
 
 - name: Determine all SUSE repositories
-  shell: ls /etc/zypp/repos.d/*.repo
+  ansible.builtin.shell: ls /etc/zypp/repos.d/*.repo
   changed_when: false
   register: all_zypper_repositories
 
 - name: V-71977 - Require digital signatures for all packages and repositories
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ item }}"
     regexp: "^(#)?\\s*gpgcheck"
     line: "gpgcheck=1"
@@ -84,7 +84,7 @@
     - V-71981
 
 - name: V-71987 - Clean requirements/dependencies when removing packages (SUSE)
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ pkg_mgr_config }}"
     regexp: "^(#)?\\s*solver\\.cleandepsOnRemove"
     line: "solver.cleandepsOnRemove = true"
@@ -97,7 +97,7 @@
     - V-71987
 
 - name: Enable automatic package updates (SUSE)
-  copy:
+  ansible.builtin.copy:
     src: zypper-autoupdates
     dest: /etc/cron.daily/zypper-autoupdates
     mode: "0750"

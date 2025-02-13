@@ -14,10 +14,10 @@
 # limitations under the License.
 
 - name: Including rpm tasks
-  include_tasks: rpm.yml
+  ansible.builtin.include_tasks: rpm.yml
 
 - name: Check if /etc/yum/yum-cron.conf exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/yum/yum-cron.conf
   check_mode: false
   register: yum_cron_config_check
@@ -27,7 +27,7 @@
     - always
 
 - name: Enable automatic package updates (yum)
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/yum/yum-cron.conf
     regexp: "^apply_updates"
     line: "apply_updates = yes"

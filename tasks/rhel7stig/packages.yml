@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Add packages based on STIG requirements
-  package:
+  ansible.builtin.package:
     name: "{{ stig_packages_rhel7 | selectattr('enabled') | selectattr('state', 'equalto', item) | sum(attribute='packages', start=[]) }}"
     state: "{{ item }}"
   with_items:
@@ -35,7 +35,7 @@
     - V-72307
 
 - name: Remove packages based on STIG requirements
-  package:
+  ansible.builtin.package:
     name: "{{ stig_packages_rhel7 | selectattr('enabled') | selectattr('state', 'equalto', item) | sum(attribute='packages', start=[]) }}"
     state: "{{ item }}"
   with_items:

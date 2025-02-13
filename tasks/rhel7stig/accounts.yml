@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Check if /etc/security/pwquality.conf exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/security/pwquality.conf
   check_mode: false
   register: pwquality_config_check
@@ -22,7 +22,7 @@
     - always
 
 - name: Set password quality requirements
-  blockinfile:
+  ansible.builtin.blockinfile:
     dest: /etc/security/pwquality.conf
     backup: true
     insertbefore: EOF
@@ -45,7 +45,7 @@
     - V-71935
 
 - name: Check for SHA512 password storage in PAM
-  command: "grep pam_unix.so {{ pam_password_file }}"
+  ansible.builtin.command: "grep pam_unix.so {{ pam_password_file }}"
   register: password_sha512_check
   changed_when: false
   check_mode: false
@@ -53,7 +53,7 @@
     - always
 
 - name: Print warning if PAM is not using SHA512 for password storage
-  debug:
+  ansible.builtin.debug:
     msg: >
       PAM is not using SHA512 for password storage. This is a security issue.
   when:
@@ -65,7 +65,7 @@
     - V-71919
 
 - name: Ensure libuser is storing passwords using SHA512
-  ini_file:
+  community.general.ini_file:
     dest: /etc/libuser.conf
     section: defaults
     option: crypt_style
@@ -84,7 +84,7 @@
 # may be attached to a Kerberos realm and they may not have shadow data on the
 # system. See bug 1659232 for more details.
 - name: Set minimum password lifetime limit to 24 hours for interactive accounts
-  command: "chage -m 1 {{ item.name }}"
+  ansible.builtin.command: "chage -m 1 {{ item.name }}"
   changed_when: false
   when:
     - item.shadow is mapping
@@ -101,7 +101,7 @@
 # may be attached to a Kerberos realm and they may not have shadow data on the
 # system. See bug 1659232 for more details.
 - name: Set maximum password lifetime limit to 60 days for interactive accounts
-  command: "chage -M 60 {{ item.name }}"
+  ansible.builtin.command: "chage -M 60 {{ item.name }}"
   changed_when: false
   when:
     - item.shadow is mapping
@@ -115,7 +115,7 @@
     - V-71931
 
 - name: Ensure that users cannot reuse one of their last 5 passwords
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ pam_password_file }}"
     regexp: "^(password\\s+[a-z0-9\\=\\[\\] ]+\\s+pam_unix\\.so.+?)\\s+(?:remember=\\d+)?$"
     line: "\\1 remember={{ security_password_remember_password }}"
@@ -129,7 +129,7 @@
     - V-71933
 
 - name: Ensure accounts are disabled if the password expires
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/default/useradd
     regexp: "^[#\\s]*INACTIVE"
     line: "INACTIVE=0"
@@ -141,7 +141,7 @@
     - V-71941
 
 - name: Apply shadow-utils configurations
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/login.defs
     regexp: "^{{ item.parameter }}"
     line: "{{ item.parameter }} {{ item.value }}"
@@ -161,7 +161,7 @@
     - V-72013
 
 - name: Print warning for groups in /etc/passwd that are not in /etc/group
-  debug:
+  ansible.builtin.debug:
     msg: >
       The following users have GIDs in /etc/passwd that do not exist in /etc/group:
       {{ hardening_user_list.users | selectattr('group', 'equalto', False) | map(attribute='name') | join(', ') }}
@@ -185,7 +185,7 @@
     - skip_ansible_lint
 
 - name: Print warnings for non-root users with UID 0
-  fail:
+  ansible.builtin.fail:
     msg: |
       Only the 'root' user should have UID 0. Other users were found:
       {{ root_user_check.stdout_lines | join(', ') }}"
@@ -197,7 +197,7 @@
     - V-72005
 
 - name: Print warning for local interactive users without a home directory assigned
-  debug:
+  ansible.builtin.debug:
     msg: |
       The following users do not have a home directory assigned:
       {{ hardening_user_list.users | selectattr('dir', 'equalto', '') | map(attribute='name') | join(', ') }}
@@ -210,7 +210,7 @@
     - V-72011
 
 - name: Check each user to see if its home directory exists on the filesystem
-  stat:
+  ansible.builtin.stat:
     path: "{{ item['dir'] }}"
   when:
     - item['dir'] | length > 0
@@ -222,7 +222,7 @@
     - V-72015
 
 - name: Print warning for users with an assigned home directory that does not exist
-  debug:
+  ansible.builtin.debug:
     msg: |
       These users have a home directory assigned, but the directory does not exist:
       {% for check in home_directory_checks.results %}
@@ -238,7 +238,7 @@
     - V-72015
 
 - name: Use pwquality when passwords are changed or created
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/pam.d/passwd
     line: "password required pam_pwquality.so retry=3"
     state: present

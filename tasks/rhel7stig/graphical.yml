@@ -14,13 +14,13 @@
 # limitations under the License.
 
 - name: Check if gdm is installed and configured
-  stat:
+  ansible.builtin.stat:
     path: /etc/gdm/custom.conf
   register: gdm_conf_check
   check_mode: false
 
 - name: V-71953 - The operating system must not allow an unattended or automatic logon to the system via a graphical user interface
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/gdm/custom.conf
     line: "^AutomaticLoginEnable=true"
     state: absent
@@ -33,7 +33,7 @@
     - V-71953
 
 - name: V-71955 - The operating system must not allow guest logon to the system.
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/gdm/custom.conf
     line: "^TimedLoginEnable=true"
     state: absent
@@ -46,14 +46,14 @@
     - V-71955
 
 - name: Check for dconf profiles
-  stat:
+  ansible.builtin.stat:
     path: /etc/dconf/profile
   register: dconf_check
   tags:
     - always
 
 - name: Create a user profile in dconf
-  copy:
+  ansible.builtin.copy:
     src: dconf-user-profile
     dest: /etc/dconf/profile/user
     mode: "0644"
@@ -67,7 +67,7 @@
     - V-71901
 
 - name: Create dconf directories
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: "0755"
@@ -86,7 +86,7 @@
     - V-71901
 
 - name: Configure graphical session locking
-  template:
+  ansible.builtin.template:
     src: dconf-screensaver-lock.j2
     dest: /etc/dconf/db/local.d/00-screensaver
     mode: "0644"
@@ -102,7 +102,7 @@
     - V-71901
 
 - name: Prevent users from changing graphical session locking configurations
-  template:
+  ansible.builtin.template:
     src: dconf-session-user-config-lockout.j2
     dest: /etc/dconf/db/local.d/locks/session
     mode: "0644"
@@ -118,7 +118,7 @@
     - V-71901
 
 - name: Create a GDM profile for displaying a login banner
-  copy:
+  ansible.builtin.copy:
     src: dconf-profile-gdm
     dest: /etc/dconf/profile/gdm
     mode: "0644"
@@ -132,7 +132,7 @@
     - V-71859
 
 - name: Create a GDM keyfile for machine-wide settings
-  template:
+  ansible.builtin.template:
     src: dconf-gdm-banner-message.j2
     dest: "{{ item }}"
     mode: "0644"

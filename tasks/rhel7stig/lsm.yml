@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Check apparmor_status output
-  command: apparmor_status
+  ansible.builtin.command: apparmor_status
   register: apparmor_status_output
   check_mode: false
   changed_when: false
@@ -32,7 +32,7 @@
 # started apparmor each time. This breaks idempotency and we check
 # systemd's status directly as an alternative.
 - name: Check if apparmor is running
-  command: "systemctl status apparmor" # noqa: command-instead-of-module
+  ansible.builtin.command: "systemctl status apparmor"
   register: systemctl_apparmor_status
   check_mode: false
   changed_when: false
@@ -45,7 +45,7 @@
     - V-71989
 
 - name: Ensure AppArmor is enabled at boot time
-  service:
+  ansible.builtin.service:
     name: apparmor
     enabled: true
   when:
@@ -60,7 +60,7 @@
 # unit will always say AppArmor is dead. This means that the following task
 # will always start the unit every time it runs (which breaks idempotency).
 - name: Ensure AppArmor is running
-  service:
+  ansible.builtin.service:
     name: apparmor
     state: started
   changed_when:
@@ -79,7 +79,7 @@
 # to switch to permissive/enforcing in an online way when SELinux is completely
 # disabled at boot time.
 - name: Ensure SELinux is in enforcing mode on the next reboot
-  selinux:
+  ansible.posix.selinux:
     state: enforcing
     policy: targeted
   register: selinux_status_change
@@ -93,7 +93,7 @@
     - V-71991
 
 - name: Relabel files on next boot if SELinux mode changed
-  file:
+  ansible.builtin.file:
     path: /.autorelabel
     state: touch
     mode: "0644"
@@ -109,7 +109,7 @@
 # NOTE(mhayden): Ansible's find module doesn't support searching for files
 # based on SELinux contexts yet.
 - name: Check for unlabeled device files
-  command: "find /dev -context '*unlabeled_t*'"
+  ansible.builtin.command: "find /dev -context '*unlabeled_t*'"
   register: unlabeled_devices
   changed_when: false
   check_mode: false
@@ -122,7 +122,7 @@
     - V-72039
 
 - name: V-72039 - All system device files must be correctly labeled to prevent unauthorized modification.
-  debug:
+  ansible.builtin.debug:
     msg: |
       Devices were found without SELinux labels:
       {% for device in unlabeled_devices.stdout_lines %}

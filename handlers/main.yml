@@ -18,32 +18,32 @@
 # NOTE(mhayden): It's not possible to use systemd to restart auditd on CentOS
 # since it's a special service. Using the old service scripts is required.
 - name: Restart auditd
-  command: service auditd restart # noqa: command-instead-of-module
+  ansible.builtin.command: service auditd restart
   changed_when: false
 
 - name: Restart chrony
-  service:
+  ansible.builtin.service:
     name: "{{ chrony_service }}"
     state: restarted
 
 - name: Restart ssh
-  service:
+  ansible.builtin.service:
     name: "{{ ssh_service }}"
     state: restarted
 
 - name: Restart clamav
-  service:
+  ansible.builtin.service:
     name: "{{ clamav_service }}"
     state: restarted
 
 # Miscellaneous ##############################################################
 - name: Generate auditd rules
-  command: augenrules --load
+  ansible.builtin.command: augenrules --load
   changed_when: false
   notify: restart auditd
 
 - name: Update grub config
-  command: "{{ grub_update_cmd }}"
+  ansible.builtin.command: "{{ grub_update_cmd }}"
   changed_when: false
   when:
     - security_enable_grub_update | bool
@@ -55,10 +55,10 @@
 # NOTE(mhayden): Running `update-grub` causes the bootloader permissions to
 # change, which breaks V-38583.
 - name: Set bootloader file permissions after updating grub config
-  file:
+  ansible.builtin.file:
     path: "{{ grub_config_file_boot }}"
     mode: "0644"
 
 - name: Dconf update
-  command: dconf update
+  ansible.builtin.command: dconf update
   changed_when: false

@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Verify that AIDE configuration directory exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ item }}"
   register: aide_conf
   check_mode: false
@@ -25,7 +25,7 @@
     - always
 
 - name: Exclude certain directories from AIDE
-  template:
+  ansible.builtin.template:
     src: ZZ_aide_exclusions.j2
     dest: /etc/aide/aide.conf.d/ZZ_aide_exclusions
     mode: "0644"
@@ -39,7 +39,7 @@
 # that meets the requirements of V-72069 and V-72071. That config
 # is borrowed for Ubuntu 16.04 here.
 - name: Configure AIDE to verify additional properties (Ubuntu)
-  blockinfile:
+  ansible.builtin.blockinfile:
     dest: "/etc/aide/aide.conf"
     insertbefore: EOF
     marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
@@ -69,7 +69,7 @@
 
 # NOTE(hwoarang): Add acl and xattrs on SUSE to meet V-72069 and V-72071.
 - name: Configure AIDE to verify additional properties (SUSE)
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "/etc/aide.conf"
     regexp: "(^Binlib.*= )"
     line: "\\1p+i+n+u+g+s+b+m+c+sha256+sha512+acl+xattrs"
@@ -86,7 +86,7 @@
     - V-72073
 
 - name: Check to see if AIDE database is already in place
-  stat:
+  ansible.builtin.stat:
     path: "{{ aide_database_file }}"
   register: aide_database
   check_mode: false
@@ -97,7 +97,7 @@
   # NOTE(hwoarang): aideinit is an Ubuntu wrapper. An alternative
   # would be to use aideinit || aide -i but that will possibly mask
   # genuine aideinit failures.
-  shell: "if test -x /usr/sbin/aideinit; then aideinit; else aide -i; fi"
+  ansible.builtin.shell: "if test -x /usr/sbin/aideinit; then aideinit; else aide -i; fi"
   changed_when: false
   register: aide_init
   when:
@@ -113,7 +113,7 @@
 # copies the new AIDE database into place automatically with its AIDE wrapper
 # script.
 - name: Move AIDE database into place
-  command: "mv {{ aide_database_out_file }} {{ aide_database_file }}"
+  ansible.builtin.command: "mv {{ aide_database_out_file }} {{ aide_database_file }}"
   changed_when: false
   when:
     - aide_init is not skipped
@@ -127,7 +127,7 @@
 # package doesn't come with a cron job file. Ubuntu packages a cron job for
 # AIDE checks already.
 - name: Create AIDE cron job
-  cron:
+  ansible.builtin.cron:
     name: aide
     cron_file: aide
     user: root

@@ -14,10 +14,10 @@
 # limitations under the License.
 
 - name: Including rpm tasks
-  include_tasks: rpm.yml
+  ansible.builtin.include_tasks: rpm.yml
 
 - name: Check if /etc/dnf/automatic.conf exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/dnf/automatic.conf
   check_mode: false
   register: dnf_automatic_config_check
@@ -28,7 +28,7 @@
     - always
 
 - name: Enable automatic package updates (dnf)
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/dnf/automatic.conf
     regexp: "^apply_updates"
     line: "apply_updates = yes"
@@ -77,7 +77,7 @@
     - skip_ansible_lint
 
 - name: Enable dnf automatic timer for automatic package updates
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ dnf_automatic_timer }}"
     enabled: true
     state: started

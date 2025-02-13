@@ -14,13 +14,13 @@
 # limitations under the License.
 
 - name: Ensure debsums is installed
-  apt:
+  ansible.builtin.apt:
     name: debsums
     state: present
   when: security_check_package_checksums | bool
 
 - name: Gather debsums report
-  shell: "debsums > {{ temp_dir }}/debsums.txt"
+  ansible.builtin.shell: "debsums > {{ temp_dir }}/debsums.txt"
   changed_when: false
   failed_when: false
   when:
@@ -28,7 +28,7 @@
     - not check_mode | bool
 
 - name: V-71855 - Get files with invalid checksums (apt)
-  shell: "grep -v OK$ {{ temp_dir }}/debsums.txt | awk '{ print $1 }'" # noqa risky-shell-pipe
+  ansible.builtin.shell: "grep -v OK$ {{ temp_dir }}/debsums.txt | awk '{ print $1 }'"
   register: invalid_checksum_files
   changed_when: false
   when:
@@ -40,7 +40,7 @@
     - V-71855
 
 - name: V-71855 - Create comma-separated list
-  set_fact:
+  ansible.builtin.set_fact:
     invalid_checksum_files_violations: "{{ invalid_checksum_files.stdout_lines | default([]) | join(', ') }}"
   when:
     - security_check_package_checksums | bool
@@ -51,7 +51,7 @@
     - V-71855
 
 - name: V-71855 - The cryptographic hash of system files and commands must match vendor values (apt)
-  debug:
+  ansible.builtin.debug:
     msg: >
       The following files have checksums that differ from the checksum provided
       with their package. Each of these should be verified manually to ensure
@@ -68,14 +68,14 @@
 
 # See the documentation for V-71977 for more details on this check.
 - name: Search for AllowUnauthenticated in /etc/apt/apt.conf.d/
-  command: grep -r '^[^#].*AllowUnauthenticated \"true\"' /etc/apt/apt.conf.d/
+  ansible.builtin.command: grep -r '^[^#].*AllowUnauthenticated \"true\"' /etc/apt/apt.conf.d/
   register: gpgcheck_result
   changed_when: false
   failed_when: false
   check_mode: false
 
 - name: V-71977 - Package management tool must verify authenticity of packages
-  debug:
+  ansible.builtin.debug:
     msg: "Remove AllowUnauthenticated from files in /etc/apt/apt.conf.d/ to ensure packages are verified."
   when:
     - security_enable_gpgcheck_packages | bool
@@ -85,7 +85,7 @@
     - V-71977
 
 - name: V-71979 - Package management tool must verify authenticity of locally-installed packages
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/dpkg/dpkg.cfg
     regexp: "^(#)?no-debsig"
     line: "#no-debsig"
@@ -97,7 +97,7 @@
     - V-71979
 
 - name: V-71987 - Clean requirements/dependencies when removing packages (dpkg)
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/apt/apt.conf.d/security-autoremove
     regexp: "^(#)?APT::Get::AutomaticRemove"
     line: "APT{{ '::' }}Get{{ '::' }}AutomaticRemove \"0\";"
@@ -113,7 +113,7 @@
     - V-71987
 
 - name: Enable automatic package updates (apt)
-  copy:
+  ansible.builtin.copy:
     src: 20auto-upgrades
     dest: /etc/apt/apt.conf.d/20auto-upgrades
     mode: "0644"

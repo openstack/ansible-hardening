@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Copy login warning banner
-  copy:
+  ansible.builtin.copy:
     content: "{{ security_login_banner_text }}"
     dest: "{{ security_sshd_banner_file }}"
     owner: root
@@ -27,7 +27,7 @@
     - V-72225
 
 - name: Drop options from SSH config that we manage
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
     state: absent
     regexp: "^{{ item.name }}\\s+(?!{{ item.value }})"
@@ -59,7 +59,7 @@
     - V-72263
 
 - name: Adjust ssh server configuration based on STIG requirements
-  blockinfile:
+  ansible.builtin.blockinfile:
     dest: /etc/ssh/sshd_config
     state: present
     marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
@@ -97,7 +97,7 @@
     - V-72263
 
 - name: Ensure sshd is enabled at boot time
-  service:
+  ansible.builtin.service:
     name: "{{ ssh_service }}"
     enabled: true
   when:
@@ -108,7 +108,7 @@
     - V-72235
 
 - name: Determine existing public ssh host keys
-  shell: ls /etc/ssh/*.pub
+  ansible.builtin.shell: ls /etc/ssh/*.pub
   register: public_ssh_host_keys
   # The shell command will always report 'changed' so we need to
   # ignore that since this role is supposed to be idempotent.
@@ -118,7 +118,7 @@
     - always
 
 - name: Public host key files must have mode 0644 or less
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     mode: "u-xX,g-wxs,o-wxt"
   with_items:
@@ -129,7 +129,7 @@
     - V-72255
 
 - name: Determine existing private ssh host keys
-  shell: ls /etc/ssh/*_key
+  ansible.builtin.shell: ls /etc/ssh/*_key
   register: private_ssh_host_keys
   # The shell command will always report 'changed' so we need to
   # ignore that since this role is supposed to be idempotent
@@ -139,7 +139,7 @@
     - always
 
 - name: Private host key files must have mode 0600 or less
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     mode: "u-xX,g-rwxs,o-rwxt"
   with_items:
@@ -150,7 +150,7 @@
     - V-72257
 
 - name: Manage motd in pam.d
-  replace:
+  ansible.builtin.replace:
     path: /etc/pam.d/sshd
     regexp: "^(#\\s)?(session\\s*optional\\s*pam_motd.so.*)$"
     replace: '{{ (security_sshd_dynamic_banner_disable | bool) | ternary("# \2", "\2") }}'

@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Verify that auditd.conf exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/audit/auditd.conf
   register: auditd_conf
   check_mode: false
@@ -22,7 +22,7 @@
     - always
 
 - name: Verify that audisp-remote.conf exists
-  stat:
+  ansible.builtin.stat:
     path: /etc/audisp/audisp-remote.conf
   register: audisp_remote_conf
   check_mode: false
@@ -30,7 +30,7 @@
     - always
 
 - name: V-72083 - The operating system must off-load audit records onto a different system or media from the system being audited
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/audisp/audisp-remote.conf
     regexp: "^(#)?remote_server"
     line: "remote_server = {{ security_audisp_remote_server }}"
@@ -45,7 +45,7 @@
     - V-72083
 
 - name: V-72085 - The operating system must encrypt the transfer of audit records off-loaded onto a different system or media from the system being audited
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/audisp/audisp-remote.conf
     regexp: "^(#)?enable_krb5"
     line: "enable_krb5 = yes"
@@ -60,14 +60,14 @@
     - V-72085
 
 - name: Get valid system architectures for audit rules
-  set_fact:
+  ansible.builtin.set_fact:
     auditd_architectures: "{{ (ansible_facts['architecture'] == 'ppc64le') | ternary(['ppc64'], ['b32', 'b64']) }}"
   check_mode: false
   tags:
     - always
 
 - name: Remove system default audit.rules file
-  file:
+  ansible.builtin.file:
     path: /etc/audit/rules.d/audit.rules
     state: absent
   when:
@@ -78,7 +78,7 @@
     - always
 
 - name: Remove old RHEL 6 audit rules file
-  file:
+  ansible.builtin.file:
     path: /etc/audit/rules.d/osas-auditd.rules
     state: absent
   when:
@@ -89,7 +89,7 @@
     - always
 
 - name: Deploy rules for auditd based on STIG requirements
-  template:
+  ansible.builtin.template:
     src: osas-auditd-rhel7.j2
     dest: /etc/audit/rules.d/osas-auditd-rhel7.rules
     mode: "0644"
@@ -155,7 +155,7 @@
     - V-72081
 
 - name: Adjust auditd/audispd configurations
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ item.config }}"
     regexp: "^#?{{ item.parameter }}\\s*="
     line: "{{ item.parameter }} = {{ item.value }}"
@@ -174,7 +174,7 @@
     - V-72093
 
 - name: Ensure auditd is running and enabled at boot time
-  service:
+  ansible.builtin.service:
     name: auditd
     state: started
     enabled: true

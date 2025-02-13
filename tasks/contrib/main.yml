@@ -14,5 +14,5 @@
 # limitations under the License.
 
 - name: Notify the deployer that contrib tasks are enabled
-  debug:
+  ansible.builtin.debug:
     msg: "The contrib tasks are enabled."

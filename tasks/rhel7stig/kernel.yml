@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: V-71983 - USB mass storage must be disabled.
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/modprobe.d/ansible-hardening-disable-usb-storage.conf
     line: install usb-storage /bin/true
     create: true
@@ -27,7 +27,7 @@
     - V-71983
 
 - name: Set sysctl configurations
-  sysctl:
+  ansible.posix.sysctl:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     state: "{{ item.enabled | ternary('present', 'absent') }}"
@@ -51,7 +51,7 @@
     - C-00001
 
 - name: Check kdump service
-  command: systemctl status kdump # noqa: command-instead-of-module
+  ansible.builtin.command: systemctl status kdump
   register: kdump_service_check
   failed_when: kdump_service_check.rc not in [0,3,4]
   changed_when: false
@@ -62,7 +62,7 @@
     - V-72057
 
 - name: V-72057 - Kernel core dumps must be disabled unless needed.
-  service:
+  ansible.builtin.service:
     name: kdump
     state: stopped
     enabled: false
@@ -75,7 +75,7 @@
     - V-72057
 
 - name: Check if FIPS is enabled
-  command: cat /proc/sys/crypto/fips_enabled
+  ansible.builtin.command: cat /proc/sys/crypto/fips_enabled
   register: fips_check
   changed_when: false
   failed_when: false
@@ -86,7 +86,7 @@
     - always
 
 - name: Print a warning if FIPS isn't enabled
-  debug:
+  ansible.builtin.debug:
     msg: >
       FIPS is not enabled at boot time on this server.
       The STIG requires FIPS to be enabled at boot time.
@@ -100,7 +100,7 @@
     - V-72067
 
 - name: V-77821 - Datagram Congestion Control Protocol (DCCP) kernel module must be disabled
-  copy:
+  ansible.builtin.copy:
     src: ansible-hardening-disable-dccp.conf
     dest: /etc/modprobe.d/ansible-hardening-disable-dccp.conf
     mode: "0644"

@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Check autofs service
-  command: systemctl status autofs # noqa: command-instead-of-module
+  ansible.builtin.command: systemctl status autofs # noqa: command-instead-of-module
   register: autofs_check
   failed_when: autofs_check.rc not in [0,3,4]
   changed_when: false
@@ -23,7 +23,7 @@
     - always
 
 - name: V-71985 - File system automounter must be disabled unless required.
-  service:
+  ansible.builtin.service:
     name: autofs
     state: stopped
     enabled: false
@@ -39,7 +39,7 @@
 #                      https://github.com/ansible/ansible/issues/68680
 # This returns an exit code of 0 if it's running, 3 if it's masked.
 - name: V-71993 - The x86 Ctrl-Alt-Delete key sequence must be disabled
-  systemd:
+  ansible.builtin.systemd:
     name: ctrl-alt-del.target
     enabled: false
   when:
@@ -50,7 +50,7 @@
     - V-71993
 
 - name: V-71993 - The x86 Ctrl-Alt-Delete key sequence must be disabled
-  systemd:
+  ansible.builtin.systemd:
     name: ctrl-alt-del.target
     masked: true
     daemon_reload: true
@@ -62,7 +62,7 @@
     - V-71993
 
 - name: Check for /home on mounted filesystem
-  debug:
+  ansible.builtin.debug:
     msg: |
       The STIG requires that /home is on its own filesystem, but this system
       does not appear to be following the requirement.
@@ -74,7 +74,7 @@
     - V-72059
 
 - name: Check for /var on mounted filesystem
-  debug:
+  ansible.builtin.debug:
     msg: |
       The STIG requires that /var is on its own filesystem, but this system
       does not appear to be following the requirement.
@@ -86,7 +86,7 @@
     - V-72067
 
 - name: Check for /var/log/audit on mounted filesystem
-  debug:
+  ansible.builtin.debug:
     msg: |
       The STIG requires that /var/log/audit is on its own filesystem, but this system
       does not appear to be following the requirement.
@@ -98,7 +98,7 @@
     - V-72063
 
 - name: Check for /tmp on mounted filesystem
-  debug:
+  ansible.builtin.debug:
     msg: |
       The STIG requires that /tmp is on its own filesystem, but this system
       does not appear to be following the requirement.
@@ -110,7 +110,7 @@
     - V-72065
 
 - name: Check if syslog output is being sent to another server
-  command: 'grep "^[^#].*@" /etc/rsyslog.conf'
+  ansible.builtin.command: 'grep "^[^#].*@" /etc/rsyslog.conf'
   register: rsyslog_transmit_check
   changed_when: false
   failed_when: false
@@ -119,7 +119,7 @@
     - always
 
 - name: V-72209 - The system must send rsyslog output to a log aggregation server.
-  debug:
+  ansible.builtin.debug:
     msg: Output from syslog must be sent to another server.
   when:
     - rsyslog_transmit_check is defined
@@ -130,7 +130,7 @@
     - V-72209
 
 - name: Check if ClamAV is installed
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/clamdscan
   register: clamav_install_check
   changed_when: false
@@ -138,7 +138,7 @@
     - always
 
 - name: Remove 'Example' line from ClamAV configuration files
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ item }}"
     regexp: "^Example"
     state: absent
@@ -156,7 +156,7 @@
     - V-72213
 
 - name: Set ClamAV server type as socket
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/clamd.d/scan.conf
     regexp: "^(#)?LocalSocket (.*)$"
     line: "LocalSocket {{ clamav_service_details['socket_path'] }}"
@@ -172,7 +172,7 @@
     - V-72213
 
 - name: Ensure ClamAV socket directory exists
-  file:
+  ansible.builtin.file:
     path: "{{ clamav_service_details['socket_path'] | dirname }}"
     owner: "{{ clamav_service_details['user'] }}"
     group: "{{ clamav_service_details['group'] }}"
@@ -188,7 +188,7 @@
     - V-72213
 
 - name: Allow automatic freshclam updates
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/sysconfig/freshclam
     regexp: "^FRESHCLAM_DELAY"
     state: absent
@@ -203,7 +203,7 @@
     - V-72213
 
 - name: Check if ClamAV update process is already running
-  shell: "set -o pipefail; ps -ef | egrep [f]reshclam -q"
+  ansible.builtin.shell: "set -o pipefail; ps -ef | egrep [f]reshclam -q"
   register: freshclam_proc
   changed_when: false
   failed_when: false
@@ -212,7 +212,7 @@
     - always
 
 - name: Update ClamAV database
-  command: freshclam
+  ansible.builtin.command: freshclam
   changed_when: false
   when:
     - freshclam_proc.rc != 0
@@ -226,7 +226,7 @@
     - V-72213
 
 - name: Ensure ClamAV is running
-  service:
+  ansible.builtin.service:
     name: "{{ clamav_service }}"
     state: started
     enabled: true
@@ -243,7 +243,7 @@
 # errors on the command prompt. See LP bug 1736702.
 # TODO(mhayden): Remove this task when the Rocky release is in development.
 - name: Remove old config block for V-72223 from openstack-ansible-security
-  blockinfile:
+  ansible.builtin.blockinfile:
     dest: /etc/profile
     state: absent
     insertbefore: EOF
@@ -254,7 +254,7 @@
     - V-72223
 
 - name: V-72223 - Set 10 minute timeout on communication sessions
-  blockinfile:
+  ansible.builtin.blockinfile:
     dest: /etc/profile
     state: present
     insertbefore: EOF
@@ -270,7 +270,7 @@
     - V-72223
 
 - name: Start and enable chrony
-  service:
+  ansible.builtin.service:
     name: "{{ chrony_service }}"
     state: started
     enabled: true
@@ -283,14 +283,14 @@
     - V-72269
 
 - name: Check if chrony configuration file exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ chrony_conf_file }}"
   register: chrony_conf_check
   tags:
     - always
 
 - name: V-72269 - Synchronize system clock (configuration file)
-  template:
+  ansible.builtin.template:
     src: chrony.conf.j2
     dest: "{{ chrony_conf_file }}"
     mode: "0644"
@@ -306,7 +306,7 @@
 
 # Returns 0 if installed, 3 if not installed
 - name: Check firewalld status
-  command: systemctl status firewalld # noqa: command-instead-of-module
+  ansible.builtin.command: systemctl status firewalld
   register: firewalld_status_check
   failed_when: firewalld_status_check.rc not in [0,3,4]
   changed_when: false
@@ -315,7 +315,7 @@
     - always
 
 - name: Ensure firewalld is running and enabled
-  service:
+  ansible.builtin.service:
     name: firewalld
     state: started
     enabled: true
@@ -328,7 +328,7 @@
     - V-72273
 
 - name: Limit new TCP connections to 25/minute and allow bursting to 100
-  command: >-
+  ansible.builtin.command: >-
     firewall-cmd --direct --add-rule ipv4 filter IN_public_allow 0 -m tcp -p tcp -m limit --limit {{
       security_enable_firewalld_rate_limit_per_minute }}/minute --limit-burst {{ security_enable_firewalld_rate_limit_burst }} -j ACCEPT
   register: add_rate_limit_firewalld_rule
@@ -354,7 +354,7 @@
     - skip_ansible_lint
 
 - name: V-72281 - For systems using DNS resolution, at least two name servers must be configured.
-  debug:
+  ansible.builtin.debug:
     msg: |
       Two or more nameservers must be configured in /etc/resolv.conf.
       Nameservers found: {{ nameserver_check.stdout_lines | length }}
@@ -367,7 +367,7 @@
     - V-72281
 
 - name: Check for interfaces in promiscuous mode
-  shell: "set -o pipefail; ip link | grep -i promisc"
+  ansible.builtin.shell: "set -o pipefail; ip link | grep -i promisc"
   register: promiscuous_interface_check
   changed_when: false
   failed_when: false
@@ -376,7 +376,7 @@
     - always
 
 - name: V-72295 - Network interfaces must not be in promiscuous mode.
-  debug:
+  ansible.builtin.debug:
     msg: >
       One or more network interfaces were found to be in promiscuous mode.
       Review all interfaces and disable promiscuous mode.
@@ -388,14 +388,14 @@
     - V-72295
 
 - name: Check for postfix configuration file
-  stat:
+  ansible.builtin.stat:
     path: /etc/postfix/main.cf
   register: postfix_conf_check
   tags:
     - always
 
 - name: V-72297 - Prevent unrestricted mail relaying
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/postfix/main.cf
     regexp: "^smtpd_client_restrictions"
     line: "smtpd_client_restrictions = permit_mynetworks, reject"
@@ -408,7 +408,7 @@
     - V-72297
 
 - name: Check for TFTP server configuration file
-  stat:
+  ansible.builtin.stat:
     path: /etc/xinetd.d/tftp
   register: tftp_config_check
   check_mode: false
@@ -416,7 +416,7 @@
     - always
 
 - name: Check TFTP configuration mode
-  command: "grep server_args /etc/xinetd.d/tftp"
+  ansible.builtin.command: "grep server_args /etc/xinetd.d/tftp"
   register: tftp_secure_check
   changed_when: false
   failed_when: false
@@ -427,7 +427,7 @@
     - always
 
 - name: V-72305 - TFTP must be configured to operate in secure mode
-  debug:
+  ansible.builtin.debug:
     msg: TFTP must be configured to run in secure mode with the '-s' flag.
   when:
     - tftp_config_check.stat.exists
@@ -438,7 +438,7 @@
     - V-72305
 
 - name: Check to see if snmpd config contains public/private
-  command: 'egrep "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
+  ansible.builtin.command: 'egrep "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
   register: snmp_public_private_check
   changed_when: false
   failed_when: false
@@ -447,7 +447,7 @@
     - always
 
 - name: V-72313 - Change SNMP community strings from default.
-  debug:
+  ansible.builtin.debug:
     msg: >
       Change the SNMP community strings from the defaults of 'public' and
       'private' to meet the requirements of V-72313.

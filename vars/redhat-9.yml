@@ -38,7 +38,7 @@ pkg_mgr_config: /etc/dnf/dnf.conf
 cron_service: crond
 ssh_service: sshd
 chrony_service: chronyd
-clamav_service: 'clamd@scan'
+clamav_service: "clamd@scan"
 
 # Clamav paparms
 clamav_service_details:
@@ -64,7 +64,7 @@ stig_packages_rhel7:
       - openssh-clients
       - openssh-server
     state: "{{ security_package_state }}"
-    enabled: True
+    enabled: true
   - packages:
       - aide
     state: "{{ security_package_state }}"

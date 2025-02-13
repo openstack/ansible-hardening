@@ -60,7 +60,7 @@ stig_packages_rhel7:
       - openssh-server
       - screen
     state: "{{ security_package_state }}"
-    enabled: True
+    enabled: true
   - packages:
       - aide
       - aide-common

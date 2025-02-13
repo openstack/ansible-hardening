@@ -18,10 +18,10 @@
 - name: Set pam_faildelay configuration on Ubuntu
   lineinfile:
     dest: /etc/pam.d/login
-    regexp: '^(auth[\s]+optional[\s]+pam_faildelay.so).*$'
-    line: '\1 delay={{ (security_shadow_utils_fail_delay | int) * 10**6 }}'
+    regexp: "^(auth[\\s]+optional[\\s]+pam_faildelay.so).*$"
+    line: "\\1 delay={{ (security_shadow_utils_fail_delay | int) * 10**6 }}"
     state: present
-    backrefs: yes
+    backrefs: true
   when:
     - security_shadow_utils_fail_delay is defined
     - ansible_facts['os_family'] | lower == 'debian'
@@ -35,9 +35,9 @@
     dest: "{{ pam_auth_file }}"
     state: present
     regexp: "^(.*)nullok_secure(.*)$"
-    line: '\1\2'
-    backup: yes
-    backrefs: yes
+    line: "\\1\\2"
+    backup: true
+    backrefs: true
   when:
     - ansible_facts['os_family'] == 'Debian'
     - security_disallow_blank_password_login | bool
@@ -51,9 +51,9 @@
     dest: "{{ item[1] }}"
     state: present
     regexp: "^({{ item[0] }}.*sufficient.*)nullok(.*)$"
-    line: '\1\2'
-    backup: yes
-    backrefs: yes
+    line: "\\1\\2"
+    backup: true
+    backrefs: true
   loop: "{{ ['auth', 'password'] | product(['{{ pam_auth_file }}', '{{ pam_password_file }}']) | list }}"
   when:
     - ansible_facts['os_family'] == 'RedHat'
@@ -68,9 +68,9 @@
     dest: "{{ item }}"
     state: present
     regexp: "^(.*required.*)nullok(.*)$"
-    line: '\1\2'
-    backup: yes
-    backrefs: yes
+    line: "\\1\\2"
+    backup: true
+    backrefs: true
   with_items:
     - "{{ pam_auth_file }}"
     - "{{ pam_password_file }}"
@@ -108,7 +108,7 @@
 - name: Check for 'nopasswd' in sudoers files
   shell: 'grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ | egrep -v "^([[:space:]]*)?(#|$)" || echo "not found"' # noqa risky-shell-pipe
   register: sudoers_nopasswd_check
-  changed_when: False
+  changed_when: false
   when:
     - security_sudoers_nopasswd_check_enable | bool
   tags:
@@ -134,7 +134,7 @@
 - name: Check for '!authenticate' in sudoers files
   shell: grep -ir '\!authenticate' /etc/sudoers /etc/sudoers.d/ || echo 'not found'
   register: sudoers_authenticate_check
-  changed_when: False
+  changed_when: false
   tags:
     - auth
     - medium
@@ -159,7 +159,7 @@
   stat:
     path: /etc/sssd/sssd.conf
   register: sssd_conf_check
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -169,7 +169,7 @@
   stat:
     path: "{{ grub_custom_file }}"
   register: grub_custom_file_check
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -189,10 +189,10 @@
     - name: Set CLASS for grub file
       lineinfile:
         path: "{{ grub_linux_file }}"
-        regexp: '^CLASS=.*'
+        regexp: "^CLASS=.*"
         line: 'CLASS="--class gnu-linux --class gnu --class os --unrestricted"'
         state: present
-        backrefs: yes
+        backrefs: true
       notify:
         - Update grub config
   when:
@@ -207,7 +207,7 @@
 - name: V-72217 - The operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types.
   blockinfile:
     dest: /etc/security/limits.d/ansible-hardening-maxlogins.conf
-    create: yes
+    create: true
     mode: "0644"
     block: |
       # Deployed by the ansible-hardening role
@@ -223,9 +223,9 @@
 - name: Check for pam_lastlog in PAM configuration
   command: "grep pam_lastlog {{ pam_postlogin_file }}"
   register: pam_lastlog_check
-  changed_when: False
-  failed_when: False
-  check_mode: no
+  changed_when: false
+  failed_when: false
+  check_mode: false
   tags:
     - always
 
@@ -244,8 +244,8 @@
 - name: Ensure .shosts find has finished
   async_status:
     jid: "{{ shosts_find.ansible_job_id }}"
-  failed_when: False
-  changed_when: False
+  failed_when: false
+  changed_when: false
   register: job_result
   until: job_result.finished
   retries: 60

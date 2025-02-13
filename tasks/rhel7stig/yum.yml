@@ -19,7 +19,7 @@
 - name: Check if /etc/yum/yum-cron.conf exists
   stat:
     path: /etc/yum/yum-cron.conf
-  check_mode: no
+  check_mode: false
   register: yum_cron_config_check
   when:
     - ansible_facts['os_family'] | lower == 'redhat'

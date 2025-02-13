@@ -61,158 +61,158 @@ auditd_config:
 audited_commands:
   - command: chsh
     stig_id: V-72167
-    arch_specific: no
+    arch_specific: false
   - command: chage
     stig_id: V-72155
-    arch_specific: no
+    arch_specific: false
   - command: chcon
     stig_id: V-72139
-    arch_specific: no
+    arch_specific: false
   - command: chmod
     stig_id: V-72105
-    arch_specific: yes
+    arch_specific: true
   - command: chown
     stig_id: V-72097
-    arch_specific: yes
+    arch_specific: true
   - command: creat
     stig_id: V-72123
-    arch_specific: yes
+    arch_specific: true
   - command: crontab
     stig_id: V-72183
-    arch_specific: no
+    arch_specific: false
   - command: delete_module
     stig_id: V-72189
-    arch_specific: yes
+    arch_specific: true
   - command: fchmod
     stig_id: V-72107
-    arch_specific: yes
+    arch_specific: true
   - command: fchmodat
     stig_id: V-72109
-    arch_specific: yes
+    arch_specific: true
   - command: fchown
     stig_id: V-72099
-    arch_specific: yes
+    arch_specific: true
   - command: fchownat
     stig_id: V-72103
-    arch_specific: yes
+    arch_specific: true
   - command: fremovexattr
     stig_id: V-72119
-    arch_specific: yes
+    arch_specific: true
   - command: fsetxattr
     stig_id: V-72113
-    arch_specific: yes
+    arch_specific: true
   - command: ftruncate
     stig_id: V-72133
-    arch_specific: yes
+    arch_specific: true
   - command: init_module
     stig_id: V-72187
-    arch_specific: yes
+    arch_specific: true
   - command: gpasswd
     stig_id: V-72153
-    arch_specific: no
+    arch_specific: false
   - command: lchown
     stig_id: V-72101
-    arch_specific: yes
+    arch_specific: true
   - command: lremovexattr
     stig_id: V-72121
-    arch_specific: yes
+    arch_specific: true
   - command: lsetxattr
     stig_id: V-72115
-    arch_specific: yes
+    arch_specific: true
   - command: mount
     path: /bin
     stig_id: V-72171
-    arch_specific: no
+    arch_specific: false
   - command: newgrp
     stig_id: V-72165
-    arch_specific: no
+    arch_specific: false
   - command: open
     stig_id: V-72125
-    arch_specific: yes
+    arch_specific: true
   - command: openat
     stig_id: V-72127
-    arch_specific: yes
+    arch_specific: true
   - command: open_by_handle_at
     stig_id: V-72129
-    arch_specific: yes
+    arch_specific: true
   - command: pam_timestamp_check
     path: /sbin
     stig_id: V-72185
-    arch_specific: no
+    arch_specific: false
   - command: passwd
     stig_id: V-72149
-    arch_specific: no
+    arch_specific: false
   - command: postdrop
     path: /usr/sbin
     stig_id: V-72175
-    arch_specific: no
+    arch_specific: false
   - command: postqueue
     path: /usr/sbin
     stig_id: V-72177
-    arch_specific: no
+    arch_specific: false
   - command: removexattr
     stig_id: V-72117
-    arch_specific: yes
+    arch_specific: true
   - command: rename
     stig_id: V-72199
-    arch_specific: yes
+    arch_specific: true
   - command: renameat
     stig_id: V-72201
-    arch_specific: yes
+    arch_specific: true
   - command: restorecon
     path: /usr/sbin
     stig_id: V-72141
-    arch_specific: no
+    arch_specific: false
   - command: rmdir
     stig_id: V-72203
-    arch_specific: yes
+    arch_specific: true
   - command: semanage
     path: /usr/sbin
     stig_id: V-72135
-    arch_specific: no
+    arch_specific: false
   - command: setsebool
     path: /usr/sbin
     stig_id: V-72137
-    arch_specific: no
+    arch_specific: false
   - command: setxattr
     stig_id: V-72111
-    arch_specific: yes
+    arch_specific: true
   - command: ssh-keysign
     path: "{{ ssh_keysign_path }}"
     stig_id: V-72179
-    arch_specific: no
+    arch_specific: false
   - command: su
     path: /bin
     stig_id: V-72159
-    arch_specific: no
+    arch_specific: false
   - command: sudo
     stig_id: V-72161
-    arch_specific: no
+    arch_specific: false
   - command: sudoedit
     path: /bin
     stig_id: V-72169
-    arch_specific: no
+    arch_specific: false
   - command: truncate
     stig_id: V-72131
-    arch_specific: yes
+    arch_specific: true
   - command: umount
     path: /bin
     stig_id: V-72173
-    arch_specific: no
+    arch_specific: false
   - command: unix_chkpwd
     path: /sbin
     stig_id: V-72151
-    arch_specific: no
+    arch_specific: false
   - command: unlink
     stig_id: V-72205
-    arch_specific: yes
+    arch_specific: true
   - command: unlinkat
     stig_id: V-72207
-    arch_specific: yes
+    arch_specific: true
   - command: userhelper
     path: /usr/sbin
     stig_id: V-72157
-    arch_specific: no
+    arch_specific: false
 
 ## Password quality settings
 # This variable is used in main/rhel7stig/auth.yml to set password quality
@@ -368,15 +368,15 @@ sshd_settings_rhel7:
     stig_id: V-71959
   - name: Ciphers
     value: "{{ security_sshd_cipher_list }}"
-    enabled: True
+    enabled: true
     stig_id: V-72221
   - name: ClientAliveInterval
     value: "{{ security_sshd_client_alive_interval }}"
-    enabled: True
+    enabled: true
     stig_id: V-72237
   - name: ClientAliveCountMax
     value: "{{ security_sshd_client_alive_count_max }}"
-    enabled: True
+    enabled: true
     stig_id: V-72241
   - name: PrintLastLog
     value: "yes"
@@ -388,7 +388,7 @@ sshd_settings_rhel7:
       {% if security_sshd_permit_root_login | string in ['False', 'True'] %}
       {{ (security_sshd_permit_root_login | bool) | ternary('yes', 'no') }}{% else %}
       {{ security_sshd_permit_root_login }}{% endif %}
-    enabled: True
+    enabled: true
     stig_id: V-72247
   - name: IgnoreUserKnownHosts
     value: "yes"
@@ -404,11 +404,11 @@ sshd_settings_rhel7:
     stig_id: V-72303
   - name: Protocol
     value: "{{ security_sshd_protocol }}"
-    enabled: yes
+    enabled: true
     stig_id: V-72251
   - name: MACs
     value: "{{ security_sshd_allowed_macs }}"
-    enabled: yes
+    enabled: true
     stig_id: V-72253
   - name: UsePrivilegeSeparation
     value: sandbox
@@ -416,7 +416,7 @@ sshd_settings_rhel7:
     stig_id: V-72265
   - name: Compression
     value: "{{ security_sshd_compression }}"
-    enabled: yes
+    enabled: true
     stig_id: V-72267
   - name: KerberosAuthentication
     value: "no"

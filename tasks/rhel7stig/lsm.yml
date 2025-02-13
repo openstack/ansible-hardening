@@ -16,7 +16,7 @@
 - name: Check apparmor_status output
   command: apparmor_status
   register: apparmor_status_output
-  check_mode: no
+  check_mode: false
   changed_when: false
   failed_when: false
   when:
@@ -34,7 +34,7 @@
 - name: Check if apparmor is running
   command: "systemctl status apparmor" # noqa: command-instead-of-module
   register: systemctl_apparmor_status
-  check_mode: no
+  check_mode: false
   changed_when: false
   failed_when: false
   when:
@@ -47,7 +47,7 @@
 - name: Ensure AppArmor is enabled at boot time
   service:
     name: apparmor
-    enabled: yes
+    enabled: true
   when:
     - ansible_facts['pkg_mgr'] in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
@@ -111,8 +111,8 @@
 - name: Check for unlabeled device files
   command: "find /dev -context '*unlabeled_t*'"
   register: unlabeled_devices
-  changed_when: False
-  check_mode: no
+  changed_when: false
+  check_mode: false
   when:
     - ansible_facts['os_family'] == 'RedHat'
     - ansible_facts['selinux']['status'] == 'enabled'

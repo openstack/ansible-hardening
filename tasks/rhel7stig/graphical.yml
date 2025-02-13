@@ -17,7 +17,7 @@
   stat:
     path: /etc/gdm/custom.conf
   register: gdm_conf_check
-  check_mode: no
+  check_mode: false
 
 - name: V-71953 - The operating system must not allow an unattended or automatic logon to the system via a graphical user interface
   lineinfile:

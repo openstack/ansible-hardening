@@ -17,7 +17,7 @@
   stat:
     path: "{{ item }}"
   register: aide_conf
-  check_mode: no
+  check_mode: false
   with_items:
     - /etc/aide/aide.conf.d
     - /etc/aide.conf
@@ -71,10 +71,10 @@
 - name: Configure AIDE to verify additional properties (SUSE)
   lineinfile:
     dest: "/etc/aide.conf"
-    regexp: '(^Binlib.*= )'
-    line: '\1p+i+n+u+g+s+b+m+c+sha256+sha512+acl+xattrs'
+    regexp: "(^Binlib.*= )"
+    line: "\\1p+i+n+u+g+s+b+m+c+sha256+sha512+acl+xattrs"
     state: present
-    backrefs: yes
+    backrefs: true
   when:
     - aide_conf.results[1].stat.exists | bool
     - ansible_facts['pkg_mgr'] == 'zypper'
@@ -89,7 +89,7 @@
   stat:
     path: "{{ aide_database_file }}"
   register: aide_database
-  check_mode: no
+  check_mode: false
   tags:
     - always
 

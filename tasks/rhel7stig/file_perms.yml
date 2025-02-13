@@ -16,7 +16,7 @@
 - name: V-71849 - Get packages with incorrect file permissions or ownership
   shell: "grep '^.M' {{ temp_dir }}/rpmverify.txt | awk '{ print $NF }'" # noqa risky-shell-pipe
   register: rpmverify_package_list
-  changed_when: False
+  changed_when: false
   when:
     - not check_mode | bool
     - ansible_facts['pkg_mgr'] == 'dnf'
@@ -30,7 +30,7 @@
   shell: "rpm {{ item[0] }} `rpm -qf {{ item[1] }}`" # noqa: command-instead-of-shell command-instead-of-module risky-shell-pipe
   changed_when: false
   with_nested:
-    - ['--setperms', '--setugids']
+    - ["--setperms", "--setugids"]
     - "{{ rpmverify_package_list.stdout_lines | default([]) }}"
   when:
     - not check_mode | bool
@@ -113,9 +113,9 @@
 - name: Find all world-writable directories
   shell: "find / -perm -002 -type d -exec ls -lLd {} \\; | tr -s ' ' | cut -d' ' -f 4,9 | grep -v ^root" # noqa risky-shell-pipe
   register: world_writable_dirs
-  changed_when: False
-  failed_when: False
-  check_mode: no
+  changed_when: false
+  failed_when: false
+  check_mode: false
   when:
     - security_find_world_writable_dirs | bool
   tags:

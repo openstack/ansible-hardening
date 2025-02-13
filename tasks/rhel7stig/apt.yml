@@ -21,8 +21,8 @@
 
 - name: Gather debsums report
   shell: "debsums > {{ temp_dir }}/debsums.txt"
-  changed_when: False
-  failed_when: False
+  changed_when: false
+  failed_when: false
   when:
     - security_check_package_checksums | bool
     - not check_mode | bool
@@ -30,7 +30,7 @@
 - name: V-71855 - Get files with invalid checksums (apt)
   shell: "grep -v OK$ {{ temp_dir }}/debsums.txt | awk '{ print $1 }'" # noqa risky-shell-pipe
   register: invalid_checksum_files
-  changed_when: False
+  changed_when: false
   when:
     - security_check_package_checksums | bool
     - not check_mode | bool
@@ -70,9 +70,9 @@
 - name: Search for AllowUnauthenticated in /etc/apt/apt.conf.d/
   command: grep -r '^[^#].*AllowUnauthenticated \"true\"' /etc/apt/apt.conf.d/
   register: gpgcheck_result
-  changed_when: False
-  failed_when: False
-  check_mode: no
+  changed_when: false
+  failed_when: false
+  check_mode: false
 
 - name: V-71977 - Package management tool must verify authenticity of packages
   debug:
@@ -102,7 +102,7 @@
     regexp: "^(#)?APT::Get::AutomaticRemove"
     line: "APT{{ '::' }}Get{{ '::' }}AutomaticRemove \"0\";"
     state: present
-    create: yes
+    create: true
     mode: "0644"
   when:
     - security_package_clean_on_remove | bool

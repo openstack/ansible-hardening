@@ -45,6 +45,7 @@ logs/*
 # OS generated files #
 ######################
 ._*
+.ansible
 .tox
 *.egg-info
 .eggs

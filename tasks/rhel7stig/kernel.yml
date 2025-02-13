@@ -17,7 +17,7 @@
   lineinfile:
     dest: /etc/modprobe.d/ansible-hardening-disable-usb-storage.conf
     line: install usb-storage /bin/true
-    create: yes
+    create: true
     mode: "0644"
   when:
     - security_rhel7_disable_usb_storage | bool
@@ -32,7 +32,7 @@
     value: "{{ item.value }}"
     state: "{{ item.enabled | ternary('present', 'absent') }}"
     sysctl_file: "{{ security_sysctl_file }}"
-    reload: yes
+    reload: true
   when:
     - item.enabled | bool
   with_items: "{{ sysctl_settings_rhel7 }}"
@@ -54,8 +54,8 @@
   command: systemctl status kdump # noqa: command-instead-of-module
   register: kdump_service_check
   failed_when: kdump_service_check.rc not in [0,3,4]
-  changed_when: False
-  check_mode: no
+  changed_when: false
+  check_mode: false
   tags:
     - kernel
     - medium
@@ -65,7 +65,7 @@
   service:
     name: kdump
     state: stopped
-    enabled: no
+    enabled: false
   when:
     - kdump_service_check.rc not in [3,4]
     - security_disable_kdump
@@ -77,9 +77,9 @@
 - name: Check if FIPS is enabled
   command: cat /proc/sys/crypto/fips_enabled
   register: fips_check
-  changed_when: False
-  failed_when: False
-  check_mode: no
+  changed_when: false
+  failed_when: false
+  check_mode: false
   when:
     - ansible_facts['pkg_mgr'] == 'dnf'
   tags:

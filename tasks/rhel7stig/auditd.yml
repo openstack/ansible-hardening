@@ -17,7 +17,7 @@
   stat:
     path: /etc/audit/auditd.conf
   register: auditd_conf
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -25,7 +25,7 @@
   stat:
     path: /etc/audisp/audisp-remote.conf
   register: audisp_remote_conf
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -62,7 +62,7 @@
 - name: Get valid system architectures for audit rules
   set_fact:
     auditd_architectures: "{{ (ansible_facts['architecture'] == 'ppc64le') | ternary(['ppc64'], ['b32', 'b64']) }}"
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -157,7 +157,7 @@
 - name: Adjust auditd/audispd configurations
   lineinfile:
     dest: "{{ item.config }}"
-    regexp: '^#?{{ item.parameter }}\s*='
+    regexp: "^#?{{ item.parameter }}\\s*="
     line: "{{ item.parameter }} = {{ item.value }}"
   with_items: "{{ auditd_config }}"
   when:
@@ -177,7 +177,7 @@
   service:
     name: auditd
     state: started
-    enabled: yes
+    enabled: true
   when:
     - auditd_conf.stat.exists
   tags:

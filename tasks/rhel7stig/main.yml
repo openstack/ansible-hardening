@@ -26,7 +26,7 @@
 - name: Set a fact for the temporary directory
   set_fact:
     temp_dir: "{{ mktemp_result.path }}"
-  changed_when: False
+  changed_when: false
   when:
     - not check_mode | bool
   tags:
@@ -41,7 +41,7 @@
   get_users:
     min_uid: 0
   register: hardening_user_list
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -49,7 +49,7 @@
   get_users:
     min_uid: "{{ security_interactive_user_minimum_uid }}"
   register: interactive_user_list
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -108,7 +108,7 @@
   file:
     path: "{{ temp_dir }}"
     state: absent
-  changed_when: False
+  changed_when: false
   when:
     - not check_mode | bool
   tags:

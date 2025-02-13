@@ -32,7 +32,7 @@
 - name: Check for check/audit mode
   command: /bin/true
   register: noop_result
-  changed_when: False
+  changed_when: false
   tags:
     - always
 

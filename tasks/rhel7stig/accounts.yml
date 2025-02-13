@@ -16,7 +16,7 @@
 - name: Check if /etc/security/pwquality.conf exists
   stat:
     path: /etc/security/pwquality.conf
-  check_mode: no
+  check_mode: false
   register: pwquality_config_check
   tags:
     - always
@@ -24,7 +24,7 @@
 - name: Set password quality requirements
   blockinfile:
     dest: /etc/security/pwquality.conf
-    backup: yes
+    backup: true
     insertbefore: EOF
     marker: "# {mark} Added by ansible-hardening role"
     state: present
@@ -47,8 +47,8 @@
 - name: Check for SHA512 password storage in PAM
   command: "grep pam_unix.so {{ pam_password_file }}"
   register: password_sha512_check
-  changed_when: False
-  check_mode: no
+  changed_when: false
+  check_mode: false
   tags:
     - always
 
@@ -70,7 +70,7 @@
     section: defaults
     option: crypt_style
     value: sha512
-    backup: yes
+    backup: true
     mode: "0644"
   when:
     - security_libuser_crypt_style_sha512 | bool
@@ -117,9 +117,9 @@
 - name: Ensure that users cannot reuse one of their last 5 passwords
   lineinfile:
     dest: "{{ pam_password_file }}"
-    regexp: '^(password\s+[a-z0-9\=\[\] ]+\s+pam_unix\.so.+?)\s+(?:remember=\d+)?$'
-    line: '\1 remember={{ security_password_remember_password }}'
-    backrefs: yes
+    regexp: "^(password\\s+[a-z0-9\\=\\[\\] ]+\\s+pam_unix\\.so.+?)\\s+(?:remember=\\d+)?$"
+    line: "\\1 remember={{ security_password_remember_password }}"
+    backrefs: true
     state: present
   when:
     - security_password_remember_password is defined
@@ -131,8 +131,8 @@
 - name: Ensure accounts are disabled if the password expires
   lineinfile:
     dest: /etc/default/useradd
-    regexp: '^[#\s]*INACTIVE'
-    line: 'INACTIVE=0'
+    regexp: "^[#\\s]*INACTIVE"
+    line: "INACTIVE=0"
   when:
     - security_disable_account_if_password_expires | bool
   tags:
@@ -175,8 +175,8 @@
 
 - name: Get all accounts with UID 0
   shell: "awk -F: '$3 == 0 {print $1}' /etc/passwd"
-  changed_when: False
-  check_mode: no
+  changed_when: false
+  check_mode: false
   register: root_user_check
   tags:
     - accounts

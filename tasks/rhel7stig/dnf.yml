@@ -19,7 +19,7 @@
 - name: Check if /etc/dnf/automatic.conf exists
   stat:
     path: /etc/dnf/automatic.conf
-  check_mode: no
+  check_mode: false
   register: dnf_automatic_config_check
   when:
     - ansible_facts['os_family'] | lower == 'redhat'
@@ -49,8 +49,8 @@
 - name: Check to see which dnf automatic timers are available
   shell: "rpm -ql dnf-automatic | grep timer || true" # noqa: command-instead-of-module
   register: dnf_automatic_timers
-  check_mode: no
-  changed_when: False
+  check_mode: false
+  changed_when: false
   when:
     - ansible_facts['os_family'] | lower == 'redhat'
     - ansible_facts['pkg_mgr'] == 'dnf'
@@ -79,7 +79,7 @@
 - name: Enable dnf automatic timer for automatic package updates
   systemd:
     name: "{{ dnf_automatic_timer }}"
-    enabled: yes
+    enabled: true
     state: started
   when:
     - ansible_facts['os_family'] | lower == 'redhat'

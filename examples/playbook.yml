@@ -1,7 +1,7 @@
 ---
 - name: Gather security hardening facts
   hosts: "{{ security_host_group|default('hosts') }}"
-  gather_facts: True
+  gather_facts: true
   tags:
     - always
 

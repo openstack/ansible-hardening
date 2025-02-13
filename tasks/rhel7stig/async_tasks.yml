@@ -17,8 +17,8 @@
 # lookup one time and then grep over the output in subsequent tasks.
 - name: Verify all installed RPM packages
   shell: "rpm -Va > {{ temp_dir }}/rpmverify.txt" # noqa: command-instead-of-module
-  failed_when: False
-  changed_when: False
+  failed_when: false
+  changed_when: false
   register: rpmverify_task
   async: 3600
   poll: 0
@@ -30,7 +30,6 @@
     - high
     - V-71855
     - skip_ansible_lint
-
 
 - name: Locate top level directories to check for .shosts
   find:
@@ -49,10 +48,10 @@
 - name: Check for .shosts or shosts.equiv files
   find:
     paths: "{{ shosts_dirs.files | map(attribute='path') | difference(security_rhel7_remove_shosts_exclude_dirs) }}"
-    recurse: yes
-    hidden: yes
-    patterns: '.shosts,shosts.equiv'
-  changed_when: False
+    recurse: true
+    hidden: true
+    patterns: ".shosts,shosts.equiv"
+  changed_when: false
   register: shosts_find
   async: 300
   poll: 0

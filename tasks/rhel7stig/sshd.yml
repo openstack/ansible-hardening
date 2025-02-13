@@ -30,8 +30,8 @@
   lineinfile:
     path: /etc/ssh/sshd_config
     state: absent
-    regexp: '^{{ item.name }}\s+(?!{{ item.value }})'
-    validate: '/usr/sbin/sshd -T -f %s'
+    regexp: "^{{ item.name }}\\s+(?!{{ item.value }})"
+    validate: "/usr/sbin/sshd -T -f %s"
   with_items: "{{ sshd_settings_rhel7 | selectattr('enabled') }}"
   notify:
     - Restart ssh
@@ -64,7 +64,7 @@
     state: present
     marker: "# {mark} MANAGED BY ANSIBLE-HARDENING"
     insertbefore: "BOF"
-    validate: '/usr/sbin/sshd -T -f %s'
+    validate: "/usr/sbin/sshd -T -f %s"
     block: |-
       {% set options = sshd_settings_rhel7 | selectattr('enabled') %}
       {% for option in options %}
@@ -99,7 +99,7 @@
 - name: Ensure sshd is enabled at boot time
   service:
     name: "{{ ssh_service }}"
-    enabled: yes
+    enabled: true
   when:
     - security_enable_sshd | bool
   tags:
@@ -113,7 +113,7 @@
   # The shell command will always report 'changed' so we need to
   # ignore that since this role is supposed to be idempotent.
   changed_when: false
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -134,7 +134,7 @@
   # The shell command will always report 'changed' so we need to
   # ignore that since this role is supposed to be idempotent
   changed_when: false
-  check_mode: no
+  check_mode: false
   tags:
     - always
 
@@ -152,6 +152,6 @@
 - name: Manage motd in pam.d
   replace:
     path: /etc/pam.d/sshd
-    regexp: '^(#\s)?(session\s*optional\s*pam_motd.so.*)$'
+    regexp: "^(#\\s)?(session\\s*optional\\s*pam_motd.so.*)$"
     replace: '{{ (security_sshd_dynamic_banner_disable | bool) | ternary("# \2", "\2") }}'
   when: security_sshd_dynamic_banner_disable | bool

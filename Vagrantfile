@@ -1,10 +1,14 @@
-# Note:
-# This file is maintained in the openstack-ansible-tests repository.
-# https://opendev.org/openstack/openstack-ansible-tests/src/Vagrantfile
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-# If you need to perform any change on it, you should modify the central file,
-# then, an OpenStack CI job will propagate your changes to every OSA repository
-# since every repo uses the same Vagrantfile
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 # Verify whether required plugins are installed.
 required_plugins = [ "vagrant-disksize" ]
@@ -15,32 +19,49 @@ required_plugins.each do |plugin|
 end
 
 Vagrant.configure(2) do |config|
+
+  # Configure all VM specs.
   config.vm.provider "virtualbox" do |v|
-    v.memory = 6144
-    v.cpus = 2
-    # https://github.com/hashicorp/vagrant/issues/9524
-    v.customize ["modifyvm", :id, "--audio", "none"]
+    v.memory = 12288
+    v.cpus = 4
   end
 
   config.vm.synced_folder ".", "/vagrant", type: "rsync"
 
-  config.vm.provision "shell",
-      privileged: false,
+  # Configure the disk size.
+  disk_size = "60GB"
+
+  config.vm.define "opensuse423" do |leap423|
+    leap423.disksize.size = disk_size
+    leap423.vm.box = "opensuse/openSUSE-42.3-x86_64"
+    leap423.vm.provision "shell",
+      # NOTE(hwoarang) The parted version in Leap 42.3 can't do an online
+      # partition resize so we must create a new one and attach it to the
+      # btrfs filesystem.
+      privileged: true,
       inline: <<-SHELL
-          cd /vagrant
-         ./run_tests.sh
+        cd /vagrant
+        echo -e 'd\n2\nn\np\n\n\n\nn\nw' | fdisk /dev/sda
+        PART_END=$(fdisk -l /dev/sda | grep ^/dev/sda2 | awk '{print $4}')
+        resizepart /dev/sda 2 $PART_END
+        btrfs fi resize max /
+        ./scripts/gate-check-commit.sh
       SHELL
-
-  config.vm.define "centos8" do |centos8|
-    centos8.vm.box = "centos/8"
   end
 
-  config.vm.define "debian10" do |debian10|
-    debian10.vm.box = "debian/buster64"
+  config.vm.define "opensuse150" do |leap150|
+    leap150.disksize.size = disk_size
+    leap150.vm.box = "opensuse/openSUSE-15.0-x86_64"
+    leap150.vm.provision "shell",
+      privileged: true,
+      inline: <<-SHELL
+        cd /vagrant
+        zypper -qn in gdisk
+        echo -e 'x\ne\nw\ny\n' | gdisk /dev/sda
+        parted -s /dev/sda unit GB resizepart 3 100%
+        btrfs fi resize max /
+        ./scripts/gate-check-commit.sh
+      SHELL
   end
 
-  config.vm.define "ubuntu2004" do |focal|
-    focal.disksize.size = "40GB"
-    focal.vm.box = "ubuntu/focal64"
-  end
 end

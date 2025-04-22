@@ -53,13 +53,16 @@ source /etc/os-release || source /usr/lib/os-release
 
 # Figure out the appropriate package install command
 case ${ID,,} in
-    centos|rhel|fedora|rocky) pkg_mgr_cmd="dnf install -y" ;;
+    *suse*) pkg_mgr_cmd="zypper -n in" ;;
+    centos|rhel|rocky|fedora) pkg_mgr_cmd="dnf install -y" ;;
     ubuntu|debian) pkg_mgr_cmd="apt-get install -y" ;;
+    # Gentoo needs to have version set since it's rolling
+    gentoo) pkg_mgr_cmd="emerge --jobs=4"; VERSION="rolling" ;;
     *) echo "unsupported distribution: ${ID,,}"; exit 1 ;;
 esac
 
 # Install git so that we can clone the tests repo if git is not available
-which git &>/dev/null || eval sudo "${pkg_mgr_cmd}" git
+command -v git &>/dev/null || eval sudo "${pkg_mgr_cmd}" git
 
 # Clone the tests repo for access to the common test script
 if [[ ! -d "${COMMON_TESTS_PATH}" ]]; then
@@ -86,3 +89,4 @@ fi
 
 # Execute the common test script
 source tests/common/run_tests_common.sh
+

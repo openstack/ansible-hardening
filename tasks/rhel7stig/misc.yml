@@ -237,22 +237,6 @@
     - misc
     - V-72213
 
-# NOTE(mhayden): This role changed names and this task ensures that the old
-# configuration block is properly removed. Without this task, /etc/profile
-# will have two config blocks that set the same variable and this leads to
-# errors on the command prompt. See LP bug 1736702.
-# TODO(mhayden): Remove this task when the Rocky release is in development.
-- name: Remove old config block for V-72223 from openstack-ansible-security
-  ansible.builtin.blockinfile:
-    dest: /etc/profile
-    state: absent
-    insertbefore: EOF
-    marker: "# {mark} MANAGED BY OPENSTACK-ANSIBLE-SECURITY"
-  tags:
-    - medium
-    - misc
-    - V-72223
-
 - name: V-72223 - Set 10 minute timeout on communication sessions
   ansible.builtin.blockinfile:
     dest: /etc/profile

@@ -203,7 +203,7 @@
     - V-72213
 
 - name: Check if ClamAV update process is already running
-  ansible.builtin.shell: "set -o pipefail; ps -ef | egrep [f]reshclam -q"
+  ansible.builtin.shell: "set -o pipefail; ps -ef | grep -E [f]reshclam -q"
   register: freshclam_proc
   changed_when: false
   failed_when: false
@@ -438,7 +438,7 @@
     - V-72305
 
 - name: Check to see if snmpd config contains public/private
-  ansible.builtin.command: 'egrep "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
+  ansible.builtin.command: 'grep -E "^[^#].*(public|private)" /etc/snmp/snmpd.conf'
   register: snmp_public_private_check
   changed_when: false
   failed_when: false

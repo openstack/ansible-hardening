@@ -106,7 +106,7 @@
 # those lines that have a '#' as the first character or '#' as the first
 # character following a space (or series of spaces).
 - name: Check for 'nopasswd' in sudoers files
-  ansible.builtin.shell: 'grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ | egrep -v "^([[:space:]]*)?(#|$)" || echo "not found"'
+  ansible.builtin.shell: 'grep -ir nopasswd /etc/sudoers /etc/sudoers.d/ | grep -Ev "^([[:space:]]*)?(#|$)" || echo "not found"'
   register: sudoers_nopasswd_check
   changed_when: false
   when:

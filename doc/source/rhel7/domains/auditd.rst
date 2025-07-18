@@ -44,5 +44,3 @@ Handling audit emergencies
     issues on production systems, ranging from a reduction in security to
     servers going offline unexpectedly. There is extensive documentation in the
     developer notes below for each STIG requirement.
-
-.. include:: auto_auditd.rst

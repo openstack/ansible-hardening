@@ -14,5 +14,3 @@ these changes.
 
 One deviation appears in this section for IP forwarding. Review the
 documentation for ``V-72309`` below for more details.
-
-.. include:: auto_kernel.rst

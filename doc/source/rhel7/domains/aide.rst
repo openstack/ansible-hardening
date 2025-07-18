@@ -36,5 +36,3 @@ To avoid installing and initializing AIDE, set the following Ansible variable:
 .. code-block:: yaml
 
     security_rhel7_enable_aide: false
-
-.. include:: auto_aide.rst

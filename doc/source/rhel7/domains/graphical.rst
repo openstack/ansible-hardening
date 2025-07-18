@@ -13,5 +13,3 @@ authentication for new sessions and enforcing re-authentication after idle
 periods.
 
 These controls will be skipped on systems without a graphical login interface.
-
-.. include:: auto_graphical.rst

@@ -13,5 +13,3 @@ production systems if the permissions were adjusted to meet the needs of a
 particular application. These configurations are applied on an opt-in basis.
 Deployers must verify that these changes work well with their systems before
 applying the changes.
-
-.. include:: auto_file_perms.rst

@@ -23,5 +23,3 @@ running on each host. That could be changed by using the
 ``security_allowed_ntp_subnets`` parameter.
 
 .. _RFC1918: https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
-
-.. include:: auto_misc.rst

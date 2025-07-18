@@ -19,5 +19,3 @@ Deviation for PermitRootLogin
 
   However, this can cause problems in some existing environments and the
   default for the role is to set it to ``yes`` (direct root logins allowed).
-
-.. include:: auto_sshd.rst

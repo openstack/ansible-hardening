@@ -67,24 +67,6 @@
     - V-72071
     - V-72073
 
-# NOTE(hwoarang): Add acl and xattrs on SUSE to meet V-72069 and V-72071.
-- name: Configure AIDE to verify additional properties (SUSE)
-  ansible.builtin.lineinfile:
-    dest: "/etc/aide.conf"
-    regexp: "(^Binlib.*= )"
-    line: "\\1p+i+n+u+g+s+b+m+c+sha256+sha512+acl+xattrs"
-    state: present
-    backrefs: true
-  when:
-    - aide_conf.results[1].stat.exists | bool
-    - ansible_facts['pkg_mgr'] == 'zypper'
-  tags:
-    - low
-    - aide
-    - V-72069
-    - V-72071
-    - V-72073
-
 - name: Check to see if AIDE database is already in place
   ansible.builtin.stat:
     path: "{{ aide_database_file }}"

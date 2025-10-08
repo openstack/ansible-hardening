@@ -63,25 +63,6 @@
     - high
     - V-71937
 
-- name: Prevent users with blank or null passwords from authenticating (SUSE)
-  ansible.builtin.lineinfile:
-    dest: "{{ item }}"
-    state: present
-    regexp: "^(.*required.*)nullok(.*)$"
-    line: "\\1\\2"
-    backup: true
-    backrefs: true
-  with_items:
-    - "{{ pam_auth_file }}"
-    - "{{ pam_password_file }}"
-  when:
-    - ansible_facts['pkg_mgr'] == 'zypper'
-    - security_disallow_blank_password_login | bool
-  tags:
-    - auth
-    - high
-    - V-71937
-
 - name: Lock accounts after three failed login attempts a 15 minute period
   ansible.builtin.blockinfile:
     dest: "{{ pam_password_file }}"
@@ -116,7 +97,7 @@
     - medium
     - V-71947
 
-- name: V-71947 - Users must provide a password for privilege escalation.
+- name: V-71947 - Users must provide a password for privilege escalation
   debug:
     msg: >
       The 'NOPASSWD' directive was found in the sudoers configuration files.
@@ -140,7 +121,7 @@
     - medium
     - V-71949
 
-- name: V-71949 - Users must re-authenticate for privilege escalation.
+- name: V-71949 - Users must re-authenticate for privilege escalation
   debug:
     msg: >
       The '!authenticate' directive was found in the sudoers configuration
@@ -204,7 +185,7 @@
     - V-71961
     - V-71963
 
-- name: V-72217 - The operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types.
+- name: V-72217 - The operating system must limit the number of concurrent sessions to 10 for all accounts and/or account types
   ansible.builtin.blockinfile:
     dest: /etc/security/limits.d/ansible-hardening-maxlogins.conf
     create: true

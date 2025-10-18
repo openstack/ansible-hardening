@@ -77,17 +77,6 @@
   tags:
     - always
 
-- name: Remove old RHEL 6 audit rules file
-  ansible.builtin.file:
-    path: /etc/audit/rules.d/osas-auditd.rules
-    state: absent
-  when:
-    - auditd_conf.stat.exists
-  notify:
-    - Generate auditd rules
-  tags:
-    - always
-
 - name: Deploy rules for auditd based on STIG requirements
   ansible.builtin.template:
     src: osas-auditd-rhel7.j2

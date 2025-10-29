@@ -15,7 +15,6 @@
 
 import grp
 import pwd
-import spwd
 from ansible.module_utils.basic import AnsibleModule
 
 
@@ -77,19 +76,26 @@ def make_group_dict(gid):
 def make_shadow_dict(username):
     """Create a dictionary of user shadow password database attributes."""
     try:
-        shadow_record = spwd.getspnam(username)
-    except KeyError:
+        with open('/etc/shadow', 'r') as f:
+            for line in f:
+                fields = line.strip().split(':')
+                if fields[0] == username:
+                    # sp_lstchg, sp_min, sp_max, sp_warn, sp_inact, sp_expire
+                    # These can be empty strings, so we need to handle that.
+                    shadow_dict = {
+                        'last_changed': int(fields[2]) if fields[2] else -1,
+                        'min_days': int(fields[3]) if fields[3] else -1,
+                        'max_days': int(fields[4]) if fields[4] else -1,
+                        'warn_days': int(fields[5]) if fields[5] else -1,
+                        'inact_days': int(fields[6]) if fields[6] else -1,
+                        'expire_days': int(fields[7]) if fields[7] else -1,
+                    }
+                    return shadow_dict
+    except (IOError, IndexError):
         return False
 
-    shadow_dict = {
-        'last_changed': shadow_record.sp_lstchg,
-        'min_days': shadow_record.sp_min,
-        'max_days': shadow_record.sp_max,
-        'warn_days': shadow_record.sp_warn,
-        'inact_days': shadow_record.sp_inact,
-        'expire_days': shadow_record.sp_expire,
-    }
-    return shadow_dict
+    # User not found in /etc/shadow
+    return False
 
 
 def main():

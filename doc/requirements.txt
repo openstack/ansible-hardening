@@ -4,7 +4,7 @@
 
 # WARNING:
 # This file is maintained in the openstack-ansible-tests repository.
-# https://opendev.org/openstack/openstack-ansible-tests/src/branch/master/sync/doc/requirements.txt
+# https://opendev.org/openstack/openstack-ansible/src/branch/master/sync/doc/requirements.txt
 # If you need to modify this file, update the one in the
 # openstack-ansible-tests repository. Once it merges there, the changes will
 # automatically be proposed to all the repositories which use it.

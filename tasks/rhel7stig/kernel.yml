@@ -68,7 +68,7 @@
     enabled: false
   when:
     - kdump_service_check.rc not in [3,4]
-    - security_disable_kdump
+    - security_disable_kdump | bool
   tags:
     - kernel
     - medium

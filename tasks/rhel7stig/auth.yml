@@ -54,7 +54,7 @@
     line: "\\1\\2"
     backup: true
     backrefs: true
-  loop: "{{ ['auth', 'password'] | product(['{{ pam_auth_file }}', '{{ pam_password_file }}']) | list }}"
+  loop: "{{ ['auth', 'password'] | product([pam_auth_file, pam_password_file]) | list }}"
   when:
     - ansible_facts['os_family'] == 'RedHat'
     - security_disallow_blank_password_login | bool

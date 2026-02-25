@@ -88,6 +88,7 @@
   when: security_rhel7_enable_aide | bool
 - name: Importing auditd tasks
   ansible.builtin.import_tasks: auditd.yml
+  when: security_rhel7_enable_auditd | bool
 - name: Importing auth tasks
   ansible.builtin.import_tasks: auth.yml
 - name: Importing file_perms tasks

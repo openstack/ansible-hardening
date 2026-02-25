@@ -81,6 +81,7 @@ security_aide_exclude_dirs:
   - /var
 
 ## Audit daemon (auditd)
+security_rhel7_enable_auditd: true
 # Send audit records to a different system using audisp.
 # security_audisp_remote_server: '10.0.21.1'                  # V-72083
 # Encrypt audit records when they are transmitted over the network.

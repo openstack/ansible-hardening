@@ -18,7 +18,7 @@
   register: rpmverify_package_list
   changed_when: false
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - ansible_facts['pkg_mgr'] == 'dnf'
     - security_reset_perm_ownership | bool
   tags:
@@ -33,7 +33,7 @@
     - ["--setperms", "--setugids"]
     - "{{ rpmverify_package_list.stdout_lines | default([]) }}"
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - ansible_facts['pkg_mgr'] == 'dnf'
     - rpmverify_package_list is defined
     - rpmverify_package_list.stdout_lines | length > 0

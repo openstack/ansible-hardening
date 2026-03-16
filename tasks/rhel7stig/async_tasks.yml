@@ -23,7 +23,7 @@
   async: 3600
   poll: 0
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - ansible_facts['os_family'] | lower in ['redhat', 'suse']
   tags:
     - rpm
@@ -37,7 +37,7 @@
     file_type: directory
   register: shosts_dirs
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - security_rhel7_remove_shosts_files | bool
   tags:
     - high
@@ -56,7 +56,7 @@
   async: 300
   poll: 0
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - security_rhel7_remove_shosts_files | bool
   tags:
     - high

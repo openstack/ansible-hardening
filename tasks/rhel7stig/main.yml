@@ -19,7 +19,7 @@
     suffix: hardening
   register: mktemp_result
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
   tags:
     - always
 
@@ -28,7 +28,7 @@
     temp_dir: "{{ mktemp_result.path }}"
   changed_when: false
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
   tags:
     - always
 
@@ -110,6 +110,6 @@
     state: absent
   changed_when: false
   when:
-    - not check_mode | bool
+    - not ansible_check_mode | bool
   tags:
     - always

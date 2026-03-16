@@ -35,7 +35,7 @@
   changed_when: false
   when:
     - security_check_package_checksums | bool
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - ansible_facts['os_family'] | lower == 'redhat'
   tags:
     - rpm
@@ -54,7 +54,7 @@
       {% endfor %}
   when:
     - security_check_package_checksums | bool
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - ansible_facts['os_family'] | lower == 'redhat'
     - invalid_checksum_files is defined
     - invalid_checksum_files.stdout is defined

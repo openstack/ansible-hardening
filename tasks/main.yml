@@ -44,7 +44,7 @@
 
 - name: Set facts
   ansible.builtin.set_fact:
-    check_mode: "{{ noop_result is skipped }}" # noqa: var-naming[no-reserved]
+    check_skipped: "{{ noop_result is skipped }}"
     linux_security_module: "{{ (ansible_facts['os_family'] == 'Debian') | ternary('apparmor', 'selinux') }}"
     grub_config_file_boot: "{{ booted_with_efi | ternary(grub_conf_file_efi, grub_conf_file) }}"
   tags:

@@ -259,7 +259,7 @@
     state: started
     enabled: true
   when:
-    - not check_mode
+    - not ansible_check_mode
     - security_rhel7_enable_chrony | bool
   tags:
     - medium

@@ -25,7 +25,7 @@
   failed_when: false
   when:
     - security_check_package_checksums | bool
-    - not check_mode | bool
+    - not ansible_check_mode | bool
 
 - name: V-71855 - Get files with invalid checksums (apt)
   ansible.builtin.shell: "grep -v OK$ {{ temp_dir }}/debsums.txt | awk '{ print $1 }'"
@@ -33,7 +33,7 @@
   changed_when: false
   when:
     - security_check_package_checksums | bool
-    - not check_mode | bool
+    - not ansible_check_mode | bool
     - ansible_facts['os_family'] | lower == 'debian'
   tags:
     - high

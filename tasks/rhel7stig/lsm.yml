@@ -51,7 +51,7 @@
   when:
     - ansible_facts['pkg_mgr'] in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
-    - not check_mode
+    - not ansible_check_mode
   tags:
     - high
     - V-71989
@@ -68,7 +68,7 @@
   when:
     - ansible_facts['pkg_mgr'] in ['apt', 'zypper']
     - security_rhel7_enable_linux_security_module | bool
-    - not check_mode
+    - not ansible_check_mode
     - '"apparmor filesystem is not mounted" not in apparmor_status_output.stderr'
   tags:
     - high

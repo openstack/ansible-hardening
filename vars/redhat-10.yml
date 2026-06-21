@@ -57,6 +57,7 @@ stig_packages_rhel7:
   - packages:
       - audispd-plugins
       - audit
+      - audit-rules
       - dracut-fips
       - dracut-fips-aesni
       - openssh-clients

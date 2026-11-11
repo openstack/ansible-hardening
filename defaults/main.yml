@@ -328,6 +328,8 @@ security_enable_gpgcheck_repo: false # V-71981
 security_enable_sshd: true # V-72235
 # Disallow logins from users with empty/null passwords.
 security_sshd_disallow_empty_password: true # V-71939 / RHEL-07-010440
+# Disallow logins using password
+security_sshd_disallow_password_authentication: false # Optional hardening (Non-STIG)
 # Disallow users from overriding the ssh environment variables.
 security_sshd_disallow_environment_override: true # V-71957
 # Disallow host based authentication.

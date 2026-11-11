@@ -358,6 +358,10 @@ sshd_settings_rhel7:
     value: "no"
     enabled: "{{ security_sshd_disallow_empty_password | bool }}"
     stig_id: V-71939 / RHEL-07-010440
+  - name: PasswordAuthentication
+    value: "no"
+    enabled: "{{ security_sshd_disallow_password_authentication | bool }}"
+    stig_id: None (Site Policy)
   - name: PermitUserEnvironment
     value: "no"
     enabled: "{{ security_sshd_disallow_environment_override | bool }}"
